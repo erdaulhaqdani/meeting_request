@@ -20,7 +20,6 @@
 
   <?= $this->include("partials/head-css"); ?>
 
-
 </head>
 
 <?= $this->include("partials/body"); ?>
@@ -28,7 +27,7 @@
 <!-- Begin page -->
 <div id="layout-wrapper">
 
-  <?= $this->include("partials/menu"); ?>
+  <?= $this->include("partials/menu_petugas"); ?>
 
   <!-- ============================================================== -->
   <!-- Start right Content here -->
@@ -42,55 +41,9 @@
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Rekap Meeting Request</h4>
-                <div class="row">
-
-                  <div class="col-4">
-                    <div class="card">
-                      <div class="card-body text-center">
-                        <h5 class="card-title">Belum diproses</h5>
-                        <?php foreach ($belum->getResultObject() as $a) : ?>
-                          <?= $a->idMeeting; ?>
-                        <?php endforeach ?>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-4">
-                    <div class="card">
-                      <div class="card-body text-center">
-                        <h5 class="card-title">Sedang diproses</h5>
-                        <?php foreach ($proses->getResultObject() as $a) : ?>
-                          <?= $a->idMeeting; ?>
-                        <?php endforeach ?>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-4">
-                    <div class="card">
-                      <div class="card-body text-center">
-                        <h5 class="card-title">Selesai diproses</h5>
-                        <?php foreach ($selesai->getResultObject() as $a) : ?>
-                          <?= $a->idMeeting; ?>
-                        <?php endforeach ?>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-12">
-            <div class="card">
-              <div class="card-body">
 
                 <h4 class="card-title"><?= $title; ?></h4>
-                <p class="card-title-desc">Berikut adalah tabel Riwayat Meeting Request Anda.</p>
+                <p class="card-title-desc">Berikut adalah tabel Daftar Tanda Terima Surat.</p>
                 <?php
                 if (session()->get('pesan')) {
                 ?>
@@ -104,48 +57,45 @@
                   <thead>
                     <tr>
                       <th>No.</th>
-                      <th>Jenis Layanan</th>
-                      <th>Bentuk Layanan</th>
-                      <th>Kantor Tujuan</th>
-                      <th>Tanggal Kunjungan</th>
-                      <th>Waktu Kunjungan</th>
+                      <th>Pengirim</th>
+                      <th>Nomor Surat</th>
+                      <th>Tanggal Surat</th>
+                      <th>Tanggal Masuk</th>
                       <th>Perihal</th>
-                      <th>Status</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
 
                   <tbody>
-                    <?php $no = 1; ?>
-                    <?php foreach ($meeting->getResult() as $a) : ?>
-                      <?php //getNamaKategori
-                      $k = '';
-                      foreach ($kategori as $b) {
-                        if ($a->idKategori == $b['idKategori']) {
-                          $k = $b['namaKategori'];
-                        }
-                      }
-                      ?>
+                    <?php $no = 1;
+                    function formatTanggal($date)
+                    {
+                      // ubah string menjadi format tanggal
+                      return date('d-m-Y', strtotime($date));
+                    }
+                    function formatTanggal2($date2)
+                    {
+                      // ubah string menjadi format tanggal
+                      return date('d-m-Y', strtotime($date2));
+                    }
+
+                    ?>
+                    <?php foreach ($tanda_terima as $a) :
+                      $date = $a['created_at'];
+                      $date2 = $a['Tanggal']
+
+                    ?>
                       <tr>
                         <td><?= $no++; ?></td>
-                        <td><?= $k; ?></td>
-                        <td><?= $a->Bentuk_layanan; ?></td>
-                        <td><?= $a->Kantor; ?></td>
-                        <td><?= $a->Tanggal_kunjungan; ?></td>
-                        <td><?= $a->Waktu_kunjungan; ?></td>
-                        <td><?= $a->Perihal; ?></td>
-                        <td><?= $a->Status; ?></td>
+                        <td><?= $a['Pengirim']; ?></td>
+                        <td><?= $a['No_surat']; ?></td>
+                        <td><?= formatTanggal2($date2) ?></td>
+                        <td><?= formatTanggal($date) ?></td>
+                        <td><?= $a['Perihal']; ?></td>
                         <td>
-                          <a href="/Meeting_request/detail/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Detail</a>
-                          <?php if ($a->Status == 'Belum diproses') : ?>
-                            <a href="/Meeting_request/edit/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
-                            <a href="/Meeting_request/cancel/<?= $a->idMeeting; ?>" class="btn btn-warning btn-sm w-xs">Batalkan</a>
-                          <?php elseif ($a->Status == 'Dibatalkan') : ?>
-                            <a href="/Meeting_request/delete/<?= $a->idMeeting; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
-                          <?php elseif ($a->Status == 'Selesai diproses') : ?>
-                            <a href="/Meeting_request/rating/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Rating</a>
-                            <a href="/Meeting_request/tanggapan/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Tanggapan</a>
-                          <?php endif ?>
+                          <a href="/petugasMR/edit_tandaTerima/<?= $a['id_tt']; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
+                          <a href="/petugasMR/hapus_tandaTerima/<?= $a['id_tt']; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
+                          <a href="/Meeting_request/detail/<?= $a['id_tt']; ?>" class="btn btn-success btn-sm w-xs">Cetak</a>
                         </td>
                       </tr>
                     <?php endforeach ?>

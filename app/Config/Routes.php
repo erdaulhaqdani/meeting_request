@@ -103,6 +103,11 @@ $routes->get('/petugasMR/tanggapan/(:num)', 'Petugas_MR::tanggapan/$1');
 $routes->get('/petugasMR/proses/(:num)', 'Petugas_MR::proses/$1');
 $routes->get('/petugasMR/detail/(:num)', 'Petugas_MR::detail/$1');
 $routes->get('/petugasMR/inputTanggapan', 'Petugas_MR::input');
+$routes->get('/petugasMR/input_tandaTerima', 'Petugas_MR::input_tandaTerima');
+$routes->get('/petugasMR/form_tandaTerima', 'Petugas_MR::form_tandaTerima');
+$routes->get('/petugasMR/daftar_tandaTerima', 'Petugas_MR::daftar_tandaTerima');
+$routes->get('/petugasMR/hapus_tandaTerima/(:num)', 'Petugas_MR::delete_tandaTerima/$1');
+$routes->get('/petugasMR/edit_tandaTerima/(:num)', 'Petugas_MR::edit_tandaTerima/$1');
 
 
 

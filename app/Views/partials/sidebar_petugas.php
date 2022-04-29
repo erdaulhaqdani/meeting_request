@@ -25,6 +25,16 @@
                         <span>Meeting Request</span>
                     </a>
                 </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fas fa-file-alt "></i>
+                        <span>Tanda Terima</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="/petugasMR/form_tandaTerima">Tambah Tanda Terima</a></li>
+                        <li><a href="/petugasMR/daftar_tandaTerima">Daftar Tanda Terima</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->
