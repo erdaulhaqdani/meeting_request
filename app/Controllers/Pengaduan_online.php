@@ -7,7 +7,6 @@ use App\Models\KategoriModel;
 use App\Models\CustModel;
 use App\Models\PetugasModel;
 use App\Models\Tanggapan_POModel;
-use PhpParser\Node\Expr\FuncCall;
 
 class Pengaduan_online extends BaseController
 {
@@ -31,13 +30,24 @@ class Pengaduan_online extends BaseController
         $data = [
             'title' => 'Riwayat Pengaduan Online',
             'pengaduan' => $this->Pengaduan_onlineModel->listPengaduanCustomer(session('idCustomer')),
-            'belum' => $this->Pengaduan_onlineModel->jumlahPengaduanBelumDiproses(session('idCustomer')),
-            'proses' => $this->Pengaduan_onlineModel->jumlahPengaduanDiproses(session('idCustomer')),
-            'selesai' => $this->Pengaduan_onlineModel->jumlahPengaduanSelesaiDiproses(session('idCustomer')),
+            'belum' => $this->Pengaduan_onlineModel->jumlahPengaduan(session('idCustomer'), 'Belum diproses'),
+            'proses' => $this->Pengaduan_onlineModel->jumlahPengaduan(session('idCustomer'), 'Sedang diproses'),
+            'selesai' => $this->Pengaduan_onlineModel->jumlahPengaduan(session('idCustomer'), 'Selesai diproses'),
             'kategori' => $this->KategoriModel->getKategori()
         ];
 
         return view('pengaduan_online/view_pengaduan_online', $data);
+    }
+
+    public function daftar($status)
+    {
+        $data = [
+            'title' => 'Riwayat Pengaduan Online',
+            'pengaduan' => $this->Pengaduan_onlineModel->listPengaduanCustomer2(session('idCustomer'), $status),
+            'kategori' => $this->KategoriModel->getKategori()
+        ];
+
+        return view('pengaduan_online/daftar_pengaduan_online', $data);
     }
 
     public function profile()
@@ -62,6 +72,20 @@ class Pengaduan_online extends BaseController
     }
 
     public function detail($id)
+    {
+        $data = [
+            'title' => 'Detail Pengaduan Online',
+            'pengaduan' => $this->Pengaduan_onlineModel->getPengaduan($id),
+            'customer' => $this->CustModel->getCustomer(),
+            'kategori' => $this->KategoriModel->getKategori(),
+            'petugas' => $this->PetugasModel->getPetugas(),
+            'tanggapan' => $this->Tanggapan_POModel->getTanggapan()
+        ];
+
+        return view('pengaduan_online/detail_pengaduan_online', $data);
+    }
+
+    public function print($id)
     {
         $data = [
             'title' => 'Detail Pengaduan Online',

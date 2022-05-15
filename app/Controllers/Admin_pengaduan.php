@@ -29,15 +29,37 @@ class Admin_pengaduan extends BaseController
     {
         $data = [
             'title' => 'Daftar Pengaduan Online',
-            'pengaduan' => $this->Pengaduan_onlineModel->listPengaduanAdmin(),
-            'belum' => $this->Pengaduan_onlineModel->jumlahPengaduanBelumDiprosesAdmin(),
-            'proses' => $this->Pengaduan_onlineModel->jumlahPengaduanDiprosesAdmin(),
-            'selesai' => $this->Pengaduan_onlineModel->jumlahPengaduanSelesaiDiprosesAdmin(),
+            'pengaduan' => $this->Pengaduan_onlineModel->listPengaduanAdmin(session('idLevel'), session('Unit')),
+            'belum' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Belum diproses', session('idLevel'), session('Unit')),
+            'proses' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Sedang diproses', session('idLevel'), session('Unit')),
+            'selesai' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Selesai diproses', session('idLevel'), session('Unit')),
             'kategori' => $this->KategoriModel->getKategori()
         ];
 
         return view('pengaduan_online/admin_beranda', $data);
     }
+
+    public function daftar($status)
+    {
+        $data = [
+            'title' => 'Daftar Pengaduan Online',
+            'pengaduan' => $this->Pengaduan_onlineModel->listPengaduanAdmin2($status, session('idLevel'), session('Unit')),
+            'kategori' => $this->KategoriModel->getKategori()
+        ];
+
+        return view('pengaduan_online/admin_daftar', $data);
+    }
+
+    public function profile()
+    {
+        $data = [
+            'title' => 'Profile Petugas',
+            'petugas' => $this->PetugasModel->getPetugas(session('idPetugas'))
+        ];
+
+        return view('pengaduan_online/profile_petugas', $data);
+    }
+
 
     public function detail($id)
     {
@@ -113,12 +135,10 @@ class Admin_pengaduan extends BaseController
             $lampiran->move('lampiran', $namalampiran);
         }
 
-        $idPetugas = 1;
-
         $this->Tanggapan_POModel->save([
             'Isi' => $this->request->getVar('isi'),
             'Lampiran' => $namalampiran,
-            'idPetugas' => $idPetugas,
+            'idPetugas' => session('idPetugas'),
             'idPengaduan' => $this->request->getVar('idPengaduan')
         ]);
 
