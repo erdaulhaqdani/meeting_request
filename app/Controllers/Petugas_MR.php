@@ -7,6 +7,7 @@ use App\Models\KategoriModel;
 use App\Models\CustModel;
 use App\Models\Tanggapan_MRModel;
 use App\Models\PetugasModel;
+use App\Models\TandaTerimaModel;
 
 class Petugas_MR extends BaseController
 {
@@ -15,6 +16,7 @@ class Petugas_MR extends BaseController
     protected $CustModel;
     protected $Tanggapan_MRModel;
     protected $PetugasModel;
+    protected $TandaTerimaModel;
 
     public function __construct()
     {
@@ -23,6 +25,7 @@ class Petugas_MR extends BaseController
         $this->CustModel = new CustModel();
         $this->Tanggapan_MRModel = new Tanggapan_MRModel();
         $this->PetugasModel = new PetugasModel();
+        $this->TandaTerimaModel = new TandaTerimaModel();
     }
 
     public function index()
@@ -118,5 +121,75 @@ class Petugas_MR extends BaseController
         session()->setFlashdata('pesan', 'Tanggapan berhasil tersimpan.');
 
         return redirect()->to('/petugasMR');
+    }
+
+    public function form_tandaTerima()
+    {
+        $data = [
+            'title' => 'Tambah Tanda Terima',
+            'validation' => \Config\Services::validation(),
+        ];
+
+        return view('meeting_request/form_tanda_terima', $data);
+    }
+
+    public function input_tandaTerima()
+    {
+        $this->TandaTerimaModel->save([
+            'Pengirim' => $this->request->getVar('pengirim'),
+            'No_surat' => $this->request->getVar('no_surat'),
+            'Tanggal' => $this->request->getVar('tanggal'),
+            'Perihal' => $this->request->getVar('perihal'),
+        ]);
+
+        session()->setFlashdata('pesan', 'Tanda Terima berhasil ditambahkan.');
+
+        return redirect()->to('/petugasMR/form_tandaTerima');
+    }
+
+    public function daftar_tandaTerima()
+    {
+        $data = [
+            'title' => 'Daftar Tanda Terima',
+            'tanda_terima' => $this->TandaTerimaModel->findAll(),
+        ];
+        return view('/meeting_request/daftar_tanda_terima', $data);
+    }
+
+    public function delete_tandaTerima($id)
+    {
+
+        $this->TandaTerimaModel->delete($id);
+
+        session()->setFlashdata('pesan', 'Berhasil menghapus Tanda Terima.');
+
+        return redirect()->to('/petugasMR/daftar_tandaTerima');
+    }
+
+    public function edit_tandaTerima($id)
+    {
+        $data = [
+            'title' => 'Ubah Tanda Terima',
+            'validation' => \Config\Services::validation(),
+            'tanda_terima' => $this->TandaTerimaModel->getTandaTerima($id),
+        ];
+
+        return view('meeting_request/edit_tanda_terima', $data);
+    }
+
+    public function update_tandaTerima($id)
+    {
+
+        $this->TandaTerimaModel->save([
+            'id_tt' => $id,
+            'Pengirim' => $this->request->getVar('pengirim'),
+            'No_surat' => $this->request->getVar('no_surat'),
+            'Tanggal' => $this->request->getVar('tanggal'),
+            'Perihal' => $this->request->getVar('perihal'),
+        ]);
+
+        session()->setFlashdata('pesan', 'Berhasil mengubah Tanda Terima');
+
+        return redirect()->to('/petugasMR/daftar_tandaTerima');
     }
 }

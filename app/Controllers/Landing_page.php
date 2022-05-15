@@ -6,6 +6,7 @@ use App\Models\Landing_pageModel;
 use App\Models\KategoriModel;
 use App\Models\PermohonanInfoModel;
 use App\Models\LevelModel;
+use App\Models\Level_petugasModel;
 use App\Models\PetugasModel;
 use App\Models\UserModel;
 
@@ -16,6 +17,7 @@ class Landing_page extends BaseController
   protected $KategoriModel;
   protected $PermohonanInfoModel;
   protected $LevelModel;
+  protected $Level_petugasModel;
   protected $PetugasModel;
   protected $UserModel;
 
@@ -25,6 +27,7 @@ class Landing_page extends BaseController
     $this->KategoriModel = new kategoriModel();
     $this->PermohonanInfoModel = new PermohonanInfoModel();
     $this->LevelModel = new LevelModel();
+    $this->Level_petugasModel = new Level_petugasModel();
     $this->PetugasModel = new PetugasModel();
     $this->UserModel = new UserModel();
   }
@@ -34,6 +37,8 @@ class Landing_page extends BaseController
     $data = [
       'title' => 'Tambah Petugas',
       'level' => $this->LevelModel->findAll(),
+      'level_petugas' => $this->Level_petugasModel->findAll(),
+      'kategori' => $this->KategoriModel->findAll(),
       'validation' => \Config\Services::validation()
     ];
     return view('landing_page/form_petugas', $data);
@@ -49,16 +54,17 @@ class Landing_page extends BaseController
       'Kantor' => $this->request->getVar('kantor'),
       'Nama' => $this->request->getVar('nama'),
       'NIP' => $this->request->getVar('nip'),
-      'Email' => $this->request->getVar('email'),
-      'Password' => $hashedPassword,
+      'Unit' => $this->request->getVar('unit'),
+      // 'Email' => $this->request->getVar('email'),
+      // 'Password' => $hashedPassword,
 
     ]);
 
-    $this->UserModel->save([
-      'Email' => $this->request->getVar('email'),
-      'Password' => $hashedPassword,
-      'idLevel' => $this->request->getVar('level')
-    ]);
+    // $this->UserModel->save([
+    //   'Email' => $this->request->getVar('email'),
+    //   'Password' => $hashedPassword,
+    //   'idLevel' => $this->request->getVar('level')
+    // ]);
 
     session()->setFlashdata('pesan', 'Berhasil menambahkan petugas.');
 
@@ -71,6 +77,7 @@ class Landing_page extends BaseController
       'title' => 'Daftar Petugas',
       'level' => $this->LevelModel->findAll(),
       'petugas' => $this->PetugasModel->findAll(),
+      'level_petugas' => $this->Level_petugasModel->findAll(),
       'validation' => \Config\Services::validation()
     ];
     return view('landing_page/daftar_petugas', $data);
@@ -82,6 +89,7 @@ class Landing_page extends BaseController
       'title' => 'Daftar Petugas',
       'level' => $this->LevelModel->findAll(),
       'petugas' => $this->PetugasModel->getPetugas($email),
+      'level_petugas' => $this->Level_petugasModel->findAll(),
       'validation' => \Config\Services::validation()
     ];
     return view('landing_page/edit_petugas', $data);

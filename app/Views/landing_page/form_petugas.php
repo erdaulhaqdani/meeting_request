@@ -52,8 +52,21 @@
                     <div class="col-sm-9">
                       <select name="level" class="form-select" aria-label="Default select example" required>
                         <option selected disabled value="">Pilih level petugas</option>
-                        <?php foreach ($level as $a) : ?>
+                        <?php foreach ($level_petugas as $a) : ?>
                           <option value="<?= $a['idLevel'] ?>"><?= $a['Level']; ?></option>
+                        <?php endforeach ?>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- end row -->
+
+                  <div class="row mb-3">
+                    <label class="col-sm-3 col-form-label">Unit Petugas</label>
+                    <div class="col-sm-9">
+                      <select name="level" class="form-select" aria-label="Default select example" required>
+                        <option selected disabled value="">Pilih unit petugas</option>
+                        <?php foreach ($kategori as $a) : ?>
+                          <option value="<?= $a['idKategori'] ?>"><?= $a['namaKategori']; ?></option>
                         <?php endforeach ?>
                       </select>
                     </div>
