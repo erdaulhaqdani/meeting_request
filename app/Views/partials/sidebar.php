@@ -8,16 +8,14 @@
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li>
-                    <a href="/Pengaduan_online" class="waves-effect">
-                        <i class="ri-dashboard-line"></i>
-                        <span>Beranda</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/Pengaduan_online/form" class=" waves-effect">
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fas fa-file-alt "></i>
                         <span>Pengaduan Online</span>
                     </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="/Pengaduan_online/form">Pengajuan Pengaduan Online</a></li>
+                        <li><a href="/Pengaduan_online">Daftar Pengaduan Online</a></li>
+                    </ul>
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">

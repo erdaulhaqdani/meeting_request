@@ -32,7 +32,7 @@
                                 </div>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-4">
                                         <address>
                                             <strong>Identitas pengaju</strong><br>
                                             <?php //getNamaKategori
@@ -52,7 +52,7 @@
                                             <?= $Email; ?><br>
                                         </address>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-4">
                                         <?php //getNamaKategori
                                         $k = '';
                                         foreach ($kategori as $a) {
@@ -70,15 +70,22 @@
                                             <?= $pengaduan['Status']; ?>
                                         </address>
                                     </div>
+                                    <div class="col-4">
+                                        <form id="print">
+                                            <textarea hidden id="bukti" cols="30" rows="10">sss</textarea>
+                                            <button class="btn btn-danger"><i class="fas fa-print align-middle me-2"></i> Cetak</button>
+                                        </form>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-6 mt-3">
+                                    <div class="col-4 mt-3">
 
                                     </div>
-                                    <div class="col-6 mt-3">
+                                    <div class="col-4 mt-3">
                                         <address>
-                                            <strong>Tanggal Masuk</strong><br>
-                                            <?= $pengaduan['created_at']; ?><br><br>
+                                            <strong>Tanggal dibuat</strong><br>
+                                            <?php $tgl = date("d F Y H:i", strtotime($pengaduan['created_at'])); ?>
+                                            <?= $tgl; ?><br>
                                         </address>
                                     </div>
                                 </div>
@@ -93,7 +100,6 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="invoice-title">
-                                        <h4 class="float-end font-size-16"><?= $pengaduan['Judul']; ?></h4>
                                         <div class="mb-4">
                                             <h5>Tanggapan</h1>
                                         </div>
@@ -148,15 +154,13 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="invoice-title">
-                                        <h4 class="float-end font-size-16"><?= $pengaduan['Judul']; ?></h4>
                                         <div class="mb-4">
                                             <h5>Tanggapan</h1>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="row">
-                                        <?php
-                                        $tgl = date("d F Y", strtotime($pengaduan['updated_at'])); ?>
+                                        <?php $tgl = date("d F Y H:i", strtotime($pengaduan['updated_at'])); ?>
                                         <div class="col-6">
                                             sudah mulai diproses sejak <?= $tgl; ?>
                                         </div>
@@ -185,8 +189,32 @@
 <!-- JAVASCRIPT -->
 <?= $this->include('partials/vendor-scripts') ?>
 
+<!-- Plugins js -->
+<!-- PDFMake -->
+<script src="/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+<script src="/assets/libs/pdfmake/build/vfs_font.js"></script>
+
 <!-- App js -->
 <script src="assets/js/app.js"></script>
+
+<script>
+    $("#print").submit(function(e) {
+        var PdfPrinter = require('../src/printer');
+        var printer = new PdfPrinter(fonts);
+        var fs = require('fs');
+
+        var docDefinition = {
+            content: [
+                'First paragraph',
+                'Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines'
+            ]
+        };
+
+        var pdfDoc = printer.createPdfKitDocument(docDefinition);
+        pdfDoc.pipe(fs.createWriteStream('pdfs/basics.pdf'));
+        pdfDoc.end();
+    })
+</script>
 
 </body>
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
 
-    <?= $title ?>
+    <?= $this->include('partials/title-meta') ?>
 
     <?= $this->include('partials/head-css') ?>
 

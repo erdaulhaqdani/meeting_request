@@ -1,23 +1,22 @@
-<?= $this->include('partials/main') ?>
+<?= $this->include("partials/main") ?>
 
 <head>
     <meta charset="utf-8">
 
-    <?= $title ?>
+    <?= $this->include("partials/title-meta"); ?>
 
-    <?= $this->include('partials/head-css') ?>
+    <?= $this->include("partials/head-css"); ?>
 
-    <link rel="stylesheet" href="/assets/libs/dropify/css/dropify.css">
-    <link rel="stylesheet" href="/assets/libs/dropify/css/dropify.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/libs/dropify/css/dropify.min.css') ?>">
 </head>
 
-<?= $this->include('partials/body') ?>
+<?= $this->include("partials/body") ?>
 
 <div class="container-fluid">
     <!-- Begin page -->
     <div id="layout-wrapper">
 
-        <?= $this->include('partials/menu') ?>
+        <?= $this->include("partials/menu"); ?>
 
         <!-- ============================================================== -->
         <!-- Start right Content here -->
@@ -79,7 +78,7 @@
             </div>
             <!-- End Page-content -->
 
-            <?= $this->include('partials/footer') ?>
+            <?= $this->include("partials/footer") ?>
         </div>
         <!-- end main content-->
 
@@ -89,24 +88,22 @@
 </div>
 <!-- end container-fluid -->
 
-<?= $this->include('partials/right-sidebar') ?>
+<?= $this->include("partials/right-sidebar") ?>
 
 <!-- JAVASCRIPT -->
-<?= $this->include('/partials/vendor-scripts') ?>
-
+<?= $this->include("partials/vendor-scripts") ?>
+<?= base_url('') ?>
 <!-- Plugins js -->
 <!-- validation -->
-<script src="/assets/libs/parsleyjs/parsley.min.js"></script>
-<script src="/assets/js/pages/form-validation.init.js"></script>
+<script src="<?= base_url('assets/libs/parsleyjs/parsley.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/pages/form-validation.init.js') ?>"></script>
 <!-- drag n drop file -->
-
-<script src="/assets/libs/dropify/js/dropify.js"></script>
-<script src="/assets/libs/dropify/js/dropify.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="/assets/js/custom_dropify.js"></script>
+<script src="<?= base_url('assets/libs/dropify/js/dropify.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/custom-dropify.js') ?>"></script>
 
 <!-- App js -->
-<script src="/assets/js/app.js"></script>
+<script src="<?= base_url('assets/libs/jquery/jquery.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/app.js') ?>"></script>
 
 </body>
 

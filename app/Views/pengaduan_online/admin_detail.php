@@ -2,7 +2,7 @@
 
 <head>
 
-    <?= $this->include('partials/head-css') ?>
+    <?= $this->include('partials/title-meta') ?>
 
 </head>
 
