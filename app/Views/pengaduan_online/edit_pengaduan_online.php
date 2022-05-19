@@ -68,16 +68,9 @@
                                     </div>
 
                                     <label for="lampiran">Lampiran</label><a href="/lampiran/<?= $pengaduan['Lampiran'] ?>">Lampiran</a>
-                                    <div class="dropzone mb-3">
-                                        <div class="fallback">
-                                            <input name="lampiran" type="file">
-                                        </div>
-                                        <div class="dz-message needsclick">
-                                            <div class="mb-3">
-                                                <i class="display-4 text-muted mdi mdi-upload-network-outline"></i>
-                                            </div>
-                                            <h4>Drop files here or click to upload.</h4>
-                                        </div>
+                                    <div class="mb-3">
+                                        <input type="file" class="dropify" name="lampiran" />
+                                        <!-- <button type="button" class="dropify-clear">Remove</button> -->
                                     </div>
 
                                     <div class="mb-3 text-end">
@@ -119,7 +112,7 @@
 <script src="<?= base_url('assets/js/custom-dropify.js') ?>"></script>
 
 <!-- App js -->
-<script src="assets/js/app.js"></script>
+<script src="<?= base_url('assets/js/app.js') ?>"></script>
 
 </body>
 

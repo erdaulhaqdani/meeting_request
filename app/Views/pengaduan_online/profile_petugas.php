@@ -45,7 +45,7 @@
 
                                 <h4 class="card-title"> <?= $title ?></h4>
 
-                                <form action="/Pengaduan_online/in_profile" class="custom-validation" method="POST" enctype="multipart/form-data">
+                                <form action="/Admin_pengaduan/in_profile" class="custom-validation" method="POST" enctype="multipart/form-data">
                                     <!-- beri penjelasan tiap input/desc -->
                                     <div class="row mt-3">
                                         <?php if (session()->getFlashdata('pesan')) : ?>
@@ -60,6 +60,9 @@
                                             </div>
                                             <div class="my-2">
                                                 <label class="m-2">Email</label>
+                                            </div>
+                                            <div class="my-2">
+                                                <label class="m-2">Kantor</label>
                                             </div>
                                             <div class="my-2">
                                                 <label class="m-2">Level</label>
@@ -79,16 +82,23 @@
                                                 <input class="form-control" type="email" name="email" required minlength="5" value="<?= $petugas['Email']; ?>">
                                             </div>
                                             <div class="my-2">
-                                                <input class="form-control" type="text" name="idLevel" required minlength="5" value="<?= $petugas['idLevel']; ?>">
+                                                <select class="form-select" name="kantor" aria-label="Default select example" required>
+                                                    <option selected disabled value=""><?= $petugas['Kantor']; ?></option>
+                                                    <option value="KPKNL Bandung">KPKNL Bandung</option>
+                                                    <option value="DJKN Jabar">DJKN Jawa Barat</option>
+                                                </select>
                                             </div>
                                             <div class="my-2">
-                                                <input class="form-control" type="text" name="unit" required minlength="5" value="<?= $petugas['Unit']; ?>">
+                                                <input class="form-control" type="text" name="idLevel" disabled required minlength="5" value="<?= $petugas['idLevel']; ?>">
+                                            </div>
+                                            <div class="my-2">
+                                                <input class="form-control" type="text" name="unit" disabled required minlength="5" value="<?= $petugas['Unit']; ?>">
                                                 <input type="hidden" name="idPetugas" value="<?= $petugas['idPetugas']; ?>">
                                             </div>
 
                                             <div class="my-3 text-end">
                                                 <button type="reset" class="btn btn-danger me-3">Reset</button>
-                                                <button type="submit" disabled class="btn btn-primary" name="rate">Simpan</button>
+                                                <button type="submit" class="btn btn-primary" name="rate">Simpan</button>
                                             </div>
                                         </div>
 

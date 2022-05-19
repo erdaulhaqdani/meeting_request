@@ -83,7 +83,7 @@
                                     <div class="col-4">
                                         <form id="print">
                                             <textarea hidden id="bukti" cols="30" rows="10">sss</textarea>
-                                            <button class="btn btn-danger"><i class="fas fa-print align-middle me-2"></i> Cetak</button>
+                                            <button name="cetak" class="btn btn-danger"><i class="fas fa-print align-middle me-2"></i> Cetak</button>
                                         </form>
                                     </div>
                                 </div>
@@ -202,7 +202,7 @@
 <!-- Plugins js -->
 <!-- PDFMake -->
 <script src="<?= base_url('assets/libs/pdfmake/build/pdfmake.min.js') ?>"></script>
-<script src="<?= base_url('assets/libs/pdfmake/build/vfs_font.js') ?>"></script>
+<script src="<?= base_url('assets/libs/pdfmake/build/vfs_fonts.js') ?>"></script>
 
 <!-- App js -->
 <script src="<?= base_url('assets/js/app.js') ?>"></script>

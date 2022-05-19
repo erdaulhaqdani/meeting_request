@@ -60,6 +60,19 @@ class Admin_pengaduan extends BaseController
         return view('pengaduan_online/profile_petugas', $data);
     }
 
+    public function in_profile()
+    {
+        $this->PetugasModel->save([
+            'idPetugas' => $this->request->getVar('idPetugas'),
+            'Nama' => $this->request->getVar('nama'),
+            // 'Email' => $this->request->getVar('email'),
+            'Kantor' => $this->request->getVar('kantor')
+        ]);
+
+        session()->setFlashdata('pesan', 'berhasil menyunting profil.');
+
+        return redirect()->to('/Pengaduan_online/profile');
+    }
 
     public function detail($id)
     {

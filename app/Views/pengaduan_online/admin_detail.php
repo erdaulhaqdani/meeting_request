@@ -4,6 +4,8 @@
 
     <?= $this->include('partials/title-meta') ?>
 
+    <?= $this->include("partials/head-css"); ?>
+
     <!-- Bootstrap Css -->
     <link href="<?= base_url('assets/css/bootstrap.min.css'); ?> " id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -179,7 +181,7 @@
 <?= $this->include('partials/vendor-scripts') ?>
 
 <!-- App js -->
-<script src="assets/js/app.js"></script>
+<script src="<?= base_url('assets/js/app.js') ?>"></script>
 
 </body>
 
