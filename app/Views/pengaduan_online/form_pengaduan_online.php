@@ -7,6 +7,16 @@
 
     <?= $this->include("partials/head-css"); ?>
 
+    <!-- Bootstrap Css -->
+    <link href="<?= base_url('assets/css/bootstrap.min.css'); ?> " id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="<?= base_url('assets/css/icons.min.css'); ?> " rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="<?= base_url('assets/css/app.min.css'); ?>" id="app-style" rel="stylesheet" type="text/css" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.ico'); ?>">
+
     <link rel="stylesheet" href="<?= base_url('assets/libs/dropify/css/dropify.min.css') ?>">
 </head>
 
@@ -92,7 +102,7 @@
 
 <!-- JAVASCRIPT -->
 <?= $this->include("partials/vendor-scripts") ?>
-<?= base_url('') ?>
+
 <!-- Plugins js -->
 <!-- validation -->
 <script src="<?= base_url('assets/libs/parsleyjs/parsley.min.js') ?>"></script>
@@ -102,7 +112,6 @@
 <script src="<?= base_url('assets/js/custom-dropify.js') ?>"></script>
 
 <!-- App js -->
-<script src="<?= base_url('assets/libs/jquery/jquery.min.js') ?>"></script>
 <script src="<?= base_url('assets/js/app.js') ?>"></script>
 
 </body>

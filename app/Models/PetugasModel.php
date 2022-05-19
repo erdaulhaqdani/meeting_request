@@ -11,7 +11,7 @@ class PetugasModel extends Model
 
   protected $useAutoIncrement = true;
 
-  protected $allowedFields = ['NIP', 'Nama', 'Email', 'idLevel', 'Password', 'Kantor'];
+  protected $allowedFields = ['NIP', 'Nama', 'Email', 'idLevel', 'Unit', 'Password', 'Kantor'];
 
   protected $useTimestamps = true;
   protected $createdField  = 'created_at';

@@ -23,6 +23,7 @@ class Pengaduan_online extends BaseController
         $this->CustModel = new CustModel();
         $this->PetugasModel = new PetugasModel();
         $this->Tanggapan_POModel = new Tanggapan_POModel();
+        $this->Tanggapan_POModel = new Tanggapan_POModel();
     }
 
     public function index()

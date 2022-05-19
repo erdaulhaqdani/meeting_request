@@ -106,6 +106,8 @@ $routes->get('/pages/detail_agenda/(:num)', 'Landing_page::detail_agenda/$1');
 
 // Admin Pengaduan Online
 $routes->get('/admin', 'Admin_pengaduan::index');
+$routes->get('/admin/profile', 'Admin_pengaduan::profile');
+$routes->get('/admin/daftar/(:any)', 'Admin_pengaduan::daftar/$1');
 $routes->get('/admin/tanggapan/(:num)', 'Admin_pengaduan::tanggapan/$1');
 // $routes->get('/admin/input', 'Admin_pengaduan::input');
 $routes->get('/admin/proses/(:num)', 'Admin_pengaduan::proses/$1');

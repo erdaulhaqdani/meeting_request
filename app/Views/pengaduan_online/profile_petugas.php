@@ -7,6 +7,8 @@
 
     <?= $this->include('partials/head-css') ?>
 
+    <link href="/assets/libs/bootstrap-rating/bootstrap-rating.css" rel="stylesheet" type="text/css" />
+
     <!-- Bootstrap Css -->
     <link href="<?= base_url('assets/css/bootstrap.min.css'); ?> " id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -25,7 +27,7 @@
     <!-- Begin page -->
     <div id="layout-wrapper">
 
-        <?= $this->include('partials/menu') ?>
+        <?= $this->include('partials/menu_petugas') ?>
 
         <!-- ============================================================== -->
         <!-- Start right Content here -->
@@ -54,33 +56,39 @@
                                                 <label class="m-2">Nama</label>
                                             </div>
                                             <div class="my-2">
-                                                <label class="m-2">NIK</label>
+                                                <label class="m-2">NIP</label>
                                             </div>
                                             <div class="my-2">
                                                 <label class="m-2">Email</label>
                                             </div>
                                             <div class="my-2">
-                                                <label class="m-2">Pekerjaan</label>
+                                                <label class="m-2">Level</label>
+                                            </div>
+                                            <div class="my-2">
+                                                <label class="m-2">Unit</label>
                                             </div>
                                         </div>
                                         <div class="col-11">
                                             <div class="my-2">
-                                                <input class="form-control" type="text" name="nama" required minlength="5" value="<?= $customer['Nama']; ?>">
+                                                <input class="form-control" type="text" name="nama" required minlength="5" value="<?= $petugas['Nama']; ?>">
                                             </div>
                                             <div class="my-2">
-                                                <input class="form-control" type="text" name="nik" disabled required minlength="5" value="<?= $customer['NIK']; ?>">
+                                                <input class="form-control" type="text" name="nip" disabled required minlength="16" value="<?= $petugas['NIP']; ?>">
                                             </div>
                                             <div class="my-2">
-                                                <input class="form-control" type="email" name="email" required minlength="5" value="<?= $customer['Email']; ?>">
+                                                <input class="form-control" type="email" name="email" required minlength="5" value="<?= $petugas['Email']; ?>">
                                             </div>
                                             <div class="my-2">
-                                                <input class="form-control" type="text" name="pekerjaan" required minlength="5" value="<?= $customer['Pekerjaan']; ?>">
-                                                <input type="hidden" name="idCustomer" value="<?= $customer['idCustomer']; ?>">
+                                                <input class="form-control" type="text" name="idLevel" required minlength="5" value="<?= $petugas['idLevel']; ?>">
+                                            </div>
+                                            <div class="my-2">
+                                                <input class="form-control" type="text" name="unit" required minlength="5" value="<?= $petugas['Unit']; ?>">
+                                                <input type="hidden" name="idPetugas" value="<?= $petugas['idPetugas']; ?>">
                                             </div>
 
                                             <div class="my-3 text-end">
                                                 <button type="reset" class="btn btn-danger me-3">Reset</button>
-                                                <button type="submit" class="btn btn-primary" name="rate">Simpan</button>
+                                                <button type="submit" disabled class="btn btn-primary" name="rate">Simpan</button>
                                             </div>
                                         </div>
 

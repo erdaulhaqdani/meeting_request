@@ -7,6 +7,10 @@
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
+                <li class="text-center mt-3">
+                    <h5><?= session()->get('Nama') ?></h5>
+                    <h5><?= session()->get('idLevel') ?></h5>
+                </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fas fa-file-alt "></i>

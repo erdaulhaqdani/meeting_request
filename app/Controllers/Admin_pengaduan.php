@@ -54,7 +54,7 @@ class Admin_pengaduan extends BaseController
     {
         $data = [
             'title' => 'Profile Petugas',
-            'petugas' => $this->PetugasModel->getPetugas(session('idPetugas'))
+            'petugas' => $this->PetugasModel->getPetugas(session('Email'))
         ];
 
         return view('pengaduan_online/profile_petugas', $data);

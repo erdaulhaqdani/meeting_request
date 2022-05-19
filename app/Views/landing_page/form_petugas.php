@@ -63,7 +63,7 @@
                   <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Unit Petugas</label>
                     <div class="col-sm-9">
-                      <select name="level" class="form-select" aria-label="Default select example" required>
+                      <select name="unit" class="form-select" aria-label="Default select example" required>
                         <option selected disabled value="">Pilih unit petugas</option>
                         <?php foreach ($kategori as $a) : ?>
                           <option value="<?= $a['idKategori'] ?>"><?= $a['namaKategori']; ?></option>

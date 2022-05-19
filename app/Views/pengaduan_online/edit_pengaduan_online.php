@@ -4,10 +4,18 @@
 
     <?= $this->include('partials/title-meta') ?>
 
-    <!-- Plugins css -->
-    <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
-
     <?= $this->include('partials/head-css') ?>
+
+    <!-- Bootstrap Css -->
+    <link href="<?= base_url('assets/css/bootstrap.min.css'); ?> " id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="<?= base_url('assets/css/icons.min.css'); ?> " rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="<?= base_url('assets/css/app.min.css'); ?>" id="app-style" rel="stylesheet" type="text/css" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.ico'); ?>">
+
+    <link rel="stylesheet" href="<?= base_url('assets/libs/dropify/css/dropify.min.css') ?>">
 
 </head>
 
@@ -103,7 +111,12 @@
 <?= $this->include('partials/vendor-scripts') ?>
 
 <!-- Plugins js -->
-<script src="assets/libs/dropzone/min/dropzone.min.js"></script>
+<!-- validation -->
+<script src="<?= base_url('assets/libs/parsleyjs/parsley.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/pages/form-validation.init.js') ?>"></script>
+<!-- drag n drop file -->
+<script src="<?= base_url('assets/libs/dropify/js/dropify.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/custom-dropify.js') ?>"></script>
 
 <!-- App js -->
 <script src="assets/js/app.js"></script>
