@@ -7,6 +7,10 @@
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
+                <li class="text-center mt-3">
+                    <h5><?= session()->get('Nama') ?></h5>
+                    <h5><?= session()->get('idLevel') ?></h5>
+                </li>
                 <li>
                     <a href="/" class="waves-effect">
                         <i class="ri-dashboard-line"></i>

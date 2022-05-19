@@ -12,6 +12,12 @@
                     <h5><?= session()->get('idLevel') ?></h5>
                 </li>
                 <li>
+                    <a href="#" class="waves-effect">
+                        <i class="ri-dashboard-line"></i>
+                        <span>Beranda</span>
+                    </a>
+                </li>
+                <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fas fa-file-alt "></i>
                         <span>Pengaduan Online</span>
