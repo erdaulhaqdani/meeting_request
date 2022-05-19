@@ -8,6 +8,8 @@ use App\Models\CustModel;
 use App\Models\PetugasModel;
 use App\Models\Tanggapan_POModel;
 
+use Dompdf\Dompdf;
+
 class Pengaduan_online extends BaseController
 {
     protected $Pengaduan_onlineModel;
@@ -86,10 +88,10 @@ class Pengaduan_online extends BaseController
         return view('pengaduan_online/detail_pengaduan_online', $data);
     }
 
-    public function print($id)
+    public function bukti($id)
     {
         $data = [
-            'title' => 'Detail Pengaduan Online',
+            'title' => 'Bukti Pengaduan Online',
             'pengaduan' => $this->Pengaduan_onlineModel->getPengaduan($id),
             'customer' => $this->CustModel->getCustomer(),
             'kategori' => $this->KategoriModel->getKategori(),
@@ -97,7 +99,27 @@ class Pengaduan_online extends BaseController
             'tanggapan' => $this->Tanggapan_POModel->getTanggapan()
         ];
 
-        return view('pengaduan_online/detail_pengaduan_online', $data);
+        return view('pengaduan_online/bukti_pengaduan_online', $data);
+    }
+
+    public function print($id)
+    {
+        $dompdf = new Dompdf();
+
+        $data = [
+            'title' => 'Bukti Pengaduan Online',
+            'pengaduan' => $this->Pengaduan_onlineModel->getPengaduan($id),
+            'customer' => $this->CustModel->getCustomer(),
+            'kategori' => $this->KategoriModel->getKategori(),
+            'petugas' => $this->PetugasModel->getPetugas(),
+            'tanggapan' => $this->Tanggapan_POModel->getTanggapan()
+        ];
+
+        $html = view('pengaduan_online/bukti_pengaduan_online', $data);
+        $dompdf->setPaper('A4', 'Landscape');
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+        $dompdf->stream('Bukti pengaduan');
     }
 
     public function form()

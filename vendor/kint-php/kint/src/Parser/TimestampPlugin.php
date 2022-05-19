@@ -52,10 +52,6 @@ class TimestampPlugin extends Plugin
             return;
         }
 
-        if ($var < 0) {
-            return;
-        }
-
         if (\in_array($var, self::$blacklist, true)) {
             return;
         }

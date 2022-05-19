@@ -8,6 +8,8 @@ use App\Models\CustModel;
 use App\Models\PetugasModel;
 use App\Models\KategoriModel;
 
+use Dompdf\Dompdf;
+
 class Admin_pengaduan extends BaseController
 {
     protected $pengaduan_onlineModel;
@@ -87,6 +89,27 @@ class Admin_pengaduan extends BaseController
         ];
 
         return view('pengaduan_online/admin_detail', $data);
+    }
+
+    public function print($id)
+    {
+        $dompdf = new Dompdf();
+
+        $data = [
+            'title' => 'Detail Pengaduan Online',
+            'validation' => \Config\Services::validation(),
+            'pengaduan' => $this->Pengaduan_onlineModel->getPengaduan($id),
+            'customer' => $this->CustModel->getCustomer(),
+            'kategori' => $this->KategoriModel->getKategori(),
+            'petugas' => $this->PetugasModel->getPetugas(),
+            'tanggapan' => $this->Tanggapan_POModel->getTanggapan()
+        ];
+
+        $html = view('pengaduan_online/admin_detail', $data);
+        $dompdf->setPaper('A4', 'Portrait');
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+        $dompdf->stream();
     }
 
     public function tanggapan($idPengaduan)

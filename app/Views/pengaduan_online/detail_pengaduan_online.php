@@ -81,10 +81,7 @@
                                         </address>
                                     </div>
                                     <div class="col-4">
-                                        <form id="print">
-                                            <textarea hidden id="bukti" cols="30" rows="10">sss</textarea>
-                                            <button name="cetak" class="btn btn-danger"><i class="fas fa-print align-middle me-2"></i> Cetak</button>
-                                        </form>
+                                        <button name="cetak" onclick="window.open('<?php echo site_url('/Pengaduan_online/print/' . $pengaduan['idPengaduan']) ?>')" class="btn btn-danger"><i class="fas fa-print align-middle me-2"></i> Cetak</button>
                                     </div>
                                 </div>
                                 <div class="row">

@@ -63,6 +63,7 @@ $routes->get('/Pengaduan_online/input', 'pengaduan_online::input');
 $routes->get('/Pengaduan_online/update/(:num)', 'pengaduan_online::update/$1');
 $routes->get('/Pengaduan_online/cancel/(:num)', 'pengaduan_online::cancel/$1');
 $routes->get('/Pengaduan_online/detail/(:num)', 'pengaduan_online::detail/$1');
+$routes->get('/Pengaduan_online/bukti/(:num)', 'pengaduan_online::bukti/$1');
 $routes->get('/Pengaduan_online/edit/(:num)', 'pengaduan_online::edit/$1');
 $routes->get('/Pengaduan_online/tanggapan/(:num)', 'pengaduan_online::edit/$1');
 $routes->get('/Pengaduan_online/rating/(:num)', 'pengaduan_online::rating/$1');
