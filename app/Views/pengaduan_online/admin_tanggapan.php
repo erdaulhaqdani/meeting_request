@@ -1,14 +1,23 @@
 <?= $this->include('partials/main') ?>
 
 <head>
+    <meta charset="utf-8">
 
-    <?= $title ?>
+    <?= $this->include("partials/title-meta"); ?>
 
-    <!-- Plugins css -->
-    <link href="/assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+    <?= $this->include("partials/head-css"); ?>
 
-    <?= $this->include('partials/head-css') ?>
+    <!-- Bootstrap Css -->
+    <link href="<?= base_url('assets/css/bootstrap.min.css'); ?> " id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="<?= base_url('assets/css/icons.min.css'); ?> " rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="<?= base_url('assets/css/app.min.css'); ?>" id="app-style" rel="stylesheet" type="text/css" />
 
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.ico'); ?>">
+
+    <link rel="stylesheet" href="<?= base_url('assets/libs/dropify/css/dropify.min.css') ?>">
 </head>
 
 <?= $this->include('partials/body') ?>
@@ -17,7 +26,7 @@
     <!-- Begin page -->
     <div id="layout-wrapper">
 
-        <?= $this->include('partials/menu') ?>
+        <?= $this->include('partials/menu_petugas') ?>
 
         <!-- ============================================================== -->
         <!-- Start right Content here -->
@@ -50,16 +59,9 @@
                                     </div>
 
                                     <label for="lampiran">Lampiran</label>
-                                    <div class="dropzone mb-3">
-                                        <div class="fallback">
-                                            <input name="lampiran" type="file">
-                                        </div>
-                                        <div class="dz-message needsclick">
-                                            <div class="mb-3">
-                                                <i class="display-4 text-muted mdi mdi-upload-network-outline"></i>
-                                            </div>
-                                            <h4>Drop files here or click to upload.</h4>
-                                        </div>
+                                    <div class="mb-3">
+                                        <input type="file" class="dropify" name="lampiran" />
+                                        <!-- <button type="button" class="dropify-clear">Remove</button> -->
                                     </div>
 
                                     <input type="hidden" name="idPengaduan" value="<?= $idPengaduan; ?>">
@@ -95,12 +97,15 @@
 <?= $this->include('partials/vendor-scripts') ?>
 
 <!-- Plugins js -->
-<script src="/assets/libs/dropzone/min/dropzone.min.js"></script>
-<script src="/assets/libs/parsleyjs/parsley.min.js"></script>
-<script src="/assets/js/pages/form-validation.init.js"></script>
+<!-- validation -->
+<script src="<?= base_url('assets/libs/parsleyjs/parsley.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/pages/form-validation.init.js') ?>"></script>
+<!-- drag n drop file -->
+<script src="<?= base_url('assets/libs/dropify/js/dropify.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/custom-dropify.js') ?>"></script>
 
 <!-- App js -->
-<script src="/assets/js/app.js"></script>
+<script src="<?= base_url('assets/js/app.js') ?>"></script>
 
 </body>
 

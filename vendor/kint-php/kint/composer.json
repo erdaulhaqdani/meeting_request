@@ -68,7 +68,6 @@
         "analyze": "psalm --show-info=false"
     },
     "suggest": {
-        "kint-php/kint-helpers": "Provides extra helper functions",
         "kint-php/kint-twig": "Provides d() and s() functions in twig templates"
     }
 }

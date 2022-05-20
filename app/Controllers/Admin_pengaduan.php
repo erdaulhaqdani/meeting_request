@@ -8,6 +8,8 @@ use App\Models\CustModel;
 use App\Models\PetugasModel;
 use App\Models\KategoriModel;
 
+use Dompdf\Dompdf;
+
 class Admin_pengaduan extends BaseController
 {
     protected $pengaduan_onlineModel;
@@ -29,14 +31,49 @@ class Admin_pengaduan extends BaseController
     {
         $data = [
             'title' => 'Daftar Pengaduan Online',
-            'pengaduan' => $this->Pengaduan_onlineModel->listPengaduanAdmin(),
-            'belum' => $this->Pengaduan_onlineModel->jumlahPengaduanBelumDiprosesAdmin(),
-            'proses' => $this->Pengaduan_onlineModel->jumlahPengaduanDiprosesAdmin(),
-            'selesai' => $this->Pengaduan_onlineModel->jumlahPengaduanSelesaiDiprosesAdmin(),
+            'pengaduan' => $this->Pengaduan_onlineModel->listPengaduanAdmin(session('idLevel'), session('Unit')),
+            'belum' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Belum diproses', session('idLevel'), session('Unit')),
+            'proses' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Sedang diproses', session('idLevel'), session('Unit')),
+            'selesai' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Selesai diproses', session('idLevel'), session('Unit')),
             'kategori' => $this->KategoriModel->getKategori()
         ];
 
         return view('pengaduan_online/admin_beranda', $data);
+    }
+
+    public function daftar($status)
+    {
+        $data = [
+            'title' => 'Daftar Pengaduan Online',
+            'pengaduan' => $this->Pengaduan_onlineModel->listPengaduanAdmin2($status, session('idLevel'), session('Unit')),
+            'kategori' => $this->KategoriModel->getKategori()
+        ];
+
+        return view('pengaduan_online/admin_daftar', $data);
+    }
+
+    public function profile()
+    {
+        $data = [
+            'title' => 'Profile Petugas',
+            'petugas' => $this->PetugasModel->getPetugas(session('Email'))
+        ];
+
+        return view('pengaduan_online/profile_petugas', $data);
+    }
+
+    public function in_profile()
+    {
+        $this->PetugasModel->save([
+            'idPetugas' => $this->request->getVar('idPetugas'),
+            'Nama' => $this->request->getVar('nama'),
+            // 'Email' => $this->request->getVar('email'),
+            'Kantor' => $this->request->getVar('kantor')
+        ]);
+
+        session()->setFlashdata('pesan', 'berhasil menyunting profil.');
+
+        return redirect()->to('/Pengaduan_online/profile');
     }
 
     public function detail($id)
@@ -52,6 +89,27 @@ class Admin_pengaduan extends BaseController
         ];
 
         return view('pengaduan_online/admin_detail', $data);
+    }
+
+    public function print($id)
+    {
+        $dompdf = new Dompdf();
+
+        $data = [
+            'title' => 'Detail Pengaduan Online',
+            'validation' => \Config\Services::validation(),
+            'pengaduan' => $this->Pengaduan_onlineModel->getPengaduan($id),
+            'customer' => $this->CustModel->getCustomer(),
+            'kategori' => $this->KategoriModel->getKategori(),
+            'petugas' => $this->PetugasModel->getPetugas(),
+            'tanggapan' => $this->Tanggapan_POModel->getTanggapan()
+        ];
+
+        $html = view('pengaduan_online/admin_detail', $data);
+        $dompdf->setPaper('A4', 'Portrait');
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+        $dompdf->stream();
     }
 
     public function tanggapan($idPengaduan)
@@ -113,12 +171,10 @@ class Admin_pengaduan extends BaseController
             $lampiran->move('lampiran', $namalampiran);
         }
 
-        $idPetugas = 1;
-
         $this->Tanggapan_POModel->save([
             'Isi' => $this->request->getVar('isi'),
             'Lampiran' => $namalampiran,
-            'idPetugas' => $idPetugas,
+            'idPetugas' => session('idPetugas'),
             'idPengaduan' => $this->request->getVar('idPengaduan')
         ]);
 

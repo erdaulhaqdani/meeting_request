@@ -2,12 +2,20 @@
 
 <head>
 
-    <?= $title ?>
-
-    <!-- Plugins css -->
-    <link href="assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css" />
+    <?= $this->include('partials/title-meta') ?>
 
     <?= $this->include('partials/head-css') ?>
+
+    <!-- Bootstrap Css -->
+    <link href="<?= base_url('assets/css/bootstrap.min.css'); ?> " id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="<?= base_url('assets/css/icons.min.css'); ?> " rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="<?= base_url('assets/css/app.min.css'); ?>" id="app-style" rel="stylesheet" type="text/css" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.ico'); ?>">
+
+    <link rel="stylesheet" href="<?= base_url('assets/libs/dropify/css/dropify.min.css') ?>">
 
 </head>
 
@@ -60,16 +68,9 @@
                                     </div>
 
                                     <label for="lampiran">Lampiran</label><a href="/lampiran/<?= $pengaduan['Lampiran'] ?>">Lampiran</a>
-                                    <div class="dropzone mb-3">
-                                        <div class="fallback">
-                                            <input name="lampiran" type="file">
-                                        </div>
-                                        <div class="dz-message needsclick">
-                                            <div class="mb-3">
-                                                <i class="display-4 text-muted mdi mdi-upload-network-outline"></i>
-                                            </div>
-                                            <h4>Drop files here or click to upload.</h4>
-                                        </div>
+                                    <div class="mb-3">
+                                        <input type="file" class="dropify" name="lampiran" />
+                                        <!-- <button type="button" class="dropify-clear">Remove</button> -->
                                     </div>
 
                                     <div class="mb-3 text-end">
@@ -103,10 +104,15 @@
 <?= $this->include('partials/vendor-scripts') ?>
 
 <!-- Plugins js -->
-<script src="assets/libs/dropzone/min/dropzone.min.js"></script>
+<!-- validation -->
+<script src="<?= base_url('assets/libs/parsleyjs/parsley.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/pages/form-validation.init.js') ?>"></script>
+<!-- drag n drop file -->
+<script src="<?= base_url('assets/libs/dropify/js/dropify.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/custom-dropify.js') ?>"></script>
 
 <!-- App js -->
-<script src="assets/js/app.js"></script>
+<script src="<?= base_url('assets/js/app.js') ?>"></script>
 
 </body>
 

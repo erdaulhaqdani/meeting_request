@@ -3,12 +3,19 @@
 <head>
     <meta charset="utf-8">
 
-    <?= $title ?>
+    <?= $this->include('partials/title-meta') ?>
 
     <?= $this->include('partials/head-css') ?>
 
-    <link href="/assets/libs/bootstrap-rating/bootstrap-rating.css" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Css -->
+    <link href="<?= base_url('assets/css/bootstrap.min.css'); ?> " id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="<?= base_url('assets/css/icons.min.css'); ?> " rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="<?= base_url('assets/css/app.min.css'); ?>" id="app-style" rel="stylesheet" type="text/css" />
 
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.ico'); ?>">
 
 </head>
 
@@ -103,14 +110,6 @@
 
 <!-- JAVASCRIPT -->
 <?= $this->include('partials/vendor-scripts') ?>
-
-<!-- Bootstrap rating js -->
-<script src="<?php base_url('/assets/libs/bootstrap-rating/bootstrap-rating.min.js') ?>"></script>
-<script src="<?php base_url('/assets/js/pages/rating-init.js') ?>"></script>
-
-<!-- Bootstrap rating js -->
-<script type="text/javascript" src="<?php base_url('/assets/libs/bootstrap-rating/bootstrap-rating.min.js') ?>"></script>
-<script type="text/javascript" src=" <?php base_url('/assets/js/pages/rating-init.js') ?>"></script>
 
 <!-- App js -->
 <script src="<?php base_url('/assets/js/app.js') ?>"></script>

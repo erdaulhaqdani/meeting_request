@@ -37,7 +37,20 @@ class Pengaduan_onlineModel extends Model
         return $query;
     }
 
-    public function jumlahPengaduanDiproses($id)
+    public function listPengaduanCustomer2($id, $status)
+    {
+        /**
+         * SELECT * FROM pengaduan_online
+         * WHERE idCustomer = '1'
+         */
+        $builder = $this->db->table('pengaduan_online');
+        $builder->where('idCustomer', $id);
+        $builder->like('Status', $status);
+        $query = $builder->get();
+        return $query;
+    }
+
+    public function jumlahPengaduan($id, $status)
     {
         /**
          * SELECT * FROM pengaduan_online
@@ -45,35 +58,7 @@ class Pengaduan_onlineModel extends Model
          */
         $builder = $this->db->table('pengaduan_online');
         $builder->where('idCustomer', $id);
-        $builder->like('Status', 'Sedang Diproses');
-        $builder->selectCount('idPengaduan');
-        $query = $builder->get();
-        return $query;
-    }
-
-    public function jumlahPengaduanBelumDiproses($id)
-    {
-        /**
-         * SELECT * FROM pengaduan_online
-         * WHERE idCustomer = '1' AND Status LIKE "%Belum Diproses%"
-         */
-        $builder = $this->db->table('pengaduan_online');
-        $builder->where('idCustomer', $id);
-        $builder->like('Status', 'Belum Diproses');
-        $builder->selectCount('idPengaduan');
-        $query = $builder->get();
-        return $query;
-    }
-
-    public function jumlahPengaduanSelesaiDiproses($id)
-    {
-        /**
-         * SELECT * FROM pengaduan_online
-         * WHERE idCustomer = '1' AND Status LIKE "%Belum Diproses%"
-         */
-        $builder = $this->db->table('pengaduan_online');
-        $builder->where('idCustomer', $id);
-        $builder->like('Status', 'Selesai Diproses');
+        $builder->like('Status', $status);
         $builder->selectCount('idPengaduan');
         $query = $builder->get();
         return $query;
@@ -81,7 +66,7 @@ class Pengaduan_onlineModel extends Model
 
     // Model pengaduan untuk admin
 
-    public function listPengaduanAdmin()
+    public function listPengaduanAdmin($level, $kategori)
     {
         /**
          * SELECT * FROM pengaduan_online
@@ -89,49 +74,42 @@ class Pengaduan_onlineModel extends Model
          */
         $builder = $this->db->table('pengaduan_online');
         $builder->notlike('Status', 'Dibatalkan');
-        // $builder->where('idKategori', 4);
-        // $builder->where('idLevel', '1');
+        // $builder->where('idLevel', $level);
+        if ($level != 1) {
+            $builder->where('idKategori', $kategori);
+        }
         $query = $builder->get();
         return $query;
     }
 
-    public function jumlahPengaduanDiprosesAdmin()
+    public function listPengaduanAdmin2($status, $level, $kategori)
+    {
+        /**
+         * SELECT * FROM pengaduan_online
+         * WHERE Status LIKE 'Belum Diproses' OR Status LIKE 'Sedang Diproses'
+         */
+        $builder = $this->db->table('pengaduan_online');
+        $builder->like('Status', $status);
+        $builder->notlike('Status', 'Dibatalkan');
+        // $builder->where('idLevel', '1');
+        if ($level != 1) {
+            $builder->where('idKategori', $kategori);
+        }
+        $query = $builder->get();
+        return $query;
+    }
+
+    public function jumlahPengaduanAdmin($status, $level, $kategori)
     {
         /**
          * SELECT * FROM pengaduan_online
          * WHERE idCustomer = '1' AND Status LIKE "%Sedang Diproses%"
          */
         $builder = $this->db->table('pengaduan_online');
-        // $builder->where('idCustomer', $id);
-        $builder->like('Status', 'Sedang Diproses');
-        $builder->selectCount('idPengaduan');
-        $query = $builder->get();
-        return $query;
-    }
-
-    public function jumlahPengaduanBelumDiprosesAdmin()
-    {
-        /**
-         * SELECT * FROM pengaduan_online
-         * WHERE idCustomer = '1' AND Status LIKE "%Belum Diproses%"
-         */
-        $builder = $this->db->table('pengaduan_online');
-        // $builder->where('idCustomer', $id);
-        $builder->like('Status', 'Belum Diproses');
-        $builder->selectCount('idPengaduan');
-        $query = $builder->get();
-        return $query;
-    }
-
-    public function jumlahPengaduanSelesaiDiprosesAdmin()
-    {
-        /**
-         * SELECT * FROM pengaduan_online
-         * WHERE idCustomer = '1' AND Status LIKE "%Belum Diproses%"
-         */
-        $builder = $this->db->table('pengaduan_online');
-        // $builder->where('idCustomer', $id);
-        $builder->like('Status', 'Selesai Diproses');
+        $builder->like('Status', $status);
+        if ($level != 1) {
+            $builder->where('idKategori', $kategori);
+        }
         $builder->selectCount('idPengaduan');
         $query = $builder->get();
         return $query;

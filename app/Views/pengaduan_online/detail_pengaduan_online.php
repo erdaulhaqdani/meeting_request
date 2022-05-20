@@ -2,9 +2,19 @@
 
 <head>
 
-    <?= $title ?>
+    <?= $this->include('partials/title-meta') ?>
 
     <?= $this->include('partials/head-css') ?>
+
+    <!-- Bootstrap Css -->
+    <link href="<?= base_url('assets/css/bootstrap.min.css'); ?> " id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="<?= base_url('assets/css/icons.min.css'); ?> " rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="<?= base_url('assets/css/app.min.css'); ?>" id="app-style" rel="stylesheet" type="text/css" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.ico'); ?>">
 
 </head>
 
@@ -32,7 +42,7 @@
                                 </div>
                                 <hr>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-4">
                                         <address>
                                             <strong>Identitas pengaju</strong><br>
                                             <?php //getNamaKategori
@@ -52,7 +62,7 @@
                                             <?= $Email; ?><br>
                                         </address>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-4">
                                         <?php //getNamaKategori
                                         $k = '';
                                         foreach ($kategori as $a) {
@@ -70,15 +80,19 @@
                                             <?= $pengaduan['Status']; ?>
                                         </address>
                                     </div>
+                                    <div class="col-4">
+                                        <button name="cetak" onclick="window.open('<?php echo site_url('/Pengaduan_online/print/' . $pengaduan['idPengaduan']) ?>')" class="btn btn-danger"><i class="fas fa-print align-middle me-2"></i> Cetak</button>
+                                    </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-6 mt-3">
+                                    <div class="col-4 mt-3">
 
                                     </div>
-                                    <div class="col-6 mt-3">
+                                    <div class="col-4 mt-3">
                                         <address>
-                                            <strong>Tanggal Masuk</strong><br>
-                                            <?= $pengaduan['created_at']; ?><br><br>
+                                            <strong>Tanggal dibuat</strong><br>
+                                            <?php $tgl = date("d F Y H:i", strtotime($pengaduan['created_at'])); ?>
+                                            <?= $tgl; ?><br>
                                         </address>
                                     </div>
                                 </div>
@@ -93,7 +107,6 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="invoice-title">
-                                        <h4 class="float-end font-size-16"><?= $pengaduan['Judul']; ?></h4>
                                         <div class="mb-4">
                                             <h5>Tanggapan</h1>
                                         </div>
@@ -148,15 +161,13 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="invoice-title">
-                                        <h4 class="float-end font-size-16"><?= $pengaduan['Judul']; ?></h4>
                                         <div class="mb-4">
                                             <h5>Tanggapan</h1>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="row">
-                                        <?php
-                                        $tgl = date("d F Y", strtotime($pengaduan['updated_at'])); ?>
+                                        <?php $tgl = date("d F Y H:i", strtotime($pengaduan['updated_at'])); ?>
                                         <div class="col-6">
                                             sudah mulai diproses sejak <?= $tgl; ?>
                                         </div>
@@ -185,8 +196,32 @@
 <!-- JAVASCRIPT -->
 <?= $this->include('partials/vendor-scripts') ?>
 
+<!-- Plugins js -->
+<!-- PDFMake -->
+<script src="<?= base_url('assets/libs/pdfmake/build/pdfmake.min.js') ?>"></script>
+<script src="<?= base_url('assets/libs/pdfmake/build/vfs_fonts.js') ?>"></script>
+
 <!-- App js -->
-<script src="assets/js/app.js"></script>
+<script src="<?= base_url('assets/js/app.js') ?>"></script>
+
+<script>
+    $("#print").submit(function(e) {
+        var PdfPrinter = require('../src/printer');
+        var printer = new PdfPrinter(fonts);
+        var fs = require('fs');
+
+        var docDefinition = {
+            content: [
+                'First paragraph',
+                'Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines'
+            ]
+        };
+
+        var pdfDoc = printer.createPdfKitDocument(docDefinition);
+        pdfDoc.pipe(fs.createWriteStream('pdfs/basics.pdf'));
+        pdfDoc.end();
+    })
+</script>
 
 </body>
 
