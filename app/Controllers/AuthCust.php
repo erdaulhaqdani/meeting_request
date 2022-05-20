@@ -18,6 +18,7 @@ class AuthCust extends BaseController
     $this->CustModel = new CustModel();
     $this->UserModel = new UserModel();
     $this->PetugasModel = new PetugasModel();
+    $this->email = \Config\Services::email();
   }
 
   public function register_petugas()
@@ -108,6 +109,8 @@ class AuthCust extends BaseController
       'Email' => $this->request->getVar('email'),
       'Pekerjaan' => $this->request->getVar('pekerjaan'),
       'Password' => $hashedPassword,
+      'jenisKelamin' => $this->request->getVar('jk'),
+      'StatusAkun' => 'NonAktif',
       'idLevel' => '5'
     ]);
 
@@ -117,8 +120,33 @@ class AuthCust extends BaseController
       'idLevel' => '5'
     ]);
 
-    session()->setFlashdata('pesan_regis', 'Selamat Anda Berhasil Registrasi');
+    $to = $this->request->getVar('email');
+
+    $message = "<h2>Verifikasi Akun APT Bersama</h2><p>Silakan verifikasi akun APTB anda dengan klik tombol di bawah ini.</p <a href='http://localhost:8080/login_cust>Verifikasi Akun APTB</a> <br> <p>Selanjutnya anda akan diarahkan ke halaman Login APT Bersama KPKNL Bandung.</p> ";
+
+    $verifikasi = $this->sendEmail($to, 'Verifikasi Akun APTB', $message);
+    if ($verifikasi) {
+      session()->setFlashdata('pesan_regis', 'Anda berhasil registrasi, silakan cek email Anda untuk verifikasi');
+    } else {
+      session()->setFlashdata('pesan_regis', 'Registrasi gagal');
+    }
     return redirect()->to('/login_cust');
+  }
+
+  private function sendEmail($to, $subject, $message)
+  {
+    $this->email->setFrom('erdaulhaqdani@gmail.com', 'HipyaDani321');
+    $this->email->setTo($to);
+
+    $this->email->setSubject($subject);
+
+    $this->email->setMessage($message);
+
+    if (!$this->email->send()) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   public function login()
@@ -186,5 +214,50 @@ class AuthCust extends BaseController
     $session->destroy();
     session()->setFlashdata('pesan', 'Berhasil Logout');
     return redirect()->to('login_cust');
+  }
+
+  public function resetPassword()
+  {
+    $model = new AuthModel;
+    $table = 'user';
+    $email = $this->request->getVar('email_forgot');
+    $row = $model->get_data_login($email, $table);
+    if ($row == NULL) {
+      session()->setFlashdata('pesan_reset', 'Email anda tidak terdaftar');
+    } else {
+      session()->setFlashdata('pesan_reset2', 'Silakan cek email anda untuk me-reset password');
+
+      $message = "<h2>Reset Password Akun APT Bersama</h2><p>Silakan klik link di bawah ini untuk masuk ke halaman reset password akun Anda.</p <a href='http://localhost:8080/reset_pw/$email'>Reset Password Akun APTB</a>";
+
+      $this->sendEmail($email, 'Reset Password Akun APTB', $message);
+    }
+    return redirect()->to('/login_cust');
+  }
+
+  public function updatePassword($email)
+  {
+    $model = new CustModel();
+    $table = 'customer';
+
+    $confirm_pw = $this->request->getVar('confirm_pw');
+    $password = $this->request->getVar('password');
+
+
+    if ($password == $confirm_pw) {
+      $row = $model->getCustomerEmail($email, $table);
+      if ($row) {
+        $hashedPassword = password_hash(($confirm_pw), PASSWORD_DEFAULT);
+        $model->save([
+          'Password' => $hashedPassword,
+        ]);
+        session()->setFlashdata('pesan_regis', 'Password berhasil di reset');
+      } else {
+        session()->setFlashdata('pesan_regis', 'Password gagal di reset');
+      }
+      return redirect()->to('/login_cust');
+    } else {
+      session()->setFlashdata('pesan', 'Konfirmasi password salah');
+      return redirect()->to('/reset_pw/' . $email);
+    }
   }
 }

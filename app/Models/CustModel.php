@@ -11,7 +11,7 @@ class CustModel extends Model
 
   protected $useAutoIncrement = true;
 
-  protected $allowedFields = ['Nama', 'NIK', 'Email', 'jenisKelamin', 'Pekerjaan', 'Password'];
+  protected $allowedFields = ['Nama', 'NIK', 'Email', 'jenisKelamin', 'Pekerjaan', 'Password', 'StatusAkun'];
 
   protected $useTimestamps = true;
   protected $createdField  = 'created_at';
@@ -28,5 +28,14 @@ class CustModel extends Model
     }
 
     return $this->where(['idCustomer' => $id])->first();
+  }
+
+  public function getCustomerEmail($email = false)
+  {
+    if ($email == false) {
+      return $this->findAll();
+    }
+
+    return $this->where(['Email' => $email])->first();
   }
 }

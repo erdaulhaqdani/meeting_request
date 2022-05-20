@@ -111,7 +111,6 @@
 <script src="/login_regis/js/register_cust.js" type="text/javascript"></script>
 <script src="/login_regis/js/pw_strenght.js" type="text/javascript"></script>
 
-
 <script>
 	$('#regis_cust').validate();
 </script>

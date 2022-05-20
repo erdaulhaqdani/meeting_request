@@ -40,7 +40,7 @@
 	});
 
 	// Show hide password
-	$('#password, #password1, #password2').hidePassword('focus', {
+	$('#password, #password1, #confirm_pw, #password2').hidePassword('focus', {
 		toggle: {
 			className: 'my-toggle'
 		}

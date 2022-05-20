@@ -3,15 +3,17 @@
 namespace App\Controllers;
 
 use App\Models\KategoriModel;
+use App\Models\CustModel;
 
 class Frontend extends BaseController
 {
   protected $KategoriModel;
+  protected $CustModel;
 
   public function __construct()
   {
-
     $this->KategoriModel = new KategoriModel();
+    $this->CustModel = new CustModel();
   }
   public function register_cust()
   {
@@ -41,6 +43,18 @@ class Frontend extends BaseController
       'title' => 'Login Customer'
     ];
     return view('frontend/login_cust', $data);
+  }
+
+  public function reset_pw_cust($id)
+  {
+    $data = [
+      'validation' => \Config\Services::validation(),
+      'customer' => $this->CustModel->getCustomer($id),
+      'title' => 'Reset Password',
+      'email' => $id
+    ];
+
+    return view('frontend/reset_password', $data);
   }
 
   public function login_petugas()
