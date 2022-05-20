@@ -30,12 +30,19 @@ class CustModel extends Model
     return $this->where(['idCustomer' => $id])->first();
   }
 
-  public function getCustomerEmail($email = false)
+  public function getCustomerEmail($email, $tbl)
   {
-    if ($email == false) {
-      return $this->findAll();
-    }
+    $builder = $this->db->table($tbl);
+    $builder->where('Email', $email);
+    $log = $builder->get()->getRow();
+    return $log;
+  }
 
-    return $this->where(['Email' => $email])->first();
+  function get_data($email, $tbl)
+  {
+    $builder = $this->db->table($tbl);
+    $builder->where('Email', $email);
+    $log = $builder->get()->getRow();
+    return $log;
   }
 }

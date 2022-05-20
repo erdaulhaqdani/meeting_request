@@ -122,7 +122,7 @@ class AuthCust extends BaseController
 
     $to = $this->request->getVar('email');
 
-    $message = "<h2>Verifikasi Akun APT Bersama</h2><p>Silakan verifikasi akun APTB anda dengan klik tombol di bawah ini.</p <a href='http://localhost:8080/login_cust>Verifikasi Akun APTB</a> <br> <p>Selanjutnya anda akan diarahkan ke halaman Login APT Bersama KPKNL Bandung.</p> ";
+    $message = "<h2>Verifikasi Akun APT Bersama</h2><p>Silakan verifikasi akun APTB anda dengan klik tombol di bawah ini.</p <a href='http://localhost:8080/login_cust/$to'>Verifikasi Akun APTB</a> <br> <p>Selanjutnya anda akan diarahkan ke halaman Login APT Bersama KPKNL Bandung.</p> ";
 
     $verifikasi = $this->sendEmail($to, 'Verifikasi Akun APTB', $message);
     if ($verifikasi) {
@@ -133,9 +133,27 @@ class AuthCust extends BaseController
     return redirect()->to('/login_cust');
   }
 
+  public function VerifikasiAKun($email)
+  {
+    $model = new CustModel;
+    $table = 'customer';
+
+    $row = $model->getCustomerEmail($email, $table);
+    if ($row) {
+      $model->save([
+        'idCustomer' => $row->idCustomer,
+        'StatusAkun' => 'Aktif'
+      ]);
+      session()->setFlashdata('pesan_regis', 'Verifikasi akun berhasil, silakan login');
+    } else {
+      session()->setFlashdata('pesan', 'Verifikasi akun gagal');
+    }
+    return redirect()->to('/login_cust');
+  }
+
   private function sendEmail($to, $subject, $message)
   {
-    $this->email->setFrom('erdaulhaqdani@gmail.com', 'HipyaDani321');
+    $this->email->setFrom('zmika360@gmail.com', 'Erda Ulhaq');
     $this->email->setTo($to);
 
     $this->email->setSubject($subject);
@@ -237,6 +255,7 @@ class AuthCust extends BaseController
   public function updatePassword($email)
   {
     $model = new CustModel();
+    $authmodel = new AuthModel();
     $table = 'customer';
 
     $confirm_pw = $this->request->getVar('confirm_pw');
@@ -248,8 +267,14 @@ class AuthCust extends BaseController
       if ($row) {
         $hashedPassword = password_hash(($confirm_pw), PASSWORD_DEFAULT);
         $model->save([
+          'idCustomer' => $row->idCustomer,
           'Password' => $hashedPassword,
         ]);
+        $authmodel->save([
+          'Email' => $email,
+          'Password' => $hashedPassword,
+        ]);
+
         session()->setFlashdata('pesan_regis', 'Password berhasil di reset');
       } else {
         session()->setFlashdata('pesan_regis', 'Password gagal di reset');

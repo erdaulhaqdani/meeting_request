@@ -6,6 +6,13 @@ use CodeIgniter\Model;
 
 class AuthModel extends Model
 {
+  protected $table      = 'user';
+  protected $primaryKey = 'Email';
+
+  protected $useAutoIncrement = true;
+
+  protected $allowedFields = ['Email', 'Password'];
+
   function get_data_login($email, $tbl)
   {
     $builder = $this->db->table($tbl);
