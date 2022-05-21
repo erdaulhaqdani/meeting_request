@@ -7,6 +7,7 @@ use App\Models\KategoriModel;
 use App\Models\CustModel;
 use App\Models\PetugasModel;
 use App\Models\Tanggapan_POModel;
+use App\Models\LevelModel;
 
 use Dompdf\Dompdf;
 
@@ -17,15 +18,17 @@ class Pengaduan_online extends BaseController
     protected $CustModel;
     protected $PetugasModel;
     protected $Tanggapan_POModel;
+    protected $LevelModel;
 
     public function __construct()
     {
         $this->Pengaduan_onlineModel = new Pengaduan_onlineModel();
-        $this->KategoriModel = new kategoriModel();
+        $this->KategoriModel = new KategoriModel();
         $this->CustModel = new CustModel();
         $this->PetugasModel = new PetugasModel();
         $this->Tanggapan_POModel = new Tanggapan_POModel();
         $this->Tanggapan_POModel = new Tanggapan_POModel();
+        $this->LevelModel = new LevelModel();
     }
 
     public function index()
@@ -76,28 +79,68 @@ class Pengaduan_online extends BaseController
 
     public function detail($id)
     {
-        $data = [
-            'title' => 'Detail Pengaduan Online',
-            'pengaduan' => $this->Pengaduan_onlineModel->getPengaduan($id),
-            'customer' => $this->CustModel->getCustomer(),
-            'kategori' => $this->KategoriModel->getKategori(),
-            'petugas' => $this->PetugasModel->getPetugas(),
-            'tanggapan' => $this->Tanggapan_POModel->getTanggapan()
-        ];
+        $pengaduan = $this->Pengaduan_onlineModel->getPengaduan($id);
+        if ($pengaduan['Status'] == 'Belum diproses') {
+            $data = [
+                'title' => 'Detail Pengaduan Online',
+                'pengaduan' => $pengaduan,
+                'customer' => $this->CustModel->getCustomer($pengaduan['idCustomer']),
+                'kategori' => $this->KategoriModel->getKategori($pengaduan['idKategori'])
+            ];
+        } elseif ($pengaduan['Status'] == 'Selesai diproses') {
+            $tanggapan = $this->Tanggapan_POModel->getTanggapanPengaduan($pengaduan['idPengaduan']);
+            $petugas = $this->PetugasModel->getPetugasId($tanggapan['idPetugas']);
+            $data = [
+                'title' => 'Detail Pengaduan Online',
+                'pengaduan' => $pengaduan,
+                'customer' => $this->CustModel->getCustomer($pengaduan['idCustomer']),
+                'kategori' => $this->KategoriModel->getKategori($pengaduan['idKategori']),
+                'tanggapan' => $tanggapan,
+                'petugas' => $petugas,
+                'level' => $this->LevelModel->getlevel($petugas['idLevel'])
+            ];
+        } else {
+            $data = [
+                'title' => 'Detail Pengaduan Online',
+                'pengaduan' => $pengaduan,
+                'customer' => $this->CustModel->getCustomer($pengaduan['idCustomer']),
+                'kategori' => $this->KategoriModel->getKategori($pengaduan['idKategori'])
+            ];
+        }
 
         return view('pengaduan_online/detail_pengaduan_online', $data);
     }
 
     public function bukti($id)
     {
-        $data = [
-            'title' => 'Bukti Pengaduan Online',
-            'pengaduan' => $this->Pengaduan_onlineModel->getPengaduan($id),
-            'customer' => $this->CustModel->getCustomer(),
-            'kategori' => $this->KategoriModel->getKategori(),
-            'petugas' => $this->PetugasModel->getPetugas(),
-            'tanggapan' => $this->Tanggapan_POModel->getTanggapan()
-        ];
+        $pengaduan = $this->Pengaduan_onlineModel->getPengaduan($id);
+        if ($pengaduan['Status'] == 'Belum diproses') {
+            $data = [
+                'title' => 'Bukti Pengaduan Online',
+                'pengaduan' => $pengaduan,
+                'customer' => $this->CustModel->getCustomer($pengaduan['idCustomer']),
+                'kategori' => $this->KategoriModel->getKategori($pengaduan['idKategori'])
+            ];
+        } elseif ($pengaduan['Status'] == 'Selesai diproses') {
+            $tanggapan = $this->Tanggapan_POModel->getTanggapanPengaduan($pengaduan['idPengaduan']);
+            $petugas = $this->PetugasModel->getPetugasId($tanggapan['idPetugas']);
+            $data = [
+                'title' => 'Bukti Pengaduan Online',
+                'pengaduan' => $pengaduan,
+                'customer' => $this->CustModel->getCustomer($pengaduan['idCustomer']),
+                'kategori' => $this->KategoriModel->getKategori($pengaduan['idKategori']),
+                'tanggapan' => $tanggapan,
+                'petugas' => $petugas,
+                'level' => $this->LevelModel->getlevel($petugas['idLevel'])
+            ];
+        } else {
+            $data = [
+                'title' => 'Bukti Pengaduan Online',
+                'pengaduan' => $pengaduan,
+                'customer' => $this->CustModel->getCustomer($pengaduan['idCustomer']),
+                'kategori' => $this->KategoriModel->getKategori($pengaduan['idKategori'])
+            ];
+        }
 
         return view('pengaduan_online/bukti_pengaduan_online', $data);
     }
@@ -106,14 +149,34 @@ class Pengaduan_online extends BaseController
     {
         $dompdf = new Dompdf();
 
-        $data = [
-            'title' => 'Bukti Pengaduan Online',
-            'pengaduan' => $this->Pengaduan_onlineModel->getPengaduan($id),
-            'customer' => $this->CustModel->getCustomer(),
-            'kategori' => $this->KategoriModel->getKategori(),
-            'petugas' => $this->PetugasModel->getPetugas(),
-            'tanggapan' => $this->Tanggapan_POModel->getTanggapan()
-        ];
+        $pengaduan = $this->Pengaduan_onlineModel->getPengaduan($id);
+        if ($pengaduan['Status'] == 'Belum diproses') {
+            $data = [
+                'title' => 'Bukti Pengaduan Online',
+                'pengaduan' => $pengaduan,
+                'customer' => $this->CustModel->getCustomer($pengaduan['idCustomer']),
+                'kategori' => $this->KategoriModel->getKategori($pengaduan['idKategori'])
+            ];
+        } elseif ($pengaduan['Status'] == 'Selesai diproses') {
+            $tanggapan = $this->Tanggapan_POModel->getTanggapanPengaduan($pengaduan['idPengaduan']);
+            $petugas = $this->PetugasModel->getPetugasId($tanggapan['idPetugas']);
+            $data = [
+                'title' => 'Bukti Pengaduan Online',
+                'pengaduan' => $pengaduan,
+                'customer' => $this->CustModel->getCustomer($pengaduan['idCustomer']),
+                'kategori' => $this->KategoriModel->getKategori($pengaduan['idKategori']),
+                'tanggapan' => $tanggapan,
+                'petugas' => $petugas,
+                'level' => $this->LevelModel->getlevel($petugas['idLevel'])
+            ];
+        } else {
+            $data = [
+                'title' => 'Bukti Pengaduan Online',
+                'pengaduan' => $pengaduan,
+                'customer' => $this->CustModel->getCustomer($pengaduan['idCustomer']),
+                'kategori' => $this->KategoriModel->getKategori($pengaduan['idKategori'])
+            ];
+        }
 
         $html = view('pengaduan_online/bukti_pengaduan_online', $data);
         $dompdf->setPaper('A4', 'Landscape');
@@ -151,6 +214,7 @@ class Pengaduan_online extends BaseController
             'idCustomer' => $this->request->getVar('idCustomer'),
             'Nama' => $this->request->getVar('nama'),
             'Email' => $this->request->getVar('email'),
+            'noHP' => $this->request->getVar('noHP'),
             'Pekerjaan' => $this->request->getVar('pekerjaan')
         ]);
 

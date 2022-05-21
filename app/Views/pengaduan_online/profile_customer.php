@@ -60,18 +60,24 @@
                                                 <label class="m-2">Email</label>
                                             </div>
                                             <div class="my-2">
+                                                <label class="m-2">No Telepon</label>
+                                            </div>
+                                            <div class="my-2">
                                                 <label class="m-2">Pekerjaan</label>
                                             </div>
                                         </div>
                                         <div class="col-11">
                                             <div class="my-2">
-                                                <input class="form-control" type="text" name="nama" required minlength="5" value="<?= $customer['Nama']; ?>">
+                                                <input class="form-control" type="text" name="nama" required minlength="4" value="<?= $customer['Nama']; ?>">
                                             </div>
                                             <div class="my-2">
                                                 <input class="form-control" type="text" name="nik" disabled required minlength="5" value="<?= $customer['NIK']; ?>">
                                             </div>
                                             <div class="my-2">
                                                 <input class="form-control" type="email" name="email" required minlength="5" value="<?= $customer['Email']; ?>">
+                                            </div>
+                                            <div class="my-2">
+                                                <input class="form-control" type="text" name="noHP" required minlength="5" value="<?= $customer['noHP']; ?>">
                                             </div>
                                             <div class="my-2">
                                                 <input class="form-control" type="text" name="pekerjaan" required minlength="5" value="<?= $customer['Pekerjaan']; ?>">

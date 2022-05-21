@@ -87,10 +87,10 @@
                                                 </select>
                                             </div>
                                             <div class="my-2">
-                                                <input class="form-control" type="text" name="idLevel" disabled required minlength="5" value="<?= $petugas['idLevel']; ?>">
+                                                <input class="form-control" type="text" name="idLevel" disabled required minlength="5" value="<?= $level['Level']; ?>">
                                             </div>
                                             <div class="my-2">
-                                                <input class="form-control" type="text" name="unit" disabled required minlength="5" value="<?= $petugas['Unit']; ?>">
+                                                <input class="form-control" type="text" name="unit" disabled required minlength="5" value="<?= $kategori['namaKategori']; ?>">
                                                 <input type="hidden" name="idPetugas" value="<?= $petugas['idPetugas']; ?>">
                                             </div>
 

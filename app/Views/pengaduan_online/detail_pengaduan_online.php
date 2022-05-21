@@ -63,36 +63,24 @@
                                             <div class="row mb-1">
                                                 <label class="col-sm-6">IDENTITAS CUSTOMER</label>
                                                 <hr>
-                                                <?php //getCustomer
-                                                $Nama = '';
-                                                $NIK = '';
-                                                $Email = '';
-                                                foreach ($customer as $a) {
-                                                    if ($pengaduan['idCustomer'] == $a['idCustomer']) {
-                                                        $Nama = $a['Nama'];
-                                                        $NIK = $a['NIK'];
-                                                        $Email = $a['Email'];
-                                                    }
-                                                }
-                                                ?>
                                             </div>
                                             <div class="row">
                                                 <label class="col-sm-4">NIK</label>
-                                                <label class="col-sm-8">: <?= $NIK; ?></label>
+                                                <label class="col-sm-8">: <?= $customer['NIK']; ?></label>
                                             </div>
                                             <div class="row">
                                                 <label class="col-sm-4">Nama Lengkap</label>
-                                                <label class="col-sm-8"> : <?= $Nama; ?></label>
+                                                <label class="col-sm-8"> : <?= $customer['Nama']; ?></label>
 
                                             </div>
                                             <div class="row">
                                                 <label class="col-sm-4">Email</label>
-                                                <label class="col-sm-8">: <?= $Email; ?></label>
+                                                <label class="col-sm-8">: <?= $customer['Email']; ?></label>
 
                                             </div>
                                             <div class="row">
                                                 <label class="col-sm-4">Nomor Telepon</label>
-                                                <label class="col-sm-8">: <?= $Email; ?></label>
+                                                <label class="col-sm-8">: <?= $customer['noHP']; ?></label>
 
                                             </div>
                                         </div>
@@ -106,16 +94,8 @@
                                                 <label class="col-sm-8">: <?= $pengaduan['created_at']; ?></label>
                                             </div>
                                             <div class="row">
-                                                <?php //getNamaKategori
-                                                $k = '';
-                                                foreach ($kategori as $a) {
-                                                    if ($pengaduan['idKategori'] == $a['idKategori']) {
-                                                        $k = $a['namaKategori'];
-                                                    }
-                                                }
-                                                ?>
                                                 <label class="col-sm-4">Jenis Layanan</label>
-                                                <label class="col-sm-8">: <?= $k; ?></label>
+                                                <label class="col-sm-8">: <?= $kategori['namaKategori']; ?></label>
                                             </div>
                                             <div class="row">
                                                 <label class="col-sm-4">Judul</label>
@@ -161,56 +141,32 @@
                                         </div>
                                         <hr>
                                         <div class="row">
-                                            <?php //getPetugas
-                                            $Nama = '';
-                                            $NIP = '';
-                                            $Email = '';
-                                            $Isi = '';
-                                            $Lampiran = '';
-                                            $idPetugas = '';
-                                            $Level = '';
-                                            foreach ($tanggapan as $a) {
-                                                if ($pengaduan['idPengaduan'] == $a['idPengaduan']) {
-                                                    $Isi = $a['Isi'];
-                                                    $Lampiran = $a['Lampiran'];
-                                                    $idPetugas = $a['idPetugas'];
-                                                }
-                                            }
-                                            foreach ($petugas as $b) {
-                                                if ($idPetugas == $b['idPetugas']) {
-                                                    $Nama = $b['Nama'];
-                                                    $NIP = $b['NIP'];
-                                                    $Email = $b['Email'];
-                                                    $Level = $b['idLevel'];
-                                                }
-                                            }
-                                            ?>
                                             <div class="row">
                                                 <label class="col-sm-2">IDENTITAS PETUGAS</label>
                                                 <hr>
                                             </div>
                                             <div class="row">
                                                 <label class="col-sm-2">Nama Lengkap</label>
-                                                <label class="col-sm-9">: <?= $Nama ?></label>
+                                                <label class="col-sm-9">: <?= $petugas['Nama'] ?></label>
                                             </div>
                                             <div class="row">
                                                 <label class="col-sm-2">Level</label>
-                                                <label class="col-sm-8">: <?= $Level; ?></label>
+                                                <label class="col-sm-8">: <?= $level['Level']; ?></label>
                                             </div>
                                             <div class="row">
                                                 <label class="col-sm-2">Email</label>
-                                                <label class="col-sm-8">: <?= $Email ?></label>
+                                                <label class="col-sm-8">: <?= $petugas['Email'] ?></label>
                                             </div>
                                             <div class="row">
                                                 <label class="col-sm-2">Uraian Tanggapan</label>
-                                                <label class="col-sm-8">: <?= $Isi; ?></label>
+                                                <label class="col-sm-8">: <?= $tanggapan['Isi']; ?></label>
                                             </div>
                                             <div class="row">
                                                 <label class="col-sm-2">Lampiran</label>
-                                                <?php if ($Lampiran == 'user.png') : ?>
-                                                    <label class="col-sm-8"><a href="/lampiran/<?= $Lampiran; ?>" class="isDisabled">: Tidak memiliki lampiran</a></label>
+                                                <?php if ($tanggapan['Lampiran'] == 'user.png') : ?>
+                                                    <label class="col-sm-8"><a href="/lampiran/<?= $tanggapan['Lampiran']; ?>" class="isDisabled">: Tidak memiliki lampiran</a></label>
                                                 <?php else : ?>
-                                                    <label class=" col-sm-8"><a href="/lampiran/<?= $Lampiran; ?>">: <?= $pengaduan['Lampiran']; ?></a></label>
+                                                    <label class=" col-sm-8"><a href="/lampiran/<?= $tanggapan['Lampiran']; ?>">: <?= $pengaduan['Lampiran']; ?></a></label>
                                                 <?php endif ?>
                                             </div>
                                         </div>
@@ -263,32 +219,8 @@
 <!-- JAVASCRIPT -->
 <?= $this->include('partials/vendor-scripts') ?>
 
-<!-- Plugins js -->
-<!-- PDFMake -->
-<script src="<?= base_url('assets/libs/pdfmake/build/pdfmake.min.js') ?>"></script>
-<script src="<?= base_url('assets/libs/pdfmake/build/vfs_fonts.js') ?>"></script>
-
 <!-- App js -->
 <script src="<?= base_url('assets/js/app.js') ?>"></script>
-
-<script>
-    $("#print").submit(function(e) {
-        var PdfPrinter = require('../src/printer');
-        var printer = new PdfPrinter(fonts);
-        var fs = require('fs');
-
-        var docDefinition = {
-            content: [
-                'First paragraph',
-                'Another paragraph, this time a little bit longer to make sure, this line will be divided into at least two lines'
-            ]
-        };
-
-        var pdfDoc = printer.createPdfKitDocument(docDefinition);
-        pdfDoc.pipe(fs.createWriteStream('pdfs/basics.pdf'));
-        pdfDoc.end();
-    })
-</script>
 
 </body>
 
