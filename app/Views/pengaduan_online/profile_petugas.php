@@ -7,8 +7,6 @@
 
     <?= $this->include('partials/head-css') ?>
 
-    <link href="/assets/libs/bootstrap-rating/bootstrap-rating.css" rel="stylesheet" type="text/css" />
-
     <!-- Bootstrap Css -->
     <link href="<?= base_url('assets/css/bootstrap.min.css'); ?> " id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->

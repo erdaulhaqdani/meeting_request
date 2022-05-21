@@ -114,4 +114,15 @@ class Pengaduan_onlineModel extends Model
         $query = $builder->get();
         return $query;
     }
+
+    public function groupByStatus($idCustomer)
+    {
+        $builder = $this->db->table('pengaduan_online');
+        $builder->selectCount('idPengaduan', 'Jumlah');
+        $builder->select('Status');
+        $builder->where('idCustomer', $idCustomer);
+        $builder->groupBy('Status');
+        $query = $builder->get();
+        return $query;
+    }
 }

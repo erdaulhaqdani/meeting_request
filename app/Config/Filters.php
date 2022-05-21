@@ -40,7 +40,7 @@ class Filters extends BaseConfig
             // 'invalidchars',
         ],
         'after' => [
-            'authFilter' => ['except' => ['/Meeting_request', '/Meeting_request/*', '/Pengaduan_online', '/Pengaduan_online/*', '/admin', '/admin/*', '/petugasMR', '/petugasMR/*', '/Landing_page', '/Landing_page/*']],
+            'authFilter' => ['except' => ['/Meeting_request', '/Meeting_request/*', '/Pengaduan_online', '/Pengaduan_online/*', '/admin', '/admin/*', '/petugasMR', '/petugasMR/*', '/Landing_page', '/Landing_page/*', '/dashboard_cust']],
             'toolbar',
             // 'honeypot',
             // 'secureheaders',
