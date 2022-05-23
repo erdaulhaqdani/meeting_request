@@ -202,7 +202,7 @@ class AuthCust extends BaseController
         session()->set($data);
         session()->setFlashdata('pesan', 'Berhasil Login');
 
-        return redirect()->to('Pengaduan_online');
+        return redirect()->to('/dashboard_cust');
       } elseif ($data['idLevel'] != 5) {
         $row_petugas = $model->get_data_login($data['email'], 'petugas_apt');
 

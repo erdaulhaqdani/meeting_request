@@ -4,7 +4,7 @@
 
     <?= $this->include('partials/title-meta') ?>
 
-    <?= $this->include("partials/head-css"); ?>
+    <?= $this->include('partials/head-css') ?>
 
     <!-- Bootstrap Css -->
     <link href="<?= base_url('assets/css/bootstrap.min.css'); ?> " id="bootstrap-style" rel="stylesheet" type="text/css" />
@@ -15,6 +15,22 @@
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.ico'); ?>">
+
+    <style>
+        .isDisabled {
+            color: currentColor;
+            cursor: not-allowed;
+            opacity: 0.7;
+            text-decoration: none;
+            pointer-events: none;
+        }
+
+        .isDisabled:hover {
+            color: currentColor;
+            opacity: 0.5;
+        }
+    </style>
+
 </head>
 
 
@@ -32,140 +48,163 @@
         <div class="main-content">
 
             <div class="page-content">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="invoice-title">
-                                    <h3><?= $title ?></h3>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <address>
-                                            <strong>Identitas pengaju</strong><br>
-                                            <?php //get data customer
-                                            $Nama = '';
-                                            $NIK = '';
-                                            $Email = '';
-                                            foreach ($customer as $a) {
-                                                if ($pengaduan['idCustomer'] == $a['idCustomer']) {
-                                                    $Nama = $a['Nama'];
-                                                    $NIK = $a['NIK'];
-                                                    $Email = $a['Email'];
-                                                }
-                                            }
-                                            ?>
-                                            <?= $Nama; ?><br>
-                                            <?= $NIK; ?><br>
-                                            <?= $Email; ?><br>
-                                        </address>
-                                    </div>
-                                    <div class="col-6">
-                                        <?php //getNamaKategori
-                                        $k = '';
-                                        foreach ($kategori as $a) {
-                                            if ($pengaduan['idKategori'] == $a['idKategori']) {
-                                                $k = $a['namaKategori'];
-                                            }
-                                        }
-                                        ?>
-                                        <address>
-                                            <strong>Kode Tiket P-<?= $pengaduan['idPengaduan']; ?></strong><br>
-                                            <?= $k; ?><br>
-                                            <?= $pengaduan['Judul']; ?><br>
-                                            <?= $pengaduan['Isi']; ?><br>
-                                            Lampiran : <a href="/lampiran/<?= $pengaduan['Lampiran']; ?>">Lampiran</a><br>
-                                            <?= $pengaduan['Status']; ?>
-                                        </address>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 mt-3">
+                <div class="container-fluid">
 
-                                    </div>
-                                    <div class="col-6 mt-3">
-                                        <address>
-                                            <strong>Tanggal Masuk</strong><br>
-                                            <?= $pengaduan['created_at']; ?><br><br>
-                                        </address>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 mt-3">
-                                        <?php if ($pengaduan['Status'] == 'Belum diproses') : ?>
-                                            <a href="/admin/proses/<?= $pengaduan['idPengaduan']; ?>" class="btn btn-primary btn-sm w-xs"> Mulai Proses</a>
-                                        <?php elseif ($pengaduan['Status'] == 'Sedang diproses') : ?>
-                                            <a href="/admin/tanggapan/<?= $pengaduan['idPengaduan']; ?>" class="btn btn-info btn-sm w-xs">Tanggapan</a>
-                                        <?php endif ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- end row -->
-                <?php if ($pengaduan['Status'] == 'Selesai diproses') : ?>
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="invoice-title">
-                                        <h4 class="float-end font-size-16"><?= $pengaduan['Judul']; ?></h4>
-                                        <div class="mb-4">
-                                            <h5>Tanggapan</h1>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <?php //getNamaKategori
-                                        $Nama = '';
-                                        $NIP = '';
-                                        $Email = '';
-                                        $Isi = '';
-                                        $Lampiran = '';
-                                        $idPetugas = '';
-                                        foreach ($tanggapan as $a) {
-                                            if ($pengaduan['idPengaduan'] == $a['idPengaduan']) {
-                                                $Isi = $a['Isi'];
-                                                $Lampiran = $a['Lampiran'];
-                                                $idPetugas = $a['idPetugas'];
-                                            }
-                                        }
-                                        foreach ($petugas as $b) {
-                                            if ($idPetugas == $b['idPetugas']) {
-                                                $Nama = $b['Nama'];
-                                                $NIP = $b['NIP'];
-                                                $Email = $b['Email'];
-                                            }
-                                        }
-                                        ?>
-                                        <div class="col-6">
-                                            <address>
-                                                <strong>Petugas</strong><br>
-                                                <?= $Nama; ?><br>
-                                                <?= $NIP; ?><br>
-                                                <?= $Email; ?><br>
-                                            </address>
-                                        </div>
 
+                                    <h3 class="card-title"><?= $title; ?></h3>
+                                    <p class="card-title-desc">Berikut adalah identitas dan detail pengajuan Pengaduan Online Anda.</p>
+                                    <div class="row">
+
+                                        <div class="col-4">
+                                            <div class="row mb-1">
+                                                <label class="col-sm-6">IDENTITAS CUSTOMER</label>
+                                                <hr>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-sm-4">NIK</label>
+                                                <label class="col-sm-8">: <?= $customer['NIK']; ?></label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-sm-4">Nama Lengkap</label>
+                                                <label class="col-sm-8"> : <?= $customer['Nama']; ?></label>
+
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-sm-4">Email</label>
+                                                <label class="col-sm-8">: <?= $customer['Email']; ?></label>
+
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-sm-4">Nomor Telepon</label>
+                                                <label class="col-sm-8">: <?= $customer['noHP']; ?></label>
+
+                                            </div>
+                                        </div>
                                         <div class="col-6">
-                                            <strong>Uraian Tanggapan</strong><br>
-                                            <?= $Isi; ?><br>
-                                            <a href="/Lampiran/<?= $Lampiran; ?>">Lampiran</a>
+                                            <div class="row mb-1">
+                                                <label class="col-sm-6">DETAIL PENGADUAN ONLINE</label>
+                                                <hr>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-sm-4">Tanggal Pengajuan</label>
+                                                <label class="col-sm-8">: <?= $pengaduan['created_at']; ?></label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-sm-4">Jenis Layanan</label>
+                                                <label class="col-sm-8">: <?= $kategori['namaKategori']; ?></label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-sm-4">Judul</label>
+                                                <label class="col-sm-8">: <?= $pengaduan['Judul']; ?></label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-sm-4">Isi</label>
+                                                <label class="col-sm-8">: <?= $pengaduan['Isi']; ?></label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-sm-4">Lampiran</label>
+                                                <?php if ($pengaduan['Lampiran'] == 'user.png') : ?>
+                                                    <label class="col-sm-8"><a href="/lampiran/<?= $pengaduan['Lampiran']; ?>" class="isDisabled">: Tidak memiliki lampiran</a></label>
+                                                <?php else : ?>
+                                                    <label class=" col-sm-8"><a href="/lampiran/<?= $pengaduan['Lampiran']; ?>">: <?= $pengaduan['Lampiran']; ?></a></label>
+                                                <?php endif ?>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-sm-4">Status</label>
+                                                <label class="col-sm-8">: <?= $pengaduan['Status']; ?></label>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 align-right">
+                                            <button name="cetak" onclick="window.open('<?php echo site_url('/Pengaduan_online/print/' . $pengaduan['idPengaduan']) ?>')" class="btn btn-danger mt-5"><i class="fas fa-print align-middle me-2"></i> Cetak</button>
+                                        </div>
+                                        <a href="/admin"><button type="button" class="btn btn-warning waves-effect">Kembali</button> </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div> <!-- end col -->
+                    </div>
+                    <!-- end row -->
+                    <?php if ($pengaduan['Status'] == 'Selesai diproses') : ?>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="invoice-title">
+                                            <div class="mb-4">
+                                                <h5>Tanggapan</h1>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="row">
+                                                <label class="col-sm-2">IDENTITAS PETUGAS</label>
+                                                <hr>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-sm-2">Nama Lengkap</label>
+                                                <label class="col-sm-9">: <?= $petugas['Nama'] ?></label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-sm-2">Level</label>
+                                                <label class="col-sm-8">: <?= $level['Level']; ?></label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-sm-2">Email</label>
+                                                <label class="col-sm-8">: <?= $petugas['Email'] ?></label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-sm-2">Uraian Tanggapan</label>
+                                                <label class="col-sm-8">: <?= $tanggapan['Isi']; ?></label>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-sm-2">Lampiran</label>
+                                                <?php if ($tanggapan['Lampiran'] == 'user.png') : ?>
+                                                    <label class="col-sm-8"><a href="/lampiran/<?= $tanggapan['Lampiran']; ?>" class="isDisabled">: Tidak memiliki lampiran</a></label>
+                                                <?php else : ?>
+                                                    <label class=" col-sm-8"><a href="/lampiran/<?= $tanggapan['Lampiran']; ?>">: <?= $pengaduan['Lampiran']; ?></a></label>
+                                                <?php endif ?>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php endif ?>
 
+                    <?php elseif ($pengaduan['Status'] == 'Sedang diproses') : ?>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="invoice-title">
+                                            <div class="mb-4">
+                                                <h5>Tanggapan</h1>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <?php $tgl = date("d F Y H:i", strtotime($pengaduan['updated_at'])); ?>
+                                            <div class="col-6">
+                                                sudah mulai diproses sejak <?= $tgl; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif ?>
+
+
+                </div> <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
 
             <?= $this->include('partials/footer') ?>
+
         </div>
         <!-- end main content-->
 

@@ -95,4 +95,15 @@ class Meeting_requestModel extends Model
     $query = $builder->get();
     return $query;
   }
+
+  public function groupByStatus($idCustomer)
+  {
+    $builder = $this->db->table('meeting_request');
+    $builder->selectCount('idMeeting', 'Jumlah');
+    $builder->select('Status');
+    $builder->where('idCustomer', $idCustomer);
+    $builder->groupBy('Status');
+    $query = $builder->get();
+    return $query;
+  }
 }

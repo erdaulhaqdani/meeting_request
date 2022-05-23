@@ -12,7 +12,7 @@
                     <h5><?= session()->get('idLevel') ?></h5>
                 </li>
                 <li>
-                    <a href="#" class="waves-effect">
+                    <a href="/dashboard_cust" class="waves-effect">
                         <i class="ri-dashboard-line"></i>
                         <span>Beranda</span>
                     </a>

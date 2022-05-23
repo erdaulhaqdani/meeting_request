@@ -7,8 +7,6 @@
 
     <?= $this->include('partials/head-css') ?>
 
-    <link href="/assets/libs/bootstrap-rating/bootstrap-rating.css" rel="stylesheet" type="text/css" />
-
     <!-- Bootstrap Css -->
     <link href="<?= base_url('assets/css/bootstrap.min.css'); ?> " id="bootstrap-style" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -89,10 +87,10 @@
                                                 </select>
                                             </div>
                                             <div class="my-2">
-                                                <input class="form-control" type="text" name="idLevel" disabled required minlength="5" value="<?= $petugas['idLevel']; ?>">
+                                                <input class="form-control" type="text" name="idLevel" disabled required minlength="5" value="<?= $level['Level']; ?>">
                                             </div>
                                             <div class="my-2">
-                                                <input class="form-control" type="text" name="unit" disabled required minlength="5" value="<?= $petugas['Unit']; ?>">
+                                                <input class="form-control" type="text" name="unit" disabled required minlength="5" value="<?= $kategori['namaKategori']; ?>">
                                                 <input type="hidden" name="idPetugas" value="<?= $petugas['idPetugas']; ?>">
                                             </div>
 

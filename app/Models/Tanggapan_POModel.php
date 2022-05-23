@@ -24,4 +24,13 @@ class Tanggapan_POModel extends Model
 
         return $this->where(['idTanggapan_PO ' => $id])->first();
     }
+
+    public function getTanggapanPengaduan($id = false)
+    {
+        if ($id == false) {
+            return $this->findAll();
+        }
+
+        return $this->where(['idPengaduan ' => $id])->first();
+    }
 }
