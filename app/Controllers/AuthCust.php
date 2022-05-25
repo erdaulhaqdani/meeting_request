@@ -174,10 +174,15 @@ class AuthCust extends BaseController
     $email = $this->request->getVar('email');
     $password = $this->request->getVar('password');
     $row = $model->get_data_login($email, $table);
+
+    $table_customer = 'customer';
+    $row_customer = $this->CustModel->get_data($email, $table_customer);
+
     if ($row == NULL) {
       session()->setFlashdata('pesan', 'Email anda tidak terdaftar');
       return redirect()->to('/login_cust');
     }
+
 
     if (password_verify($password, $row->Password)) {
       $data = [
@@ -187,23 +192,28 @@ class AuthCust extends BaseController
       ];
 
       if ($data['idLevel'] == 5) {
-        $row_cust = $model->get_data_login($data['email'], 'customer');
+        if ($row_customer->StatusAkun == 'Aktif') {
+          $row_cust = $model->get_data_login($data['email'], 'customer');
 
-        $data = [
-          'log' => TRUE,
-          'idCustomer' => $row_cust->idCustomer,
-          'NIK' => $row_cust->NIK,
-          'Nama' => $row_cust->Nama,
-          'Email' => $row_cust->Email,
-          'Pekerjaan' => $row_cust->Pekerjaan,
-          'idLevel' => $row_cust->idLevel
-        ];
+          $data = [
+            'log' => TRUE,
+            'idCustomer' => $row_cust->idCustomer,
+            'NIK' => $row_cust->NIK,
+            'Nama' => $row_cust->Nama,
+            'Email' => $row_cust->Email,
+            'Pekerjaan' => $row_cust->Pekerjaan,
+            'idLevel' => $row_cust->idLevel
+          ];
 
-        session()->set($data);
-        session()->setFlashdata('pesan', 'Berhasil Login');
+          session()->set($data);
+          session()->setFlashdata('pesan', 'Berhasil Login');
 
-        return redirect()->to('/dashboard_cust');
-      } elseif ($data['idLevel'] != 5) {
+          return redirect()->to('/dashboard_cust');
+        } else {
+          session()->setFlashdata('pesan', 'Akun belum aktif, silakan verifikasi melalui email');
+          return redirect()->to('/login_cust');
+        }
+      } elseif ($data['idLevel'] == 7) {
         $row_petugas = $model->get_data_login($data['email'], 'petugas_apt');
 
         $data = [
@@ -219,6 +229,22 @@ class AuthCust extends BaseController
         session()->setFlashdata('pesan', 'Berhasil Login');
 
         return redirect()->to('petugasMR');
+      } elseif ($data['idLevel'] == 1) {
+        $row_petugas = $model->get_data_login($data['email'], 'petugas_apt');
+
+        $data = [
+          'log' => TRUE,
+          'idPetugas' => $row_petugas->idPetugas,
+          'NIP' => $row_petugas->NIP,
+          'Nama' => $row_petugas->Nama,
+          'Email' => $row_petugas->Email,
+          'idLevel' => $row_petugas->idLevel
+        ];
+
+        session()->set($data);
+        session()->setFlashdata('pesan', 'Berhasil Login');
+
+        return redirect()->to('Landing_page');
       }
     } else {
       session()->setFlashdata('pesan', 'Password salah');

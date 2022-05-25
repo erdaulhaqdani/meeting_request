@@ -78,7 +78,7 @@
 
 <!-- Plugins js -->
 <!-- apexcharts -->
-<script src="assets/libs/apexcharts/apexcharts.min.js"></script>
+<!-- <script src="/assets/libs/apexcharts/apexcharts.min.js"></script> -->
 
 <!-- jquery.vectormap map -->
 <script src="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
@@ -148,7 +148,7 @@
     });
 </script>
 
-<script>
+<!-- <script>
     var barchart_jumlah_tugas_perbulan = document.getElementById('barchart_jumlah_tugas_perbulan');
 
     const labels = Utils.months({
@@ -194,9 +194,9 @@
     };
 
     var bar_chart = new Chart(config);
-</script>
+</script> -->
 
-<script>
+<!-- <script>
     options = {
         series: [{
                 name: "Selesai",
@@ -258,7 +258,7 @@
         document.querySelector("#jumlah_tugas"),
         options
     )).render();
-</script>
+</script> -->
 
 </body>
 
