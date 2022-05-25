@@ -32,7 +32,7 @@
                             $level = 'Petugas Loket';
                             break;
                     } ?>
-                    <h5><?= session()->get('Nama') ?></h5>
+                    <h5><?= session()->get('Username') ?></h5>
                     <h5><?= $level ?></h5>
                 </li>
                 <li>

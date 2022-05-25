@@ -43,7 +43,8 @@ class Meeting_requestModel extends Model
     return $query;
   }
 
-  // Model meeting request untuk petugas
+  // Model meeting request untuk petugas APT
+
   public function jumlahMeetingRequest($id, $status)
   {
     $builder = $this->db->table('meeting_request');
@@ -59,7 +60,7 @@ class Meeting_requestModel extends Model
 
     $builder = $this->db->table('meeting_request');
     $builder->notlike('Status', 'Dibatalkan');
-    if ($level != 1) {
+    if ($level == 5) {
       $builder->where('idKategori', $kategori);
     }
     $query = $builder->get();

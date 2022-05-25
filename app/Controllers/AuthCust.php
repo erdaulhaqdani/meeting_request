@@ -105,6 +105,7 @@ class AuthCust extends BaseController
 
     $this->CustModel->save([
       'Nama' => $this->request->getVar('nama'),
+      'Username' => $this->request->getVar('username'),
       'NIK' => $this->request->getVar('nik'),
       'Email' => $this->request->getVar('email'),
       'noHP' => $this->request->getVar('noHP'),
@@ -202,6 +203,8 @@ class AuthCust extends BaseController
             'NIK' => $row_cust->NIK,
             'Nama' => $row_cust->Nama,
             'Email' => $row_cust->Email,
+            'Username' => $row_cust->Username,
+            'noHP' => $row_cust->noHP,
             'Pekerjaan' => $row_cust->Pekerjaan,
             'idLevel' => $row_cust->idLevel
           ];
@@ -214,7 +217,7 @@ class AuthCust extends BaseController
           session()->setFlashdata('pesan', 'Akun belum aktif, silakan verifikasi melalui email');
           return redirect()->to('/login_cust');
         }
-      } elseif ($data['idLevel'] == 7) {
+      } elseif ($data['idLevel'] == 2 || 3 || 4 || 6 || 7) {
         $row_petugas = $model->get_data_login($data['email'], 'petugas_apt');
 
         $data = [

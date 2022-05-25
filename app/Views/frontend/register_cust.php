@@ -33,6 +33,10 @@
 						<form class="input_style_1" method="post" action="AuthCust/register" id="regis_cust">
 
 							<div class="form-group">
+								<label for="username">Username</label>
+								<input type="text" name="username" id="username" class="form-control " required>
+							</div>
+							<div class="form-group">
 								<label for="nama">Nama Lengkap</label>
 								<input type="text" name="nama" id="nama" class="form-control " required>
 							</div>
@@ -45,8 +49,8 @@
 								<input type="email" name="email" id="email" class="form-control <?= ($validation->hasError('email')) ?>" required>
 							</div>
 							<div class="form-group">
-								<label for="noHp">No HP</label>
-								<input type="text" name="noHP" id="noHP" class="form-control <?= ($validation->hasError('noHp')) ?>" required>
+								<label for="nomor_hp">Nomor Telepon</label>
+								<input type="number" name="noHP" id="nomor_hp" class="form-control" required>
 							</div>
 							<div class="form-group">
 								<label for="jk">Jenis Kelamin</label>

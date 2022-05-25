@@ -34,7 +34,7 @@ class Filters extends BaseConfig
      */
     public $globals = [
         'before' => [
-            'authFilter' => ['except' => ['/', '/AuthCust/*', '/AuthPetugas/*', 'frontend/*', '/register_cust', '/register_petugas', '/pages/*', '/login_cust', '/login_cust/*', '/reset_pw/*', '/Landing_page', '/Landing_page/*']],
+            'authFilter' => ['except' => ['/', '/AuthCust/*', '/AuthPetugas/*', 'frontend/*', '/register_cust', '/register_petugas', '/pages/*', '/login_cust', '/login_cust/*', '/reset_pw/*']],
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',
