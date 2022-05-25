@@ -45,10 +45,14 @@
 								<input type="email" name="email" id="email" class="form-control <?= ($validation->hasError('email')) ?>" required>
 							</div>
 							<div class="form-group">
+								<label for="noHp">No HP</label>
+								<input type="text" name="noHP" id="noHP" class="form-control <?= ($validation->hasError('noHp')) ?>" required>
+							</div>
+							<div class="form-group">
 								<label for="jk">Jenis Kelamin</label>
 								<select class="form-control" name="jk" id="jk" required>
-									<option value="laki-laki">Laki-laki</option>
-									<option value="perempuan">Perempuan</option>
+									<option value="Laki-laki">Laki-laki</option>
+									<option value="Perempuan">Perempuan</option>
 								</select>
 							</div>
 							<div class="form-group">

@@ -73,7 +73,7 @@
                                         <!-- <button type="button" class="dropify-clear">Remove</button> -->
                                     </div>
 
-                                    <div class="mb-3 text-end">
+                                    <div class="mb-1 text-end">
                                         <button type="reset" class="btn btn-danger me-3">Reset</button>
                                         <button type="submit" class="btn btn-primary" name="input_PO">Submit</button>
                                     </div>

@@ -136,7 +136,7 @@
                         <td><?= $a->Perihal; ?></td>
                         <td><?= $a->Status; ?></td>
                         <td>
-                          <a href="/Meeting_request/detail/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Detail</a>
+                          <a href="/Meeting_request/detail/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
                           <?php if ($a->Status == 'Belum diproses') : ?>
                             <a href="/Meeting_request/edit/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                             <a href="/Meeting_request/cancel/<?= $a->idMeeting; ?>" class="btn btn-warning btn-sm w-xs">Batalkan</a>
