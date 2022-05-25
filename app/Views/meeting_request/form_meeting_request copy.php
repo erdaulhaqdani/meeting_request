@@ -145,14 +145,10 @@
                       </div>
                     </div>
                   </div>
-                  <div class="mb-0">
+                  <div class="mb-3 text-end">
                     <div>
-                      <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
-                        Submit
-                      </button>
-                      <button type="reset" class="btn btn-secondary waves-effect">
-                        Cancel
-                      </button>
+                      <button type="reset" class="btn btn-danger waves-effect">Cancel</button>
+                      <button type="submit" class="btn btn-primary waves-effect waves-light me-1">Submit</button>
                     </div>
                   </div>
                 </form>
