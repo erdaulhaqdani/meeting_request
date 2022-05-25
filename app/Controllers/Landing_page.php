@@ -6,9 +6,9 @@ use App\Models\Landing_pageModel;
 use App\Models\KategoriModel;
 use App\Models\PermohonanInfoModel;
 use App\Models\LevelModel;
-use App\Models\Level_petugasModel;
 use App\Models\PetugasModel;
 use App\Models\UserModel;
+use App\Models\AgendaModel;
 
 
 class Landing_page extends BaseController
@@ -17,9 +17,9 @@ class Landing_page extends BaseController
   protected $KategoriModel;
   protected $PermohonanInfoModel;
   protected $LevelModel;
-  protected $Level_petugasModel;
   protected $PetugasModel;
   protected $UserModel;
+  protected $AgendaModel;
 
   public function __construct()
   {
@@ -27,9 +27,9 @@ class Landing_page extends BaseController
     $this->KategoriModel = new kategoriModel();
     $this->PermohonanInfoModel = new PermohonanInfoModel();
     $this->LevelModel = new LevelModel();
-    $this->Level_petugasModel = new Level_petugasModel();
     $this->PetugasModel = new PetugasModel();
     $this->UserModel = new UserModel();
+    $this->AgendaModel = new AgendaModel();
   }
 
   public function form_petugas()
@@ -37,7 +37,7 @@ class Landing_page extends BaseController
     $data = [
       'title' => 'Tambah Petugas',
       'level' => $this->LevelModel->findAll(),
-      'level_petugas' => $this->Level_petugasModel->findAll(),
+      'level_petugas' => $this->LevelModel->findAll(),
       'kategori' => $this->KategoriModel->findAll(),
       'validation' => \Config\Services::validation()
     ];
@@ -77,7 +77,7 @@ class Landing_page extends BaseController
       'title' => 'Daftar Petugas',
       'level' => $this->LevelModel->findAll(),
       'petugas' => $this->PetugasModel->findAll(),
-      'level_petugas' => $this->Level_petugasModel->findAll(),
+      'level_petugas' => $this->LevelModel->findAll(),
       'validation' => \Config\Services::validation()
     ];
     return view('landing_page/daftar_petugas', $data);
@@ -89,7 +89,7 @@ class Landing_page extends BaseController
       'title' => 'Daftar Petugas',
       'level' => $this->LevelModel->findAll(),
       'petugas' => $this->PetugasModel->getPetugas($email),
-      'level_petugas' => $this->Level_petugasModel->findAll(),
+      'level_petugas' => $this->LevelModel->findAll(),
       'validation' => \Config\Services::validation()
     ];
     return view('landing_page/edit_petugas', $data);
@@ -304,6 +304,155 @@ class Landing_page extends BaseController
     session()->setFlashdata('pesan', 'Berhasil mengubah Informasi.');
 
     return redirect()->to('/Landing_page');
+  }
+
+  // Kelola Agenda
+  public function daftar_agenda()
+  {
+    $data = [
+      'title' => 'Daftar Agenda',
+      'agenda' => $this->AgendaModel->getAgenda()
+    ];
+    return view('landing_page/daftar_agenda', $data);
+  }
+
+  public function form_agenda()
+  {
+    $data = [
+      'title' => 'Form Agenda',
+      'validation' => \Config\Services::validation(),
+      'penulis' => session('Nama')
+    ];
+    return view('landing_page/form_agenda', $data);
+  }
+
+  public function input_agenda()
+  {
+    $val = $this->validate(
+      [
+        'gambar' => [
+          'rules' => 'max_size[gambar,5120]|ext_in[gambar,jpg,jpeg,png]',
+          'errors' => [
+            'max_size' => 'Ukuran file gambar maksimal 5MB',
+            'ext_in' => 'Jenis file harus jpg atau png'
+          ]
+        ]
+      ]
+
+    );
+    if (!$val) {
+      $validation = \Config\Services::validation();
+      return redirect()->to('/Landing_page/form_agenda')->withInput()->with('validation', $validation);
+    }
+
+    //ambil file
+    $gambar = $this->request->getFile('gambar');
+    if ($gambar->getError() == 4) {
+      $namagambar = 'default.png';
+    } else {
+      //ambil nama file
+      $namagambar = $gambar->getRandomName();
+      //pindah file ke folder gambar
+      $gambar->move('cover_Agenda', $namagambar);
+    }
+
+    $this->AgendaModel->save([
+      'Judul' => $this->request->getVar('judul'),
+      'tgl_kegiatan' => $this->request->getVar('tgl'),
+      'Isi' => $this->request->getVar('isi_agenda'),
+      'Penulis' => $this->request->getVar('penulis'),
+      'Cover' => $namagambar,
+      'Status' => 'Diarsipkan',
+    ]);
+
+    session()->setFlashdata('pesan', 'Berhasil menambahkan Informasi.');
+
+    return redirect()->to('/Landing_page/form_agenda');
+  }
+
+  public function edit_agenda($id)
+  {
+    $data = [
+      'title' => 'Edit Agenda',
+      'validation' => \Config\Services::validation(),
+      'agenda' => $this->AgendaModel->getAgenda($id)
+    ];
+    return view('landing_page/edit_agenda', $data);
+  }
+
+  public function update_agenda($id)
+  {
+    $val = $this->validate(
+      [
+        'gambar' => [
+          'rules' => 'max_size[gambar,5120]|ext_in[gambar,jpg,jpeg,png]',
+          'errors' => [
+            'max_size' => 'Ukuran file gambar maksimal 5MB',
+            'ext_in' => 'Jenis file harus jpg atau png'
+          ]
+        ]
+      ]
+
+    );
+    if (!$val) {
+      $validation = \Config\Services::validation();
+      return redirect()->to('/Landing_page/edit_agenda')->withInput()->with('validation', $validation);
+    }
+
+    $agenda = $this->AgendaModel->find($id);
+
+    //hapus file dari direktori
+    if ($agenda['Cover'] != 'default.png') {
+      //hapus file lampiran
+      unlink('cover_Agenda/' . $agenda['Cover']);
+    }
+    //ambil file
+    $gambar = $this->request->getFile('gambar');
+    if ($gambar->getError() == 4) {
+      $namagambar = 'default.png';
+    } else {
+      //ambil nama file
+      $namagambar = $gambar->getRandomName();
+      //pindah file ke folder gambar
+      $gambar->move('cover_Agenda', $namagambar);
+    }
+
+    $this->AgendaModel->save([
+      'idAgenda' => $id,
+      'Judul' => $this->request->getVar('judul'),
+      'tgl_kegiatan' => $this->request->getVar('tgl'),
+      'Isi' => $this->request->getVar('isi_agenda'),
+      'Penulis' => $this->request->getVar('penulis'),
+      'Cover' => $namagambar
+    ]);
+
+    session()->setFlashdata('pesan', 'Berhasil mengubah Informasi.');
+
+    return redirect()->to('/Landing_page/daftar_agenda');
+  }
+
+  public function arsip_agenda($id)
+  {
+    $this->AgendaModel->save([
+      'idAgenda' => $id,
+      'Status' => 'Diarsipkan'
+    ]);
+
+    session()->setFlashdata('pesan', 'Berhasil mengarsipkan Informasi.');
+
+    return redirect()->to('/Landing_page/daftar_agenda');
+  }
+
+  public function publik_agenda($id)
+  {
+    $this->AgendaModel->save([
+      'idAgenda' => $id,
+      'Status' => 'Publik'
+    ]);
+
+    session()->setFlashdata('pesan', 'Berhasil mempublikasikan Informasi.');
+
+    return redirect()->to('/Landing_page/daftar_agenda');
   }
 
   public function artikel_grid()

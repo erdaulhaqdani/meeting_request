@@ -32,6 +32,16 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fas fa-file-alt "></i>
+                        <span>Kelola Agenda</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="/Landing_page/form_agenda">Tambah Agenda</a></li>
+                        <li><a href="/Landing_page/daftar_agenda">Daftar Agenda</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fas fa-file-alt "></i>
                         <span>Kelola Petugas</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
