@@ -125,4 +125,19 @@ class Pengaduan_onlineModel extends Model
         $query = $builder->get();
         return $query;
     }
+    public function pengaduanPerminggu($idCustomer)
+    {
+        /*SELECT COUNT(created_at) AS 'Jumlah', DATE_FORMAT(created_at, "%e %M %Y")
+        FROM `pengaduan_online` GROUP BY DATE_FORMAT(created_at, "%e %M %Y")*/
+
+        $builder = $this->db->table('pengaduan_online');
+        $builder->select('COUNT(created_at) AS jumlah, created_at as tanggal');
+        $builder->where('idCustomer', $idCustomer);
+        $builder->where('created_at >=', 'NOW()');
+        $builder->groupBy('DATE_FORMAT(created_at, "%e %M %Y")');
+        $builder->orderBy('created_at', 'asc');
+        $builder->limit(7);
+        $query = $builder->get();
+        return $query;
+    }
 }
