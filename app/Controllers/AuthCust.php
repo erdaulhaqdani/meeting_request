@@ -6,18 +6,21 @@ use App\Models\CustModel;
 use App\Models\UserModel;
 use App\Models\AuthModel;
 use App\Models\PetugasModel;
+use App\Models\LevelModel;
 
 class AuthCust extends BaseController
 {
   protected $CustModel;
   protected $UserModel;
   protected $PetugasModel;
+  protected $LevelModel;
 
   public function __construct()
   {
     $this->CustModel = new CustModel();
     $this->UserModel = new UserModel();
     $this->PetugasModel = new PetugasModel();
+    $this->LevelModel = new LevelModel();
     $this->email = \Config\Services::email();
   }
 
@@ -190,9 +193,12 @@ class AuthCust extends BaseController
         'log' => TRUE,
         'email' => $row->Email,
         'idLevel' => $row->idLevel,
+        'Kelompok' => $this->LevelModel->getKelompok($row->idLevel)
       ];
 
-      if ($data['idLevel'] == 5) {
+      $kelompok = $data['Kelompok'];
+
+      if ($kelompok[0] == 'Customer') {
         if ($row_customer->StatusAkun == 'Aktif') {
           $row_cust = $model->get_data_login($data['email'], 'customer');
 
@@ -214,7 +220,7 @@ class AuthCust extends BaseController
           session()->setFlashdata('pesan', 'Akun belum aktif, silakan verifikasi melalui email');
           return redirect()->to('/login_cust');
         }
-      } elseif ($data['idLevel'] == 7) {
+      } elseif ($kelompok[0] == 'APT') {
         $row_petugas = $model->get_data_login($data['email'], 'petugas_apt');
 
         $data = [
@@ -230,7 +236,7 @@ class AuthCust extends BaseController
         session()->setFlashdata('pesan', 'Berhasil Login');
 
         return redirect()->to('petugasMR');
-      } elseif ($data['idLevel'] == 1) {
+      } elseif ($kelompok[0] == 'LP') {
         $row_petugas = $model->get_data_login($data['email'], 'petugas_apt');
 
         $data = [
