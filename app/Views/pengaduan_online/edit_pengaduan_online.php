@@ -67,7 +67,7 @@
                                         <input type="hidden" name="idCustomer" value="<?= session('idCustomer'); ?>">
                                     </div>
 
-                                    <label for="lampiran">Lampiran</label><a href="/lampiran/<?= $pengaduan['Lampiran'] ?>">Lampiran</a>
+                                    <label for="lampiran">Lampiran</label>: <a href="/lampiran/<?= $pengaduan['Lampiran'] ?>">Lampiran</a>
                                     <div class="mb-3">
                                         <input type="file" class="dropify" name="lampiran" />
                                         <!-- <button type="button" class="dropify-clear">Remove</button> -->

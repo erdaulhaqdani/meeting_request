@@ -7,11 +7,33 @@
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
-                <li>
-                    <a href="/" class="waves-effect">
-                        <i class="ri-dashboard-line"></i>
-                        <span>Beranda</span>
-                    </a>
+                <li class="text-center mt-3">
+                    <?php //get Nama Level
+                    switch (session()->get('idLevel')) {
+                        case "1":
+                            $level = 'Super Admin';
+                            break;
+                        case "2":
+                            $level = 'Admin JKasi';
+                            break;
+                        case "3":
+                            $level = 'Kepala Kantor';
+                            break;
+                        case "4":
+                            $level = 'Petugas KI';
+                            break;
+                        case "5":
+                            $level = 'Customer';
+                            break;
+                        case "6":
+                            $level = 'Supervisor';
+                            break;
+                        case "7":
+                            $level = 'Petugas Loket';
+                            break;
+                    } ?>
+                    <p class="text-black text-opacity-75 m-1"><?= session()->get('Nama') ?></p>
+                    <p class="text-black text-opacity-75"><?= $level ?></p>
                 </li>
                 <li>
                     <a href="/Landing_page/permohonanInfo/1" class=" waves-effect">

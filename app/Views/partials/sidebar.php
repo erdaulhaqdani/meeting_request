@@ -32,8 +32,8 @@
                             $level = 'Petugas Loket';
                             break;
                     } ?>
-                    <h5><?= session()->get('Nama') ?></h5>
-                    <h5><?= $level ?></h5>
+                    <p class="text-black text-opacity-75 m-1"><?= session()->get('Nama') ?></p>
+                    <p class="text-black text-opacity-75"><?= $level ?></p>
                 </li>
                 <li>
                     <a href="/dashboard_cust" class="waves-effect">

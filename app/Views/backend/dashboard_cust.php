@@ -37,7 +37,7 @@
             <div class="page-content">
 
                 <div class="row">
-                    <div class="col-xl-3">
+                    <div class="col-3">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-4">Statistik Pengaduan</h4>
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3">
+                    <div class="col-3">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-4">Statistik Meeting</h4>
@@ -53,10 +53,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-xl-6">
+                    <div class="col-6">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-4">Pengajuan yang dibuat minggu ini</h4>
@@ -85,7 +82,7 @@
 <?= $this->include("partials/vendor-scripts") ?>
 
 <!-- Plugins js -->
-apexcharts
+<!-- apexcharts -->
 <script src="/assets/libs/apexcharts/apexcharts.min.js"></script>
 
 <!-- jquery.vectormap map -->
@@ -193,7 +190,7 @@ apexcharts
             label: 'Meeting Request',
             backgroundColor: '#6fd088',
             borderColor: '#6fd088',
-            data: [7, 0.5, 3],
+            data: [0, 0, 1],
         }]
     };
 

@@ -85,13 +85,20 @@
                                             </div>
                                         </div>
                                         <div class="col-6">
+                                            <?php
+                                            function formatTanggal($date)
+                                            {
+                                                // ubah string menjadi format tanggal
+                                                return date('d F Y, H:i', strtotime($date));
+                                            }
+                                            ?>
                                             <div class="row mb-1">
                                                 <label class="col-sm-6">DETAIL PENGADUAN ONLINE</label>
                                                 <hr>
                                             </div>
                                             <div class="row">
                                                 <label class="col-sm-4">Tanggal Pengajuan</label>
-                                                <label class="col-sm-8">: <?= $pengaduan['created_at']; ?></label>
+                                                <label class="col-sm-8">: <?= formatTanggal($pengaduan['created_at']); ?></label>
                                             </div>
                                             <div class="row">
                                                 <label class="col-sm-4">Jenis Layanan</label>
