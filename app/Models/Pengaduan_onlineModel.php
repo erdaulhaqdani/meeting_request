@@ -75,7 +75,7 @@ class Pengaduan_onlineModel extends Model
         $builder = $this->db->table('pengaduan_online');
         $builder->notlike('Status', 'Dibatalkan');
         // $builder->where('idLevel', $level);
-        if ($level != 1) {
+        if ($level != 2) {
             $builder->where('idKategori', $kategori);
         }
         $query = $builder->get();
@@ -92,7 +92,7 @@ class Pengaduan_onlineModel extends Model
         $builder->like('Status', $status);
         $builder->notlike('Status', 'Dibatalkan');
         // $builder->where('idLevel', '1');
-        if ($level != 1) {
+        if ($level != 2) {
             $builder->where('idKategori', $kategori);
         }
         $query = $builder->get();
@@ -107,7 +107,7 @@ class Pengaduan_onlineModel extends Model
          */
         $builder = $this->db->table('pengaduan_online');
         $builder->like('Status', $status);
-        if ($level != 1) {
+        if ($level != 2) {
             $builder->where('idKategori', $kategori);
         }
         $builder->selectCount('idPengaduan');

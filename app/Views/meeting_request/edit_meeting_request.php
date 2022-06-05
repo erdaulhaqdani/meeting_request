@@ -172,11 +172,11 @@
                   }
                   ?>
 
-                  <div class="mb-0">
+                  <div class="mb-1 text-end">
                     <div>
-                      <button type="reset" class="btn btn-danger waves-effect me-3">Cancel</button>
-                      <button type="submit" class="btn btn-primary waves-effect waves-light me-1">Submit</button>
                       <a href="/Meeting_request"><button type="button" class="btn btn-warning waves-effect" style="margin-left: 5px;">Kembali</button> </a>
+                      <button type="reset" class="btn btn-danger waves-effect mx-3">Cancel</button>
+                      <button type="submit" class="btn btn-primary waves-effect waves-light me-1">Submit</button>
                     </div>
                   </div>
                 </form>

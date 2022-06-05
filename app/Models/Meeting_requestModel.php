@@ -59,7 +59,7 @@ class Meeting_requestModel extends Model
 
     $builder = $this->db->table('meeting_request');
     $builder->notlike('Status', 'Dibatalkan');
-    if ($level != 1) {
+    if ($level != 2) {
       $builder->where('idKategori', $kategori);
     }
     $query = $builder->get();
