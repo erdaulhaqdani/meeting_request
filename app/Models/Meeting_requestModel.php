@@ -9,7 +9,7 @@ class Meeting_requestModel extends Model
   protected $table      = 'meeting_request';
   protected $primaryKey = 'idMeeting';
 
-  protected $allowedFields = ['Tanggal_kunjungan', 'Waktu_kunjungan', 'Kantor', 'Bentuk_layanan', 'Perihal', 'Telepon', 'Status', 'idKategori', 'idCustomer', 'updated_at'];
+  protected $allowedFields = ['Tanggal_kunjungan', 'Waktu_kunjungan', 'Kantor', 'Bentuk_layanan', 'Perihal', 'Status', 'idKategori', 'idCustomer', 'updated_at'];
 
   protected $useAutoIncrement = true;
   protected $useTimestamps = true;

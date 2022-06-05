@@ -34,14 +34,12 @@
 
             <div class="page-content">
 
-                <?= $title ?>
-
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title"> <?= $title ?></h4>
+                                <h4 class="card-title">Profil Customer</h4>
 
                                 <form action="/Pengaduan_online/in_profile" class="custom-validation" method="POST" enctype="multipart/form-data">
                                     <!-- beri penjelasan tiap input/desc -->
@@ -49,9 +47,12 @@
                                         <?php if (session()->getFlashdata('pesan')) : ?>
                                             <div class="alert alert-success" role="alert"><?= session()->getFlashdata('pesan'); ?></div>
                                         <?php endif; ?>
-                                        <div class="col-1">
+                                        <div class="col-2">
                                             <div class="my-2">
                                                 <label class="m-2">Nama</label>
+                                            </div>
+                                            <div class="my-2">
+                                                <label class="m-2">Username</label>
                                             </div>
                                             <div class="my-2">
                                                 <label class="m-2">NIK</label>
@@ -60,15 +61,18 @@
                                                 <label class="m-2">Email</label>
                                             </div>
                                             <div class="my-2">
-                                                <label class="m-2">No Telepon</label>
+                                                <label class="m-2">Nomor Telepon</label>
                                             </div>
                                             <div class="my-2">
                                                 <label class="m-2">Pekerjaan</label>
                                             </div>
                                         </div>
-                                        <div class="col-11">
+                                        <div class="col-10">
                                             <div class="my-2">
                                                 <input class="form-control" type="text" name="nama" required minlength="4" value="<?= $customer['Nama']; ?>">
+                                            </div>
+                                            <div class="my-2">
+                                                <input class="form-control" type="text" name="username" required minlength="4" value="<?= $customer['Username']; ?>">
                                             </div>
                                             <div class="my-2">
                                                 <input class="form-control" type="text" name="nik" disabled required minlength="5" value="<?= $customer['NIK']; ?>">
@@ -118,7 +122,7 @@
 <?= $this->include('partials/vendor-scripts') ?>
 
 <!-- App js -->
-<script src="<?php base_url('/assets/js/app.js') ?>"></script>
+<script src="<?= base_url('assets/js/app.js') ?>"></script>
 
 </body>
 

@@ -7,34 +7,37 @@
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
-                <li class="text-center mt-3">
-                    <?php //get Nama Level
-                    switch (session()->get('idLevel')) {
-                        case "1":
-                            $level = 'Admin Landing Page';
-                            break;
-                        case "2":
-                            $level = 'Admin JKasi';
-                            break;
-                        case "3":
-                            $level = 'Kepala Kantor';
-                            break;
-                        case "4":
-                            $level = 'Petugas KI';
-                            break;
-                        case "5":
-                            $level = 'Customer';
-                            break;
-                        case "6":
-                            $level = 'Supervisor';
-                            break;
-                        case "7":
-                            $level = 'Petugas Loket';
-                            break;
-                    } ?>
-                    <h5><?= session()->get('Username') ?></h5>
-                    <h5><?= $level ?></h5>
-                </li>
+                <div class="user-profile text-center mt-3">
+                    <div class="mt-3">
+                        <?php //get Nama Level
+                        switch (session()->get('idLevel')) {
+                            case "1":
+                                $level = 'Admin Landing Page';
+                                break;
+                            case "2":
+                                $level = 'Admin JKasi';
+                                break;
+                            case "3":
+                                $level = 'Kepala Kantor';
+                                break;
+                            case "4":
+                                $level = 'Petugas KI';
+                                break;
+                            case "5":
+                                $level = 'Customer';
+                                break;
+                            case "6":
+                                $level = 'Supervisor';
+                                break;
+                            case "7":
+                                $level = 'Petugas Loket';
+                                break;
+                        } ?>
+                        <h4 class="font-size-16 mb-1"><?= session()->get('Nama') ?></h4>
+                        <span class="text-muted"><i class="ri-record-circle-line align-middle font-size-16 text-success"></i><?= " " . $level ?></span>
+                    </div>
+                </div>
+                <li class="menu-title">Menu</li>
                 <li>
                     <a href="/" class="waves-effect">
                         <i class="ri-dashboard-line"></i>
@@ -43,13 +46,13 @@
                 </li>
                 <li>
                     <a href="/Landing_page/permohonanInfo/1" class=" waves-effect">
-                        <i class="fas fa-file-alt "></i>
+                        <i class="far fa-file-powerpoint "></i>
                         <span>Permohonan Informasi</span>
                     </a>
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="fas fa-file-alt "></i>
+                        <i class="fas fa-newspaper"></i>
                         <span>Kelola Informasi</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
@@ -59,7 +62,7 @@
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="fas fa-file-alt "></i>
+                        <i class=" fas fa-people-arrows"></i>
                         <span>Kelola Petugas</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">

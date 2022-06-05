@@ -56,6 +56,15 @@
                         </div>
                     </div>
 
+                    <!-- <div class="col-xl-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4">Statistik Harian</h4>
+                                <canvas id=""></canvas>
+                            </div>
+                        </div>
+                    </div> -->
+
                 </div>
 
             </div>
@@ -147,6 +156,8 @@
         data: data_group_meeting
     });
 </script>
+
+
 
 <!-- <script>
     var barchart_jumlah_tugas_perbulan = document.getElementById('barchart_jumlah_tugas_perbulan');

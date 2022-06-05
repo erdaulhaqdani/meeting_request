@@ -337,9 +337,10 @@ class Landing_page extends BaseController
 
   public function berita_grid()
   {
+
     $data = [
       'title' => 'Berita KPKNL Bandung',
-      'berita' => $this->Landing_pageModel->findAll(),
+      'berita' => $this->Landing_pageModel->paginate(4),
       'pager' => $this->Landing_pageModel->pager
     ];
 
@@ -362,7 +363,7 @@ class Landing_page extends BaseController
     $data = [
       'title' => 'Pengumuman KPKNL Bandung',
       'berita' => $this->Landing_pageModel->findAll(),
-      // 'pager' => $this->Landing_pageModel->pager
+      'pager' => $this->Landing_pageModel->pager
     ];
 
     return view('pages/pengumuman_grid', $data);
@@ -384,7 +385,7 @@ class Landing_page extends BaseController
     $data = [
       'title' => 'Peristiwa KPKNL Bandung',
       'berita' => $this->Landing_pageModel->findAll(),
-      // 'pager' => $this->Landing_pageModel->pager
+      'pager' => $this->Landing_pageModel->pager
     ];
 
     return view('pages/peristiwa_grid', $data);

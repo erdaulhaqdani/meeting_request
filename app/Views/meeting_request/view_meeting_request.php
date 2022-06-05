@@ -18,6 +18,9 @@
   <!-- Responsive datatable examples -->
   <link href="/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
+  <!-- Sweet Alert-->
+  <link href="/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+
   <?= $this->include("partials/head-css"); ?>
 
 
@@ -99,6 +102,8 @@
                   </div>
                 <?php
                 }
+
+
                 ?>
                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                   <thead>
@@ -109,17 +114,24 @@
                       <th>Kantor Tujuan</th>
                       <th>Tanggal Kunjungan</th>
                       <th>Waktu Kunjungan</th>
-                      <th>Perihal</th>
                       <th>Status</th>
                       <th>Aksi</th>
                     </tr>
                   </thead>
 
                   <tbody>
-                    <?php $no = 1; ?>
+                    <?php $no = 1;
+                    function formatTanggal($date)
+                    {
+                      // ubah string menjadi format tanggal
+                      return date('d-m-Y', strtotime($date));
+                    }
+
+                    ?>
                     <?php foreach ($meeting->getResult() as $a) : ?>
                       <?php //getNamaKategori
                       $k = '';
+                      $date = $a->Tanggal_kunjungan;
                       foreach ($kategori as $b) {
                         if ($a->idKategori == $b['idKategori']) {
                           $k = $b['namaKategori'];
@@ -131,9 +143,8 @@
                         <td><?= $k; ?></td>
                         <td><?= $a->Bentuk_layanan; ?></td>
                         <td><?= $a->Kantor; ?></td>
-                        <td><?= $a->Tanggal_kunjungan; ?></td>
+                        <td><?= formatTanggal($date) ?></td>
                         <td><?= $a->Waktu_kunjungan; ?></td>
-                        <td><?= $a->Perihal; ?></td>
                         <td><?= $a->Status; ?></td>
                         <td>
                           <a href="/Meeting_request/detail/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
@@ -141,7 +152,7 @@
                             <a href="/Meeting_request/edit/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                             <a href="/Meeting_request/cancel/<?= $a->idMeeting; ?>" class="btn btn-warning btn-sm w-xs">Batalkan</a>
                           <?php elseif ($a->Status == 'Dibatalkan') : ?>
-                            <a href="/Meeting_request/delete/<?= $a->idMeeting; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
+                            <a href="/Meeting_request/delete/<?= $a->idMeeting; ?>"><button type="button" class="btn btn-danger waves-effect waves-light" id="sa-warning">Hapus</button></a>
                           <?php elseif ($a->Status == 'Selesai diproses') : ?>
                             <a href="/Meeting_request/rating/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Rating</a>
                             <a href="/Meeting_request/tanggapan/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Tanggapan</a>
@@ -194,6 +205,12 @@
 <script src="/assets/js/pages/datatables.init.js"></script>
 
 <script src="/assets/js/app.js"></script>
+
+<!-- Sweet Alerts js -->
+<script src="/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+
+<!-- Sweet alert init js-->
+<script src="/assets/js/pages/sweet-alerts.init.js"></script>
 
 </body>
 

@@ -33,21 +33,46 @@ class Landing_pageModel extends Model
     return $builder;
   }
 
-  public function listArtikel()
+  public function jumbotron()
+  {
+
+    $builder = $this->db->table('berita');
+    $builder->where('Status', 'Publik');
+    $builder->orderBy('created_at', 'desc');
+    $query = $builder->get(3, 0);
+    return $query;
+  }
+
+  public function listArtikelTerbaru()
   {
 
     $builder = $this->db->table('berita');
     $builder->where('Kategori', 'artikel');
-    $query = $builder->get();
+    $builder->where('Status', 'Publik');
+    $builder->orderBy('created_at', 'desc');
+    $query = $builder->get(9, 0);
     return $query;
   }
 
-  public function listBerita()
+  public function listBeritaTerbaru()
   {
 
     $builder = $this->db->table('berita');
-    $builder->where('Kategori', 'berita');
-    $query = $builder->get();
+    $builder->where('Kategori', 'Berita');
+    $builder->where('Status', 'Publik');
+    $builder->orderBy('created_at', 'desc');
+    $query = $builder->get(9, 0);
+    return $query;
+  }
+
+  public function listPeristiwaTerbaru()
+  {
+
+    $builder = $this->db->table('berita');
+    $builder->where('Kategori', 'peristiwa');
+    $builder->where('Status', 'Publik');
+    $builder->orderBy('created_at', 'desc');
+    $query = $builder->get(9, 0);
     return $query;
   }
 
@@ -60,14 +85,6 @@ class Landing_pageModel extends Model
     return $query;
   }
 
-  public function listPeristiwa()
-  {
-
-    $builder = $this->db->table('berita');
-    $builder->where('Kategori', 'peristiwa');
-    $query = $builder->get();
-    return $query;
-  }
 
   public function listInformasi()
   {

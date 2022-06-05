@@ -158,7 +158,7 @@
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
                     <?php if (session('NIK') == TRUE) : ?>
-                        <a class="dropdown-item" href="/Pengaduan_online/profile"><i class="ri-user-line align-middle me-1"></i> Profile</a>
+                        <a class="dropdown-item" href="/Pengaduan_online/profile"><i class="ri-user-line align-middle me-1"></i> Profil</a>
                     <?php elseif (session('NIP') == TRUE) : ?>
                         <a class="dropdown-item" href="/admin/profile"><i class="ri-user-line align-middle me-1"></i> Profil</a>
                     <?php endif ?>

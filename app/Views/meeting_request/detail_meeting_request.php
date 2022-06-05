@@ -63,7 +63,7 @@
                     </div>
                     <div class="row">
                       <label class="col-sm-4">Nomor Telepon</label>
-                      <label class="col-sm-8">: <?= $meeting['Telepon']; ?></label>
+                      <label class="col-sm-8">: <?= $customer['noHP']; ?></label>
 
                     </div>
                   </div>

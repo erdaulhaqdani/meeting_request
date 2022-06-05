@@ -139,12 +139,12 @@
                   </div>
                   <!-- end row -->
 
-                  <div class="row mb-3">
+                  <!-- <div class="row mb-3">
                     <label for="telepon" class="col-sm-2 col-form-label">Nomor Telepon</label>
                     <div class="col-sm-10">
                       <input class="form-control" type="tel" placeholder="Masukkan nomor telepon Anda" id="telepon" name="telepon" value="<?= $meeting['Telepon']; ?>" required data-parsley-minlength="9" data-parsley-maxlength="15">
                     </div>
-                  </div>
+                  </div> -->
                   <!-- end row -->
 
                   <div class="row mb-3">
