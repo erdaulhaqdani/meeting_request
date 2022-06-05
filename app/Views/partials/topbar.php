@@ -162,8 +162,6 @@
                     <?php elseif (session('NIP') == TRUE) : ?>
                         <a class="dropdown-item" href="/admin/profile"><i class="ri-user-line align-middle me-1"></i> Profil</a>
                     <?php endif ?>
-                    <a class="dropdown-item d-block" href="#"><i class="ri-settings-2-line align-middle me-1"></i> Pengaturan</a>
-                    <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="/logout_cust"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
                 </div>
             </div>

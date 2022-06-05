@@ -49,8 +49,8 @@
 								<input type="email" name="email" id="email" class="form-control <?= ($validation->hasError('email')) ?>" required>
 							</div>
 							<div class="form-group">
-								<label for="nomor_hp">Nomor Telepon</label>
-								<input type="number" name="noHP" id="nomor_hp" class="form-control" required>
+								<label for="noHP">No HP</label>
+								<input type="text" name="noHP" id="noHP" class="form-control <?= ($validation->hasError('noHP')) ?>" required>
 							</div>
 							<div class="form-group">
 								<label for="jk">Jenis Kelamin</label>

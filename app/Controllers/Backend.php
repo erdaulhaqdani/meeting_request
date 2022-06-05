@@ -18,18 +18,12 @@ class Backend extends BaseController
 
   public function dashboard_cust()
   {
-    $groupPengaduan = $this->Pengaduan_onlineModel->select('COUNT(idPengaduan) AS Jumlah, Status AS Status')
-      ->groupBy('Status')
-      ->get();
-
-    $groupMeeting = $this->Meeting_requestModel->select('COUNT(idMeeting) AS Jumlah, Status AS Status')
-      ->groupBy('Status')
-      ->get();
-
     $data = [
       'title' => 'Dashboard Customer',
       'groupPengaduan' => $this->Pengaduan_onlineModel->groupByStatus(session('idCustomer')),
-      'groupMeeting' => $this->Meeting_requestModel->groupByStatus(session('idCustomer'))
+      'groupMeeting' => $this->Meeting_requestModel->groupByStatus(session('idCustomer')),
+      'pengaduanPerminggu' => $this->Pengaduan_onlineModel->pengaduanPerminggu(session('idCustomer')),
+      'meetingPerminggu' => $this->Meeting_requestModel->groupByStatus(session('idCustomer'))
     ];
 
     return view('backend/dashboard_cust', $data);

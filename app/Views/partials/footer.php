@@ -7,7 +7,7 @@
                 </script> © KPKNL Bandung.
             </div>
             <div class="col-sm-6">
-                <div class="text-sm-end d-none d-sm-block">n
+                <div class="text-sm-end d-none d-sm-block">
                 </div>
             </div>
         </div>

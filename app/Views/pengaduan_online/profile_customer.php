@@ -61,7 +61,7 @@
                                                 <label class="m-2">Email</label>
                                             </div>
                                             <div class="my-2">
-                                                <label class="m-2">Nomor Telepon</label>
+                                                <label class="m-2">No HP</label>
                                             </div>
                                             <div class="my-2">
                                                 <label class="m-2">Pekerjaan</label>
