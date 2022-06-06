@@ -37,9 +37,10 @@ class Landing_pageModel extends Model
   {
 
     $builder = $this->db->table('berita');
+    $builder->where('Kategori', 'Berita');
     $builder->where('Status', 'Publik');
     $builder->orderBy('created_at', 'desc');
-    $query = $builder->get(3, 0);
+    $query = $builder->get(5, 0);
     return $query;
   }
 

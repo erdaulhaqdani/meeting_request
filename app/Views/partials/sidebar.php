@@ -38,39 +38,6 @@
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
-<<<<<<< HEAD
-
-                <li class="menu-title">Menu</li>
-=======
-                <li class="text-center mt-3">
-                    <?php //get Nama Level
-                    switch (session()->get('idLevel')) {
-                        case "1":
-                            $level = 'Super Admin';
-                            break;
-                        case "2":
-                            $level = 'Admin JKasi';
-                            break;
-                        case "3":
-                            $level = 'Kepala Kantor';
-                            break;
-                        case "4":
-                            $level = 'Petugas KI';
-                            break;
-                        case "5":
-                            $level = 'Customer';
-                            break;
-                        case "6":
-                            $level = 'Supervisor';
-                            break;
-                        case "7":
-                            $level = 'Petugas Loket';
-                            break;
-                    } ?>
-                    <p class="text-black text-opacity-75 m-1"><?= session()->get('Nama') ?></p>
-                    <p class="text-black text-opacity-75"><?= $level ?></p>
-                </li>
->>>>>>> 3eb3f365504dd5049868ed5b634c1d50bbe9706d
                 <li>
                     <a href="/dashboard_cust" class="waves-effect">
                         <i class="ri-dashboard-line"></i>
