@@ -60,15 +60,16 @@
                                     <div class="my-3">
                                         <label for="rating">Rating</label>
                                         <div class="rating-star text-center">
-                                            <input type="hidden" name="rating" class="rating" data-filled="mdi mdi-star custom-star2 text-primary" data-empty="mdi mdi-star-outline custom-star text-muted" />
+                                            <input type="text" id="rating" name="rating" oninput="hideUlasan()" class="rating" data-filled="mdi mdi-star custom-star2 text-primary" data-empty="mdi mdi-star-outline custom-star text-muted" />
                                         </div>
                                     </div>
 
-                                    <div class="mb-3">
+                                    <div class="mb-3" id="ulasan">
                                         <label for="ulasan">Ulasan</label>
                                         <input class="form-control" type="text" name="ulasan" required minlength="5" placeholder="Berikan ulasan" value="<?= old('ulasan'); ?>">
-                                        <input type="hidden" name="idPengaduan" value="<?= $pengaduan['idPengaduan'] ?>">
                                     </div>
+
+                                    <input type="hidden" name="idPengaduan" value="<?= $pengaduan['idPengaduan'] ?>">
 
                                     <div class="mb-3 text-end">
                                         <button type="reset" class="btn btn-danger me-3">Reset</button>
@@ -106,6 +107,20 @@
 
 <!-- App js -->
 <script src="<?= base_url('assets/js/app.js') ?>"></script>
+
+
+<!-- Hide ulasan jika rating 5 -->
+<script>
+    function hideUlasan() {
+        var rate = document.getElementById('rating').value;
+        var ulasan = document.getElementById("ulasan");
+        if (rate == 5) {
+            ulasan.style.display = "none";
+        } else {
+            ulasan.style.display = "block";
+        }
+    }
+</script>
 
 </body>
 

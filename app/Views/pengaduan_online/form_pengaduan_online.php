@@ -19,6 +19,16 @@
 
     <link rel="stylesheet" href="<?= base_url('assets/libs/dropify/css/dropify.min.css') ?>">
 </head>
+<script>
+    function hideLampiran() {
+        var kategori = document.getElementById("kategori").value;
+        if (kategori == "5") {
+            document.getElementById("lampiran").style.display = "none";
+        } else {
+            document.getElementById("lampiran").style.display = "block";
+        }
+    }
+</script>
 
 <?= $this->include("partials/body") ?>
 
@@ -49,7 +59,7 @@
 
                                     <div class="my-3">
                                         <label for="kategori">Kategori</label>
-                                        <select name="kategori" class="form-select" aria-label="Default select example">
+                                        <select name="kategori" id="kategori" onchange="hideLampiran()" class="form-select" aria-label="Default select example">
                                             <?php foreach ($kategori as $a) : ?>
                                                 <option value="<?= $a['idKategori'] ?>"><?= $a['namaKategori']; ?></option>
                                             <?php endforeach ?>
@@ -68,8 +78,8 @@
                                     </div>
 
                                     <label for="lampiran">Lampiran</label>
-                                    <div class="mb-3">
-                                        <input type="file" class="dropify" name="lampiran" />
+                                    <div class="mb-3" id="lampiran">
+                                        <input type="file" class="dropify" name="lampiran">
                                         <!-- <button type="button" class="dropify-clear">Remove</button> -->
                                     </div>
 
@@ -114,6 +124,7 @@
 <!-- App js -->
 <script src="<?= base_url('assets/js/app.js') ?>"></script>
 
+<!-- Hide lampiran jika kategori piutang negara -->
 </body>
 
 </html>

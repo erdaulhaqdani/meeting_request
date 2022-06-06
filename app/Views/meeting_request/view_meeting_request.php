@@ -155,7 +155,7 @@
                             <a href="/Meeting_request/delete/<?= $a->idMeeting; ?>"><button type="button" class="btn btn-danger waves-effect waves-light" id="sa-warning">Hapus</button></a>
                           <?php elseif ($a->Status == 'Selesai diproses') : ?>
                             <a href="/Meeting_request/rating/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Rating</a>
-                            <a href="/Meeting_request/tanggapan/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Tanggapan</a>
+                            <!-- <a href="/Meeting_request/tanggapan/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Tanggapan</a> -->
                           <?php endif ?>
                         </td>
                       </tr>

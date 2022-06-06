@@ -9,7 +9,7 @@ class Meeting_requestModel extends Model
   protected $table      = 'meeting_request';
   protected $primaryKey = 'idMeeting';
 
-  protected $allowedFields = ['Tanggal_kunjungan', 'Waktu_kunjungan', 'Kantor', 'Bentuk_layanan', 'Perihal', 'Status', 'idKategori', 'idCustomer', 'updated_at'];
+  protected $allowedFields = ['Tanggal_kunjungan', 'Waktu_kunjungan', 'Kantor', 'Bentuk_layanan', 'Perihal', 'Telepon', 'Status', 'idKategori', 'idCustomer', 'updated_at'];
 
   protected $useAutoIncrement = true;
   protected $useTimestamps = true;
@@ -43,8 +43,7 @@ class Meeting_requestModel extends Model
     return $query;
   }
 
-  // Model meeting request untuk petugas APT
-
+  // Model meeting request untuk petugas
   public function jumlahMeetingRequest($id, $status)
   {
     $builder = $this->db->table('meeting_request');
@@ -60,7 +59,7 @@ class Meeting_requestModel extends Model
 
     $builder = $this->db->table('meeting_request');
     $builder->notlike('Status', 'Dibatalkan');
-    if ($level == 5) {
+    if ($level != 1) {
       $builder->where('idKategori', $kategori);
     }
     $query = $builder->get();
