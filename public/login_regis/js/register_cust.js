@@ -28,6 +28,10 @@ jQuery(function($) {
           pekerjaan: {
               required: true
           },
+          nomor_hp: {
+              required: true,
+              number: true
+          },
           password: {
               required: true,
               minlength: 8

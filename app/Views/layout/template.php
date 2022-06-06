@@ -114,13 +114,12 @@
 									<li class="active"><a href="/">Beranda</a></li>
 									<li><a href="#">Halaman</a>
 										<ul class="dropdown">
-											<li><a href="/pages/profil">Profil DJKN Bandung</a></li>
+											<li><a href="/pages/profil">Profil KPKNL Bandung</a></li>
 											<li><a href="/pages/faq">FAQ</a></li>
 											<li><a href="/pages/permohonan_info">Permohonan Informasi</a></li>
-											<li><a href="#"></a></li>
 										</ul>
 									</li>
-									<li><a href="#">Layanan</a>
+									<!-- <li><a href="#">Layanan</a>
 										<ul class="dropdown">
 											<li><a href="#">Barang Milik Negara</a></li>
 											<li><a href="#">Lelang</a></li>
@@ -134,7 +133,7 @@
 												</ul>
 											</li>
 										</ul>
-									</li>
+									</li> -->
 									<li><a href="#">Blog</a>
 										<ul class="dropdown">
 											<li><a href="/pages/berita_grid">Berita</a></li>
@@ -168,8 +167,9 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-lg col-sm-6 col-12 logo-widget">
-							<div class="logo"><a href="index.html"><img src="/images/logo/logo2.png" alt=""></a></div>
-							<p>Tthis tropic port aboard this tiny ship today still wanted by theam government they survive on up east side to a deluxe as soldiers.</p>
+							<div class="logo"><a href="/"><img src="/images/logo-kpknl.png" alt="" height="60" width="165px"></a></div>
+							<p>KPKNL Bandung merupakan unit vertikal Direktorat Jenderal Kekayaan Negara (DJKN) <br> di bawah Kanwil DJKN Jawa Barat.
+							</p>
 							<ul class="social-icon">
 								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
 								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>

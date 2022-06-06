@@ -33,6 +33,10 @@
 						<form class="input_style_1" method="post" action="AuthCust/register" id="regis_cust">
 
 							<div class="form-group">
+								<label for="username">Username</label>
+								<input type="text" name="username" id="username" class="form-control " required>
+							</div>
+							<div class="form-group">
 								<label for="nama">Nama Lengkap</label>
 								<input type="text" name="nama" id="nama" class="form-control " required>
 							</div>

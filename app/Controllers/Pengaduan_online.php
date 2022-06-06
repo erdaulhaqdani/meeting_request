@@ -213,12 +213,13 @@ class Pengaduan_online extends BaseController
         $this->CustModel->save([
             'idCustomer' => $this->request->getVar('idCustomer'),
             'Nama' => $this->request->getVar('nama'),
+            'Username' => $this->request->getVar('username'),
             'Email' => $this->request->getVar('email'),
             'noHP' => $this->request->getVar('noHP'),
             'Pekerjaan' => $this->request->getVar('pekerjaan')
         ]);
 
-        session()->setFlashdata('pesan', 'berhasil menyunting profil.');
+        session()->setFlashdata('pesan', 'Berhasil menyunting profil.');
 
         return redirect()->to('/Pengaduan_online/profile');
     }
@@ -231,7 +232,7 @@ class Pengaduan_online extends BaseController
             'Ulasan' => $this->request->getVar('ulasan')
         ]);
 
-        session()->setFlashdata('pesan', 'berhasil memberikan ulasan.');
+        session()->setFlashdata('pesan', 'Berhasil memberikan ulasan.');
 
         return redirect()->to('/Pengaduan_online');
     }

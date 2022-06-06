@@ -37,13 +37,13 @@
                 </li>
                 <li>
                     <a href="/Landing_page/permohonanInfo/1" class=" waves-effect">
-                        <i class="fas fa-file-alt "></i>
+                        <i class="far fa-file-powerpoint "></i>
                         <span>Permohonan Informasi</span>
                     </a>
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="fas fa-file-alt "></i>
+                        <i class="fas fa-newspaper"></i>
                         <span>Kelola Informasi</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">

@@ -25,8 +25,11 @@
     <!-- Begin page -->
     <div id="layout-wrapper">
 
-        <?= $this->include('partials/menu_petugas') ?>
-
+        <?php if ($level['Level'] == 'Admin LP') { ?>
+            <?= $this->include('partials/menu_admin_landing') ?>
+        <?php } elseif ($level['Level'] == 'PetugasLoket') { ?>
+            <?= $this->include('partials/menu_petugas') ?>
+        <?php } ?>
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
@@ -34,14 +37,12 @@
 
             <div class="page-content">
 
-                <?= $title ?>
-
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title"> <?= $title ?></h4>
+                                <h4 class="card-title"> Profil Petugas </h4>
 
                                 <form action="/Admin_pengaduan/in_profile" class="custom-validation" method="POST" enctype="multipart/form-data">
                                     <!-- beri penjelasan tiap input/desc -->
@@ -128,7 +129,7 @@
 <?= $this->include('partials/vendor-scripts') ?>
 
 <!-- App js -->
-<script src="<?php base_url('/assets/js/app.js') ?>"></script>
+<script src="<?= base_url('assets/js/app.js') ?>"></script>
 
 </body>
 

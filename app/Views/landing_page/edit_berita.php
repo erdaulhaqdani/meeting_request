@@ -53,33 +53,33 @@
                     <label class="col-sm-3 col-form-label">Kategori Informasi</label>
                     <div class="col-sm-9">
                       <select class="form-select" name="kategori_informasi" aria-label="Default select example" required>
-                        <?php if ($informasi['Kategori'] == 'berita') {
+                        <?php if ($informasi['Kategori'] == 'Berita') {
                         ?>
-                          <option selected value="berita">Berita</option>
-                          <option value="pengumuman">Pengumuman</option>
-                          <option value="artikel">Artikel</option>
-                          <option value="kilas_peristiwa">Kilas Peristiwa</option>
+                          <option selected value="Berita">Berita</option>
+                          <option value="Pengumuman">Pengumuman</option>
+                          <option value="Artikel">Artikel</option>
+                          <option value="Kilas Peristiwa">Kilas Peristiwa</option>
                         <?php
-                        } elseif ($informasi['Kategori'] == 'artikel') {
+                        } elseif ($informasi['Kategori'] == 'Artikel') {
                         ?>
-                          <option selected value="artikel">Artikel</option>
-                          <option value="berita">Berita</option>
-                          <option value="pengumuman">Pengumuman</option>
-                          <option value="kilas_peristiwa">Kilas Peristiwa</option>
+                          <option selected value="Artikel">Artikel</option>
+                          <option value="Berita">Berita</option>
+                          <option value="Pengumuman">Pengumuman</option>
+                          <option value="Kilas Peristiwa">Kilas Peristiwa</option>
                         <?php
-                        } elseif ($informasi['Kategori'] == 'pengumuman') {
+                        } elseif ($informasi['Kategori'] == 'Pengumuman') {
                         ?>
-                          <option selected value="pengumuman">Pengumuman</option>
-                          <option value="berita">Berita</option>
-                          <option value="artikel">Artikel</option>
-                          <option value="kilas_peristiwa">Kilas Peristiwa</option>
+                          <option selected value="Pengumuman">Pengumuman</option>
+                          <option value="Berita">Berita</option>
+                          <option value="Artikel">Artikel</option>
+                          <option value="Kilas Peristiwa">Kilas Peristiwa</option>
                         <?php
-                        } elseif ($informasi['Kategori'] == 'kilas_peristiwa') {
+                        } elseif ($informasi['Kategori'] == 'Kilas Peristiwa') {
                         ?>
-                          <option selected value="kilas_peristiwa">Kilas Peristiwa</option>
-                          <option value="berita">Berita</option>
-                          <option value="pengumuman">Pengumuman</option>
-                          <option value="artikel">Artikel</option>
+                          <option selected value="Kilas Peristiwa">Kilas Peristiwa</option>
+                          <option value="Berita">Berita</option>
+                          <option value="Pengumuman">Pengumuman</option>
+                          <option value="Artikel">Artikel</option>
                         <?php
                         }
                         ?>

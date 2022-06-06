@@ -34,7 +34,7 @@
 
           foreach ($berita as $a) :
             $date = $a['created_at'];
-            if ($a['Kategori'] == 'artikel' && $a['Status'] == 'Publik') :
+            if ($a['Kategori'] == 'Artikel' && $a['Status'] == 'Publik') :
               $text = $a['Isi'];
               $num_char = 50;
               $cut_text = substr($text, 0, $num_char) . '...';

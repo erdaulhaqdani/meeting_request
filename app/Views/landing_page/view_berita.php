@@ -41,7 +41,7 @@
             <div class="card">
               <div class="card-body">
 
-                <h4 class="card-title"><?= $title; ?></h4>
+                <h4 class="card-title">Kelola Informasi</h4>
                 <p class="card-title-desc">Berikut adalah tabel Kelola Informasi.</p>
                 <?php
                 if (session()->get('pesan')) {

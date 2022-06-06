@@ -21,10 +21,11 @@ class Pages extends BaseController
   {
     $data = [
       'title' => 'Landing Page DJKN Bandung',
-      'berita' => $this->Landing_pageModel->listBerita(),
+      'berita_terbaru' => $this->Landing_pageModel->listBeritaTerbaru(),
       'pengumuman' => $this->Landing_pageModel->listPengumuman(),
-      'peristiwa' => $this->Landing_pageModel->listPeristiwa(),
-      'artikel' => $this->Landing_pageModel->listArtikel(),
+      'jumbotron' => $this->Landing_pageModel->jumbotron(),
+      'peristiwa_terbaru' => $this->Landing_pageModel->listPeristiwaTerbaru(),
+      'artikel_terbaru' => $this->Landing_pageModel->listArtikelTerbaru(),
     ];
     return view('pages/index', $data);
   }

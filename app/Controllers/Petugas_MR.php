@@ -39,7 +39,7 @@ class Petugas_MR extends BaseController
             'kategori' => $this->KategoriModel->getKategori()
         ];
 
-        return view('Meeting_request/petugas_beranda', $data);
+        return view('Meeting_request/petugas_daftar_mr', $data);
     }
 
     public function detail($id)
