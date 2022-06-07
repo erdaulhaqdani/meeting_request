@@ -38,7 +38,6 @@
         <div id="sidebar-menu">
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
-                </li>
                 <li>
                     <a href="/dashboard_cust" class="waves-effect">
                         <i class="ri-dashboard-line"></i>

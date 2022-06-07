@@ -16,7 +16,7 @@ Theme Main Banner
 		<div data-src="/gambar/<?= $j->Gambar; ?>">
 			<div class="camera_caption">
 				<div class="container">
-					<h3 class="wow fadeInUp animated"><?= $j->Kategori; ?></h3>
+					<h3 class="wow fadeInUp animated">BERITA UTAMA</h3>
 					<h1 class="wow fadeInUp animated" data-wow-delay="0.1s"><?= $j->Judul; ?></h1>
 					<a href="/pages/detail_berita/<?= $j->id_berita ?>" class="theme-button-one wow fadeInUp animated" data-wow-delay="0.2s">Selengkapnya</a>
 				</div> <!-- /.container -->
