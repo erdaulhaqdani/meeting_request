@@ -79,9 +79,6 @@
                                                     <a href="/Pengaduan_online/detail/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
                                                     <?php if ($a->Status == 'Belum diproses') : ?>
                                                         <a href="/Pengaduan_online/edit/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
-                                                        <a href="/Pengaduan_online/cancel/<?= $a->idPengaduan; ?>" class="btn btn-warning btn-sm w-xs">Batalkan</a>
-                                                    <?php elseif ($a->Status == 'Dibatalkan') : ?>
-                                                        <a href="/Pengaduan_online/edit/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                                                         <a href="/Pengaduan_online/delete/<?= $a->idPengaduan; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
                                                     <?php elseif ($a->Status == 'Selesai diproses') : ?>
                                                         <?php if ($a->Rating < 1) : ?>

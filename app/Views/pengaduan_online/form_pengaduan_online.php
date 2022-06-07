@@ -19,16 +19,6 @@
 
     <link rel="stylesheet" href="<?= base_url('assets/libs/dropify/css/dropify.min.css') ?>">
 </head>
-<script>
-    function hideLampiran() {
-        var kategori = document.getElementById("kategori").value;
-        if (kategori == "5") {
-            document.getElementById("lampiran").style.display = "none";
-        } else {
-            document.getElementById("lampiran").style.display = "block";
-        }
-    }
-</script>
 
 <?= $this->include("partials/body") ?>
 
@@ -125,6 +115,16 @@
 <script src="<?= base_url('assets/js/app.js') ?>"></script>
 
 <!-- Hide lampiran jika kategori piutang negara -->
+<script>
+    function hideLampiran() {
+        var kategori = document.getElementById("kategori").value;
+        if (kategori == "5") {
+            document.getElementById("lampiran").style.display = "none";
+        } else {
+            document.getElementById("lampiran").style.display = "block";
+        }
+    }
+</script>
 </body>
 
 </html>

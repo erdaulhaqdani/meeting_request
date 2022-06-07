@@ -9,7 +9,7 @@ class Pengaduan_onlineModel extends Model
     protected $table      = 'pengaduan_online';
     protected $primaryKey = 'idPengaduan';
 
-    protected $allowedFields = ['Judul', 'Isi', 'idKategori', 'Lampiran', 'Status', 'idCustomer', 'Rating', 'Ulasan'];
+    protected $allowedFields = ['Judul', 'Isi', 'idKategori', 'Lampiran', 'Status', 'Rating', 'Ulasan', 'idCustomer', 'idPetugas'];
 
     protected $useAutoIncrement = true;
     protected $useTimestamps = true;
@@ -66,23 +66,28 @@ class Pengaduan_onlineModel extends Model
 
     // Model pengaduan untuk admin
 
-    public function listPengaduanAdmin($level, $kategori)
+    public function listPengaduanAdmin($level, $kategori, $petugas)
     {
         /**
          * SELECT * FROM pengaduan_online
          * WHERE Status LIKE 'Belum Diproses' OR Status LIKE 'Sedang Diproses'
          */
         $builder = $this->db->table('pengaduan_online');
-        $builder->notlike('Status', 'Dibatalkan');
         // $builder->where('idLevel', $level);
         if ($level != 2) {
             $builder->where('idKategori', $kategori);
         }
+        $builder->orLike('Status', 'Eskalasi');
+        $builder->where('idPetugas', $petugas);
+        $builder->orLike('Status', 'proses');
+        $builder->where('idPetugas', $petugas);
+        $builder->orWhere('idPetugas', 1);
+
         $query = $builder->get();
         return $query;
     }
 
-    public function listPengaduanAdmin2($status, $level, $kategori)
+    public function listPengaduanAdmin2($status, $level, $kategori, $petugas)
     {
         /**
          * SELECT * FROM pengaduan_online
@@ -91,15 +96,19 @@ class Pengaduan_onlineModel extends Model
         $builder = $this->db->table('pengaduan_online');
         $builder->like('Status', $status);
         $builder->notlike('Status', 'Dibatalkan');
-        // $builder->where('idLevel', '1');
         if ($level != 2) {
             $builder->where('idKategori', $kategori);
         }
+        $builder->orLike('Status', 'Eskalasi');
+        $builder->where('idPetugas', $petugas);
+        $builder->orLike('Status', 'proses');
+        $builder->where('idPetugas', $petugas);
+        $builder->orWhere('idPetugas', 1);
         $query = $builder->get();
         return $query;
     }
 
-    public function jumlahPengaduanAdmin($status, $level, $kategori)
+    public function jumlahPengaduanAdmin($status, $petugas)
     {
         /**
          * SELECT * FROM pengaduan_online
@@ -107,9 +116,9 @@ class Pengaduan_onlineModel extends Model
          */
         $builder = $this->db->table('pengaduan_online');
         $builder->like('Status', $status);
-        if ($level != 2) {
-            $builder->where('idKategori', $kategori);
-        }
+        $builder->where('idPetugas', $petugas);
+        $builder->orWhere('idPetugas', 1);
+        $builder->like('Status', $status);
         $builder->selectCount('idPengaduan');
         $query = $builder->get();
         return $query;

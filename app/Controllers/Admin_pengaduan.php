@@ -34,10 +34,11 @@ class Admin_pengaduan extends BaseController
     {
         $data = [
             'title' => 'Daftar Pengaduan Online',
-            'pengaduan' => $this->Pengaduan_onlineModel->listPengaduanAdmin(session('idLevel'), session('Unit')),
-            'belum' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Belum diproses', session('idLevel'), session('Unit')),
-            'proses' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Sedang diproses', session('idLevel'), session('Unit')),
-            'selesai' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Selesai diproses', session('idLevel'), session('Unit')),
+            'pengaduan' => $this->Pengaduan_onlineModel->listPengaduanAdmin(session('idLevel'), session('Unit'), session('idPetugas')),
+            'belum' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Belum diproses', session('idPetugas')),
+            'proses' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Sedang diproses', session('idPetugas')),
+            'selesai' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Selesai diproses', session('idPetugas')),
+            'eskalasi' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Eskalasi', session('idLevel'), session('Unit'), session('idPetugas')),
             'kategori' => $this->KategoriModel->getKategori()
         ];
 
@@ -197,6 +198,8 @@ class Admin_pengaduan extends BaseController
         $data = [
             'title' => 'Tanggapan',
             'validation' => \Config\Services::validation(),
+            'petugas' => $this->PetugasModel->getPetugas(),
+            'level' => $this->LevelModel->getlevel(),
             'idPengaduan' => $idPengaduan
         ];
 
@@ -210,7 +213,8 @@ class Admin_pengaduan extends BaseController
 
         $this->Pengaduan_onlineModel->save([
             'idPengaduan' => $id,
-            'Status' => 'Sedang diproses'
+            'Status' => 'Sedang diproses',
+            'idPetugas' => session('idPetugas'),
         ]);
 
         session()->setFlashdata('pesan', 'Pengaduan mulai diproses');
@@ -260,7 +264,8 @@ class Admin_pengaduan extends BaseController
 
         $this->Pengaduan_onlineModel->save([
             'idPengaduan' => $this->request->getVar('idPengaduan'),
-            'Status' => $this->request->getVar('status')
+            'Status' => $this->request->getVar('status'),
+            'idPetugas' => $this->request->getVar('petugas')
         ]);
 
         session()->setFlashdata('pesan', 'Tanggapan berhasil tersimpan.');
