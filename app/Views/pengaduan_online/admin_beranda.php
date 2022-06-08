@@ -62,8 +62,8 @@
                                     <div class="col-3">
                                         <div class="card">
                                             <div class="card-body text-center">
-                                                <h5 class="card-title">Selesai diproses</h5>
-                                                <?php foreach ($selesai->getResultObject() as $a) : ?>
+                                                <h5 class="card-title">Eskalasi masuk</h5>
+                                                <?php foreach ($eskalasi->getResultObject() as $a) : ?>
                                                     <?= $a->idPengaduan; ?>
                                                 <?php endforeach ?>
                                             </div>
@@ -73,13 +73,14 @@
                                     <div class="col-3">
                                         <div class="card">
                                             <div class="card-body text-center">
-                                                <h5 class="card-title">Eskalasi masuk</h5>
+                                                <h5 class="card-title">Selesai diproses</h5>
                                                 <?php foreach ($selesai->getResultObject() as $a) : ?>
                                                     <?= $a->idPengaduan; ?>
                                                 <?php endforeach ?>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -127,7 +128,7 @@
                                                     <a href="/admin/detail/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
                                                     <?php if ($a->Status == 'Sedang diproses') : ?>
                                                         <a href="/admin/tanggapan/<?= $a->idPengaduan; ?>" class="btn btn-info btn-sm w-xs">Tanggapan</a>
-                                                    <?php elseif ($a->Status == 'Belum diproses') : ?>
+                                                    <?php elseif ($a->Status == 'Belum diproses' || 'Eskalasi') : ?>
                                                         <a href="/admin/proses/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Proses</a>
                                                     <?php endif ?>
                                                 </td>

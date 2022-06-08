@@ -39,6 +39,7 @@ class Pengaduan_online extends BaseController
             'belum' => $this->Pengaduan_onlineModel->jumlahPengaduan(session('idCustomer'), 'Belum diproses'),
             'proses' => $this->Pengaduan_onlineModel->jumlahPengaduan(session('idCustomer'), 'Sedang diproses'),
             'selesai' => $this->Pengaduan_onlineModel->jumlahPengaduan(session('idCustomer'), 'Selesai diproses'),
+            'eskalasi' => $this->Pengaduan_onlineModel->jumlahPengaduan(session('idCustomer'), 'Eskalasi'),
             'kategori' => $this->KategoriModel->getKategori()
         ];
 
@@ -324,6 +325,18 @@ class Pengaduan_online extends BaseController
         $this->Pengaduan_onlineModel->delete($id);
 
         session()->setFlashdata('pesan', 'berhasil menghapus pengaduan.');
+
+        return redirect()->to('/Pengaduan_online');
+    }
+
+    public function tidakSesuai($id)
+    {
+        $this->Pengaduan_onlineModel->save([
+            'idPengaduan' => $id,
+            'Status' => 'Tidak Sesuai'
+        ]);
+
+        session()->setFlashdata('pesan', 'berhasil membatalkan pengaduan.');
 
         return redirect()->to('/Pengaduan_online');
     }

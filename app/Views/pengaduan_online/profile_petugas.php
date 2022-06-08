@@ -25,11 +25,11 @@
     <!-- Begin page -->
     <div id="layout-wrapper">
 
-        <?php if ($level['Level'] == 'Admin LP') { ?>
+        <?php if (session('Kelompok') == 'LP') : ?>
             <?= $this->include('partials/menu_admin_landing') ?>
-        <?php } elseif ($level['Level'] == 'PetugasLoket') { ?>
+        <?php elseif (session('Kelompok') == 'APT') : ?>
             <?= $this->include('partials/menu_petugas') ?>
-        <?php } ?>
+        <?php endif; ?>
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->

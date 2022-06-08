@@ -38,7 +38,7 @@
                                 <h4 class="card-title">Rekap Pengaduan</h4>
                                 <div class="row">
 
-                                    <div class="col-4">
+                                    <div class="col-3">
                                         <div class="card">
                                             <div class="card-body text-center">
                                                 <a href="/Pengaduan_online/daftar/Belum">
@@ -51,7 +51,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-4">
+                                    <div class="col-3">
                                         <div class="card">
                                             <div class="card-body text-center">
                                                 <a href="/Pengaduan_online/daftar/Sedang">
@@ -64,7 +64,20 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-4">
+                                    <div class="col-3">
+                                        <div class="card">
+                                            <div class="card-body text-center">
+                                                <a href="/Pengaduan_online/daftar/Eskalasi">
+                                                    <h5 class="card-title">Dieskalasi</h5>
+                                                </a>
+                                                <?php foreach ($eskalasi->getResultObject() as $a) : ?>
+                                                    <?= $a->idPengaduan; ?>
+                                                <?php endforeach ?>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-3">
                                         <div class="card">
                                             <div class="card-body text-center">
                                                 <a href="/Pengaduan_online/daftar/Selesai">
@@ -131,8 +144,7 @@
                                                     <?php elseif ($a->Status == 'Selesai diproses') : ?>
                                                         <?php if ($a->Rating < 1) : ?>
                                                             <a href="/Pengaduan_online/rating/<?= $a->idPengaduan; ?>" class="btn btn-success btn-sm w-xs">Rating</a>
-                                                            <!-- <a href="/Pengaduan_online/tanggapan/<? //= $a->idPengaduan; 
-                                                                                                        ?>" class="btn btn-success btn-sm w-xs">Tanggapan</a> -->
+                                                            <a href="/Pengaduan_online/tidakSesuai/<?= $a->idPengaduan; ?>" class="btn btn-danger btn-sm w-xs">Tidak sesuai</a>
                                                         <?php endif ?>
                                                     <?php endif ?>
                                                 </td>

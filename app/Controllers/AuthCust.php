@@ -212,7 +212,8 @@ class AuthCust extends BaseController
             'Username' => $row_cust->Username,
             'noHP' => $row_cust->noHP,
             'Pekerjaan' => $row_cust->Pekerjaan,
-            'idLevel' => $row_cust->idLevel
+            'idLevel' => $row_cust->idLevel,
+            'Kelompok' => $kelompok[0]
           ];
 
           session()->set($data);
@@ -232,7 +233,8 @@ class AuthCust extends BaseController
           'NIP' => $row_petugas->NIP,
           'Nama' => $row_petugas->Nama,
           'Email' => $row_petugas->Email,
-          'idLevel' => $row_petugas->idLevel
+          'idLevel' => $row_petugas->idLevel,
+          'Kelompok' => $kelompok[0]
         ];
 
         session()->set($data);
@@ -248,7 +250,8 @@ class AuthCust extends BaseController
           'NIP' => $row_petugas->NIP,
           'Nama' => $row_petugas->Nama,
           'Email' => $row_petugas->Email,
-          'idLevel' => $row_petugas->idLevel
+          'idLevel' => $row_petugas->idLevel,
+          'Kelompok' => $kelompok[0]
         ];
 
         session()->set($data);
