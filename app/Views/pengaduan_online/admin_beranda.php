@@ -62,8 +62,8 @@
                                     <div class="col-3">
                                         <div class="card">
                                             <div class="card-body text-center">
-                                                <h5 class="card-title">Selesai diproses</h5>
-                                                <?php foreach ($selesai->getResultObject() as $a) : ?>
+                                                <h5 class="card-title">Eskalasi masuk</h5>
+                                                <?php foreach ($eskalasi->getResultObject() as $a) : ?>
                                                     <?= $a->idPengaduan; ?>
                                                 <?php endforeach ?>
                                             </div>
@@ -73,13 +73,14 @@
                                     <div class="col-3">
                                         <div class="card">
                                             <div class="card-body text-center">
-                                                <h5 class="card-title">Eskalasi masuk</h5>
+                                                <h5 class="card-title">Selesai diproses</h5>
                                                 <?php foreach ($selesai->getResultObject() as $a) : ?>
                                                     <?= $a->idPengaduan; ?>
                                                 <?php endforeach ?>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>

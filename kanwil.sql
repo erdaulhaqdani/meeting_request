@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 02, 2022 at 06:18 AM
+-- Generation Time: Jun 08, 2022 at 06:52 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -97,6 +97,7 @@ CREATE TABLE `customer` (
   `idCustomer` int(11) NOT NULL,
   `NIK` varchar(16) NOT NULL,
   `Nama` varchar(100) NOT NULL,
+  `Username` varchar(20) NOT NULL,
   `tglLahir` date NOT NULL,
   `Email` varchar(255) NOT NULL,
   `noHP` varchar(15) NOT NULL,
@@ -113,13 +114,13 @@ CREATE TABLE `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`idCustomer`, `NIK`, `Nama`, `tglLahir`, `Email`, `noHP`, `jenisKelamin`, `Pekerjaan`, `Password`, `created_at`, `updated_at`, `idLevel`, `StatusAkun`) VALUES
-(1, '6402060106010021', 'Navi', '0000-00-00', 'navi@gmail.com', '085794214986', '', 'Karyawan', '$2y$10$CYIE4lgLOsqxcBYgdujDLuza13tMAyX4gL7e8HY3qselFzT8MI7ji', '2022-03-26 02:40:02', '2022-05-27 03:13:04', 5, 'Aktif'),
-(6, '1122334455', 'putri nur', '0000-00-00', 'erda@gmail.com', '', 'laki-laki', 'mahasiswa', '$2y$10$W0u3pcs1BuDtqLQtLk5Q7ekRoA0PynP4hsC/8/rl.Ik6yvj0H6sYK', '2022-04-10 14:03:36', '2022-04-10 14:03:36', 5, ''),
-(7, '6701191011', 'Erda', '0000-00-00', 'erdaulhaqdani@gmail.com', '', '', 'mahasiswa', '$2y$10$2/O2RemAlMO6DPHUfU/8yOh8f9BynrJunfiXZLIj0tFx25SgaA3QG', '2022-04-13 21:46:32', '2022-04-13 21:46:32', 5, ''),
-(8, '6701191122', 'Aditia Dika', '0000-00-00', 'adit@gmail.com', '', '', 'mahasiswa', '$2y$10$qE0uKYrWfpz6bEI.zjfw6eSbTzQXwT.v5K.5Db6ic2wQBLMCVhEoO', '2022-04-14 01:32:32', '2022-04-14 01:32:32', 5, ''),
-(9, '670119123', 'Nadila Rahmatika', '0000-00-00', 'nadila@gmail.com', '', '', 'Mahasiswa', '$2y$10$3w/7bypYLyowceSnTyQnVeTYVJrgghVNJyztC9sJrqRud2tZoO8ma', '2022-04-14 20:44:49', '2022-04-14 20:44:49', 5, ''),
-(10, '6402060106010007', 'Reggi Fachri ', '0000-00-00', 'rfachri.exe@gmail.com', '085794214986', 'Laki-laki', 'Mahasiswa', '$2y$10$6B/dEKkjPHavACPv9PdpKOlB8tTDRdaA.yYJOL8/oKMLUS0y7GCRK', '2022-05-24 19:31:19', '2022-05-24 19:33:50', 5, 'Aktif');
+INSERT INTO `customer` (`idCustomer`, `NIK`, `Nama`, `Username`, `tglLahir`, `Email`, `noHP`, `jenisKelamin`, `Pekerjaan`, `Password`, `created_at`, `updated_at`, `idLevel`, `StatusAkun`) VALUES
+(1, '6402060106010021', 'Navi', 'Navi', '0000-00-00', 'navi@gmail.com', '085794214986', '', 'Karyawan', '$2y$10$CYIE4lgLOsqxcBYgdujDLuza13tMAyX4gL7e8HY3qselFzT8MI7ji', '2022-03-26 02:40:02', '2022-06-07 00:41:50', 5, 'Aktif'),
+(6, '1122334455', 'putri nur', '', '0000-00-00', 'erda@gmail.com', '', 'laki-laki', 'mahasiswa', '$2y$10$W0u3pcs1BuDtqLQtLk5Q7ekRoA0PynP4hsC/8/rl.Ik6yvj0H6sYK', '2022-04-10 14:03:36', '2022-04-10 14:03:36', 5, ''),
+(7, '6701191011', 'Erda', '', '0000-00-00', 'erdaulhaqdani@gmail.com', '', '', 'mahasiswa', '$2y$10$2/O2RemAlMO6DPHUfU/8yOh8f9BynrJunfiXZLIj0tFx25SgaA3QG', '2022-04-13 21:46:32', '2022-04-13 21:46:32', 5, ''),
+(8, '6701191122', 'Aditia Dika', '', '0000-00-00', 'adit@gmail.com', '', '', 'mahasiswa', '$2y$10$qE0uKYrWfpz6bEI.zjfw6eSbTzQXwT.v5K.5Db6ic2wQBLMCVhEoO', '2022-04-14 01:32:32', '2022-04-14 01:32:32', 5, ''),
+(9, '670119123', 'Nadila Rahmatika', '', '0000-00-00', 'nadila@gmail.com', '', '', 'Mahasiswa', '$2y$10$3w/7bypYLyowceSnTyQnVeTYVJrgghVNJyztC9sJrqRud2tZoO8ma', '2022-04-14 20:44:49', '2022-04-14 20:44:49', 5, ''),
+(10, '6402060106010007', 'Reggi Fachri ', '', '0000-00-00', 'rfachri.exe@gmail.com', '085794214986', 'Laki-laki', 'Mahasiswa', '$2y$10$6B/dEKkjPHavACPv9PdpKOlB8tTDRdaA.yYJOL8/oKMLUS0y7GCRK', '2022-05-24 19:31:19', '2022-05-24 19:33:50', 5, 'Aktif');
 
 -- --------------------------------------------------------
 
@@ -338,18 +339,17 @@ CREATE TABLE `pengaduan_online` (
   `updated_at` datetime NOT NULL,
   `Rating` int(11) NOT NULL,
   `Ulasan` varchar(255) NOT NULL,
-  `idCustomer` int(11) NOT NULL
+  `idCustomer` int(11) NOT NULL,
+  `idPetugas` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pengaduan_online`
 --
 
-INSERT INTO `pengaduan_online` (`idPengaduan`, `Judul`, `Isi`, `idKategori`, `Lampiran`, `Status`, `created_at`, `updated_at`, `Rating`, `Ulasan`, `idCustomer`) VALUES
-(2, 'First test', 'First test', 1, 'user.png', 'Selesai diproses', '2022-03-26 19:35:25', '2022-05-19 02:32:06', 0, '', 1),
-(3, 'hahahaha', 'hahahahhaha', 4, '1648493767_019237d46868b3f7b708.jpeg', 'Sedang diproses', '2022-03-31 13:56:07', '2022-04-08 17:12:31', 0, '', 1),
-(4, 'Naruto', 'ihohohohoh', 3, 'user.png', 'Belum diproses', '2022-03-31 13:30:54', '2022-03-31 13:30:54', 0, '', 1),
-(5, 'graphic test', 'graphic test', 3, 'user.png', 'Belum diproses', '2022-05-26 04:10:36', '2022-05-26 04:10:36', 0, '', 1);
+INSERT INTO `pengaduan_online` (`idPengaduan`, `Judul`, `Isi`, `idKategori`, `Lampiran`, `Status`, `created_at`, `updated_at`, `Rating`, `Ulasan`, `idCustomer`, `idPetugas`) VALUES
+(1, 'Properti Navi', 'Permohonan untuk menilai properti milik Navi', 3, '1654580641_cf1b72c66959914c978b.jpeg', 'Eskalasi', '2022-06-07 00:44:01', '2022-06-07 01:25:42', 0, '', 1, 16),
+(2, 'test1', 'test1', 2, 'user.png', 'Belum diproses', '2022-06-07 21:05:36', '2022-06-07 21:05:36', 0, '', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -429,9 +429,11 @@ CREATE TABLE `petugas_apt` (
 --
 
 INSERT INTO `petugas_apt` (`idPetugas`, `NIP`, `Nama`, `Email`, `Kantor`, `idLevel`, `Unit`, `Password`, `created_at`, `updated_at`) VALUES
+(1, '010101', 'Dummy', 'dummy', 'dummy', 1, 5, 'dummy', '2022-06-07 12:06:03', '2022-06-07 12:06:03'),
 (5, '6701191011', 'Dani Hipya', 'dani@gmail.com', 'KPKNL Bandung', 1, 1, '$2y$10$CkFd7P2G3x/pmH6tG//dKeK5/SXAUJOsEewmZReFxplmmHtos96.m', '2022-04-14 06:15:08', '2022-04-13 23:56:49'),
 (15, '6701194134', 'Admin', 'admin@kemenkeu.go.id', 'DJKN Jabar', 1, 5, '$2y$10$5buxNwUfqVQbCp3ZvFlZK.NmYQIpjoNhQPZKHDc7CSB9R1MTXU1uW', '2022-05-18 08:57:59', '2022-05-19 07:01:53'),
-(16, '6701194130', 'Budi', 'budi@gmail.com', 'KPKNL Bandung', 2, 5, '$2y$10$DkV21a7xfMdMqnZiqsuz5Oi57SRc/o9H3JQLaHPbX2.0Wq52lTJ76', '2022-05-27 03:15:16', '2022-05-27 03:15:40');
+(16, '6701194130', 'Budi', 'budi@gmail.com', 'KPKNL Bandung', 2, 5, '$2y$10$DkV21a7xfMdMqnZiqsuz5Oi57SRc/o9H3JQLaHPbX2.0Wq52lTJ76', '2022-05-27 03:15:16', '2022-05-27 03:15:40'),
+(18, '6703194120', 'Mawar', 'mawar@kemenkeu.go.id', 'KPKNL Bandung', 4, 3, '$2y$10$KvYWjEJ8oYQrS8ChTXD9OuLUNRIChiUsPGpjlHTiJ8IQIHqQgG1j6', '2022-06-07 00:49:53', '2022-06-07 00:50:55');
 
 -- --------------------------------------------------------
 
@@ -482,7 +484,7 @@ CREATE TABLE `tanggapan_po` (
 --
 
 INSERT INTO `tanggapan_po` (`idTanggapan_PO`, `Isi`, `Lampiran`, `tgl_mulai`, `tgl_selesai`, `Rating`, `Ulasan`, `NIP`, `idPengaduan`, `idPetugas`) VALUES
-(1, 'Selesai', 'user.png', '2022-05-19 02:32:06', '2022-05-19 02:32:06', 0, '', 0, 2, 15);
+(1, 'Pengaduan ini akan diteruskan kepada Admin JKasi', 'user.png', '2022-06-07 01:25:42', '2022-06-07 01:25:42', 0, '', 0, 1, 18);
 
 -- --------------------------------------------------------
 
@@ -517,6 +519,7 @@ INSERT INTO `user` (`Email`, `Password`, `idLevel`) VALUES
 ('budi@gmail.com', '$2y$10$DkV21a7xfMdMqnZiqsuz5Oi57SRc/o9H3JQLaHPbX2.0Wq52lTJ76', 4),
 ('dani@gmail.com', '$2y$10$CkFd7P2G3x/pmH6tG//dKeK5/SXAUJOsEewmZReFxplmmHtos96.m', 1),
 ('erdaulhaqdani@gmail.com', '$2y$10$2/O2RemAlMO6DPHUfU/8yOh8f9BynrJunfiXZLIj0tFx25SgaA3QG', 5),
+('mawar@kemenkeu.go.id', '$2y$10$KvYWjEJ8oYQrS8ChTXD9OuLUNRIChiUsPGpjlHTiJ8IQIHqQgG1j6', 4),
 ('nadila@gmail.com', '$2y$10$3w/7bypYLyowceSnTyQnVeTYVJrgghVNJyztC9sJrqRud2tZoO8ma', 5),
 ('navi@gmail.com', '$2y$10$10HtaqYEqohaEpgpTuC.cenEZaCvA/KThnxBUMWeTStIuQtrxZ/ca', 5),
 ('rfachri.exe@gmail.com', '$2y$10$6B/dEKkjPHavACPv9PdpKOlB8tTDRdaA.yYJOL8/oKMLUS0y7GCRK', 5);
@@ -575,7 +578,8 @@ ALTER TABLE `migrations`
 ALTER TABLE `pengaduan_online`
   ADD PRIMARY KEY (`idPengaduan`),
   ADD KEY `pengaduan_kategori` (`idKategori`),
-  ADD KEY `pengaduan_customer` (`idCustomer`);
+  ADD KEY `pengaduan_customer` (`idCustomer`),
+  ADD KEY `pengaduan_petugas` (`idPetugas`);
 
 --
 -- Indexes for table `permohonan_info`
@@ -602,7 +606,8 @@ ALTER TABLE `tanggapan_mr`
 -- Indexes for table `tanggapan_po`
 --
 ALTER TABLE `tanggapan_po`
-  ADD PRIMARY KEY (`idTanggapan_PO`);
+  ADD PRIMARY KEY (`idTanggapan_PO`),
+  ADD KEY `tanggapan-pengaduan` (`idPengaduan`);
 
 --
 -- Indexes for table `user`
@@ -654,13 +659,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pengaduan_online`
 --
 ALTER TABLE `pengaduan_online`
-  MODIFY `idPengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idPengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `petugas_apt`
 --
 ALTER TABLE `petugas_apt`
-  MODIFY `idPetugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idPetugas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tanggapan_mr`
@@ -689,7 +694,8 @@ ALTER TABLE `meeting_request`
 --
 ALTER TABLE `pengaduan_online`
   ADD CONSTRAINT `pengaduan_customer` FOREIGN KEY (`idCustomer`) REFERENCES `customer` (`idCustomer`),
-  ADD CONSTRAINT `pengaduan_kategori` FOREIGN KEY (`idKategori`) REFERENCES `kategori` (`idKategori`);
+  ADD CONSTRAINT `pengaduan_kategori` FOREIGN KEY (`idKategori`) REFERENCES `kategori` (`idKategori`),
+  ADD CONSTRAINT `pengaduan_petugas` FOREIGN KEY (`idPetugas`) REFERENCES `petugas_apt` (`idPetugas`);
 
 --
 -- Constraints for table `petugas_apt`
@@ -697,6 +703,12 @@ ALTER TABLE `pengaduan_online`
 ALTER TABLE `petugas_apt`
   ADD CONSTRAINT `petugas-kategori_unit` FOREIGN KEY (`Unit`) REFERENCES `kategori` (`idKategori`),
   ADD CONSTRAINT `petugas-level` FOREIGN KEY (`idLevel`) REFERENCES `level_user` (`idLevel`);
+
+--
+-- Constraints for table `tanggapan_po`
+--
+ALTER TABLE `tanggapan_po`
+  ADD CONSTRAINT `tanggapan-pengaduan` FOREIGN KEY (`idPengaduan`) REFERENCES `pengaduan_online` (`idPengaduan`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

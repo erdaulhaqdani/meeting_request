@@ -112,7 +112,7 @@ class Pengaduan_onlineModel extends Model
     {
         /**
          * SELECT * FROM pengaduan_online
-         * WHERE idCustomer = '1' AND Status LIKE "%Sedang Diproses%"
+         * WHERE  Status LIKE "%status%" AND idPetugas = 'petugas' OR idPetugas = '1' Status LIKE "%status%"
          */
         $builder = $this->db->table('pengaduan_online');
         $builder->like('Status', $status);

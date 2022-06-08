@@ -39,6 +39,7 @@ class Pengaduan_online extends BaseController
             'belum' => $this->Pengaduan_onlineModel->jumlahPengaduan(session('idCustomer'), 'Belum diproses'),
             'proses' => $this->Pengaduan_onlineModel->jumlahPengaduan(session('idCustomer'), 'Sedang diproses'),
             'selesai' => $this->Pengaduan_onlineModel->jumlahPengaduan(session('idCustomer'), 'Selesai diproses'),
+            'eskalasi' => $this->Pengaduan_onlineModel->jumlahPengaduan(session('idCustomer'), 'Eskalasi'),
             'kategori' => $this->KategoriModel->getKategori()
         ];
 
