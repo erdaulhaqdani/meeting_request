@@ -118,7 +118,7 @@
                                                 <?php $tgl = date("d F Y", strtotime($a->updated_at)); ?>
                                                 <td><?= $a->Judul; ?></td>
                                                 <td><?= $k; ?></td>
-                                                <td><?= $tgl; ?></td>
+                                                <td><?= $a->created_at; ?></td>
                                                 <td><?= $a->Status; ?></td>
                                                 <td>
                                                     <a href="/Pengaduan_online/detail/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>

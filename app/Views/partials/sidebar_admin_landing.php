@@ -38,6 +38,12 @@
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li>
+                    <a href="/dashboard_petugas" class=" waves-effect">
+                        <i class="ri-dashboard-line"></i>
+                        <span>Beranda</span>
+                    </a>
+                </li>
+                <li>
                     <a href="/Landing_page/permohonanInfo/1" class=" waves-effect">
                         <i class="far fa-file-powerpoint "></i>
                         <span>Permohonan Informasi</span>

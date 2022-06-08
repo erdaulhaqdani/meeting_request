@@ -47,6 +47,7 @@
                 ?>
 
                 <form action="/Landing_page/input" class="custom-validation" method="POST" enctype="multipart/form-data">
+                  <input type="hidden" name="idPetugas" value="<?= session('idPetugas'); ?>">
 
                   <div class="row mb-2">
                     <label class="col-sm-3 col-form-label">Kategori Informasi</label>

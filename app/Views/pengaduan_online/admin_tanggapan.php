@@ -56,7 +56,7 @@
 
                                     <div class="mb-3" id="petugas" style="display: none;">
                                         <label for="petugas">Petugas tujuan</label>
-                                        <select name="petugas" class="form-select">
+                                        <select name="petugas" class="form-select" id="selectPetugas">
                                             <?php foreach ($petugas as $p) : ?>
                                                 <?php foreach ($level as $l) {
                                                     if ($l['idLevel'] == $p['idLevel']) {
@@ -126,12 +126,14 @@
     function tampilPetugas() {
         let s = document.getElementById("s");
         let petugas = document.getElementById("petugas");
+        let selectPetugas = document.getElementById("selectPetugas");
         if (s.value == "Eskalasi") {
             s.style.display = "block";
             petugas.style.display = "block";
         } else {
             s.style.display = "block";
             petugas.style.display = "none";
+            selectPetugas.option.value = <?= session('idPetugas'); ?>;
         }
     }
 </script>

@@ -14,6 +14,14 @@
     <!-- App Css-->
     <link href="<?= base_url('assets/css/app.min.css'); ?>" id="app-style" rel="stylesheet" type="text/css" />
 
+    <!-- DataTables -->
+    <link href="/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Responsive datatable examples -->
+    <link href="/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
     <!-- App favicon -->
     <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.ico'); ?>">
 
@@ -37,7 +45,7 @@
             <div class="page-content">
 
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-md-3">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-4">Statistik Pengaduan</h4>
@@ -45,15 +53,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-md-3">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Statistik Meeting</h4>
+                                <h4 class="card-title mb-4">Statistik Meeting Request</h4>
                                 <canvas id="meeting"></canvas>
                             </div>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-4">Pengajuan yang dibuat minggu ini</h4>
@@ -62,6 +70,85 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4">4 Meeting Request Terakhir</h4>
+
+                                <a href="/Meeting_request" class="btn btn-primary btn-md me-3 mb-3">Lihat Semua</a>
+                                <a href="/Meeting_request/form" class="btn btn-success btn-md mb-3"><i class="fas fa-plus-circle"></i> Tambah</a>
+
+                                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Jenis Layanan</th>
+                                            <th>Tanggal Input</th>
+                                            <!-- <th>Tanggal Kunjungan</th> -->
+                                            <th>Waktu Kunjungan</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php
+                                        function Tanggal($date)
+                                        {
+                                            // ubah string menjadi format tanggal
+                                            return date('d-F-Y', strtotime($date));
+                                        }
+
+                                        ?>
+                                        <?php foreach ($lastMeetingRequest->getResult() as $a) : ?>
+                                            <?php //getNamaKategori
+                                            $k = '';
+                                            $date = $a->created_at;
+                                            foreach ($kategori as $b) {
+                                                if ($a->idKategori == $b['idKategori']) {
+                                                    $k = $b['namaKategori'];
+                                                }
+                                            }
+                                            ?>
+                                            <tr>
+                                                <td><?= $k; ?></td>
+                                                <td><?= Tanggal($date) ?></td>
+                                                <td><?= $a->Waktu_kunjungan . ' WIB'; ?></td>
+                                                <td><?= $a->Status; ?></td>
+                                                <td>
+                                                    <a href="/Meeting_request/detail/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
+                                                    <?php if ($a->Status == 'Belum diproses') : ?>
+                                                        <a href="/Meeting_request/edit/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
+                                                        <a href="/Meeting_request/cancel/<?= $a->idMeeting; ?>" class="btn btn-warning btn-sm w-xs">Batalkan</a>
+                                                    <?php elseif ($a->Status == 'Dibatalkan') : ?>
+                                                        <a href="/Meeting_request/delete/<?= $a->idMeeting; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
+                                                    <?php elseif ($a->Status == 'Selesai diproses') : ?>
+                                                        <a href="/Meeting_request/rating/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Rating</a>
+                                                        <!-- <a href="/Meeting_request/tanggapan/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Tanggapan</a> -->
+                                                    <?php endif ?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4">4 Pengaduan Terakhir</h4>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
 
             </div>
             <!-- End Page-content -->
@@ -81,9 +168,30 @@
 <!-- JAVASCRIPT -->
 <?= $this->include("partials/vendor-scripts") ?>
 
+<!-- Required datatable js -->
+<script src="/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<!-- Buttons examples -->
+<script src="/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+<script src="/assets/libs/jszip/jszip.min.js"></script>
+<script src="/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+
+<script src="/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+
+<!-- Responsive examples -->
+<script src="/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+<!-- Datatable init js -->
+<script src="/assets/js/pages/datatables.init.js"></script>
+
 <!-- Plugins js -->
 <!-- apexcharts -->
-<script src="/assets/libs/apexcharts/apexcharts.min.js"></script>
+<!-- <script src="/assets/libs/apexcharts/apexcharts.min.js"></script> -->
 
 <!-- jquery.vectormap map -->
 <script src="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
@@ -179,6 +287,12 @@
         label_pengaduan.push('<?= $tanggal ?>');
     <?php endforeach ?>
 
+    <?php foreach ($meetingRequestPerminggu->getResult() as $key) : ?>
+        data_meeting.push(<?= $key->jumlah ?>);
+        <?php $tanggal = formatTanggal($key->tanggal); ?>
+        label_meeting.push('<?= $tanggal ?>');
+    <?php endforeach ?>
+
     const data = {
         labels: label_pengaduan,
         datasets: [{
@@ -190,7 +304,7 @@
             label: 'Meeting Request',
             backgroundColor: '#6fd088',
             borderColor: '#6fd088',
-            data: [0, 0, 1],
+            data: data_meeting,
         }]
     };
 

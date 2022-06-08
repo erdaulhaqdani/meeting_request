@@ -33,6 +33,7 @@ class Pengaduan_onlineModel extends Model
          */
         $builder = $this->db->table('pengaduan_online');
         $builder->where('idCustomer', $id);
+        $builder->orderBy('created_at', 'DESC');
         $query = $builder->get();
         return $query;
     }

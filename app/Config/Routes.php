@@ -77,6 +77,7 @@ $routes->get('/Meeting_request/input', 'Meeting_request::input');
 $routes->get('/Meeting_request/cancel/(:num)', 'Meeting_request::cancel/$1');
 $routes->get('/Meeting_request/detail/(:num)', 'Meeting_request::detail/$1');
 $routes->get('/Meeting_request/edit/(:num)', 'Meeting_request::edit/$1');
+$routes->get('/Meeting_request/rating/(:num)', 'Meeting_request::rating/$1');
 
 //Admin Landing_page
 $routes->get('/Landing_page', 'Landing_page::index');

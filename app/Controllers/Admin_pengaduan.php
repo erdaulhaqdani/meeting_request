@@ -38,7 +38,7 @@ class Admin_pengaduan extends BaseController
             'belum' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Belum diproses', session('idPetugas')),
             'proses' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Sedang diproses', session('idPetugas')),
             'selesai' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Selesai diproses', session('idPetugas')),
-            'eskalasi' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Eskalasi', session('idLevel'), session('Unit'), session('idPetugas')),
+            'eskalasi' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Eskalasi', session('idPetugas')),
             'kategori' => $this->KategoriModel->getKategori()
         ];
 

@@ -160,7 +160,7 @@ class Landing_page extends BaseController
       'publik' => $this->Landing_pageModel->jumlahInformasiPublik(session('id_berita')),
       'arsip' => $this->Landing_pageModel->jumlahInformasiArsip(session('id_berita')),
       'kategori' => $this->KategoriModel->getKategori(),
-      'informasi' => $this->Landing_pageModel->listInformasi(),
+      'informasi' => $this->Landing_pageModel->listInformasi(session('idPetugas')),
 
     ];
 
@@ -216,6 +216,7 @@ class Landing_page extends BaseController
       'Penulis' => $this->request->getVar('penulis'),
       'Gambar' => $namagambar,
       'Status' => 'Diarsipkan',
+      'idPetugas' => $this->request->getVar('idPetugas')
     ]);
 
     session()->setFlashdata('pesan', 'Berhasil menambahkan Informasi.');

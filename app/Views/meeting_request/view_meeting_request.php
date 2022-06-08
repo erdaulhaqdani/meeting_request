@@ -93,7 +93,12 @@
               <div class="card-body">
 
                 <h4 class="card-title"><?= $title; ?></h4>
-                <p class="card-title-desc">Berikut adalah tabel Riwayat Meeting Request Anda.</p>
+                <div class="row">
+                  <div class="col-md-6">
+                    <p class="card-title-desc">Berikut adalah tabel Riwayat Meeting Request Anda. </p>
+                  </div>
+                  <div class="col-md-6"><a style="float: right ;" href="/Meeting_request/form" class="btn btn-success btn-md"><i class="fas fa-plus-circle"></i> Tambah</a></div>
+                </div>
                 <?php
                 if (session()->get('pesan')) {
                 ?>
@@ -152,7 +157,7 @@
                             <a href="/Meeting_request/edit/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                             <a href="/Meeting_request/cancel/<?= $a->idMeeting; ?>" class="btn btn-warning btn-sm w-xs">Batalkan</a>
                           <?php elseif ($a->Status == 'Dibatalkan') : ?>
-                            <a href="/Meeting_request/delete/<?= $a->idMeeting; ?>"><button type="button" class="btn btn-danger waves-effect waves-light" id="sa-warning">Hapus</button></a>
+                            <a href="/Meeting_request/delete/<?= $a->idMeeting; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
                           <?php elseif ($a->Status == 'Selesai diproses') : ?>
                             <a href="/Meeting_request/rating/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Rating</a>
                             <!-- <a href="/Meeting_request/tanggapan/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Tanggapan</a> -->

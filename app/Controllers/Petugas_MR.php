@@ -8,6 +8,7 @@ use App\Models\CustModel;
 use App\Models\Tanggapan_MRModel;
 use App\Models\PetugasModel;
 use App\Models\TandaTerimaModel;
+use App\Models\LevelModel;
 
 class Petugas_MR extends BaseController
 {
@@ -17,6 +18,7 @@ class Petugas_MR extends BaseController
     protected $Tanggapan_MRModel;
     protected $PetugasModel;
     protected $TandaTerimaModel;
+    protected $LevelModel;
 
     public function __construct()
     {
@@ -26,16 +28,18 @@ class Petugas_MR extends BaseController
         $this->Tanggapan_MRModel = new Tanggapan_MRModel();
         $this->PetugasModel = new PetugasModel();
         $this->TandaTerimaModel = new TandaTerimaModel();
+        $this->LevelModel = new LevelModel();
     }
 
     public function index()
     {
         $data = [
             'title' => 'Daftar Meeting Request',
-            'meeting' => $this->Meeting_requestModel->listMeetingPetugas(session('idLevel'), session('Unit')),
-            'belum' => $this->Meeting_requestModel->jumlahMeetingBelumDiprosesPetugas(),
-            'proses' => $this->Meeting_requestModel->jumlahMeetingDiprosesPetugas(),
-            'selesai' => $this->Meeting_requestModel->jumlahMeetingSelesaiDiprosesPetugas(),
+            'meeting' => $this->Meeting_requestModel->listMeetingPetugas(session('idLevel'), session('Unit'), session('idPetugas')),
+            'belum' => $this->Meeting_requestModel->jumlahMeetingPetugas('Belum diproses', session('idPetugas')),
+            'proses' => $this->Meeting_requestModel->jumlahMeetingPetugas('Sedang diproses', session('idPetugas')),
+            'selesai' => $this->Meeting_requestModel->jumlahMeetingPetugas('Selesai diproses', session('idPetugas')),
+            'eskalasi' => $this->Meeting_requestModel->jumlahMeetingPetugas('Eskalasi', session('idPetugas')),
             'kategori' => $this->KategoriModel->getKategori()
         ];
 
@@ -59,7 +63,9 @@ class Petugas_MR extends BaseController
         $data = [
             'title' => 'Tanggapan',
             'validation' => \Config\Services::validation(),
-            'idMeeting' => $idMeeting
+            'idMeeting' => $idMeeting,
+            'petugas' => $this->PetugasModel->getPetugas(),
+            'level' => $this->LevelModel->getlevel(),
         ];
 
         return view('Meeting_request/petugas_tanggapan', $data);
@@ -72,7 +78,8 @@ class Petugas_MR extends BaseController
 
         $this->Meeting_requestModel->save([
             'idMeeting' => $id,
-            'Status' => 'Sedang diproses'
+            'Status' => 'Sedang diproses',
+            'idPetugas' => session('idPetugas'),
         ]);
 
         session()->setFlashdata('pesan', 'Meeting Request mulai diproses');
@@ -103,19 +110,21 @@ class Petugas_MR extends BaseController
             //ambil nama file
             $namalampiran = $lampiran->getRandomName();
             //pindah file
-            $lampiran->move('lampiran_MR', $namalampiran);
+            $lampiran->move('lampiran_petugasMR', $namalampiran);
         }
 
 
         $this->Tanggapan_MRModel->save([
             'Isi' => $this->request->getVar('isi'),
             'Lampiran' => $namalampiran,
-            'idMeeting' => $this->request->getVar('idMeeting')
+            'idMeeting' => $this->request->getVar('idMeeting'),
+            'idPetugas' => session('idPetugas'),
         ]);
 
         $this->Meeting_requestModel->save([
             'idMeeting' => $this->request->getVar('idMeeting'),
-            'Status' => $this->request->getVar('status')
+            'Status' => $this->request->getVar('status'),
+            'idPetugas' => $this->request->getVar('petugas')
         ]);
 
         session()->setFlashdata('pesan', 'Tanggapan berhasil tersimpan.');

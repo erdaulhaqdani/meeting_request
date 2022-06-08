@@ -9,7 +9,7 @@ class Landing_pageModel extends Model
   protected $table      = 'berita';
   protected $primaryKey = 'id_berita';
 
-  protected $allowedFields = ['Isi', 'Kategori', 'Judul', 'Status', 'Gambar', 'Penulis'];
+  protected $allowedFields = ['Isi', 'Kategori', 'Judul', 'Status', 'Gambar', 'Penulis', 'idPetugas'];
 
   protected $useAutoIncrement = true;
   protected $useTimestamps = true;
@@ -87,12 +87,14 @@ class Landing_pageModel extends Model
   }
 
 
-  public function listInformasi()
+  public function listInformasi($id)
   {
 
     $builder = $this->db->table('berita');
+    $builder->where('idPetugas', $id);
     $builder->like('Status', 'Publik');
     $builder->orlike('Status', 'Diarsipkan');
+    $builder->orderBy('created_at', 'DESC');
     $query = $builder->get();
     return $query;
   }

@@ -151,8 +151,12 @@
             <div class="dropdown d-inline-block user-dropdown">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user" src="/assets/images/users/user.png" alt="Header Avatar">
-                    <!-- <i class=" fas fa-grin-wink"></i> -->
-                    <span class="d-none d-xl-inline-block ms-1"><?= session()->get('Username') ?></span>
+                    <?php if (session('NIK') == TRUE) : ?>
+                        <span class="d-none d-xl-inline-block ms-1"><?= session()->get('Username') ?></span>
+                    <?php elseif (session('NIP') == TRUE) : ?>
+                        <span class="d-none d-xl-inline-block ms-1"><?= session()->get('Nama') ?></span>
+                    <?php endif ?>
+
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">

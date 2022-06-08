@@ -41,8 +41,7 @@
                 <h3 class="card-title">Detail Pengajuan Meeting Request</h3>
                 <p class="card-title-desc">Berikut adalah identitas dan detail pengajuan Meeting Request Anda.</p>
                 <div class="row">
-
-                  <div class="col-6">
+                  <div class="col-lg-6">
                     <div class="row mb-1">
                       <label class="col-sm-6">IDENTITTAS CUSTOMER</label>
                       <hr>
@@ -54,20 +53,19 @@
                     <div class="row">
                       <label class="col-sm-4">Nama Lengkap</label>
                       <label class="col-sm-8"> : <?= $customer['Nama']; ?></label>
-
                     </div>
                     <div class="row">
                       <label class="col-sm-4">Email</label>
                       <label class="col-sm-8">: <?= $customer['Email']; ?></label>
-
                     </div>
                     <div class="row">
                       <label class="col-sm-4">Nomor Telepon</label>
                       <label class="col-sm-8">: <?= $customer['noHP']; ?></label>
 
                     </div>
+                    <br>
                   </div>
-                  <div class="col-6">
+                  <div class="col-lg-6">
                     <div class="row mb-1">
                       <label class="col-sm-6">DETAIL MEETING REQUEST</label>
                       <hr>
@@ -78,15 +76,15 @@
                     </div>
                     <div class="row">
                       <?php //getNamaKategori
-                      $k = '';
-                      foreach ($kategori as $a) {
-                        if ($meeting['idKategori'] == $a['idKategori']) {
-                          $k = $a['namaKategori'];
-                        }
-                      }
+                      // $k = '';
+                      // foreach ($kategori as $a) {
+                      //   if ($meeting['idKategori'] == $a['idKategori']) {
+                      //     $k = $a['namaKategori'];
+                      //   }
+                      // }
                       ?>
                       <label class="col-sm-4">Jenis Layanan</label>
-                      <label class="col-sm-8">: <?= $k; ?></label>
+                      <label class="col-sm-8">: <?= $kategori['namaKategori']; ?></label>
                     </div>
                     <div class="row">
                       <label class="col-sm-4">Bentuk Layanan</label>
@@ -114,7 +112,12 @@
                     </div>
 
                   </div>
-                  <a href="/Meeting_request"><button type="button" class="btn btn-warning waves-effect">Kembali</button> </a>
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <input type="button" value="Kembali" class="btn btn-warning waves-effect" onclick="history.back(-1)" />
+                    </div>
+                  </div>
+
                 </div>
 
               </div>
@@ -134,53 +137,33 @@
                   </div>
                   <hr>
                   <div class="row">
-                    <?php //getPetugas
-                    $Nama = '';
-                    $NIP = '';
-                    $Email = '';
-                    $Isi = '';
-                    $Lampiran = '';
-                    $Kantor = '';
-                    $idPetugas = '';
-                    foreach ($tanggapan as $a) {
-                      if ($meeting['idMeeting'] == $a['idMeeting']) {
-                        $Isi = $a['Isi'];
-                        $Lampiran = $a['Lampiran'];
-                        $idPetugas = $a['idPetugas'];
-                      }
-                    }
-                    foreach ($petugas as $b) {
-                      if ($idPetugas == $b['idPetugas']) {
-                        $Nama = $b['Nama'];
-                        $NIP = $b['NIP'];
-                        $Email = $b['Email'];
-                        $Kantor = $b['Kantor'];
-                      }
-                    }
-                    ?>
                     <div class="row">
-                      <label class="col-sm-4">Identitas Petugas</label>
+                      <label class="col-sm-2">IDENTITAS PETUGAS</label>
+                      <hr>
                     </div>
                     <div class="row">
-                      <label class="col-sm-3">Nama Lengkap</label>
-                      <label class="col-sm-9">: <?= $Nama ?></label>
+                      <label class="col-sm-2">Nama Lengkap</label>
+                      <label class="col-sm-9">: <?= $petugas['Nama'] ?></label>
                     </div>
                     <div class="row">
-                      <label class="col-sm-3">Level</label>
-                      <label class="col-sm-8">: </label>
+                      <label class="col-sm-2">Level</label>
+                      <label class="col-sm-8">: <?= $level['Level']; ?></label>
                     </div>
                     <div class="row">
-                      <label class="col-sm-3">Email</label>
-                      <label class="col-sm-8">: <?= $Email ?></label>
+                      <label class="col-sm-2">Email</label>
+                      <label class="col-sm-8">: <?= $petugas['Email'] ?></label>
                     </div>
                     <div class="row">
-                      <label class="col-sm-3">Kantor</label>
-                      <label class="col-sm-8">: <?= $Kantor ?></label>
+                      <label class="col-sm-2">Uraian Tanggapan</label>
+                      <label class="col-sm-8">: <?= $tanggapan['Isi']; ?></label>
                     </div>
                     <div class="row">
-                      <label class="col-sm-3">Uraian Tanggapan</label>
-                      <label class="col-sm-8">: <?= $Isi; ?></label>
-                      <a href="/Lampiran/<?= $Lampiran; ?>">Lampiran</a>
+                      <label class="col-sm-2">Lampiran</label>
+                      <?php if ($tanggapan['Lampiran'] == 'default.png') : ?>
+                        <label class="col-sm-8"><a href="/lampiran_petugasMR/<?= $tanggapan['Lampiran']; ?>" class="isDisabled">: Tidak memiliki lampiran</a></label>
+                      <?php else : ?>
+                        <label class=" col-sm-8"><a href="/lampiran_petugasMR/<?= $tanggapan['Lampiran']; ?>">: <?= $tanggapan['Lampiran']; ?></a></label>
+                      <?php endif ?>
                     </div>
                   </div>
                 </div>

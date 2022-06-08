@@ -9,7 +9,7 @@ class Tanggapan_MRModel extends Model
     protected $table      = 'tanggapan_mr';
     protected $primaryKey = 'idTanggapan_MR ';
 
-    protected $allowedFields = ['Isi', 'Lampiran', 'tgl_mulai', 'tgl_selesai', 'idMeeting'];
+    protected $allowedFields = ['Isi', 'Lampiran', 'tgl_mulai', 'tgl_selesai', 'idMeeting', 'idPetugas'];
 
     protected $useAutoIncrement = true;
     protected $useTimestamps = true;
@@ -23,5 +23,14 @@ class Tanggapan_MRModel extends Model
         }
 
         return $this->where(['idTanggapan_MR ' => $id])->first();
+    }
+
+    public function getTanggapanMeeting($id = false)
+    {
+        if ($id == false) {
+            return $this->findAll();
+        }
+
+        return $this->where(['idMeeting' => $id])->first();
     }
 }

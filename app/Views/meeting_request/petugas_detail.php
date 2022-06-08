@@ -48,13 +48,14 @@
                       $Nama = $a['Nama'];
                       $NIK = $a['NIK'];
                       $Email = $a['Email'];
+                      $Telepon = $a['noHP'];
                     }
                   }
                   ?>
                   <h3 class="card-title">Detail Pengajuan Meeting Request</h3>
                   <p class="card-title-desc">Berikut adalah identitas dan detail pengajuan Meeting Request dengan id <?= $meeting['idMeeting']; ?> </p>
 
-                  <div class="col-6">
+                  <div class="col-md-6">
                     <div class="row mb-1">
                       <label class="col-sm-6">IDENTITTAS CUSTOMER</label>
                       <hr>
@@ -75,11 +76,11 @@
                     </div>
                     <div class="row">
                       <label class="col-sm-4">Nomor Telepon</label>
-                      <label class="col-sm-8">: <?= $meeting['Telepon']; ?></label>
-
+                      <label class="col-sm-8">: <?= $Telepon ?></label>
                     </div>
+                    <br>
                   </div>
-                  <div class="col-6">
+                  <div class="col-md-6">
                     <div class="row mb-1">
                       <label class="col-sm-6">DETAIL MEETING REQUEST</label>
                       <hr>

@@ -43,13 +43,27 @@
                                 <h1 class="card-title">Tanggapan Meeting Request</h1>
                                 <form action="/petugas_MR/inputTanggapan" method="POST" enctype="multipart/form-data" class="custom-validation">
 
-                                    <div class="mb-3 mt-3">
+                                    <div class="mb-3">
                                         <label for="isi">Status Meeting Request</label>
-                                        <select name="status" class="form-select" aria-label="Default select example" required>
+                                        <select name="status" id="s" onchange="tampilPetugas()" class="form-select" aria-label="Default select example">
                                             <option value="Selesai diproses">Selesai diproses</option>
+                                            <option value="Eskalasi">Eskalasi</option>
                                             <option value="Sedang diproses">Sedang diproses</option>
-                                            <option value="Tidak dapat diproses">Tidak dapat diproses</option>
-                                            <option value="Belum bisa diproses">Belum bisa diproses</option>
+                                            <option value="Tidak disetujui">Tidak disetujui</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="mb-3" id="petugas" style="display: none;">
+                                        <label for="petugas">Petugas tujuan</label>
+                                        <select name="petugas" class="form-select">
+                                            <?php foreach ($petugas as $p) : ?>
+                                                <?php foreach ($level as $l) {
+                                                    if ($l['idLevel'] == $p['idLevel']) {
+                                                        $a = $l['Level'];
+                                                    }
+                                                } ?>
+                                                <option value="<?= $p['idPetugas'] ?>"><?= $a ?> - <?= $p['Nama']; ?></option>
+                                            <?php endforeach; ?>
                                         </select>
                                     </div>
 
@@ -102,6 +116,21 @@
 
 <!-- App js -->
 <script src="/assets/js/app.js"></script>
+
+<!-- A javascript function that will hide the input field if the status is not "Eskalasi" */ -->
+<script>
+    function tampilPetugas() {
+        let s = document.getElementById("s");
+        let petugas = document.getElementById("petugas");
+        if (s.value == "Eskalasi") {
+            s.style.display = "block";
+            petugas.style.display = "block";
+        } else {
+            s.style.display = "block";
+            petugas.style.display = "none";
+        }
+    }
+</script>
 
 </body>
 

@@ -91,14 +91,15 @@
                   </div>
                   <!-- end row -->
 
-                  <!-- <div class="row mb-3">
-                    <label for="telepon" class="col-sm-3 col-form-label">Nomor Telepon</label>
+                  <div class="row mb-2">
+                    <label for="lampiran" class="col-sm-3 col-form-label">File Lampiran (opsional)</label>
                     <div class="col-sm-9">
-                      <input class="form-control" type="tel" placeholder="Masukkan nomor telepon Anda" id="telepon" name="telepon" required data-parsley-minlength="9" data-parsley-maxlength="15">
+                      <div class="input-group">
+                        <input type="file" name="lampiran" class="form-control" id="lampiran">
+                      </div>
+                      <!-- <p class="mt-2 ml text-secondary">File Lampiran bersifat opsional</p> -->
                     </div>
-                  </div> -->
-                  <!-- end row -->
-
+                  </div>
 
                   <div class="row mb-3">
                     <label for="tanggal_kunjungan" class="col-sm-3 col-form-label">Tanggal Kunjungan</label>
@@ -120,7 +121,7 @@
 
                         for ($i = 0; $i < count($jam); $i++) {
                         ?>
-                          <input type="radio" class="btn-check" name="waktu_kunjungan" id="waktu_kunjungan<?= $i; ?>" autocomplete="off" value="<?= $jam[$i]; ?>">
+                          <input type="radio" class="btn-check" name="waktu_kunjungan" id="waktu_kunjungan<?= $i; ?>" autocomplete="off" value="<?= $jam[$i]; ?>" required>
                           <label class="btn btn-outline-primary w-sm" for="waktu_kunjungan<?= $i; ?>"><?= $jam[$i]; ?></label>
                         <?php
 
@@ -131,7 +132,7 @@
                   </div>
                   <div class="mb-1 text-end">
                     <div>
-                      <button type="reset" class="btn btn-danger waves-effect me-3">Cancel</button>
+                      <button type="reset" class="btn btn-danger waves-effect me-3">Batal</button>
                       <button type="submit" class="btn btn-primary waves-effect waves-light me-1">Submit</button>
                     </div>
                   </div>

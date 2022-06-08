@@ -43,7 +43,7 @@
                                 <h4 class="card-title">Statistik Proses Meeting Request</h4>
                                 <div class="row">
 
-                                    <div class="col-4">
+                                    <div class="col-md-3">
                                         <div class="card">
                                             <div class="card-body text-center">
                                                 <h5 class="card-title">Belum diproses</h5>
@@ -54,7 +54,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-4">
+                                    <div class="col-md-3">
                                         <div class="card">
                                             <div class="card-body text-center">
                                                 <h5 class="card-title">Sedang diproses</h5>
@@ -65,11 +65,22 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-4">
+                                    <div class="col-md-3">
                                         <div class="card">
                                             <div class="card-body text-center">
                                                 <h5 class="card-title">Selesai diproses</h5>
                                                 <?php foreach ($selesai->getResultObject() as $a) : ?>
+                                                    <?= $a->idMeeting; ?>
+                                                <?php endforeach ?>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="card">
+                                            <div class="card-body text-center">
+                                                <h5 class="card-title">Eskalasi masuk</h5>
+                                                <?php foreach ($eskalasi->getResultObject() as $a) : ?>
                                                     <?= $a->idMeeting; ?>
                                                 <?php endforeach ?>
                                             </div>
