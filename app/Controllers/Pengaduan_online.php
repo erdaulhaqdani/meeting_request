@@ -328,4 +328,16 @@ class Pengaduan_online extends BaseController
 
         return redirect()->to('/Pengaduan_online');
     }
+
+    public function tidakSesuai($id)
+    {
+        $this->Pengaduan_onlineModel->save([
+            'idPengaduan' => $id,
+            'Status' => 'Tidak Sesuai'
+        ]);
+
+        session()->setFlashdata('pesan', 'berhasil membatalkan pengaduan.');
+
+        return redirect()->to('/Pengaduan_online');
+    }
 }

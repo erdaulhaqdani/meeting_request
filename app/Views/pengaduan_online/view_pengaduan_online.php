@@ -144,7 +144,7 @@
                                                     <?php elseif ($a->Status == 'Selesai diproses') : ?>
                                                         <?php if ($a->Rating < 1) : ?>
                                                             <a href="/Pengaduan_online/rating/<?= $a->idPengaduan; ?>" class="btn btn-success btn-sm w-xs">Rating</a>
-                                                            <a href="/Pengaduan_online/rating/<?= $a->idPengaduan; ?>" class="btn btn-success btn-sm w-xs">Tidak sesuai</a>
+                                                            <a href="/Pengaduan_online/tidakSesuai/<?= $a->idPengaduan; ?>" class="btn btn-danger btn-sm w-xs">Tidak sesuai</a>
                                                         <?php endif ?>
                                                     <?php endif ?>
                                                 </td>
