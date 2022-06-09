@@ -31,6 +31,7 @@ class Tanggapan_POModel extends Model
             return $this->findAll();
         }
 
-        return $this->where(['idPengaduan ' => $id])->first();
+        $query = $this->where(['idPengaduan ' => $id])->orderBy('tgl_selesai', 'DESC')->first();
+        return $query;
     }
 }

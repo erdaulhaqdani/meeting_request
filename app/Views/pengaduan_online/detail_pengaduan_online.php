@@ -58,7 +58,6 @@
                                     <h3 class="card-title"><?= $title; ?></h3>
                                     <p class="card-title-desc">Berikut adalah identitas dan detail pengajuan Pengaduan Online Anda.</p>
                                     <div class="row">
-
                                         <div class="col-4">
                                             <div class="row mb-1">
                                                 <label class="col-sm-6">IDENTITAS CUSTOMER</label>
@@ -128,7 +127,21 @@
                                         <div class="col-2 align-right">
                                             <button name="cetak" onclick="window.open('<?php echo site_url('/Pengaduan_online/print/' . $pengaduan['idPengaduan']) ?>')" class="btn btn-danger mt-5"><i class="fas fa-print align-middle me-2"></i> Cetak</button>
                                         </div>
-                                        <a href="/Pengaduan_online"><button type="button" class="btn btn-warning waves-effect">Kembali</button> </a>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <a href="/Pengaduan_online"><button type="button" class="btn btn-warning waves-effect">Kembali</button> </a>
+                                        </div>
+                                        <div class="col-8 align-right">
+                                            <?php if ($pengaduan['Status'] == 'Belum diproses' || 'Tidak sesuai') : ?>
+                                                <a href="/Pengaduan_online/edit/<?= $pengaduan['idPengaduan']; ?>" class="btn btn-primary waves-effect">Ubah</a>
+                                                <a href="/Pengaduan_online/delete/<?= $pengaduan['idPengaduan']; ?>" class="btn btn-danger waves-effect">Hapus</a>
+                                            <?php elseif ($pengaduan['Status'] == 'Selesai diproses') : ?>
+                                                <?php if ($pengaduan['Rating'] < 1) : ?>
+                                                    <a href="/Pengaduan_online/rating/<?= $pengaduan['idPengaduan']; ?>" class="btn btn-success waves-effect">Rating</a>
+                                                <?php endif ?>
+                                            <?php endif ?>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -148,33 +161,46 @@
                                         </div>
                                         <hr>
                                         <div class="row">
-                                            <div class="row">
-                                                <label class="col-sm-2">IDENTITAS PETUGAS</label>
-                                                <hr>
+                                            <div class="col-4">
+                                                <div class="row">
+                                                    <label class="col-sm-6">IDENTITAS PETUGAS</label>
+                                                    <hr>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-sm-4">Nama Lengkap</label>
+                                                    <label class="col-sm-8">: <?= $petugas['Nama'] ?></label>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-sm-4">Level</label>
+                                                    <label class="col-sm-8">: <?= $level['Level']; ?></label>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-sm-4">Email</label>
+                                                    <label class="col-sm-8">: <?= $petugas['Email'] ?></label>
+                                                </div>
                                             </div>
-                                            <div class="row">
-                                                <label class="col-sm-2">Nama Lengkap</label>
-                                                <label class="col-sm-9">: <?= $petugas['Nama'] ?></label>
+                                            <div class="col-6">
+                                                <div class="row">
+                                                    <label class="col-sm-6">DETAIL TANGGAPAN</label>
+                                                    <hr>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-sm-4">Uraian Tanggapan</label>
+                                                    <label class="col-sm-8">: <?= $tanggapan['Isi']; ?></label>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-sm-4">Lampiran</label>
+                                                    <?php if ($tanggapan['Lampiran'] == 'user.png') : ?>
+                                                        <label class="col-sm-8"><a href="/lampiran/<?= $tanggapan['Lampiran']; ?>" class="isDisabled">: Tidak memiliki lampiran</a></label>
+                                                    <?php else : ?>
+                                                        <label class=" col-sm-8"><a href="/lampiran/<?= $tanggapan['Lampiran']; ?>">: <?= $pengaduan['Lampiran']; ?></a></label>
+                                                    <?php endif ?>
+                                                </div>
                                             </div>
-                                            <div class="row">
-                                                <label class="col-sm-2">Level</label>
-                                                <label class="col-sm-8">: <?= $level['Level']; ?></label>
-                                            </div>
-                                            <div class="row">
-                                                <label class="col-sm-2">Email</label>
-                                                <label class="col-sm-8">: <?= $petugas['Email'] ?></label>
-                                            </div>
-                                            <div class="row">
-                                                <label class="col-sm-2">Uraian Tanggapan</label>
-                                                <label class="col-sm-8">: <?= $tanggapan['Isi']; ?></label>
-                                            </div>
-                                            <div class="row">
-                                                <label class="col-sm-2">Lampiran</label>
-                                                <?php if ($tanggapan['Lampiran'] == 'user.png') : ?>
-                                                    <label class="col-sm-8"><a href="/lampiran/<?= $tanggapan['Lampiran']; ?>" class="isDisabled">: Tidak memiliki lampiran</a></label>
-                                                <?php else : ?>
-                                                    <label class=" col-sm-8"><a href="/lampiran/<?= $tanggapan['Lampiran']; ?>">: <?= $pengaduan['Lampiran']; ?></a></label>
-                                                <?php endif ?>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-2">
+                                                <a href="/Pengaduan_online/tidakSesuai/<?= $pengaduan['idPengaduan']; ?>" class="btn btn-danger waves-effect">Tidak sesuai</a>
                                             </div>
                                         </div>
                                     </div>
