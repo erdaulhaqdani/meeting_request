@@ -554,10 +554,17 @@ class Landing_page extends BaseController
 
   public function agenda_grid()
   {
+    $pencarian = $this->request->getVar('pencarian');
+    if ($pencarian) {
+      $informasi = $this->Landing_pageModel->search($pencarian);
+    } else {
+      $informasi = $this->Landing_pageModel;
+    }
+
     $data = [
       'title' => 'Agenda KPKNL Bandung',
-      'berita' => $this->Landing_pageModel->paginate(6),
-      // 'pager' => $this->Landing_pageModel->pager
+      'berita' => $this->AgendaModel->where('Status', 'Publik')->orderBy('created_at', 'DESC')->paginate(6),
+      'pager' => $this->AgendaModel->pager
     ];
 
     return view('pages/agenda_grid', $data);
@@ -567,7 +574,8 @@ class Landing_page extends BaseController
   {
     $data = [
       'title' => 'Agenda KPKNL Bandung',
-      'berita' => $this->Landing_pageModel->getInformasi($id),
+      'berita' => $this->AgendaModel->getAgenda($id),
+      'artikel' => $this->Landing_pageModel->listArtikelTerbaru()
     ];
 
     return view('pages/detail_agenda', $data);

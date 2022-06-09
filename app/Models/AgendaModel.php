@@ -11,7 +11,7 @@ class AgendaModel extends Model
 
   protected $useAutoIncrement = true;
 
-  protected $allowedFields = ['Judul', 'Isi', 'Status', 'Cover', 'tgl_kegiatan', 'Penulis'];
+  protected $allowedFields = ['Judul', 'Isi', 'Status', 'Cover', 'tgl_kegiatan', 'Penulis', 'idPetugas'];
 
   protected $useTimestamps = true;
   protected $createdField  = 'created_at';
