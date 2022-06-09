@@ -333,7 +333,7 @@ class Pengaduan_online extends BaseController
     {
         $this->Pengaduan_onlineModel->save([
             'idPengaduan' => $id,
-            'Status' => 'Tidak Sesuai'
+            'Status' => 'Tidak sesuai'
         ]);
 
         session()->setFlashdata('pesan', 'berhasil membatalkan pengaduan.');
