@@ -12,12 +12,21 @@ Theme Main Banner
 	foreach ($jumbotron->getResult() as $j) :
 		$tanggal = $j->created_at;
 
+		$text = $j->Judul;
+		$jumlahText = strlen($text);
+		$num_char = 55;
+		if ($jumlahText >= $num_char) {
+			$cut_text = substr($text, 0, $num_char) . '...';
+		} else {
+			$cut_text = $j->Judul;
+		}
+
 	?>
 		<div data-src="/gambar/<?= $j->Gambar; ?>">
 			<div class="camera_caption">
 				<div class="container">
 					<h3 class="wow fadeInUp animated">BERITA UTAMA</h3>
-					<h1 class="wow fadeInUp animated" data-wow-delay="0.1s"><?= $j->Judul; ?></h1>
+					<h1 class="wow fadeInUp animated" data-wow-delay="0.1s"><?= $cut_text ?></h1>
 					<a href="/pages/detail_berita/<?= $j->id_berita ?>" class="theme-button-one wow fadeInUp animated" data-wow-delay="0.2s">Selengkapnya</a>
 				</div> <!-- /.container -->
 			</div> <!-- /.camera_caption -->
@@ -86,14 +95,23 @@ Berita Terbaru
 				foreach ($berita_terbaru->getResult() as $a) :
 					$tanggal = $a->created_at;
 
+					$text = $a->Judul;
+					$jumlahText = strlen($text);
+					$num_char = 20;
+					if ($jumlahText >= $num_char) {
+						$cut_text = substr($text, 0, $num_char) . '...';
+					} else {
+						$cut_text = $a->Judul;
+					}
 				?>
 					<div class="col-xl-4 col-md-6 col-12">
 						<div class="single-service">
 							<div class="img-box"><img src="/gambar/<?= $a->Gambar; ?>" alt=""></div>
 							<div class="text">
-								<h5><a href="/pages/detail_berita/<?= $a->id_berita ?>"><?= $a->Judul; ?></a></h5>
-								<p> <?= tanggal_indonesia($tanggal); ?></p>
-								<a href="/pages/detail_berita/<?= $a->id_berita ?>" class="read-more">SELENGKAPNYA <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+								<h6><a href="/pages/detail_berita/<?= $a->id_berita ?>"><?= $cut_text ?></a></h6>
+
+								<p style="font-size:16px ;"><i class="fa fa-calendar"></i> <?= tanggal_indonesia($tanggal); ?></p>
+								<a href="/pages/detail_berita/<?= $a->id_berita ?>" class="read-more">SELENGKAPNYA</a>
 							</div> <!-- /.text -->
 						</div> <!-- /.single-service -->
 					</div> <!-- /.col- -->
@@ -125,13 +143,22 @@ Artikel Terbaru
 				foreach ($artikel_terbaru->getResult() as $b) :
 					$tanggal = $b->created_at;
 
+					$text = $a->Judul;
+					$jumlahText = strlen($text);
+					$num_char = 20;
+					if ($jumlahText >= $num_char) {
+						$cut_text = substr($text, 0, $num_char) . '...';
+					} else {
+						$cut_text = $a->Judul;
+					}
+
 				?>
 					<div class="col-xl-4 col-md-6 col-12">
 						<div class="single-service">
 							<div class="img-box"><img src="/gambar/<?= $b->Gambar; ?>" alt=""></div>
 							<div class="text">
-								<h5><a href="/pages/detail_berita/<?= $b->id_berita ?>"><?= $b->Judul; ?></a></h5>
-								<p><?= tanggal_indonesia($tanggal); ?></p>
+								<h6><a href="/pages/detail_berita/<?= $b->id_berita ?>"><?= $cut_text ?></a></h6>
+								<p style="font-size:16px ;"><i class="fa fa-calendar"></i> <?= tanggal_indonesia($tanggal); ?></p>
 								<a href="/pages/detail_berita/<?= $b->id_berita ?>" class="read-more">SELENGKAPNYA <i class="fa fa-angle-right" aria-hidden="true"></i></a>
 							</div> <!-- /.text -->
 						</div> <!-- /.single-service -->
@@ -205,15 +232,25 @@ About Company
 				foreach ($peristiwa_terbaru->getResult() as $c) :
 					$tanggal = $c->created_at;
 
+					$text = $c->Judul;
+					$jumlahText = strlen($text);
+					$num_char = 15;
+					if ($jumlahText >= $num_char) {
+						$cut_text = substr($text, 0, $num_char) . '...';
+					} else {
+						$cut_text = $c->Judul;
+					}
+
+
 				?>
-					<div class="col-lg-4 col-sm-6 col-12">
+					<div class="col-lg-3 col-sm-6 col-12">
 						<div class="single-case-block">
-							<img src="/gambar/<?= $c->Gambar; ?>" alt="" style="height: 300px;">
+							<img src="/gambar/<?= $c->Gambar; ?>" alt="" style="height: 260px;">
 							<div class="hover-content">
 								<div class="text clearfix">
 									<div class="float-left">
-										<h5><a href="/pages/detail_peristiwa/<?= $c->id_berita ?>"><?= $c->Judul; ?></a></h5>
-										<p><?= $c->Isi; ?></p>
+										<h6><a href="/pages/detail_peristiwa/<?= $c->id_berita ?>"><?= $cut_text ?></a></h6>
+										<p><?= tanggal_indonesia($tanggal);; ?></p>
 									</div>
 									<a href="/pages/detail_peristiwa/<?= $c->id_berita ?>" class="details float-right"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
 								</div> <!-- /.text -->
@@ -224,7 +261,7 @@ About Company
 				endforeach ?>
 			</div> <!-- /.row -->
 		</div> <!-- /.wrapper -->
-		<div class="view-all"><a href="project.html" class="theme-button-one">LIHAT SEMUA</a></div>
+		<div class="view-all"><a href="/pages/peristiwa_grid" class="theme-button-one">LIHAT SEMUA</a></div>
 	</div> <!-- /.container -->
 </div> <!-- /.our-case -->
 

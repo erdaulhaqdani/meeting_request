@@ -42,7 +42,12 @@
               <div class="card-body">
 
                 <h4 class="card-title">Kelola Informasi</h4>
-                <p class="card-title-desc">Berikut adalah tabel Kelola Informasi.</p>
+                <div class="row">
+                  <div class="col-md-6">
+                    <p class="card-title-desc">Berikut adalah tabel Kelola Informasi.</p>
+                  </div>
+                  <div class="col-md-6"><a style="float: right ;" href="/Landing_page/form" class="btn btn-success btn-md"><i class="fas fa-plus-circle"></i> Tambah</a></div>
+                </div>
                 <?php
                 if (session()->get('pesan')) {
                 ?>
@@ -78,12 +83,30 @@
                     <?php foreach ($informasi->getResult() as $a) :
                       $date = $a->created_at;
 
+                      $judul = $a->Judul;
+                      $textJudul = strlen($judul);
+                      $num_char = 30;
+                      if ($textJudul > $num_char) {
+                        $cut_judul = substr($judul, 0, $num_char) . '...';
+                      } else {
+                        $cut_judul = $a->Judul;
+                      }
+
+                      $penulis = $a->Penulis;
+                      $textPenulis = strlen($penulis);
+                      $maks = 15;
+                      if ($textPenulis > $maks) {
+                        $cut_penulis = substr($penulis, 0, $maks) . '...';
+                      } else {
+                        $cut_penulis = $a->Penulis;
+                      }
+
                     ?>
                       <tr>
                         <td><?= $no++; ?></td>
                         <td><?= $a->Kategori; ?></td>
-                        <td><?= $a->Judul; ?></td>
-                        <td><?= $a->Penulis; ?></td>
+                        <td><?= $cut_judul ?></td>
+                        <td><?= $cut_penulis ?></td>
                         <td><?= formatTanggal($date) ?></td>
                         <td><?= $a->Status; ?></td>
                         <td>

@@ -34,7 +34,7 @@
           $date = $berita['created_at'];
           ?>
           <div class="single-blog">
-            <a href="/">Home</a>&nbsp;>&nbsp;<a href="/pages/berita_grid">Daftar Berita</a>&nbsp;>&nbsp;<a href="" style=" pointer-events: none; cursor: default; margin-bottom : 10px;">Berita</a>
+            <a href="/">Beranda</a>&nbsp;>&nbsp;<a href="/pages/berita_grid">Daftar Berita</a>&nbsp;>&nbsp;<a href="" style=" pointer-events: none; cursor: default; margin-bottom : 10px;">Berita</a>
             <div class="image-box">
               <img src="/gambar/<?= $berita['Gambar']; ?>" alt="">
               <div class="overlay"><a href="#" class="date"><?= formatTanggal($date); ?></a></div>

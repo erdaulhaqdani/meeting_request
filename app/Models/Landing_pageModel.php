@@ -40,7 +40,7 @@ class Landing_pageModel extends Model
     $builder->where('Kategori', 'Berita');
     $builder->where('Status', 'Publik');
     $builder->orderBy('created_at', 'desc');
-    $query = $builder->get(5, 0);
+    $query = $builder->get(3, 0);
     return $query;
   }
 
@@ -51,7 +51,7 @@ class Landing_pageModel extends Model
     $builder->where('Kategori', 'artikel');
     $builder->where('Status', 'Publik');
     $builder->orderBy('created_at', 'desc');
-    $query = $builder->get(9, 0);
+    $query = $builder->get(6, 0);
     return $query;
   }
 
@@ -62,7 +62,7 @@ class Landing_pageModel extends Model
     $builder->where('Kategori', 'Berita');
     $builder->where('Status', 'Publik');
     $builder->orderBy('created_at', 'desc');
-    $query = $builder->get(9, 0);
+    $query = $builder->get(6, 0);
     return $query;
   }
 
@@ -70,10 +70,21 @@ class Landing_pageModel extends Model
   {
 
     $builder = $this->db->table('berita');
-    $builder->where('Kategori', 'peristiwa');
+    $builder->where('Kategori', 'Kilas Peristiwa');
     $builder->where('Status', 'Publik');
     $builder->orderBy('created_at', 'desc');
     $query = $builder->get(9, 0);
+    return $query;
+  }
+
+  public function listBerita()
+  {
+
+    $builder = $this->db->table('berita');
+    $builder->where('Kategori', 'Berita');
+    $builder->where('Status', 'Publik');
+    $builder->orderBy('created_at', 'desc');
+    $query = $builder->get();
     return $query;
   }
 
@@ -81,7 +92,20 @@ class Landing_pageModel extends Model
   {
 
     $builder = $this->db->table('berita');
-    $builder->where('Kategori', 'pengumuman');
+    $builder->where('Kategori', 'Pengumuman');
+    $builder->where('Status', 'Publik');
+    $builder->orderBy('created_at', 'desc');
+    $query = $builder->get();
+    return $query;
+  }
+
+  public function listPeristiwa()
+  {
+
+    $builder = $this->db->table('berita');
+    $builder->where('Kategori', 'Kilas Peristiwa');
+    $builder->where('Status', 'Publik');
+    $builder->orderBy('created_at', 'desc');
     $query = $builder->get();
     return $query;
   }

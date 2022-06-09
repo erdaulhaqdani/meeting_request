@@ -221,7 +221,7 @@ class Landing_page extends BaseController
 
     session()->setFlashdata('pesan', 'Berhasil menambahkan Informasi.');
 
-    return redirect()->to('/Landing_page/form');
+    return redirect()->to('/Landing_page');
   }
 
   public function publik($id)
@@ -467,7 +467,7 @@ class Landing_page extends BaseController
 
     $data = [
       'title' => 'Artikel KPKNL Bandung',
-      'berita' => $informasi->findAll(),
+      'berita' => $this->Landing_pageModel->where('Kategori', 'Artikel')->where('Status', 'Publik')->orderBy('created_at', 'DESC')->paginate(6),
       'pager' => $this->Landing_pageModel->pager
     ];
 
@@ -490,7 +490,7 @@ class Landing_page extends BaseController
 
     $data = [
       'title' => 'Berita KPKNL Bandung',
-      'berita' => $this->Landing_pageModel->paginate(4),
+      'berita' => $this->Landing_pageModel->where('Kategori', 'Berita')->where('Status', 'Publik')->orderBy('created_at', 'DESC')->paginate(6),
       'pager' => $this->Landing_pageModel->pager
     ];
 
@@ -512,7 +512,7 @@ class Landing_page extends BaseController
   {
     $data = [
       'title' => 'Pengumuman KPKNL Bandung',
-      'berita' => $this->Landing_pageModel->findAll(),
+      'berita' => $this->Landing_pageModel->where('Kategori', 'Pengumuman')->where('Status', 'Publik')->orderBy('created_at', 'DESC')->paginate(6),
       'pager' => $this->Landing_pageModel->pager
     ];
 
@@ -534,7 +534,7 @@ class Landing_page extends BaseController
   {
     $data = [
       'title' => 'Peristiwa KPKNL Bandung',
-      'berita' => $this->Landing_pageModel->findAll(),
+      'berita' => $this->Landing_pageModel->where('Kategori', 'Kilas Peristiwa')->where('Status', 'Publik')->orderBy('created_at', 'DESC')->paginate(6),
       'pager' => $this->Landing_pageModel->pager
     ];
 
