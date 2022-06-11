@@ -154,4 +154,22 @@ class Meeting_requestModel extends Model
     $query = $builder->get();
     return $query;
   }
+
+  public function meetingRequestPetugasPerminggu($idPetugas)
+  {
+    /*SELECT COUNT(created_at) AS 'Jumlah', DATE_FORMAT(created_at, "%e %M %Y")
+        FROM `pengaduan_online` GROUP BY DATE_FORMAT(created_at, "%e %M %Y") WHERE idPetugas = 'id' AND created_at >= NOW() */
+
+    $builder = $this->db->table('meeting_request');
+    $builder->select('COUNT(created_at) AS jumlah, created_at as tanggal');
+    $builder->where('idPetugas', $idPetugas);
+    $builder->where('created_at >=', 'NOW()');
+    $builder->orWhere('idPetugas', 1);
+    $builder->where('created_at >=', 'NOW()');
+    $builder->groupBy('DATE_FORMAT(created_at, "%e %M %Y")');
+    $builder->orderBy('created_at', 'asc');
+    $builder->limit(7);
+    $query = $builder->get();
+    return $query;
+  }
 }

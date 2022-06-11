@@ -327,7 +327,7 @@
         },
     };
 
-    var line_chart = new Chart(grafik_jumlah, config);
+    var line_chart = new Chart(grafik, config);
 </script>
 
 </body>
