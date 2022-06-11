@@ -79,6 +79,16 @@
                         <li><a href="/Landing_page/daftar_petugas">Daftar Petugas</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fas fa-file-alt "></i>
+                        <span>Kelola Pegawai</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="/KelolaPegawai/form_pegawai">Tambah Pegawai</a></li>
+                        <li><a href="/KelolaPegawai/daftar_pegawai">Daftar Pegawai</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->
