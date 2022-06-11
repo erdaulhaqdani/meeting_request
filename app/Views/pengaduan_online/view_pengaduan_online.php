@@ -135,7 +135,7 @@
                                                 <td><?= $a->Status; ?></td>
                                                 <td>
                                                     <a href="/Pengaduan_online/detail/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
-                                                    <?php if ($a->Status == 'Belum diproses' || 'Tidak sesuai') : ?>
+                                                    <?php if ($a->Status == 'Belum diproses' ||  $a->Status ==  'Tidak sesuai') : ?>
                                                         <a href="/Pengaduan_online/edit/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                                                         <a href="/Pengaduan_online/delete/<?= $a->idPengaduan; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
                                                     <?php elseif ($a->Status == 'Selesai diproses') : ?>

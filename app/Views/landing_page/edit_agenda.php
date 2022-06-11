@@ -46,7 +46,7 @@
                 }
                 ?>
 
-                <form action="/Landing_page/update_agenda/<?= $agenda['idAgenda']; ?>" class="custom-validation" method="POST" enctype="multipart/form-data">
+                <form action="/Landing_page/update_agenda/<?= $agenda['id_berita']; ?>" class="custom-validation" method="POST" enctype="multipart/form-data">
 
                   <div class="row mb-2">
                     <label for="judul" class="col-sm-3 col-form-label">Judul Agenda</label>
@@ -70,7 +70,7 @@
                   </div>
 
                   <div class="row mb-2">
-                    <label for="gambar" class="col-sm-3 col-form-label"><a href="/cover_Agenda/<?= $agenda['Cover']; ?>" target="blank">Gambar Cover</a></label>
+                    <label for="gambar" class="col-sm-3 col-form-label"><a href="/gambar/<?= $agenda['Gambar']; ?>" target="blank">Gambar Cover</a></label>
                     <div class="col-sm-9">
                       <div class="input-group">
                         <input type="file" name="gambar" class="form-control" id="gambar" required>

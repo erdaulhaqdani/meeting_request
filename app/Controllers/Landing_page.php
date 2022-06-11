@@ -8,8 +8,6 @@ use App\Models\PermohonanInfoModel;
 use App\Models\LevelModel;
 use App\Models\PetugasModel;
 use App\Models\UserModel;
-use App\Models\AgendaModel;
-
 
 class Landing_page extends BaseController
 {
@@ -19,7 +17,6 @@ class Landing_page extends BaseController
   protected $LevelModel;
   protected $PetugasModel;
   protected $UserModel;
-  protected $AgendaModel;
 
   public function __construct()
   {
@@ -29,7 +26,6 @@ class Landing_page extends BaseController
     $this->LevelModel = new LevelModel();
     $this->PetugasModel = new PetugasModel();
     $this->UserModel = new UserModel();
-    $this->AgendaModel = new AgendaModel();
   }
 
   public function form_petugas()
@@ -312,8 +308,9 @@ class Landing_page extends BaseController
   {
     $data = [
       'title' => 'Daftar Agenda',
-      'agenda' => $this->AgendaModel->getAgenda()
+      'agenda' => $this->Landing_pageModel->getAgenda(),
     ];
+
     return view('landing_page/daftar_agenda', $data);
   }
 
@@ -354,19 +351,20 @@ class Landing_page extends BaseController
       //ambil nama file
       $namagambar = $gambar->getRandomName();
       //pindah file ke folder gambar
-      $gambar->move('cover_Agenda', $namagambar);
+      $gambar->move('gambar', $namagambar);
     }
 
-    $this->AgendaModel->save([
+    $this->Landing_pageModel->save([
       'Judul' => $this->request->getVar('judul'),
+      'Kategori' => 'Agenda',
       'tgl_kegiatan' => $this->request->getVar('tgl'),
       'Isi' => $this->request->getVar('isi_agenda'),
       'Penulis' => $this->request->getVar('penulis'),
-      'Cover' => $namagambar,
+      'Gambar' => $namagambar,
       'Status' => 'Diarsipkan',
     ]);
 
-    session()->setFlashdata('pesan', 'Berhasil menambahkan Informasi.');
+    session()->setFlashdata('pesan', 'Berhasil menambahkan agenda.');
 
     return redirect()->to('/Landing_page/form_agenda');
   }
@@ -376,7 +374,7 @@ class Landing_page extends BaseController
     $data = [
       'title' => 'Edit Agenda',
       'validation' => \Config\Services::validation(),
-      'agenda' => $this->AgendaModel->getAgenda($id)
+      'agenda' => $this->Landing_pageModel->getAgenda($id)
     ];
     return view('landing_page/edit_agenda', $data);
   }
@@ -400,12 +398,12 @@ class Landing_page extends BaseController
       return redirect()->to('/Landing_page/edit_agenda')->withInput()->with('validation', $validation);
     }
 
-    $agenda = $this->AgendaModel->find($id);
+    $agenda = $this->Landing_pageModel->find($id);
 
     //hapus file dari direktori
-    if ($agenda['Cover'] != 'default.png') {
+    if ($agenda['Gambar'] != 'default.png') {
       //hapus file lampiran
-      unlink('cover_Agenda/' . $agenda['Cover']);
+      unlink('gambar/' . $agenda['Gambar']);
     }
     //ambil file
     $gambar = $this->request->getFile('gambar');
@@ -418,8 +416,8 @@ class Landing_page extends BaseController
       $gambar->move('cover_Agenda', $namagambar);
     }
 
-    $this->AgendaModel->save([
-      'idAgenda' => $id,
+    $this->Landing_pageModel->save([
+      'id_berita' => $id,
       'Judul' => $this->request->getVar('judul'),
       'tgl_kegiatan' => $this->request->getVar('tgl'),
       'Isi' => $this->request->getVar('isi_agenda'),
@@ -427,27 +425,27 @@ class Landing_page extends BaseController
       'Cover' => $namagambar
     ]);
 
-    session()->setFlashdata('pesan', 'Berhasil mengubah Informasi.');
+    session()->setFlashdata('pesan', 'Berhasil mengubah agenda.');
 
     return redirect()->to('/Landing_page/daftar_agenda');
   }
 
   public function arsip_agenda($id)
   {
-    $this->AgendaModel->save([
-      'idAgenda' => $id,
+    $this->Landing_pageModel->save([
+      'id_berita' => $id,
       'Status' => 'Diarsipkan'
     ]);
 
-    session()->setFlashdata('pesan', 'Berhasil mengarsipkan Informasi.');
+    session()->setFlashdata('pesan', 'Berhasil mengarsipkan agenda.');
 
     return redirect()->to('/Landing_page/daftar_agenda');
   }
 
   public function publik_agenda($id)
   {
-    $this->AgendaModel->save([
-      'idAgenda' => $id,
+    $this->Landing_pageModel->save([
+      'id_berita' => $id,
       'Status' => 'Publik'
     ]);
 
@@ -563,8 +561,8 @@ class Landing_page extends BaseController
 
     $data = [
       'title' => 'Agenda KPKNL Bandung',
-      'berita' => $this->AgendaModel->where('Status', 'Publik')->orderBy('created_at', 'DESC')->paginate(6),
-      'pager' => $this->AgendaModel->pager
+      'berita' => $this->Landing_pageModel->where('Status', 'Publik')->where('Kategoti', 'Agenda')->orderBy('created_at', 'DESC')->paginate(6),
+      'pager' => $this->Landing_pageModel->pager
     ];
 
     return view('pages/agenda_grid', $data);
@@ -574,7 +572,7 @@ class Landing_page extends BaseController
   {
     $data = [
       'title' => 'Agenda KPKNL Bandung',
-      'berita' => $this->AgendaModel->getAgenda($id),
+      'berita' => $this->Landing_pageModel->getInformasi($id),
       'artikel' => $this->Landing_pageModel->listArtikelTerbaru()
     ];
 
