@@ -38,15 +38,13 @@ class Backend extends BaseController
   {
     $data = [
       'title' => 'Dashboard Petugas',
-      'groupPengaduan' => $this->Pengaduan_onlineModel->groupByStatus(session('idPetugas')),
-      'groupMeeting' => $this->Meeting_requestModel->groupByStatus(session('idPetugas')),
-      'pengaduanPerminggu' => $this->Pengaduan_onlineModel->pengaduanPerminggu(session('idPetugas')),
+      'groupPengaduan' => $this->Pengaduan_onlineModel->groupByStatusPetugas(session('idPetugas')),
+      'groupMeeting' => $this->Meeting_requestModel->groupByStatusPetugas(session('idPetugas')),
+      'pengaduanPerminggu' => $this->Pengaduan_onlineModel->pengaduanPetugasPerminggu(session('idPetugas')),
       'meetingPerminggu' => $this->Meeting_requestModel->meetingRequestPetugasPerminggu(session('idPetugas')),
       'lastMeetingRequest' => $this->Meeting_requestModel->lastMeetingRequest(session('idPetugas')),
       'kategori' => $this->KategoriModel->getKategori(),
     ];
-
-    dd(session());
 
     return view('backend/dashboard_petugas', $data);
   }

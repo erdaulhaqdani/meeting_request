@@ -37,7 +37,7 @@
             <div class="page-content">
 
                 <div class="row">
-                    <div class="col-xl-3">
+                    <div class="col-md-3">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-4">Statistik Pengaduan</h4>
@@ -45,7 +45,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3">
+                    <div class="col-md-3">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-4">Statistik Meeting</h4>
@@ -56,16 +56,23 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-xl-6">
+                    <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-4">Pengajuan yang dibuat minggu ini</h4>
-                                <canvas id="grafik_jumlah"></canvas>
+                                <canvas id="bar_pengaduan"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4">Meeting yang dibuat minggu ini</h4>
+                                <canvas id="bar_meeting"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
             <!-- End Page-content -->
 
@@ -85,7 +92,6 @@
 <?= $this->include("partials/vendor-scripts") ?>
 
 <!-- Plugins js -->
-apexcharts
 <script src="/assets/libs/apexcharts/apexcharts.min.js"></script>
 
 <!-- jquery.vectormap map -->
@@ -156,25 +162,23 @@ apexcharts
     });
 </script>
 
-<!-- Line Chart jumlah tiket minggu ini -->
+<?php
+function formatTanggal($date)
+{
+    // ubah string menjadi format tanggal
+    return date('d F Y', strtotime($date));
+}
+?>
+
+<!-- Bar Chart pengaduan minggu ini -->
 <script>
-    // cari cara generate tanggal minggu ini via javascript/php
+    // cari cara generate tanggal minggu ini via javascript/php kirim tgl ke sql
     var currentDate = new Date();
     var day = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay() + 0)).toUTCString();
 
-    var grafik = document.getElementById('grafik_jumlah');
+    var bar_pengaduan = document.getElementById('bar_pengaduan');
     var data_pengaduan = [];
     var label_pengaduan = [];
-    var data_meeting = [];
-    var label_meeting = [];
-
-    <?php
-    function formatTanggal($date)
-    {
-        // ubah string menjadi format tanggal
-        return date('d F Y', strtotime($date));
-    }
-    ?>
 
     <?php foreach ($pengaduanPerminggu->getResult() as $key) : ?>
         data_pengaduan.push(<?= $key->jumlah ?>);
@@ -189,11 +193,6 @@ apexcharts
             backgroundColor: '#0f9cf3',
             borderColor: '#0f9cf3',
             data: data_pengaduan
-        }, {
-            label: 'Meeting Request',
-            backgroundColor: '#6fd088',
-            borderColor: '#6fd088',
-            data: [7, 0.5, 3],
         }]
     };
 
@@ -216,120 +215,57 @@ apexcharts
         },
     };
 
-    var line_chart = new Chart(grafik_jumlah, config);
+    const barPengaduan = new Chart(bar_pengaduan, config);
 </script>
 
-<!-- <script>
-    var barchart_jumlah_tugas_perbulan = document.getElementById('barchart_jumlah_tugas_perbulan');
+<!-- Bar Chart meeting minggu ini -->
+<script>
+    // cari cara generate tanggal minggu ini via javascript/php
+    var currentDate = new Date();
+    var day = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay() + 0)).toUTCString();
 
-    const labels = Utils.months({
-        count: 12
-    });
-    const data = {
-        labels: labels,
+    var bar_meeting = document.getElementById('bar_meeting');
+
+    var data_meeting = [];
+    var label_meeting = [];
+
+    <?php foreach ($meetingPerminggu->getResult() as $key) : ?>
+        data_meeting.push(<?= $key->jumlah ?>);
+        <?php $tanggal = formatTanggal($key->tanggal); ?>
+        label_meeting.push('<?= $tanggal ?>');
+    <?php endforeach ?>
+
+    const data_bar = {
+        labels: label_meeting,
         datasets: [{
-            label: 'My First Dataset',
-            data: [65, 59, 80, 81, 56, 55, 40, 59, 80, 81, 56, 55, 40],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 205, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(201, 203, 207, 0.2)'
-            ],
-            borderColor: [
-                'rgb(255, 99, 132)',
-                'rgb(255, 159, 64)',
-                'rgb(255, 205, 86)',
-                'rgb(75, 192, 192)',
-                'rgb(54, 162, 235)',
-                'rgb(153, 102, 255)',
-                'rgb(201, 203, 207)'
-            ],
-            borderWidth: 1
+            label: 'Meeting Request',
+            backgroundColor: '#6fd088',
+            borderColor: '#6fd088',
+            data: [7, 0.5, 3],
         }]
     };
 
-    const config = {
+    const config_bar = {
         type: 'bar',
-        data: data,
+        data: data_bar,
         options: {
+            responsive: true,
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    max: 10
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
                 }
             }
         },
     };
 
-    var bar_chart = new Chart(config);
-</script> -->
-
-<!-- <script>
-    options = {
-        series: [{
-                name: "Selesai",
-                type: "column",
-                data: [23, 42, 35, 27, 43, 22, 17, 31, 22, 22, 12, 16],
-            },
-            {
-                name: "Disetujui",
-                type: "line",
-                data: [23, 32, 27, 38, 27, 32, 27, 38, 22, 31, 21, 16],
-            },
-        ],
-        chart: {
-            height: 350,
-            type: "line",
-            toolbar: {
-                show: !1,
-            },
-        },
-        stroke: {
-            width: [0, 2.3],
-            curve: "straight",
-        },
-        plotOptions: {
-            bar: {
-                horizontal: !1,
-                columnWidth: "34%",
-            },
-        },
-        dataLabels: {
-            enabled: !1,
-        },
-        markers: {
-            size: [0, 3.5],
-            colors: ["#6fd088"],
-            strokeWidth: 2,
-            strokeColors: "#0f9cf3",
-            hover: {
-                size: 4,
-            },
-        },
-        legend: {
-            show: !1,
-        },
-        yaxis: {
-            labels: {
-                formatter: function(e) {
-                    return e;
-                },
-            },
-            tickAmount: 5,
-            min: 0,
-            max: 50,
-        },
-        colors: ["#6fd088", "#0f9cf3"],
-        labels: labels,
-    };
-    (chart = new ApexCharts(
-        document.querySelector("#jumlah_tugas"),
-        options
-    )).render();
-</script> -->
+    var barMeeting = new Chart(bar_meeting, config_bar);
+</script>
 
 </body>
 

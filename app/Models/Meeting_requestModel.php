@@ -155,6 +155,18 @@ class Meeting_requestModel extends Model
     return $query;
   }
 
+  public function groupByStatusPetugas($idPetugas)
+  {
+    $builder = $this->db->table('meeting_request');
+    $builder->selectCount('idMeeting', 'Jumlah');
+    $builder->select('Status');
+    $builder->where('idPetugas', $idPetugas);
+    $builder->orWhere('idPetugas', 1);
+    $builder->groupBy('Status');
+    $query = $builder->get();
+    return $query;
+  }
+
   public function meetingRequestPetugasPerminggu($idPetugas)
   {
     /*SELECT COUNT(created_at) AS 'Jumlah', DATE_FORMAT(created_at, "%e %M %Y")
