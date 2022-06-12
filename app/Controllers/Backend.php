@@ -26,7 +26,8 @@ class Backend extends BaseController
       'groupPengaduan' => $this->Pengaduan_onlineModel->groupByStatus(session('idCustomer')),
       'groupMeeting' => $this->Meeting_requestModel->groupByStatus(session('idCustomer')),
       'pengaduanPerminggu' => $this->Pengaduan_onlineModel->pengaduanPerminggu(session('idCustomer')),
-      'meetingRequestPerminggu' => $this->Meeting_requestModel->meetingRequestPerminggu(session('idCustomer')),
+      'meetingPerminggu' => $this->Meeting_requestModel->meetingRequestPerminggu(session('idCustomer')),
+      'lastPengaduan' => $this->Pengaduan_onlineModel->lastPengaduan(session('idCustomer')),
       'lastMeetingRequest' => $this->Meeting_requestModel->lastMeetingRequest(session('idCustomer')),
       'kategori' => $this->KategoriModel->getKategori(),
     ];

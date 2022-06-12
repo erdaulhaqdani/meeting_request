@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2022 at 06:52 AM
+-- Generation Time: Jun 12, 2022 at 04:15 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -25,31 +25,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `agenda`
---
-
-CREATE TABLE `agenda` (
-  `idAgenda` int(11) NOT NULL,
-  `Judul` varchar(255) NOT NULL,
-  `Isi` text NOT NULL,
-  `Status` varchar(30) NOT NULL,
-  `Cover` varchar(255) NOT NULL,
-  `tgl_kegiatan` datetime NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  `Penulis` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `agenda`
---
-
-INSERT INTO `agenda` (`idAgenda`, `Judul`, `Isi`, `Status`, `Cover`, `tgl_kegiatan`, `created_at`, `updated_at`, `Penulis`) VALUES
-(1, 'Halal bi halal', '<p>setelah menyambut hari raya idul fitri, ada baiknya kita melakukan halal bi halal di kantor</p>', 'Diarsipkan', '1653468964_8968dbfd938ed2cb9507.png', '2022-05-30 00:00:00', '2022-05-25 03:00:01', '2022-05-26 05:03:30', 'Admin');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `berita`
 --
 
@@ -61,31 +36,34 @@ CREATE TABLE `berita` (
   `Penulis` varchar(255) NOT NULL,
   `Gambar` varchar(255) NOT NULL,
   `Status` varchar(255) NOT NULL,
+  `tgl_kegiatan` date NOT NULL,
   `created_at` date NOT NULL,
-  `updated_at` date NOT NULL
+  `updated_at` date NOT NULL,
+  `idPetugas` int(11) NOT NULL DEFAULT 5
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `berita`
 --
 
-INSERT INTO `berita` (`id_berita`, `Judul`, `Kategori`, `Isi`, `Penulis`, `Gambar`, `Status`, `created_at`, `updated_at`) VALUES
-(30, 'Sasuke Uchiha sudah update', 'artikel', '<div>\r\n<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas amet a</div>\r\n<div>ssumenda sint dicta odit reprehenderit vero quidem nemo rem eos nobis velit aspe</div>\r\n<div>&nbsp;</div>\r\n<div>riores animi esse delectus illo sapiente aut maxime</div>\r\n<div>, laudantium consequatur placeat deserunt? Commodi animi minima fugiat iure autem.</div>\r\n<div>&nbsp;</div>\r\n<div>\r\n<div>riores animi esse delectus illo sapiente aut maxime</div>\r\n<div>, laudantium consequatur placeat deserunt? Commodi animi minima fugiat iure autem.</div>\r\n</div>\r\n</div>', 'Erda Ulhaq Dani', '1649661941_15ddffce4147cdeccfa2.jpg', 'Publik', '2022-04-07', '2022-04-14'),
-(31, 'Naruto 2 Update Update', 'berita', '<p>awdhadhoawdoajdiojwaod dnwdaiodaiowdiwdiao dijawidjaidjwiajdwai&nbsp;</p>\r\n<p>dwadawdad dwaidjaiojdiowadadbehfbefiufeff hwahdawhdahdahwdwa</p>\r\n<p>dwadawdad dwaidjaiojdiowadadbehfbefiufeff hwahdawhdahdahwdwa</p>\r\n<p>dwadawdad dwaidjaiojdiowadadbehfbefiufeff hwahdawhdahdahwdwa</p>', 'Erda dani', '1649986633_036ecc2f388ebc14577f.jpg', 'Publik', '2022-04-07', '2022-04-14'),
-(32, 'Naruto 3', 'artikel', '<p>jdowjdoahdowh dwhdhaohdwhadodhaw hdwahdoahwdohaodha</p>', 'Erda', '1649392839_956d7d052b75ce4a039d.jpg', 'Publik', '2022-04-07', '2022-04-08'),
-(33, 'Naruto 4', 'artikel', '<p>wbdaudwha dawuihdiuahdawh jhhohadwhaneegagwar ar</p>', 'Erda', '1649648707_0e64ca58170b9ecfa7b5.jpg', 'Publik', '2022-04-07', '2022-04-10'),
-(34, 'hahahaha', 'berita', '<p>ndwadiahdoihaoih dawdwadada idawhdiahiowhoai awhdaihdahdawihdah</p>\r\n<p>diawhdiahdiahdha iwdiahdiahdiawhiwh dwihadiahdihaihiadhwadiadhwahdd&nbsp;</p>\r\n<p>&nbsp;</p>', 'Erda', '1649648045_e5ea1493975a10d1f37e.jpg', 'Publik', '2022-04-08', '2022-04-10'),
-(35, 'Narutoooooo', 'artikel', '<p>dwmdawidai jdjwiajdioajdiowjaio djwiajdoaijdiowajd</p>', 'Erda', '1649470810_b766778d8f6aff9671ef.jpg', 'Publik', '2022-04-08', '2022-04-08'),
-(54, 'Naruto Artikel edit', 'artikel', '<p>dwmdawidai jdjwiajdioajdiowjaio djwiajdoaijdiowajd</p>', 'Erda Ulhaq dani', '1649457061_acaa26f2b194c039917b.jpg', 'Diarsipkan', '2022-04-08', '2022-04-08'),
-(56, 'Coba gambar icon', 'artikel', '<p>erda aduwhaawpa dwiadadawhdoa dwdhadhahdwao&nbsp;</p>\r\n<p>dwidahdwhadoahwd dwidhaohdwa&nbsp;</p>\r\n<p>dwndandwnan ndwnada&nbsp;</p>\r\n<p>wduaduahwdhadhadhawh dwhadhadhwadwadaw</p>', 'Erda Ulhaq Dani', '1649471762_23e0017416e116d151d3.png', 'Publik', '2022-04-08', '2022-04-08'),
-(57, 'Berita Naruto', 'berita', '<p>bdawiwdgaiudaiuhdwa dawhiudhwiahdiah wahdhaidhwaud</p>', 'Erda Ulhaq Dani', '1649649492_d141a54d9a4914debaf2.jpg', 'Publik', '2022-04-10', '2022-04-10'),
-(58, 'Peristiwa 1', 'peristiwa', '<p>Peristiwa 1</p>', 'reggi', '1649650886_2cbed5f84e9909cf7077.jpg', 'Publik', '2022-04-10', '2022-04-10'),
-(59, 'Peristiwa 2', 'peristiwa', '<p>Peristiwa 2</p>', 'reggi', '1649650930_917a8681b7050e91e2a9.jpg', 'Publik', '2022-04-10', '2022-04-10'),
-(60, 'Peristiwa 3', 'peristiwa', '<p>Peristiwa 3</p>', 'Adit ', '1649650983_8c06fb6e75d8fa42e681.jpg', 'Publik', '2022-04-10', '2022-04-10'),
-(61, 'Peristiwa 4', 'peristiwa', '<p>Ini adalah isi dari Peristiwa 4</p>', 'Alif Muhsin', '1649652672_9a497ff816ebb71b3936.jpg', 'Publik', '2022-04-10', '2022-04-10'),
-(62, 'Peristiwa 5', 'peristiwa', '<p>Ini adalah isi dari Kilas Peristiwa 5</p>', 'Alif Muhsin 2', '1649652779_beeea091a9004512c216.jpg', 'Publik', '2022-04-10', '2022-04-10'),
-(63, 'Contoh Berita', 'berita', '<p>ini adalah isi dari Contoh Berita</p>', 'Erda Ulhaq', '1649661400_7750391ee6407fac6790.jpg', 'Publik', '2022-04-11', '2022-04-11'),
-(64, 'Contoh Berita', 'Berita', '<p>Ini Isi COntoh BErita</p>', 'Erda', '1649917540_aa3bd13dba5c15b8cd0c.jpg', 'Publik', '2022-04-14', '2022-04-14');
+INSERT INTO `berita` (`id_berita`, `Judul`, `Kategori`, `Isi`, `Penulis`, `Gambar`, `Status`, `tgl_kegiatan`, `created_at`, `updated_at`, `idPetugas`) VALUES
+(30, 'Sasuke Uchiha sudah update', 'Agenda', '<div>\r\n<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas amet a</div>\r\n<div>ssumenda sint dicta odit reprehenderit vero quidem nemo rem eos nobis velit aspe</div>\r\n<div>&nbsp;</div>\r\n<div>riores animi esse delectus illo sapiente aut maxime</div>\r\n<div>, laudantium consequatur placeat deserunt? Commodi animi minima fugiat iure autem.</div>\r\n<div>&nbsp;</div>\r\n<div>\r\n<div>riores animi esse delectus illo sapiente aut maxime</div>\r\n<div>, laudantium consequatur placeat deserunt? Commodi animi minima fugiat iure autem.</div>\r\n</div>\r\n</div>', 'Erda Ulhaq Dani', '1649661941_15ddffce4147cdeccfa2.jpg', 'Publik', '0000-00-00', '2022-04-07', '2022-04-14', 5),
+(31, 'Naruto 2 Update Update', 'berita', '<p>awdhadhoawdoajdiojwaod dnwdaiodaiowdiwdiao dijawidjaidjwiajdwai&nbsp;</p>\r\n<p>dwadawdad dwaidjaiojdiowadadbehfbefiufeff hwahdawhdahdahwdwa</p>\r\n<p>dwadawdad dwaidjaiojdiowadadbehfbefiufeff hwahdawhdahdahwdwa</p>\r\n<p>dwadawdad dwaidjaiojdiowadadbehfbefiufeff hwahdawhdahdahwdwa</p>', 'Erda dani', '1649986633_036ecc2f388ebc14577f.jpg', 'Publik', '0000-00-00', '2022-04-07', '2022-04-14', 5),
+(32, 'Naruto 3', 'artikel', '<p>jdowjdoahdowh dwhdhaohdwhadodhaw hdwahdoahwdohaodha</p>', 'Erda', '1649392839_956d7d052b75ce4a039d.jpg', 'Publik', '0000-00-00', '2022-04-07', '2022-04-08', 5),
+(33, 'Naruto 4', 'artikel', '<p>wbdaudwha dawuihdiuahdawh jhhohadwhaneegagwar ar</p>', 'Erda', '1649648707_0e64ca58170b9ecfa7b5.jpg', 'Publik', '0000-00-00', '2022-04-07', '2022-04-10', 5),
+(34, 'hahahaha', 'berita', '<p>ndwadiahdoihaoih dawdwadada idawhdiahiowhoai awhdaihdahdawihdah</p>\r\n<p>diawhdiahdiahdha iwdiahdiahdiawhiwh dwihadiahdihaihiadhwadiadhwahdd&nbsp;</p>\r\n<p>&nbsp;</p>', 'Erda', '1649648045_e5ea1493975a10d1f37e.jpg', 'Publik', '0000-00-00', '2022-04-08', '2022-04-10', 5),
+(35, 'Narutoooooo', 'artikel', '<p>dwmdawidai jdjwiajdioajdiowjaio djwiajdoaijdiowajd</p>', 'Erda', '1649470810_b766778d8f6aff9671ef.jpg', 'Publik', '0000-00-00', '2022-04-08', '2022-04-08', 5),
+(54, 'Naruto Artikel edit', 'artikel', '<p>dwmdawidai jdjwiajdioajdiowjaio djwiajdoaijdiowajd</p>', 'Erda Ulhaq dani', '1649457061_acaa26f2b194c039917b.jpg', 'Diarsipkan', '0000-00-00', '2022-04-08', '2022-04-08', 5),
+(56, 'Coba gambar icon', 'artikel', '<p>erda aduwhaawpa dwiadadawhdoa dwdhadhahdwao&nbsp;</p>\r\n<p>dwidahdwhadoahwd dwidhaohdwa&nbsp;</p>\r\n<p>dwndandwnan ndwnada&nbsp;</p>\r\n<p>wduaduahwdhadhadhawh dwhadhadhwadwadaw</p>', 'Erda Ulhaq Dani', '1649471762_23e0017416e116d151d3.png', 'Publik', '0000-00-00', '2022-04-08', '2022-04-08', 5),
+(57, 'Berita Naruto', 'berita', '<p>bdawiwdgaiudaiuhdwa dawhiudhwiahdiah wahdhaidhwaud</p>', 'Erda Ulhaq Dani', '1649649492_d141a54d9a4914debaf2.jpg', 'Publik', '0000-00-00', '2022-04-10', '2022-04-10', 5),
+(58, 'Peristiwa 1', 'peristiwa', '<p>Peristiwa 1</p>', 'reggi', '1649650886_2cbed5f84e9909cf7077.jpg', 'Publik', '0000-00-00', '2022-04-10', '2022-04-10', 5),
+(59, 'Peristiwa 2', 'peristiwa', '<p>Peristiwa 2</p>', 'reggi', '1649650930_917a8681b7050e91e2a9.jpg', 'Publik', '0000-00-00', '2022-04-10', '2022-04-10', 5),
+(60, 'Peristiwa 3', 'peristiwa', '<p>Peristiwa 3</p>', 'Adit ', '1649650983_8c06fb6e75d8fa42e681.jpg', 'Publik', '0000-00-00', '2022-04-10', '2022-04-10', 5),
+(61, 'Peristiwa 4', 'peristiwa', '<p>Ini adalah isi dari Peristiwa 4</p>', 'Alif Muhsin', '1649652672_9a497ff816ebb71b3936.jpg', 'Publik', '0000-00-00', '2022-04-10', '2022-04-10', 5),
+(62, 'Peristiwa 5', 'peristiwa', '<p>Ini adalah isi dari Kilas Peristiwa 5</p>', 'Alif Muhsin 2', '1649652779_beeea091a9004512c216.jpg', 'Publik', '0000-00-00', '2022-04-10', '2022-04-10', 5),
+(63, 'Contoh Berita', 'berita', '<p>ini adalah isi dari Contoh Berita</p>', 'Erda Ulhaq', '1649661400_7750391ee6407fac6790.jpg', 'Publik', '0000-00-00', '2022-04-11', '2022-04-11', 5),
+(64, 'Contoh Berita', 'Berita', '<p>Ini Isi COntoh BErita</p>', 'Erda', '1649917540_aa3bd13dba5c15b8cd0c.jpg', 'Publik', '0000-00-00', '2022-04-14', '2022-04-14', 5),
+(65, 'Uji coba aplikasi Landing Page', 'Agenda', '<p>KPKNL sedang merencanakan pengadaan aplikasi web landing page guna memudahkan dan memperlancara layanan yang ada&nbsp;</p>', 'Admin', '1654932160_fb3334e97a6661948802.jpg', 'Diarsipkan', '0000-00-00', '2022-06-11', '2022-06-11', 5);
 
 -- --------------------------------------------------------
 
@@ -133,6 +111,15 @@ CREATE TABLE `jabatan` (
   `posisiJabatan` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `jabatan`
+--
+
+INSERT INTO `jabatan` (`idJabatan`, `posisiJabatan`) VALUES
+(1, 'Kepala Kantor'),
+(2, 'Kepala Seksi'),
+(3, 'Staf');
+
 -- --------------------------------------------------------
 
 --
@@ -169,13 +156,6 @@ CREATE TABLE `laporan` (
   `updated_at` datetime NOT NULL,
   `idTugas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `laporan`
---
-
-INSERT INTO `laporan` (`idLaporan`, `file_laporan`, `deskripsi`, `created_at`, `updated_at`, `idTugas`) VALUES
-(1, '1652980044_f035d6cc225d4035f349.png', 'tes', '2022-05-19 12:07:24', '2022-05-19 12:07:24', 3);
 
 -- --------------------------------------------------------
 
@@ -220,20 +200,10 @@ CREATE TABLE `meeting_request` (
   `idKategori` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `idCustomer` int(11) NOT NULL
+  `File_lampiran` varchar(255) NOT NULL,
+  `idCustomer` int(11) NOT NULL,
+  `idPetugas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `meeting_request`
---
-
-INSERT INTO `meeting_request` (`idMeeting`, `Tanggal_kunjungan`, `Waktu_kunjungan`, `Kantor`, `Bentuk_layanan`, `Perihal`, `Telepon`, `Status`, `idKategori`, `created_at`, `updated_at`, `idCustomer`) VALUES
-(29, '2022-04-14', '08:00', 'KPKNL Bandung', 'Daring', 'Lelang', 2147483647, 'Selesai diproses', 1, '2022-04-14 01:11:17', '2022-06-01 00:02:17', 1),
-(31, '2022-04-14', '08:30', 'KPKNL Bandung', 'Daring', 'Pengelolaan Kekayaan Negara', 2147483647, 'Sedang diproses', 2, '2022-04-14 01:37:08', '2022-04-14 01:39:33', 8),
-(32, '2022-04-15', '09:30', 'DJKN Jabar', 'Daring', 'Pengelolaan Kekayaan Negara', 2147483647, 'Belum diproses', 2, '2022-04-14 20:46:19', '2022-04-14 20:48:21', 9),
-(33, '2022-04-15', '08:15', 'KPKNL Bandung', 'Luring', 'lelang', 2147483647, 'Belum diproses', 1, '2022-04-14 20:48:59', '2022-04-14 20:48:59', 9),
-(34, '2022-04-15', '08:00', 'KPKNL Bandung', 'Daring', 'Pengelolaan Kekayaan Negara', 2147483647, 'Belum diproses', 2, '2022-04-14 20:50:06', '2022-04-14 20:50:06', 9),
-(35, '2022-06-02', '09:00', 'DJKN Jabar', 'Luring', 'Penilaian aset properti', 2147483647, 'Belum diproses', 3, '2022-05-31 23:51:08', '2022-05-31 23:51:08', 1);
 
 -- --------------------------------------------------------
 
@@ -246,20 +216,6 @@ CREATE TABLE `menginput` (
   `tglInput` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `idCustomer` int(11) NOT NULL,
   `idTiket` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `menjabat`
---
-
-CREATE TABLE `menjabat` (
-  `idMenjabat` int(11) NOT NULL,
-  `tglMulai` date NOT NULL,
-  `tglSelesai` date NOT NULL,
-  `idJabatan` int(11) NOT NULL,
-  `NIP` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -304,12 +260,12 @@ CREATE TABLE `pegawai` (
   `nip` varchar(30) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `noTelp` varchar(15) NOT NULL,
-  `alamat` varchar(255) NOT NULL,
   `jenisKelamin` varchar(10) NOT NULL,
-  `tglLahir` date NOT NULL,
   `password` varchar(50) NOT NULL,
-  `idMenjabat` int(11) NOT NULL,
+  `status` varchar(12) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `idJabatan` int(11) NOT NULL,
   `idUnit` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -317,10 +273,8 @@ CREATE TABLE `pegawai` (
 -- Dumping data for table `pegawai`
 --
 
-INSERT INTO `pegawai` (`idPegawai`, `nip`, `nama`, `email`, `noTelp`, `alamat`, `jenisKelamin`, `tglLahir`, `password`, `idMenjabat`, `idUnit`) VALUES
-(4, '6701193101', 'Aditia', 'aditia@gmail.com', '08221778912', 'bdg', 'Laki-laki', '2022-04-20', '123', 1, 6),
-(5, '6701194134', 'Reggi', 'reggi@gmail.com', '1231415123', 'bdg', 'Laki-laki', '2022-04-20', '123', 2, 5),
-(6, '6701191011', 'Erda', 'erda@gmail.com', '0812301823', 'bdg', 'Lak-laki', '2022-04-21', '123', 3, 5);
+INSERT INTO `pegawai` (`idPegawai`, `nip`, `nama`, `email`, `jenisKelamin`, `password`, `status`, `created_at`, `updated_at`, `idJabatan`, `idUnit`) VALUES
+(1, '6701193101', 'Adit', 'aditia@gmail.com', 'pria', ' ,?b?Y[?K-#Kp', 'Aktif', '2022-06-11 08:50:13', '2022-06-11 08:50:13', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -348,8 +302,12 @@ CREATE TABLE `pengaduan_online` (
 --
 
 INSERT INTO `pengaduan_online` (`idPengaduan`, `Judul`, `Isi`, `idKategori`, `Lampiran`, `Status`, `created_at`, `updated_at`, `Rating`, `Ulasan`, `idCustomer`, `idPetugas`) VALUES
-(1, 'Properti Navi', 'Permohonan untuk menilai properti milik Navi', 3, '1654580641_cf1b72c66959914c978b.jpeg', 'Eskalasi', '2022-06-07 00:44:01', '2022-06-07 01:25:42', 0, '', 1, 16),
-(2, 'test1', 'test1', 2, 'user.png', 'Belum diproses', '2022-06-07 21:05:36', '2022-06-07 21:05:36', 0, '', 1, 1);
+(1, 'Properti Navi', 'Permohonan untuk menilai properti milik Navi', 1, 'user.png', 'Tidak sesuai', '2022-06-07 00:44:01', '2022-06-09 21:30:44', 0, '', 1, 1),
+(2, 'test1', 'test1', 2, 'user.png', 'Belum diproses', '2022-06-07 21:05:36', '2022-06-07 21:05:36', 0, '', 1, 1),
+(3, 'zzzzz', 'zzzzzz', 1, 'user.png', 'Belum diproses', '2022-06-01 01:51:56', '2022-06-01 01:51:56', 0, '', 1, 1),
+(4, 'aaaaaa', 'aaaaaaa', 3, 'user.png', 'Sedang diproses', '2022-06-02 02:06:43', '2022-06-09 21:10:55', 0, '', 1, 16),
+(5, 'Test mengajukan pengaduan', 'Mencoba fitur input', 2, 'user.png', 'Selesai diproses', '2022-06-09 21:13:34', '2022-06-09 21:22:54', 0, '', 1, 1),
+(6, 'First test', 'First test', 5, 'user.png', 'Belum diproses', '2022-06-10 03:47:10', '2022-06-10 03:47:10', 0, '', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -369,21 +327,8 @@ CREATE TABLE `penugasan` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `idPegawai` int(11) NOT NULL,
-  `pic` int(11) NOT NULL,
-  `idTim` int(11) NOT NULL
+  `pic` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `penugasan`
---
-
-INSERT INTO `penugasan` (`idTugas`, `noPenugasan`, `namaTugas`, `detailTugas`, `tenggatWaktu`, `lampiran`, `status`, `catatan`, `created_at`, `updated_at`, `idPegawai`, `pic`, `idTim`) VALUES
-(3, 'test1', 'tes', 'tes', '2022-05-21 00:00:00', '-', 'Selesai', '', '2022-05-19 11:47:17', '2022-05-19 12:07:24', 4, 6, 0),
-(4, 'test2', 'tes', 'tes', '2022-05-20 00:00:00', '-', 'Dibatalkan', '', '2022-05-19 11:56:16', '2022-05-19 11:57:07', 4, 5, 0),
-(5, 'test3', 'tes', 'tes', '2022-05-21 00:00:00', '-', 'Menunggu', '', '2022-05-19 11:56:41', '2022-05-19 11:56:41', 4, 6, 0),
-(6, 'test4', 'tes', 'tes', '2022-05-20 00:00:00', '-', 'Menunggu', '', '2022-05-19 11:57:00', '2022-05-19 11:57:00', 4, 0, 0),
-(7, 'test5', 'tes', 'tes', '2022-05-21 00:00:00', '-', 'Proses', '', '2022-05-20 03:08:09', '2022-05-20 03:08:32', 4, 6, 0),
-(8, 'test7', 'tes2', 's', '2022-05-23 00:00:00', '-', 'Proses', '', '2022-05-22 13:02:02', '2022-05-31 07:55:40', 4, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -484,7 +429,10 @@ CREATE TABLE `tanggapan_po` (
 --
 
 INSERT INTO `tanggapan_po` (`idTanggapan_PO`, `Isi`, `Lampiran`, `tgl_mulai`, `tgl_selesai`, `Rating`, `Ulasan`, `NIP`, `idPengaduan`, `idPetugas`) VALUES
-(1, 'Pengaduan ini akan diteruskan kepada Admin JKasi', 'user.png', '2022-06-07 01:25:42', '2022-06-07 01:25:42', 0, '', 0, 1, 18);
+(1, 'Pengaduan ini akan diteruskan kepada Admin JKasi', 'user.png', '2022-06-07 01:25:42', '2022-06-07 01:25:42', 0, '', 0, 1, 18),
+(2, 'tanggapan', 'user.png', '2022-06-08 01:19:42', '2022-06-08 01:19:42', 0, '', 0, 1, 16),
+(3, 'Pengaduan ini diteruskan kepada petugas Pelayanan Penilaian', 'user.png', '2022-06-09 21:19:45', '2022-06-09 21:19:45', 0, '', 0, 5, 16),
+(4, 'Pengaduan bapak/ibu telah selesai kami proses, berikut daftar keperluan yang akan digunakan nanti', 'user.png', '2022-06-09 21:22:54', '2022-06-09 21:22:54', 0, '', 0, 5, 18);
 
 -- --------------------------------------------------------
 
@@ -494,8 +442,32 @@ INSERT INTO `tanggapan_po` (`idTanggapan_PO`, `Isi`, `Lampiran`, `tgl_mulai`, `t
 
 CREATE TABLE `tim` (
   `idTim` int(11) NOT NULL,
-  `idPegawai` int(11) NOT NULL
+  `idPegawai` int(11) NOT NULL,
+  `idTugas` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `unit`
+--
+
+CREATE TABLE `unit` (
+  `idUnit` int(11) NOT NULL,
+  `namaUnit` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `unit`
+--
+
+INSERT INTO `unit` (`idUnit`, `namaUnit`) VALUES
+(1, 'KPKNL'),
+(2, 'Sub Bagian Umum'),
+(3, 'Seksi Piutang Negara'),
+(4, 'Seksi Pengelolaan Kekayaan Negara'),
+(5, 'Seksi Hukum dan Informasi'),
+(6, 'Seksi Kepatuhan Internal');
 
 -- --------------------------------------------------------
 
@@ -529,12 +501,6 @@ INSERT INTO `user` (`Email`, `Password`, `idLevel`) VALUES
 --
 
 --
--- Indexes for table `agenda`
---
-ALTER TABLE `agenda`
-  ADD PRIMARY KEY (`idAgenda`);
-
---
 -- Indexes for table `berita`
 --
 ALTER TABLE `berita`
@@ -553,6 +519,12 @@ ALTER TABLE `kategori`
   ADD PRIMARY KEY (`idKategori`);
 
 --
+-- Indexes for table `laporan`
+--
+ALTER TABLE `laporan`
+  ADD PRIMARY KEY (`idLaporan`);
+
+--
 -- Indexes for table `level_user`
 --
 ALTER TABLE `level_user`
@@ -564,13 +536,22 @@ ALTER TABLE `level_user`
 ALTER TABLE `meeting_request`
   ADD PRIMARY KEY (`idMeeting`),
   ADD KEY `idKategori` (`idKategori`),
-  ADD KEY `idCustomer` (`idCustomer`);
+  ADD KEY `idCustomer` (`idCustomer`),
+  ADD KEY `meeting_petugas` (`idPetugas`);
 
 --
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pegawai`
+--
+ALTER TABLE `pegawai`
+  ADD PRIMARY KEY (`idPegawai`),
+  ADD KEY `idJabatan` (`idJabatan`),
+  ADD KEY `idUnit` (`idUnit`);
 
 --
 -- Indexes for table `pengaduan_online`
@@ -580,6 +561,12 @@ ALTER TABLE `pengaduan_online`
   ADD KEY `pengaduan_kategori` (`idKategori`),
   ADD KEY `pengaduan_customer` (`idCustomer`),
   ADD KEY `pengaduan_petugas` (`idPetugas`);
+
+--
+-- Indexes for table `penugasan`
+--
+ALTER TABLE `penugasan`
+  ADD PRIMARY KEY (`idTugas`);
 
 --
 -- Indexes for table `permohonan_info`
@@ -610,6 +597,18 @@ ALTER TABLE `tanggapan_po`
   ADD KEY `tanggapan-pengaduan` (`idPengaduan`);
 
 --
+-- Indexes for table `tim`
+--
+ALTER TABLE `tim`
+  ADD PRIMARY KEY (`idTim`);
+
+--
+-- Indexes for table `unit`
+--
+ALTER TABLE `unit`
+  ADD PRIMARY KEY (`idUnit`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -620,22 +619,22 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `agenda`
---
-ALTER TABLE `agenda`
-  MODIFY `idAgenda` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `berita`
 --
 ALTER TABLE `berita`
-  MODIFY `id_berita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id_berita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
   MODIFY `idCustomer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `laporan`
+--
+ALTER TABLE `laporan`
+  MODIFY `idLaporan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `level_user`
@@ -647,7 +646,7 @@ ALTER TABLE `level_user`
 -- AUTO_INCREMENT for table `meeting_request`
 --
 ALTER TABLE `meeting_request`
-  MODIFY `idMeeting` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `idMeeting` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -656,10 +655,22 @@ ALTER TABLE `migrations`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `pegawai`
+--
+ALTER TABLE `pegawai`
+  MODIFY `idPegawai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `pengaduan_online`
 --
 ALTER TABLE `pengaduan_online`
-  MODIFY `idPengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idPengaduan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `penugasan`
+--
+ALTER TABLE `penugasan`
+  MODIFY `idTugas` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `petugas_apt`
@@ -677,7 +688,19 @@ ALTER TABLE `tanggapan_mr`
 -- AUTO_INCREMENT for table `tanggapan_po`
 --
 ALTER TABLE `tanggapan_po`
-  MODIFY `idTanggapan_PO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idTanggapan_PO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tim`
+--
+ALTER TABLE `tim`
+  MODIFY `idTim` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `unit`
+--
+ALTER TABLE `unit`
+  MODIFY `idUnit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
@@ -687,6 +710,7 @@ ALTER TABLE `tanggapan_po`
 -- Constraints for table `meeting_request`
 --
 ALTER TABLE `meeting_request`
+  ADD CONSTRAINT `meeting_petugas` FOREIGN KEY (`idPetugas`) REFERENCES `petugas_apt` (`idPetugas`),
   ADD CONSTRAINT `meeting_request_ibfk_1` FOREIGN KEY (`idCustomer`) REFERENCES `customer` (`idCustomer`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

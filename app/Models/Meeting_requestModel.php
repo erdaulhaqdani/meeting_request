@@ -37,7 +37,6 @@ class Meeting_requestModel extends Model
 
   public function lastMeetingRequest($id)
   {
-
     $builder = $this->db->table('meeting_request');
     $builder->where('idCustomer', $id);
     $builder->orderBy('created_at', 'DESC');

@@ -179,4 +179,13 @@ class Pengaduan_onlineModel extends Model
         $query = $builder->get();
         return $query;
     }
+
+    public function lastPengaduan($idCustomer)
+    {
+        $builder = $this->db->table('pengaduan_online');
+        $builder->where('idCustomer', $idCustomer);
+        $builder->orderBy('created_at', 'DESC');
+        $query = $builder->get(4, 0);
+        return $query;
+    }
 }
