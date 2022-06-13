@@ -55,7 +55,7 @@
                                             <label class="col-sm-8"> : <?= $pegawai['nama']; ?></label>
                                         </div>
                                         <?php foreach ($jabatan as $x) {
-                                            if ($a['idJabatan'] == $x['idJabatan']) {
+                                            if ($pegawai['idJabatan'] == $x['idJabatan']) {
                                                 $posisiJabatan = $x['posisiJabatan'];
                                             }
                                         } ?>
@@ -64,7 +64,7 @@
                                             <label class="col-sm-8">: <?= $posisiJabatan; ?></label>
                                         </div>
                                         <?php foreach ($unit as $x) {
-                                            if ($a['idUnit'] == $x['idUnit']) {
+                                            if ($pegawai['idUnit'] == $x['idUnit']) {
                                                 $namaUnit = $x['namaUnit'];
                                             }
                                         } ?>

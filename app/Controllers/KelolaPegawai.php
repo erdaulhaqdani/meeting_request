@@ -85,7 +85,7 @@ class KelolaPegawai extends BaseController
     {
         $data = [
             'title' => 'Detail Pegawai',
-            'pegawai' => $this->PegawaiModel->findAll($idPegawai),
+            'pegawai' => $this->PegawaiModel->getPegawai($idPegawai),
             'unit' => $this->UnitModel->findAll(),
             'jabatan' => $this->JabatanModel->findAll(),
             'validation' => \Config\Services::validation()
