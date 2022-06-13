@@ -77,34 +77,49 @@ class Landing_pageModel extends Model
     return $query;
   }
 
-  public function listBerita()
+  public function listBerita($id)
   {
 
     $builder = $this->db->table('berita');
     $builder->where('Kategori', 'Berita');
     $builder->where('Status', 'Publik');
+    $builder->notlike('id_berita', $id);
     $builder->orderBy('created_at', 'desc');
     $query = $builder->get();
     return $query;
   }
 
-  public function listPengumuman()
+  public function listArtikel($id)
+  {
+
+    $builder = $this->db->table('berita');
+    $builder->where('Kategori', 'Artikel');
+    $builder->where('Status', 'Publik');
+    $builder->notlike('id_berita', $id);
+    $builder->orderBy('created_at', 'desc');
+    $query = $builder->get();
+    return $query;
+  }
+
+  public function listPengumuman($id)
   {
 
     $builder = $this->db->table('berita');
     $builder->where('Kategori', 'Pengumuman');
     $builder->where('Status', 'Publik');
+    $builder->notlike('id_berita', $id);
     $builder->orderBy('created_at', 'desc');
     $query = $builder->get();
     return $query;
   }
 
-  public function listPeristiwa()
+  public function listPeristiwa($id)
   {
 
     $builder = $this->db->table('berita');
     $builder->where('Kategori', 'Kilas Peristiwa');
     $builder->where('Status', 'Publik');
+    $builder->notlike('id_berita', $id);
     $builder->orderBy('created_at', 'desc');
     $query = $builder->get();
     return $query;

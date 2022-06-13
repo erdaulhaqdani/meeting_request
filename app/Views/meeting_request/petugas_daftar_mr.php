@@ -115,7 +115,6 @@
                                             <th>Kantor Tujuan</th>
                                             <th>Tanggal Kunjungan</th>
                                             <th>Waktu Kunjungan</th>
-                                            <th>Perihal</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -139,7 +138,6 @@
                                                 <td><?= $a->Kantor; ?></td>
                                                 <td><?= $a->Tanggal_kunjungan; ?></td>
                                                 <td><?= $a->Waktu_kunjungan; ?></td>
-                                                <td><?= $a->Perihal; ?></td>
                                                 <td><?= $a->Status; ?></td>
                                                 <td>
                                                     <a href="/petugasMR/detail/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
@@ -147,13 +145,14 @@
                                                         <a href="/petugasMR/tanggapan/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Tanggapan</a>
                                                     <?php elseif ($a->Status == 'Belum diproses') : ?>
                                                         <a href="petugasMR/proses/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Mulai Proses</a>
+                                                    <?php elseif ($a->Status == 'Eskalasi') : ?>
+                                                        <a href="petugasMR/proses/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Tanggapan</a>
                                                     <?php endif ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach ?>
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>

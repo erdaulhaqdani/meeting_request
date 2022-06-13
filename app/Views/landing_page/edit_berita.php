@@ -136,12 +136,13 @@
                   ?>
                   <div class="mb-0">
                     <div>
-                      <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
+                      <button type="submit" class="btn btn-primary waves-effect waves-light me-2">
                         Submit
                       </button>
-                      <button type="reset" class="btn btn-secondary waves-effect">
-                        Cancel
+                      <button type="reset" class="btn btn-secondary waves-effect me-2">
+                        Batal
                       </button>
+                      <input type="button" value="Kembali" class="btn btn-warning waves-effect" onclick="history.back(-1)" />
                     </div>
                   </div>
                 </form>

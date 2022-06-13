@@ -22,6 +22,16 @@
               <?php foreach ($info as $a) : ?>
                 <?= $a['Isi']; ?>
               <?php endforeach ?>
+              <h1 class="title"> Formulir Permohonan Informasi Publik Pada Perangkat PPID DJKN</h1>
+              <p>PPID Tk. I <a href="Landing_page/downloadPI/1">(Download)</a> <br>
+                PPID Tk. II <a href="Landing_page/downloadPI/2">(Download)</a> <br>
+                PPID Tk. III <a href="Landing_page/downloadPI/3">(Download)</a> <br>
+              </p>
+              <h1 class="title">Formulir Keberatan Informasi Publik Pada Perangkat PPID DJKN</h1>
+              <p>PPID Tk. I <a href="Landing_page/downloadKI/1">(Download)</a> <br>
+                PPID Tk. II <a href="Landing_page/downloadKI/2">(Download)</a> <br>
+                PPID Tk. III <a href="Landing_page/downloadKI/3">(Download)</a> <br>
+              </p>
             </div> <!-- /.post-meta -->
             <div class="share-option clearfix">
               <ul class="social-icon float-right">

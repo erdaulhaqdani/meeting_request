@@ -23,7 +23,7 @@
 <!-- Begin page -->
 <div id="layout-wrapper">
 
-  <?= $this->include('partials/menu') ?>
+  <?= $this->include('partials/menu_petugas') ?>
 
   <!-- ============================================================== -->
   <!-- Start right Content here -->
@@ -133,6 +133,8 @@
                       <?php if ($meeting['Status'] == 'Belum diproses') : ?>
                         <a href="/petugasMR/proses/<?= $meeting['idMeeting']; ?>"><button type="button" class="btn btn-success waves-effect">Mulai Proses</button> </a>
                       <?php elseif ($meeting['Status'] == 'Sedang diproses') : ?>
+                        <a href="/petugasMR/tanggapan/<?= $meeting['idMeeting']; ?>"><button type="button" class="btn btn-success waves-effect">Tanggapan</button></a>
+                      <?php elseif ($meeting['Status'] == 'Eskalasi') : ?>
                         <a href="/petugasMR/tanggapan/<?= $meeting['idMeeting']; ?>"><button type="button" class="btn btn-success waves-effect">Tanggapan</button></a>
                       <?php endif ?>
                     </div>
