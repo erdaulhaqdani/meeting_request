@@ -296,6 +296,7 @@ class Landing_page extends BaseController
       'Penulis' => $this->request->getVar('penulis'),
       'Status' => $this->request->getVar('status'),
       'Gambar' => $namagambar,
+      'idPetugas' => $this->request->getVar('idPetugas')
     ]);
 
     session()->setFlashdata('pesan', 'Berhasil mengubah Informasi.');
@@ -479,7 +480,7 @@ class Landing_page extends BaseController
     $data = [
       'title' => 'Artikel KPKNL Bandung',
       'berita' => $this->Landing_pageModel->getInformasi($id),
-      'artikel' => $this->Landing_pageModel->listArtikel(),
+      'artikel' => $this->Landing_pageModel->listArtikel($id),
     ];
 
     return view('pages/detail_artikel', $data);
@@ -502,7 +503,7 @@ class Landing_page extends BaseController
     $data = [
       'title' => 'Berita KPKNL Bandung',
       'berita' => $this->Landing_pageModel->getInformasi($id),
-      'berita_lain' => $this->Landing_pageModel->listBerita(),
+      'berita_lain' => $this->Landing_pageModel->listBerita($id),
     ];
 
     return view('pages/detail_berita', $data);
@@ -524,7 +525,7 @@ class Landing_page extends BaseController
     $data = [
       'title' => 'Pengumuman KPKNL Bandung',
       'berita' => $this->Landing_pageModel->getInformasi($id),
-      'pengumuman' => $this->Landing_pageModel->listPengumuman(),
+      'pengumuman_lain' => $this->Landing_pageModel->listPengumuman($id),
     ];
 
     return view('pages/detail_pengumuman', $data);
@@ -546,7 +547,7 @@ class Landing_page extends BaseController
     $data = [
       'title' => 'Peristiwa KPKNL Bandung',
       'berita' => $this->Landing_pageModel->getInformasi($id),
-      'peristiwa' => $this->Landing_pageModel->listPeristiwa(),
+      'peristiwa' => $this->Landing_pageModel->listPeristiwa($id),
     ];
 
     return view('pages/detail_peristiwa', $data);
@@ -579,5 +580,27 @@ class Landing_page extends BaseController
     ];
 
     return view('pages/detail_agenda', $data);
+  }
+
+  public function downloadPI($id)
+  {
+
+    if ($id == 1) {
+      return $this->response->download('permohonan_info/FORM PERMOHONAN PPID TK I.pdf', null);
+    } else if ($id == 2) {
+      return $this->response->download('permohonan_info/FORM PERMOHONAN PPID TK II.pdf', null);
+    } else if ($id == 3) {
+      return $this->response->download('permohonan_info/FORM PERMOHONAN PPID TK III.pdf', null);
+    }
+  }
+  public function downloadKI($id)
+  {
+    if ($id == 1) {
+      return $this->response->download('permohonan_info/FORM KEBERATAN PPID TK I.pdf', null);
+    } else if ($id == 2) {
+      return $this->response->download('permohonan_info/FORM KEBERATAN PPID TK II.pdf', null);
+    } else if ($id == 3) {
+      return $this->response->download('permohonan_info/FORM KEBERATAN PPID TK III.pdf', null);
+    }
   }
 }

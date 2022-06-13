@@ -121,11 +121,21 @@ class Petugas_MR extends BaseController
             'idPetugas' => session('idPetugas'),
         ]);
 
-        $this->Meeting_requestModel->save([
-            'idMeeting' => $this->request->getVar('idMeeting'),
-            'Status' => $this->request->getVar('status'),
-            'idPetugas' => $this->request->getVar('petugas')
-        ]);
+        $status =  $this->request->getVar('status');
+        if ($status == 'Eskalasi') {
+            $this->Meeting_requestModel->save([
+                'idMeeting' => $this->request->getVar('idMeeting'),
+                'Status' => $this->request->getVar('status'),
+                'idPetugas' => $this->request->getVar('petugas')
+            ]);
+        } else {
+            $this->Meeting_requestModel->save([
+                'idMeeting' => $this->request->getVar('idMeeting'),
+                'Status' => $this->request->getVar('status'),
+                'idPetugas' => session('idPetugas')
+            ]);
+        }
+
 
         session()->setFlashdata('pesan', 'Tanggapan berhasil tersimpan.');
 

@@ -81,7 +81,8 @@
 
                                     <div class="mb-3 text-start">
                                         <button type="submit" class="btn btn-primary me-2" name="tanggapan">Submit</button>
-                                        <button type="reset" class="btn btn-danger">Reset</button>
+                                        <button type="reset" class="btn btn-danger me-2">Reset</button>
+                                        <input type="button" value="Kembali" class="btn btn-warning waves-effect" onclick="history.back(-1)" />
                                     </div>
                                 </form>
 
