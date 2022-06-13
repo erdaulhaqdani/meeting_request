@@ -72,7 +72,7 @@
                 return date('d-m-Y', strtotime($date));
               }
 
-              foreach ($pengumuman->getResult() as $a) :
+              foreach ($pengumuman_lain->getResult() as $a) :
                 $date = $a->created_at;
 
               ?>

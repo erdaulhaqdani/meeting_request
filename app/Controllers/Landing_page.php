@@ -296,6 +296,7 @@ class Landing_page extends BaseController
       'Penulis' => $this->request->getVar('penulis'),
       'Status' => $this->request->getVar('status'),
       'Gambar' => $namagambar,
+      'idPetugas' => $this->request->getVar('idPetugas')
     ]);
 
     session()->setFlashdata('pesan', 'Berhasil mengubah Informasi.');
@@ -522,7 +523,7 @@ class Landing_page extends BaseController
     $data = [
       'title' => 'Pengumuman KPKNL Bandung',
       'berita' => $this->Landing_pageModel->getInformasi($id),
-      'pengumuman' => $this->Landing_pageModel->listPengumuman($id),
+      'pengumuman_lain' => $this->Landing_pageModel->listPengumuman($id),
     ];
 
     return view('pages/detail_pengumuman', $data);

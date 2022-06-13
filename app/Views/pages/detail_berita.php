@@ -75,24 +75,22 @@
               foreach ($berita_lain->getResult() as $a) :
                 $date = $a->created_at;
 
-                if ($a->Status == 'Publik') :
               ?>
 
-                  <div class="item">
-                    <div class="single-blog">
-                      <div class="image-box" style="max-height: 260px;">
-                        <img src="/gambar/<?= $a->Gambar; ?>" alt="">
-                        <div class="overlay"><a href="#" class="date"><?= formatTanggal2($date); ?></a></div>
-                      </div> <!-- /.image-box -->
-                      <div class="post-meta">
-                        <h5 class="title"><a href="/pages/detail_berita/<?= $a->id_berita ?>"><?= $a->Judul; ?></a></h5>
-                        <a href="/pages/detail_berita/<?= $a->id_berita ?>" class="read-more">SELENGKAPNYA</a>
-                      </div> <!-- /.post-meta -->
-                    </div> <!-- /.single-blog -->
-                  </div> <!-- /.col- -->
+                <div class="item">
+                  <div class="single-blog">
+                    <div class="image-box" style="max-height: 260px;">
+                      <img src="/gambar/<?= $a->Gambar; ?>" alt="">
+                      <div class="overlay"><a href="#" class="date"><?= formatTanggal2($date); ?></a></div>
+                    </div> <!-- /.image-box -->
+                    <div class="post-meta">
+                      <h5 class="title"><a href="/pages/detail_berita/<?= $a->id_berita ?>"><?= $a->Judul; ?></a></h5>
+                      <a href="/pages/detail_berita/<?= $a->id_berita ?>" class="read-more">SELENGKAPNYA</a>
+                    </div> <!-- /.post-meta -->
+                  </div> <!-- /.single-blog -->
+                </div> <!-- /.col- -->
               <?php
-                endif;
-              endforeach ?>
+              endforeach; ?>
 
             </div> <!-- /.related-product-slider -->
           </div> <!-- /.row -->

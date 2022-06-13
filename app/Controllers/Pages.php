@@ -22,7 +22,6 @@ class Pages extends BaseController
     $data = [
       'title' => 'Landing Page DJKN Bandung',
       'berita_terbaru' => $this->Landing_pageModel->listBeritaTerbaru(),
-      'pengumuman' => $this->Landing_pageModel->listPengumuman(),
       'jumbotron' => $this->Landing_pageModel->jumbotron(),
       'peristiwa_terbaru' => $this->Landing_pageModel->listPeristiwaTerbaru(),
       'artikel_terbaru' => $this->Landing_pageModel->listArtikelTerbaru(),

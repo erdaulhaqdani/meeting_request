@@ -33,8 +33,8 @@
             <div class="card">
               <div class="card-body">
 
-                <h3 class="card-title">Tambah Informasi</h3>
-                <p class="card-title-desc">Masukkan data-data informasi dengan lengkap.</p>
+                <h3 class="card-title">Tambah Agenda</h3>
+                <p class="card-title-desc">Masukkan data-data agenda dengan lengkap.</p>
                 <?php
                 if (session()->get('pesan')) {
                 ?>
@@ -47,6 +47,7 @@
                 ?>
 
                 <form action="/Landing_page/input_agenda" class="custom-validation" method="POST" enctype="multipart/form-data">
+                  <input type="hidden" name="idPetugas" value="<?= session('idPetugas'); ?>">
 
                   <div class="row mb-2">
                     <label for="judul" class="col-sm-3 col-form-label">Judul Agenda</label>
@@ -104,7 +105,7 @@
                   ?>
                   <div class="mb-0 text-end">
                     <div>
-                      <button type="reset" class="btn btn-danger waves-effect me-2">Cancel</button>
+                      <button type="reset" class="btn btn-danger waves-effect me-2">Batal</button>
                       <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
                     </div>
                   </div>

@@ -9,7 +9,7 @@ class Landing_pageModel extends Model
   protected $table      = 'berita';
   protected $primaryKey = 'id_berita';
 
-  protected $allowedFields = ['Isi', 'Kategori', 'Judul', 'Status', 'Gambar', 'Penulis', 'idPetugas'];
+  protected $allowedFields = ['Isi', 'Kategori', 'Judul', 'Status', 'Gambar', 'Penulis', 'idPetugas', 'tgl_kegiatan'];
 
   protected $useAutoIncrement = true;
   protected $useTimestamps = true;
