@@ -25,13 +25,9 @@ class Tanggapan_POModel extends Model
         return $this->where(['idTanggapan_PO ' => $id])->first();
     }
 
-    public function getTanggapanPengaduan($id = false)
+    public function getTanggapanPengaduan($id)
     {
-        if ($id == false) {
-            return $this->findAll();
-        }
-
-        $query = $this->where(['idPengaduan ' => $id])->orderBy('tgl_selesai', 'DESC')->first();
+        $query = $this->where(['idPengaduan ' => $id])->orderBy('tgl_selesai', 'DESC')->find();
         return $query;
     }
 }

@@ -9,7 +9,7 @@
 <div class="theme-inner-banner section-spacing">
   <div class="overlay">
     <div class="container">
-      <h2>Artikel</h2>
+      <h2>Agenda</h2>
     </div> <!-- /.container -->
   </div> <!-- /.overlay -->
 </div> <!-- /.theme-inner-banner -->
@@ -35,9 +35,9 @@
           ?>
           <div class="single-blog">
 
-            <a href="/">Home</a>&nbsp;>&nbsp;<a href="/pages/artikel_grid">Daftar Artikel</a>&nbsp;>&nbsp;<a href="" style=" pointer-events: none; cursor: default; margin-bottom : 10px;">Artikel</a>
+            <a href="/">Home</a>&nbsp;>&nbsp;<a href="/pages/Agenda_grid">Daftar Agenda</a>&nbsp;>&nbsp;<a href="" style=" pointer-events: none; cursor: default; margin-bottom : 10px;">Agenda</a>
             <div class="image-box">
-              <img src="/cover_Agenda/<?= $berita['Cover']; ?>" alt="">
+              <img src="/gambar/<?= $berita['Gambar']; ?>" alt="">
               <div class="overlay"><a href="#" class="date"><?= formatTanggal($date); ?></a></div>
             </div> <!-- /.image-box -->
             <div class="post-meta">

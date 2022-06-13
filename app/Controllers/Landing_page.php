@@ -564,7 +564,7 @@ class Landing_page extends BaseController
 
     $data = [
       'title' => 'Agenda KPKNL Bandung',
-      'berita' => $this->Landing_pageModel->where('Status', 'Publik')->where('Kategoti', 'Agenda')->orderBy('created_at', 'DESC')->paginate(6),
+      'berita' => $this->Landing_pageModel->where('Status', 'Publik')->where('Kategori', 'Agenda')->orderBy('created_at', 'DESC')->paginate(6),
       'pager' => $this->Landing_pageModel->pager
     ];
 

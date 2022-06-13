@@ -54,14 +54,14 @@
             <div class="col-md-6 col-12">
               <div class="single-blog">
                 <div class="image-box" style="width: 370px; height:260px;">
-                  <img src="/gambar/<?= $a['Cover']; ?>" alt="">
+                  <img src="/gambar/<?= $a['Gambar']; ?>" alt="">
                   <div class=" overlay"><a href="#" class="date"><?= formatTanggal($date) ?></a></a>
                   </div>
                 </div> <!-- /.image-box -->
                 <div class="post-meta">
-                  <h5 class="title"><a href="/pages/detail_agenda/<?= $a['idAgenda'] ?>"><?= $cut_judul ?></a></a></h5>
+                  <h5 class="title"><a href="/pages/detail_agenda/<?= $a['id_berita'] ?>"><?= $cut_judul ?></a></a></h5>
                   <p><?= $cut_text; ?></p>
-                  <a href="/pages/detail_agenda/<?= $a['idAgenda'] ?>" class="read-more">SELENGKAPNYA</a>
+                  <a href="/pages/detail_agenda/<?= $a['id_berita'] ?>" class="read-more">SELENGKAPNYA</a>
                 </div> <!-- /.post-meta -->
               </div> <!-- /.single-blog -->
             </div> <!-- /.col- -->
@@ -106,7 +106,7 @@
     ?>
 				<ul>
 					<li class="clearfix">
-						<img src="/cover_Agenda/<?= $b['Cover']; ?>" alt="" class="float-left">
+						<img src="/cover_Agenda/<?= $b['Gambar']; ?>" alt="" class="float-left">
 						<div class="post float-left">
 							<a href=""><?= $b['Judul'] ?> </a>
 							<?php if ($hari == 0) {
