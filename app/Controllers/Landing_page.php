@@ -362,6 +362,7 @@ class Landing_page extends BaseController
       'Penulis' => $this->request->getVar('penulis'),
       'Gambar' => $namagambar,
       'Status' => 'Diarsipkan',
+      'idPetugas' => session('idPetugas')
     ]);
 
     session()->setFlashdata('pesan', 'Berhasil menambahkan agenda.');
@@ -413,7 +414,7 @@ class Landing_page extends BaseController
       //ambil nama file
       $namagambar = $gambar->getRandomName();
       //pindah file ke folder gambar
-      $gambar->move('cover_Agenda', $namagambar);
+      $gambar->move('gambar', $namagambar);
     }
 
     $this->Landing_pageModel->save([
@@ -422,7 +423,8 @@ class Landing_page extends BaseController
       'tgl_kegiatan' => $this->request->getVar('tgl'),
       'Isi' => $this->request->getVar('isi_agenda'),
       'Penulis' => $this->request->getVar('penulis'),
-      'Cover' => $namagambar
+      'Cover' => $namagambar,
+      'idPetugas' => session('idPetugas'),
     ]);
 
     session()->setFlashdata('pesan', 'Berhasil mengubah agenda.');
