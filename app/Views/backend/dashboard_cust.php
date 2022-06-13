@@ -61,16 +61,28 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="row">
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-4">Pengajuan yang dibuat minggu ini</h4>
-                                <canvas id="grafik_jumlah"></canvas>
+                                <canvas id="bar_pengaduan"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4">Pengajuan yang dibuat minggu ini</h4>
+                                <canvas id="bar_meeting"></canvas>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Last Meeting -->
                 <div class="row">
                     <div class="col">
                         <div class="card">
@@ -93,14 +105,7 @@
                                     </thead>
 
                                     <tbody>
-                                        <?php
-                                        function Tanggal($date)
-                                        {
-                                            // ubah string menjadi format tanggal
-                                            return date('d-F-Y', strtotime($date));
-                                        }
 
-                                        ?>
                                         <?php foreach ($lastMeetingRequest->getResult() as $a) : ?>
                                             <?php //getNamaKategori
                                             $k = '';
@@ -125,7 +130,6 @@
                                                         <a href="/Meeting_request/delete/<?= $a->idMeeting; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
                                                     <?php elseif ($a->Status == 'Selesai diproses') : ?>
                                                         <a href="/Meeting_request/rating/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Rating</a>
-                                                        <!-- <a href="/Meeting_request/tanggapan/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Tanggapan</a> -->
                                                     <?php endif ?>
                                                 </td>
                                             </tr>
@@ -137,18 +141,68 @@
                     </div>
                 </div>
 
+                <!-- Last Pengaduan -->
                 <div class="row">
                     <div class="col">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">4 Pengaduan Terakhir</h4>
+                                <h4 class="card-title mb-4">4 Pengaduan Online Terakhir</h4>
 
+                                <a href="/Pengaduan_online" class="btn btn-primary btn-md me-3 mb-3">Lihat Semua</a>
+                                <a href="/Pengaduan_online/form" class="btn btn-success btn-md mb-3"><i class="fas fa-plus-circle"></i> Tambah</a>
+
+                                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Jenis Layanan</th>
+                                            <th>Tanggal Input</th>
+                                            <th>Status</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php
+                                        function Tanggal($date)
+                                        {
+                                            // ubah string menjadi format tanggal
+                                            return date('d-F-Y', strtotime($date));
+                                        }
+
+                                        ?>
+                                        <?php foreach ($lastPengaduan->getResult() as $a) : ?>
+                                            <?php //getNamaKategori
+                                            $k = '';
+                                            $date = $a->created_at;
+                                            foreach ($kategori as $b) {
+                                                if ($a->idKategori == $b['idKategori']) {
+                                                    $k = $b['namaKategori'];
+                                                }
+                                            }
+                                            ?>
+                                            <tr>
+                                                <td><?= $k; ?></td>
+                                                <td><?= Tanggal($date) ?></td>
+                                                <td><?= $a->Status; ?></td>
+                                                <td>
+                                                    <a href="/Pengaduan_online/detail/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
+                                                    <?php if ($a->Status == 'Belum diproses') : ?>
+                                                        <a href="/Pengaduan_online/edit/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
+                                                        <a href="/Pengaduan_online/cancel/<?= $a->idPengaduan; ?>" class="btn btn-warning btn-sm w-xs">Batalkan</a>
+                                                    <?php elseif ($a->Status == 'Dibatalkan') : ?>
+                                                        <a href="/Pengaduan_online/delete/<?= $a->idPengaduan; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
+                                                    <?php elseif ($a->Status == 'Selesai diproses') : ?>
+                                                        <a href="/Pengaduan_online/rating/<?= $a->idPengaduan; ?>" class="btn btn-success btn-sm w-xs">Rating</a>
+                                                    <?php endif ?>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
 
             </div>
             <!-- End Page-content -->
@@ -220,7 +274,8 @@
             backgroundColor: [
                 '#0f9cf3',
                 '#6fd088',
-                '#f32f53'
+                '#f32f53',
+                '#0097a7'
             ],
         }],
         labels: label_pengaduan,
@@ -249,7 +304,8 @@
             backgroundColor: [
                 '#0f9cf3',
                 '#6fd088',
-                '#f32f53'
+                '#f32f53',
+                '#0097a7'
             ],
         }],
         labels: label_meeting,
@@ -261,36 +317,28 @@
     });
 </script>
 
-<!-- Line Chart jumlah tiket minggu ini -->
+<?php
+function formatTanggal($date)
+{
+    // ubah string menjadi format tanggal
+    return date('d F Y', strtotime($date));
+}
+?>
+
+<!-- Bar Chart pengaduan minggu ini -->
 <script>
-    // cari cara generate tanggal minggu ini via javascript/php
+    // cari cara generate tanggal minggu ini via javascript/php kirim tgl ke sql
     var currentDate = new Date();
     var day = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay() + 0)).toUTCString();
 
-    var grafik = document.getElementById('grafik_jumlah');
+    var bar_pengaduan = document.getElementById('bar_pengaduan');
     var data_pengaduan = [];
     var label_pengaduan = [];
-    var data_meeting = [];
-    var label_meeting = [];
-
-    <?php
-    function formatTanggal($date)
-    {
-        // ubah string menjadi format tanggal
-        return date('d F Y', strtotime($date));
-    }
-    ?>
 
     <?php foreach ($pengaduanPerminggu->getResult() as $key) : ?>
         data_pengaduan.push(<?= $key->jumlah ?>);
         <?php $tanggal = formatTanggal($key->tanggal); ?>
         label_pengaduan.push('<?= $tanggal ?>');
-    <?php endforeach ?>
-
-    <?php foreach ($meetingRequestPerminggu->getResult() as $key) : ?>
-        data_meeting.push(<?= $key->jumlah ?>);
-        <?php $tanggal = formatTanggal($key->tanggal); ?>
-        label_meeting.push('<?= $tanggal ?>');
     <?php endforeach ?>
 
     const data = {
@@ -300,11 +348,6 @@
             backgroundColor: '#0f9cf3',
             borderColor: '#0f9cf3',
             data: data_pengaduan
-        }, {
-            label: 'Meeting Request',
-            backgroundColor: '#6fd088',
-            borderColor: '#6fd088',
-            data: data_meeting,
         }]
     };
 
@@ -327,7 +370,56 @@
         },
     };
 
-    var line_chart = new Chart(grafik_jumlah, config);
+    const barPengaduan = new Chart(bar_pengaduan, config);
+</script>
+
+<!-- Bar Chart meeting minggu ini -->
+<script>
+    // cari cara generate tanggal minggu ini via javascript/php
+    var currentDate = new Date();
+    var day = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay() + 0)).toUTCString();
+
+    var bar_meeting = document.getElementById('bar_meeting');
+
+    var data_meeting = [];
+    var label_meeting = [];
+
+    <?php foreach ($meetingPerminggu->getResult() as $key) : ?>
+        data_meeting.push(<?= $key->jumlah ?>);
+        <?php $tanggal = formatTanggal($key->tanggal); ?>
+        label_meeting.push('<?= $tanggal ?>');
+    <?php endforeach ?>
+
+    const data_bar = {
+        labels: label_meeting,
+        datasets: [{
+            label: 'Meeting Request',
+            backgroundColor: '#6fd088',
+            borderColor: '#6fd088',
+            data: [7, 0.5, 3],
+        }]
+    };
+
+    const config_bar = {
+        type: 'bar',
+        data: data_bar,
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 10
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            }
+        },
+    };
+
+    var barMeeting = new Chart(bar_meeting, config_bar);
 </script>
 
 </body>

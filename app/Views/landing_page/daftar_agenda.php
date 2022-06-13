@@ -79,11 +79,11 @@
                                                 <td><?= formatTanggal($date); ?></td>
                                                 <td><?= $a['Penulis']; ?></td>
                                                 <td>
-                                                    <a href="/Landing_page/edit_agenda/<?= $a['idAgenda']; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
+                                                    <a href="/Landing_page/edit_agenda/<?= $a['id_berita']; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                                                     <?php if ($a['Status'] == 'Diarsipkan') : ?>
-                                                        <a href="/Landing_page/publik_agenda/<?= $a['idAgenda']; ?>" class="btn btn-success btn-sm w-xs">Publish</a>
+                                                        <a href="/Landing_page/publik_agenda/<?= $a['id_berita']; ?>" class="btn btn-success btn-sm w-xs">Publish</a>
                                                     <?php elseif ($a['Status'] == 'Publik') : ?>
-                                                        <a href="/Landing_page/arsip_agenda/<?= $a['idAgenda']; ?>" class="btn btn-warning btn-sm w-xs">Arsip</a>
+                                                        <a href="/Landing_page/arsip_agenda/<?= $a['id_berita']; ?>" class="btn btn-warning btn-sm w-xs">Arsip</a>
                                                     <?php endif ?>
                                                 </td>
                                             </tr>

@@ -26,7 +26,8 @@ class Backend extends BaseController
       'groupPengaduan' => $this->Pengaduan_onlineModel->groupByStatus(session('idCustomer')),
       'groupMeeting' => $this->Meeting_requestModel->groupByStatus(session('idCustomer')),
       'pengaduanPerminggu' => $this->Pengaduan_onlineModel->pengaduanPerminggu(session('idCustomer')),
-      'meetingRequestPerminggu' => $this->Meeting_requestModel->meetingRequestPerminggu(session('idCustomer')),
+      'meetingPerminggu' => $this->Meeting_requestModel->meetingRequestPerminggu(session('idCustomer')),
+      'lastPengaduan' => $this->Pengaduan_onlineModel->lastPengaduan(session('idCustomer')),
       'lastMeetingRequest' => $this->Meeting_requestModel->lastMeetingRequest(session('idCustomer')),
       'kategori' => $this->KategoriModel->getKategori(),
     ];
@@ -36,6 +37,16 @@ class Backend extends BaseController
 
   public function dashboard_petugas()
   {
-    return view('backend/dashboard_petugas');
+    $data = [
+      'title' => 'Dashboard Petugas',
+      'groupPengaduan' => $this->Pengaduan_onlineModel->groupByStatusPetugas(session('idPetugas')),
+      'groupMeeting' => $this->Meeting_requestModel->groupByStatusPetugas(session('idPetugas')),
+      'pengaduanPerminggu' => $this->Pengaduan_onlineModel->pengaduanPetugasPerminggu(session('idPetugas')),
+      'meetingPerminggu' => $this->Meeting_requestModel->meetingRequestPetugasPerminggu(session('idPetugas')),
+      'lastMeetingRequest' => $this->Meeting_requestModel->lastMeetingRequest(session('idPetugas')),
+      'kategori' => $this->KategoriModel->getKategori(),
+    ];
+
+    return view('backend/dashboard_petugas', $data);
   }
 }

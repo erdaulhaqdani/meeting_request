@@ -25,6 +25,15 @@ class Landing_pageModel extends Model
     return $this->where(['id_berita' => $id])->first();
   }
 
+  public function getAgenda($id = false)
+  {
+    if ($id == false) {
+      return $this->where(['Kategori' => 'Agenda'])->findAll();
+    }
+
+    return $this->where(['id_berita' => $id])->first();
+  }
+
   public function search($pencarian)
   {
     $builder = $this->db->table('berita');
@@ -35,7 +44,6 @@ class Landing_pageModel extends Model
 
   public function jumbotron()
   {
-
     $builder = $this->db->table('berita');
     $builder->where('Kategori', 'Berita');
     $builder->where('Status', 'Publik');

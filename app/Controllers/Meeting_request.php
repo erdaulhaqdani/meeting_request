@@ -90,7 +90,8 @@ class Meeting_request extends BaseController
       'idKategori' => $this->request->getVar('kategori'),
       'Status' => 'Belum diproses',
       'File_lampiran' => $namalampiran,
-      'idCustomer' => $this->request->getVar('idCustomer')
+      'idCustomer' => $this->request->getVar('idCustomer'),
+      'idPetugas' => 1
     ]);
 
     session()->setFlashdata('pesan', 'Berhasil menambahkan meeting request.');

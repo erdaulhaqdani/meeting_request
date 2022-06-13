@@ -22,8 +22,7 @@
 		$tgl = date_create($berita['created_at']);
 		$diff  = date_diff($tgl, $tgl_now);
 		$hari = $diff->d;
-		if ($hari >= 0) {
-		?>
+		if ($hari >= 0) : ?>
 			<ul>
 				<li class="clearfix">
 					<img src="/gambar/<?= $berita['Gambar']; ?>" alt="" class="float-left">
@@ -42,9 +41,7 @@
 					</div>
 				</li>
 			</ul>
-		<?php
-		}
-		?>
+		<?php endif ?>
 	</div>  -->
 	<!-- /.sidebar-recent-post -->
 	<!-- <div class="sidebar-container sidebar-archives">

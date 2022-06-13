@@ -74,10 +74,21 @@
                     </ul>
                 </li>
                 <li>
+<<<<<<< HEAD
                     <a href="/Landing_page/permohonanInfo/1" class=" waves-effect">
                         <i class="far fa-file-powerpoint "></i>
                         <span>Permohonan Informasi</span>
                     </a>
+=======
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="fas fa-file-alt "></i>
+                        <span>Kelola Pegawai</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="/KelolaPegawai/form_pegawai">Tambah Pegawai</a></li>
+                        <li><a href="/KelolaPegawai/daftar_pegawai">Daftar Pegawai</a></li>
+                    </ul>
+>>>>>>> f3ee2bca147c8701826b251d7b6d4c89c56f7836
                 </li>
             </ul>
         </div>
