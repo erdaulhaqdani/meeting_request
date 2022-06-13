@@ -56,7 +56,18 @@ class Landing_pageModel extends Model
   {
 
     $builder = $this->db->table('berita');
-    $builder->where('Kategori', 'artikel');
+    $builder->where('Kategori', 'Artikel');
+    $builder->where('Status', 'Publik');
+    $builder->orderBy('created_at', 'desc');
+    $query = $builder->get(6, 0);
+    return $query;
+  }
+
+  public function listPengumumanTerbaru()
+  {
+
+    $builder = $this->db->table('berita');
+    $builder->where('Kategori', 'Pengumuman');
     $builder->where('Status', 'Publik');
     $builder->orderBy('created_at', 'desc');
     $query = $builder->get(6, 0);
@@ -126,6 +137,18 @@ class Landing_pageModel extends Model
 
     $builder = $this->db->table('berita');
     $builder->where('Kategori', 'Kilas Peristiwa');
+    $builder->where('Status', 'Publik');
+    $builder->notlike('id_berita', $id);
+    $builder->orderBy('created_at', 'desc');
+    $query = $builder->get();
+    return $query;
+  }
+
+  public function listAgenda($id)
+  {
+
+    $builder = $this->db->table('berita');
+    $builder->where('Kategori', 'Agenda');
     $builder->where('Status', 'Publik');
     $builder->notlike('id_berita', $id);
     $builder->orderBy('created_at', 'desc');

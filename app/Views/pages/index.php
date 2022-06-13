@@ -127,39 +127,39 @@ Berita Terbaru
 
 <!-- 
 =============================================
-Artikel Terbaru
+Pengumuman Terbaru
 ============================================== 
 -->
 <div class="service-style-one section-spacing">
 	<div class="container">
 		<div class="theme-title-one">
-			<h2>Artikel Terbaru</h2>
-			<p>Berikut artikel-artikel terbaru tentang KPKNL Bandung </p>
+			<h2>Pengumuman Terbaru</h2>
+			<p>Berikut beberapa pengumuman terbaru di KPKNL Bandung </p>
 		</div> <!-- /.theme-title-one -->
 		<div class="wrapper">
 			<div class="row">
 				<?php
 
-				foreach ($artikel_terbaru->getResult() as $b) :
-					$tanggal = $b->created_at;
+				foreach ($pengumuman_terbaru->getResult() as $a) :
+					$tanggal = $a->created_at;
 
 					$text = $a->Judul;
 					$jumlahText = strlen($text);
-					$num_char = 20;
+					$num_char = 16;
 					if ($jumlahText >= $num_char) {
 						$cut_text = substr($text, 0, $num_char) . '...';
 					} else {
 						$cut_text = $a->Judul;
 					}
-
 				?>
 					<div class="col-xl-4 col-md-6 col-12">
 						<div class="single-service">
-							<div class="img-box"><img src="/gambar/<?= $b->Gambar; ?>" alt=""></div>
+							<div class="img-box"><img src="/gambar/<?= $a->Gambar; ?>" alt=""></div>
 							<div class="text">
-								<h6><a href="/pages/detail_berita/<?= $b->id_berita ?>"><?= $cut_text ?></a></h6>
+								<h6><a href="/pages/detail_pengumuman/<?= $a->id_berita ?>"><?= $cut_text ?></a></h6>
+
 								<p style="font-size:16px ;"><i class="fa fa-calendar"></i> <?= tanggal_indonesia($tanggal); ?></p>
-								<a href="/pages/detail_berita/<?= $b->id_berita ?>" class="read-more">SELENGKAPNYA <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+								<a href="/pages/detail_pengumuman/<?= $a->id_berita ?>" class="read-more">SELENGKAPNYA</a>
 							</div> <!-- /.text -->
 						</div> <!-- /.single-service -->
 					</div> <!-- /.col- -->
@@ -169,11 +169,9 @@ Artikel Terbaru
 
 			</div> <!-- /.row -->
 		</div> <!-- /.wrapper -->
-		<center><a href="/pages/berita_grid" class="theme-button-one mt-5">LIHAT SEMUA</a></center>
+		<center><a href="/pages/pengumuman_grid" class="theme-button-one mt-5">LIHAT SEMUA</a></center>
 	</div> <!-- /.container -->
 </div> <!-- /.service-style-one -->
-
-
 
 
 <!-- 
@@ -213,10 +211,57 @@ About Company
 	</div> <!-- /.container -->
 </div> <!-- /.about-compnay -->
 
+<!-- 
+=============================================
+Artikel Terbaru
+============================================== 
+-->
+<div class="service-style-one section-spacing">
+	<div class="container">
+		<div class="theme-title-one">
+			<h2>Artikel Terbaru</h2>
+			<p>Berikut artikel-artikel terbaru tentang KPKNL Bandung </p>
+		</div> <!-- /.theme-title-one -->
+		<div class="wrapper">
+			<div class="row">
+				<?php
+
+				foreach ($artikel_terbaru->getResult() as $b) :
+					$tanggal = $b->created_at;
+
+					$text = $b->Judul;
+					$jumlahText = strlen($text);
+					$num_char = 20;
+					if ($jumlahText >= $num_char) {
+						$cut_text = substr($text, 0, $num_char) . '...';
+					} else {
+						$cut_text = $b->Judul;
+					}
+
+				?>
+					<div class="col-xl-4 col-md-6 col-12">
+						<div class="single-service">
+							<div class="img-box"><img src="/gambar/<?= $b->Gambar; ?>" alt=""></div>
+							<div class="text">
+								<h6><a href="/pages/detail_artikel/<?= $b->id_berita ?>"><?= $cut_text ?></a></h6>
+								<p style="font-size:16px ;"><i class="fa fa-calendar"></i> <?= tanggal_indonesia($tanggal); ?></p>
+								<a href="/pages/detail_artikel/<?= $b->id_berita ?>" class="read-more">SELENGKAPNYA <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+							</div> <!-- /.text -->
+						</div> <!-- /.single-service -->
+					</div> <!-- /.col- -->
+
+				<?php
+				endforeach ?>
+
+			</div> <!-- /.row -->
+		</div> <!-- /.wrapper -->
+		<center><a href="/pages/artikel_grid" class="theme-button-one mt-5">LIHAT SEMUA</a></center>
+	</div> <!-- /.container -->
+</div> <!-- /.service-style-one -->
 
 <!-- 
 			=============================================
-				Our Case
+				Kilas Peristiwa
 			============================================== 
 			-->
 <div class="our-case section-spacing">

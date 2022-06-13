@@ -97,7 +97,6 @@
                                         <tr>
                                             <th>Jenis Layanan</th>
                                             <th>Tanggal Input</th>
-                                            <!-- <th>Tanggal Kunjungan</th> -->
                                             <th>Waktu Kunjungan</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
@@ -151,7 +150,7 @@
                                 <a href="/Pengaduan_online" class="btn btn-primary btn-md me-3 mb-3">Lihat Semua</a>
                                 <a href="/Pengaduan_online/form" class="btn btn-success btn-md mb-3"><i class="fas fa-plus-circle"></i> Tambah</a>
 
-                                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <table id="datatable2" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                         <tr>
                                             <th>Jenis Layanan</th>
@@ -160,7 +159,6 @@
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-
                                     <tbody>
                                         <?php
                                         function Tanggal($date)

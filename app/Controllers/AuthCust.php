@@ -240,7 +240,7 @@ class AuthCust extends BaseController
         session()->set($data);
         session()->setFlashdata('pesan', 'Berhasil Login');
 
-        return redirect()->to('petugasMR');
+        return redirect()->to('/dashboard_petugas');
       } elseif ($kelompok[0] == 'LP') {
         $row_petugas = $model->get_data_login($data['email'], 'petugas_apt');
 

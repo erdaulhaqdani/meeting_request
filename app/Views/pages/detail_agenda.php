@@ -9,7 +9,7 @@
 <div class="theme-inner-banner section-spacing">
   <div class="overlay">
     <div class="container">
-      <h2>Artikel</h2>
+      <h2>Agenda</h2>
     </div> <!-- /.container -->
   </div> <!-- /.overlay -->
 </div> <!-- /.theme-inner-banner -->
@@ -35,9 +35,9 @@
           ?>
           <div class="single-blog">
 
-            <a href="/">Home</a>&nbsp;>&nbsp;<a href="/pages/artikel_grid">Daftar Artikel</a>&nbsp;>&nbsp;<a href="" style=" pointer-events: none; cursor: default; margin-bottom : 10px;">Artikel</a>
+            <a href="/">Beranda</a>&nbsp;>&nbsp;<a href="/pages/agenda_grid">Daftar Agenda</a>&nbsp;>&nbsp;<a href="" style=" pointer-events: none; cursor: default; margin-bottom : 10px;">Agenda</a>
             <div class="image-box">
-              <img src="/cover_Agenda/<?= $berita['Cover']; ?>" alt="">
+              <img src="/gambar/<?= $berita['Gambar']; ?>" alt="">
               <div class="overlay"><a href="#" class="date"><?= formatTanggal($date); ?></a></div>
             </div> <!-- /.image-box -->
             <div class="post-meta">
@@ -61,7 +61,7 @@
         <!-- ==================== Related Post ================= -->
         <div class="inner-box">
           <div class="theme-title-one">
-            <h2>Artikel Lainnya</h2>
+            <h2>Agenda Lainnya</h2>
           </div> <!-- /.theme-title-one -->
           <div class="row">
             <div class="related-post-slider">
@@ -73,26 +73,33 @@
                 return date('d-m-Y', strtotime($date));
               }
 
-              foreach ($artikel->getResult() as $a) :
+              foreach ($agenda_lain->getResult() as $a) :
                 $date = $a->created_at;
 
-                if ($a->Status == 'Publik') :
+                $judul = $a->Judul;
+                $textJudul = strlen($judul);
+                $num_char = 70;
+                if ($textJudul > $num_char) {
+                  $cut_judul = substr($judul, 0, $num_char) . '...';
+                } else {
+                  $cut_judul = $a->Judul;
+                }
+
               ?>
 
-                  <div class="item">
-                    <div class="single-blog">
-                      <div class="image-box" style="max-height: 260px;">
-                        <img src="/gambar/<?= $a->Gambar; ?>" alt="">
-                        <div class="overlay"><a href="#" class="date"><?= formatTanggal2($date); ?></a></div>
-                      </div> <!-- /.image-box -->
-                      <div class="post-meta">
-                        <h5 class="title"><a href="#"><?= $a->Judul; ?></a></h5>
-                        <a href="/pages/detail_artikel/<?= $a->id_berita ?>" class="read-more">SELENGKAPNYA</a>
-                      </div> <!-- /.post-meta -->
-                    </div> <!-- /.single-blog -->
-                  </div> <!-- /.col- -->
+                <div class="item">
+                  <div class="single-blog">
+                    <div class="image-box" style="max-height: 260px;">
+                      <img src="/gambar/<?= $a->Gambar; ?>" alt="">
+                      <div class="overlay"><a href="#" class="date"><?= formatTanggal2($date); ?></a></div>
+                    </div> <!-- /.image-box -->
+                    <div class="post-meta">
+                      <h5 class="title"><a href="#"><?= $cut_judul; ?></a></h5>
+                      <a href="/pages/detail_agenda/<?= $a->id_berita ?>" class="read-more">SELENGKAPNYA</a>
+                    </div> <!-- /.post-meta -->
+                  </div> <!-- /.single-blog -->
+                </div> <!-- /.col- -->
               <?php
-                endif;
               endforeach ?>
 
             </div> <!-- /.related-product-slider -->

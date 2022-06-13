@@ -76,23 +76,31 @@
               foreach ($artikel->getResult() as $a) :
                 $date = $a->created_at;
 
-                if ($a->Status == 'Publik') :
+                $judul = $a->Judul;
+                $textJudul = strlen($judul);
+                $num_char = 65;
+                if ($textJudul > $num_char) {
+                  $cut_judul = substr($judul, 0, $num_char) . '...';
+                } else {
+                  $cut_judul = $a->Judul;
+                }
+
               ?>
 
-                  <div class="item">
-                    <div class="single-blog">
-                      <div class="image-box" style="max-height: 260px;">
-                        <img src="/gambar/<?= $a->Gambar; ?>" alt="">
-                        <div class="overlay"><a href="#" class="date"><?= formatTanggal2($date); ?></a></div>
-                      </div> <!-- /.image-box -->
-                      <div class="post-meta">
-                        <h5 class="title"><a href="#"><?= $a->Judul; ?></a></h5>
-                        <a href="/pages/detail_artikel/<?= $a->id_berita ?>" class="read-more">SELENGKAPNYA</a>
-                      </div> <!-- /.post-meta -->
-                    </div> <!-- /.single-blog -->
-                  </div> <!-- /.col- -->
+                <div class="item">
+                  <div class="single-blog">
+                    <div class="image-box" style="max-height: 260px;">
+                      <img src="/gambar/<?= $a->Gambar; ?>" alt="">
+                      <div class="overlay"><a href="#" class="date"><?= formatTanggal2($date); ?></a></div>
+                    </div> <!-- /.image-box -->
+                    <div class="post-meta">
+                      <h5 class="title"><a href="#"><?= $cut_judul ?></a></h5>
+                      <a href="/pages/detail_artikel/<?= $a->id_berita ?>" class="read-more">SELENGKAPNYA</a>
+                    </div> <!-- /.post-meta -->
+                  </div> <!-- /.single-blog -->
+                </div> <!-- /.col- -->
               <?php
-                endif;
+
               endforeach ?>
 
             </div> <!-- /.related-product-slider -->

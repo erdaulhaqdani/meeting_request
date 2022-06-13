@@ -25,6 +25,7 @@ class Pages extends BaseController
       'jumbotron' => $this->Landing_pageModel->jumbotron(),
       'peristiwa_terbaru' => $this->Landing_pageModel->listPeristiwaTerbaru(),
       'artikel_terbaru' => $this->Landing_pageModel->listArtikelTerbaru(),
+      'pengumuman_terbaru' => $this->Landing_pageModel->listPengumumanTerbaru(),
     ];
     return view('pages/index', $data);
   }

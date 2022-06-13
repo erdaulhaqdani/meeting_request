@@ -75,6 +75,15 @@
               foreach ($pengumuman_lain->getResult() as $a) :
                 $date = $a->created_at;
 
+                $judul = $a->Judul;
+                $textJudul = strlen($judul);
+                $num_char = 65;
+                if ($textJudul > $num_char) {
+                  $cut_judul = substr($judul, 0, $num_char) . '...';
+                } else {
+                  $cut_judul = $a->Judul;
+                }
+
               ?>
 
                 <div class="item">
@@ -84,7 +93,7 @@
                       <div class="overlay"><a href="#" class="date"><?= formatTanggal2($date); ?></a></div>
                     </div> <!-- /.image-box -->
                     <div class="post-meta">
-                      <h5 class="title"><a href="#"><?= $a->Judul; ?></a></h5>
+                      <h5 class="title"><a href="#"><?= $cut_judul ?></a></h5>
                       <a href="/pages/detail_artikel/<?= $a->id_berita ?>" class="read-more">SELENGKAPNYA</a>
                     </div> <!-- /.post-meta -->
                   </div> <!-- /.single-blog -->
