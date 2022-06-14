@@ -58,7 +58,7 @@ class Petugas extends Migration
         $this->forge->addForeignKey('Unit', 'kategori', 'idKategori', 'CASCADE', 'CASCADE');
 
         // $this->db->enableForeignKeyChecks();
-        $this->forge->createTable('Petugas', true);
+        $this->forge->createTable('petugas_apt', true);
     }
 
     public function down()

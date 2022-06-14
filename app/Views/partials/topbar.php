@@ -79,6 +79,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- notification list -->
                     <div data-simplebar style="max-height: 230px;">
                         <a href="" class="text-reset notification-item">
                             <div class="d-flex">
@@ -138,6 +140,8 @@
                             </div>
                         </a>
                     </div>
+                    <!-- end of notification list -->
+
                     <div class="p-2 border-top">
                         <div class="d-grid">
                             <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
@@ -169,13 +173,6 @@
                     <a class="dropdown-item text-danger" href="/logout_cust"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
                 </div>
             </div>
-
-            <div class="dropdown d-inline-block">
-                <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
-                    <i class="ri-settings-2-line"></i>
-                </button>
-            </div>
-
         </div>
     </div>
 </header>

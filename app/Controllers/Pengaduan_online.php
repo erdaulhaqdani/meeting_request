@@ -46,6 +46,13 @@ class Pengaduan_online extends BaseController
         return view('pengaduan_online/view_pengaduan_online', $data);
     }
 
+    public function getNotif()
+    {
+        $data = $this->Pengaduan_onlineModel->where('idPengaduan', 1)->findColumn('Judul');
+        $result['pesan'] = $data;
+        echo json_encode($result);
+    }
+
     public function daftar($status)
     {
         $data = [
@@ -89,16 +96,15 @@ class Pengaduan_online extends BaseController
                 'kategori' => $this->KategoriModel->getKategori($pengaduan['idKategori'])
             ];
         } elseif ($pengaduan['Status'] == 'Selesai diproses') {
-            $tanggapan = $this->Tanggapan_POModel->getTanggapanPengaduan($pengaduan['idPengaduan']);
-            $petugas = $this->PetugasModel->getPetugasId($tanggapan['idPetugas']);
+            $tanggapan = $this->Tanggapan_POModel->getTanggapanPengaduan($id);
             $data = [
                 'title' => 'Detail Pengaduan Online',
                 'pengaduan' => $pengaduan,
                 'customer' => $this->CustModel->getCustomer($pengaduan['idCustomer']),
                 'kategori' => $this->KategoriModel->getKategori($pengaduan['idKategori']),
                 'tanggapan' => $tanggapan,
-                'petugas' => $petugas,
-                'level' => $this->LevelModel->getlevel($petugas['idLevel'])
+                'petugas' => $this->PetugasModel->getPetugasId(),
+                'level' => $this->LevelModel->getlevel()
             ];
         } else {
             $data = [
