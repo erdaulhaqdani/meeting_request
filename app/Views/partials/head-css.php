@@ -6,4 +6,4 @@
 <link href="<?= base_url('assets/css/app.min.css'); ?>" id="app-style" rel="stylesheet" type="text/css" />
 
 <!-- App favicon -->
-<link rel="shortcut icon" href="<?= base_url('assets/images/favicon.ico'); ?>">
+<link rel="icon" type="image/png" href="<?= base_url('assets/images/favicon-32x32.png'); ?>" sizes="32x32" />

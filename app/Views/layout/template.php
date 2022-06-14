@@ -16,7 +16,7 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="#061948">
 	<title><?= $title; ?></title>
 	<!-- Favicon -->
-	<link rel="icon" type="image/png" sizes="56x56" href="/images/fav-icon/icon.png">
+	<link rel="icon" type="image/png" href="<?= base_url('assets/images/favicon-32x32.png'); ?>" sizes="32x32" />
 	<!-- Main style sheet -->
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<!-- responsive style sheet -->
