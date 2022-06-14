@@ -39,6 +39,18 @@ class PetugasModel extends Model
     return $this->where(['idPetugas' => $id])->first();
   }
 
+  public function getPetugasEskalasi($idPetugas, $idLevel)
+  {
+    $builder = $this->db->table('petugas_apt');
+    $builder->where('idPetugas !=', $idPetugas);
+    $builder->where('idPetugas !=', 1);
+    $builder->where('idLevel <', $idLevel);
+    $builder->where('idLevel !=', 1);
+
+    $query = $builder->get();
+    return $query;
+  }
+
   function get_nip($nip, $tbl)
   {
     $builder = $this->db->table($tbl);

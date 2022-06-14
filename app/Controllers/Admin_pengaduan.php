@@ -198,7 +198,7 @@ class Admin_pengaduan extends BaseController
         $data = [
             'title' => 'Tanggapan',
             'validation' => \Config\Services::validation(),
-            'petugas' => $this->PetugasModel->getPetugas(),
+            'petugas' => $this->PetugasModel->getPetugasEskalasi(session('idPetugas'), session('idLevel'))->getResultArray(),
             'level' => $this->LevelModel->getlevel(),
             'idPengaduan' => $idPengaduan
         ];

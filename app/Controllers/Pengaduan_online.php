@@ -46,6 +46,13 @@ class Pengaduan_online extends BaseController
         return view('pengaduan_online/view_pengaduan_online', $data);
     }
 
+    public function getNotif()
+    {
+        $data = $this->Pengaduan_onlineModel->where('idPengaduan', 1)->findColumn('Judul');
+        $result['pesan'] = $data;
+        echo json_encode($result);
+    }
+
     public function daftar($status)
     {
         $data = [
