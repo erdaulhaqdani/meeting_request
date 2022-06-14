@@ -107,7 +107,7 @@
         </div> <!-- /.inner-box -->
       </div>
       <!-- ===================== Blog Sidebar ==================== -->
-      <?= $this->include('layout/detail_sidebar') ?>
+      <?= $this->include('layout/sidebar') ?>
     </div> <!-- /.row -->
   </div> <!-- /.container -->
 </div> <!-- /.blog-details -->

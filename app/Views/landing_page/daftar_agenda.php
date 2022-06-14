@@ -41,7 +41,12 @@
                             <div class="card-body">
 
                                 <h4 class="card-title"><?= $title; ?></h4>
-                                <p class="card-title-desc">Berikut adalah tabel Daftar Agenda.</p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p class="card-title-desc">Berikut adalah tabel Daftar Agenda.</p>
+                                    </div>
+                                    <div class="col-md-6"><a style="float: right ;" href="/Landing_page/form_agenda" class="btn btn-success btn-md"><i class="fas fa-plus-circle"></i> Tambah</a></div>
+                                </div>
                                 <?php if (session()->get('pesan')) : ?>
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                                         <?= session()->get('pesan'); ?>

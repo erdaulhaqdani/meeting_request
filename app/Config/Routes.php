@@ -111,6 +111,10 @@ $routes->get('/Landing_page/daftar_agenda', 'Landing_page::daftar_agenda');
 $routes->get('/Landing_page/edit_agenda/(:num)', 'Landing_page::edit_agenda/$1');
 $routes->get('/Landing_page/update_agenda/(:num)', 'Landing_page::update_agenda/$1');
 
+//Pencarian Informasi Landing Page
+$routes->get('/pages/pencarian', 'Pages::pencarian');
+$routes->get('/pages/detail_info/(:num)', 'Pages::detail_pencarian/$1');
+
 $routes->get('/pages/artikel_grid', 'Landing_page::artikel_grid');
 $routes->get('/Landing_page/artikel_grid', 'Landing_page::artikel_grid');
 $routes->get('/pages/detail_artikel/(:num)', 'Landing_page::detail_artikel/$1');

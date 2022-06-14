@@ -86,15 +86,15 @@
                     </div>
                   </div>
 
-                  <!-- <div class="row mb-2">
-                    <label for="gambar" class="col-sm-3 col-form-label">Gambar Lampiran</label>
+                  <div class="row mb-2">
+                    <label for="gambar_lampiran" class="col-sm-3 col-form-label">Gambar Lampiran (opsional)</label>
                     <div class="col-sm-9">
                       <div class="input-group">
-                        <input type="file" name="gambar" class="form-control" id="gambar" required>
+                        <input type="file" name="gambar_lampiran[]" class="form-control" id="gambar_lampiran" multiple='true' required>
                       </div>
                       <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png</p>
                     </div>
-                  </div> -->
+                  </div>
 
                   <div class="row mb-2">
                     <textarea id="elm1" name="isi_berita"></textarea>

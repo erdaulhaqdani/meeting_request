@@ -77,7 +77,7 @@
         </div>
       </div>
       <!-- ===================== Blog Sidebar ==================== -->
-      <?= $this->include('layout/grid_sidebar') ?>
+      <?= $this->include('layout/sidebar') ?>
       <!-- /end-sidebar -->
     </div> <!-- /.row -->
   </div> <!-- /.container -->

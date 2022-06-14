@@ -41,10 +41,10 @@
             <div class="card">
               <div class="card-body">
 
-                <h4 class="card-title">Kelola Informasi</h4>
+                <h4 class="card-title">Daftar Informasi</h4>
                 <div class="row">
                   <div class="col-md-6">
-                    <p class="card-title-desc">Berikut adalah tabel Kelola Informasi.</p>
+                    <p class="card-title-desc">Berikut adalah tabel Daftar Informasi.</p>
                   </div>
                   <div class="col-md-6"><a style="float: right ;" href="/Landing_page/form" class="btn btn-success btn-md"><i class="fas fa-plus-circle"></i> Tambah</a></div>
                 </div>

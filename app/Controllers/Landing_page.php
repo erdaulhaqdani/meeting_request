@@ -8,6 +8,7 @@ use App\Models\PermohonanInfoModel;
 use App\Models\LevelModel;
 use App\Models\PetugasModel;
 use App\Models\UserModel;
+use App\Models\UploadsModel;
 
 class Landing_page extends BaseController
 {
@@ -17,6 +18,7 @@ class Landing_page extends BaseController
   protected $LevelModel;
   protected $PetugasModel;
   protected $UserModel;
+  protected $UploadsModel;
 
   public function __construct()
   {
@@ -26,6 +28,7 @@ class Landing_page extends BaseController
     $this->LevelModel = new LevelModel();
     $this->PetugasModel = new PetugasModel();
     $this->UserModel = new UserModel();
+    $this->UploadsModel = new UploadsModel();
   }
 
   public function form_petugas()
@@ -205,6 +208,29 @@ class Landing_page extends BaseController
       $gambar->move('gambar', $namagambar);
     }
 
+
+    $gambar_lampiran = $this->request->getFiles();
+
+    if ($gambar_lampiran) {
+      $random_id = rand(000, 999);
+
+      $data_uploads = [
+        'id_uploads' => $random_id,
+        'Judul' => $this->request->getVar('judul'),
+        'Kategori' => 'Gambar Lampiran Informasi'
+      ];
+      $this->UploadsModel->insert_upload($data_uploads);
+
+      foreach ($gambar_lampiran['gambar_lampiran'] as $key => $img) {
+        $data_galeri = [
+          'id_uploads' => $random_id,
+          'File' => $img->getRandomName(),
+        ];
+        $this->UploadsModel->insert_galeri($data_galeri);
+        $img->move(ROOTPATH . 'public/uploads', $img->getRandomName());
+      }
+    }
+
     $this->Landing_pageModel->save([
       'Isi' => $this->request->getVar('isi_berita'),
       'Judul' => $this->request->getVar('judul'),
@@ -355,6 +381,28 @@ class Landing_page extends BaseController
       $gambar->move('gambar', $namagambar);
     }
 
+    $gambar_lampiran = $this->request->getFiles();
+
+    if ($gambar_lampiran) {
+      $random_id = rand(000, 999);
+
+      $data_uploads = [
+        'id_uploads' => $random_id,
+        'Judul' => $this->request->getVar('judul'),
+        'Kategori' => 'Gambar Lampiran Agenda'
+      ];
+      $this->UploadsModel->insert_upload($data_uploads);
+
+      foreach ($gambar_lampiran['gambar_lampiran'] as $key => $img) {
+        $data_galeri = [
+          'id_uploads' => $random_id,
+          'File' => $img->getRandomName(),
+        ];
+        $this->UploadsModel->insert_galeri($data_galeri);
+        $img->move(ROOTPATH . 'public/uploads', $img->getRandomName());
+      }
+    }
+
     $this->Landing_pageModel->save([
       'Judul' => $this->request->getVar('judul'),
       'Kategori' => 'Agenda',
@@ -368,7 +416,7 @@ class Landing_page extends BaseController
 
     session()->setFlashdata('pesan', 'Berhasil menambahkan agenda.');
 
-    return redirect()->to('/Landing_page/form_agenda');
+    return redirect()->to('/Landing_page/daftar_agenda');
   }
 
   public function edit_agenda($id)
@@ -459,12 +507,6 @@ class Landing_page extends BaseController
 
   public function artikel_grid()
   {
-    $pencarian = $this->request->getVar('pencarian');
-    if ($pencarian) {
-      $informasi = $this->Landing_pageModel->search($pencarian);
-    } else {
-      $informasi = $this->Landing_pageModel;
-    }
 
     $data = [
       'title' => 'Artikel KPKNL Bandung',
@@ -555,12 +597,6 @@ class Landing_page extends BaseController
 
   public function agenda_grid()
   {
-    $pencarian = $this->request->getVar('pencarian');
-    if ($pencarian) {
-      $informasi = $this->Landing_pageModel->search($pencarian);
-    } else {
-      $informasi = $this->Landing_pageModel;
-    }
 
     $data = [
       'title' => 'Agenda KPKNL Bandung',

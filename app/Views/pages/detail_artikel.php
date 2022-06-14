@@ -50,7 +50,6 @@
                 <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
                 <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                 <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
               </ul>
               <ul class="tag-meta float-left">
                 <li>Author : <?= $berita['Penulis']; ?></li>
@@ -108,7 +107,7 @@
         </div> <!-- /.inner-box -->
       </div>
       <!-- ===================== Blog Sidebar ==================== -->
-      <?= $this->include('layout/detail_sidebar') ?>
+      <?= $this->include('layout/sidebar') ?>
     </div> <!-- /.row -->
   </div> <!-- /.container -->
 </div> <!-- /.blog-details -->

@@ -37,6 +37,7 @@ class Landing_pageModel extends Model
   public function search($pencarian)
   {
     $builder = $this->db->table('berita');
+    $builder->where('Status', 'Publik');
     $builder->like('Judul', $pencarian);
     $builder->like('Isi', $pencarian);
     return $builder;

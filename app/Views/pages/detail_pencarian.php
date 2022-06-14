@@ -9,7 +9,7 @@
 <div class="theme-inner-banner section-spacing">
   <div class="overlay">
     <div class="container">
-      <h2>Berita</h2>
+      <h2><?= $berita['Kategori']; ?></h2>
     </div> <!-- /.container -->
   </div> <!-- /.overlay -->
 </div> <!-- /.theme-inner-banner -->
@@ -34,7 +34,7 @@
           $date = $berita['created_at'];
           ?>
           <div class="single-blog">
-            <a href="/">Beranda</a>&nbsp;>&nbsp;<a href="/pages/berita_grid">Daftar Berita</a>&nbsp;>&nbsp;<a href="" style=" pointer-events: none; cursor: default; margin-bottom : 10px;">Berita</a>
+            <a href="/">Beranda</a>&nbsp;>&nbsp;<a href="" style=" pointer-events: none; cursor: default; margin-bottom : 10px;"><?= $berita['Kategori']; ?></a>
             <div class="image-box">
               <img src="/gambar/<?= $berita['Gambar']; ?>" alt="">
               <div class="overlay"><a href="#" class="date"><?= formatTanggal($date); ?></a></div>
@@ -60,7 +60,7 @@
         <!-- ==================== Related Post ================= -->
         <div class="inner-box">
           <div class="theme-title-one">
-            <h2>Berita Lainnya</h2>
+            <h2><?= $berita['Kategori']; ?> Lainnya</h2>
           </div> <!-- /.theme-title-one -->
           <div class="row">
             <div class="related-post-slider">

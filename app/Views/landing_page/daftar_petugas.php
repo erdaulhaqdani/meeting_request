@@ -41,7 +41,12 @@
               <div class="card-body">
 
                 <h4 class="card-title"><?= $title; ?></h4>
-                <p class="card-title-desc">Berikut adalah tabel Daftar Petugas.</p>
+                <div class="row">
+                  <div class="col-md-6">
+                    <p class="card-title-desc">Berikut adalah tabel Daftar Petugas.</p>
+                  </div>
+                  <div class="col-md-6"><a style="float: right ;" href="/Landing_page/form_petugas" class="btn btn-success btn-md"><i class="fas fa-plus-circle"></i> Tambah</a></div>
+                </div>
                 <?php
                 if (session()->get('pesan')) {
                 ?>
