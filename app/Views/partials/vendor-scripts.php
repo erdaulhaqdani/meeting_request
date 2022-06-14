@@ -13,7 +13,7 @@
                 type: "POST",
                 dataType: "JSON",
                 success: function(data) {
-                    alert(data.pesan);
+                    // alert(data.pesan);
                 }
             });
         }, 600000);
