@@ -10,7 +10,7 @@ class TandaTerimaModel extends Model
     protected $primaryKey = 'id_tt';
     protected $useAutoIncrement = true;
 
-    protected $allowedFields = ['Pengirim', 'No_surat', 'Tanggal', 'Perihal', 'updated_at'];
+    protected $allowedFields = ['Pengirim', 'No_surat', 'Tanggal', 'Perihal', 'created_at', 'updated_at'];
 
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';

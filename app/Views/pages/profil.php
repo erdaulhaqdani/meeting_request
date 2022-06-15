@@ -243,16 +243,5 @@
   </div> <!-- /.container -->
 </div> <!-- /.our-team -->
 
-<!--
-			=====================================================
-				Google Map
-			=====================================================
-			-->
-<!-- Google Map -->
-<div class="google-map-one">
-  <div class="map-canvas" id="googleMap">
-
-  </div>
-</div>
 
 <?= $this->endSection(); ?>
