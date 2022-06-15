@@ -50,9 +50,9 @@ class Pengaduan_online extends BaseController
     {
         $query = $this->Pengaduan_onlineModel->notifPengaduanCustomer(session('idCustomer'))->getResultArray();
         $output = '';
-        $count = $this->Pengaduan_onlineModel->jumlahPengaduan(session('idCustomer'), '')->getRowArray();
-        // dd($count);
-        if ($count > 0) {
+        $count = $this->Pengaduan_onlineModel->jumlahNotifikasi(session('idCustomer'))->getResultArray();
+
+        if ($count[0]['idPengaduan'] > 0) {
             foreach ($query as $row) {
                 $output .= '
                 <a href="/Pengaduan_online/detail/' . $row['idPengaduan'] . '" class="text-reset notification-item">
@@ -66,6 +66,7 @@ class Pengaduan_online extends BaseController
                             <h6 class="mb-1">' . $row['Judul'] . '</h6>
                             <div class="font-size-12 text-muted">
                                 <p class="mb-1">Pengaduan Online</p>
+                                <p class="mb-1">' . $row['Status'] . '</p>
                                 <p class="mb-0"><i class="mdi mdi-clock-outline"></i> ' . $row['updated_at'] . '</p>
                             </div>
                         </div>
@@ -82,16 +83,24 @@ class Pengaduan_online extends BaseController
                         </span>
                     </div>
                     <div class="flex-1">
-                        <h6 class="mb-1">Tidak ada pengaduan</h6>
+                        <div class="font-size-12 text-muted">
+                            <p class="mt-2">Tidak ada pengaduan online terbaru</p>
+                        </div>
                     </div>
                 </div>';
         }
+
         $data = array(
             'notification' => $output,
-            'unread_notification' => $count
+            'unread_notification' => $count[0]['idPengaduan']
         );
 
         echo json_encode($data);
+    }
+
+    public function refreshNotif()
+    {
+        $this->Pengaduan_onlineModel->query("UPDATE `pengaduan_online` SET `Notifikasi`= 1 WHERE `Notifikasi`= 0 ORDER BY `updated_at` ASC LIMIT 3");
     }
 
     public function daftar($status)
@@ -138,14 +147,15 @@ class Pengaduan_online extends BaseController
             ];
         } elseif ($pengaduan['Status'] == 'Selesai diproses') {
             $tanggapan = $this->Tanggapan_POModel->getTanggapanPengaduan($id);
+            $petugas = $this->PetugasModel->getPetugasId($tanggapan['idPetugas']);
             $data = [
                 'title' => 'Detail Pengaduan Online',
                 'pengaduan' => $pengaduan,
                 'customer' => $this->CustModel->getCustomer($pengaduan['idCustomer']),
                 'kategori' => $this->KategoriModel->getKategori($pengaduan['idKategori']),
                 'tanggapan' => $tanggapan,
-                'petugas' => $this->PetugasModel->getPetugasId(),
-                'level' => $this->LevelModel->getlevel()
+                'petugas' => $petugas,
+                'level' => $this->LevelModel->getlevel($petugas['idLevel'])
             ];
         } else {
             $data = [
@@ -372,18 +382,6 @@ class Pengaduan_online extends BaseController
         $this->Pengaduan_onlineModel->delete($id);
 
         session()->setFlashdata('pesan', 'berhasil menghapus pengaduan.');
-
-        return redirect()->to('/Pengaduan_online');
-    }
-
-    public function tidakSesuai($id)
-    {
-        $this->Pengaduan_onlineModel->save([
-            'idPengaduan' => $id,
-            'Status' => 'Tidak sesuai'
-        ]);
-
-        session()->setFlashdata('pesan', 'berhasil membatalkan pengaduan.');
 
         return redirect()->to('/Pengaduan_online');
     }

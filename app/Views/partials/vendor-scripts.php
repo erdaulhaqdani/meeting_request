@@ -25,48 +25,25 @@
             });
         }
 
+        function refresh_notification() {
+            $.ajax({
+                url: "<?= base_url('Pengaduan_online/refreshNotif') ?>",
+                type: "POST",
+                data: {},
+                dataType: "json",
+                success: function(data) {}
+            });
+        }
+
         load_notification();
 
-        // submit form and get new records
-        // $('#notifDiKlik').on('click', function(event) {
-        //     let id = e.currentTarget.dataset.id;
-        //     show_loading();
-        //     xhr = $.ajax({
-        //         url: "",
-        //         type: "POST",
-        //         data: 'id=' + id,
-        //         success: function(data) {
-        //             $('.notifikasi').html(data);
-        //             $('.rounded-circle').remove;
-        //             hide_loading();
-        //         }
-        //     });
-        // });
-        // submit form and get new records
-        // $('#comment_form').on('submit', function(event) {
-        //     event.preventDefault();
-        //     if ($('#subject').val() != '' && $('#comment').val() != '') {
-        //         var form_data = $(this).serialize();
-        //         $.ajax({
-        //             url: "insert.php",
-        //             type: "POST",
-        //             data: form_data,
-        //             success: function(data) {
-        //                 $('#comment_form')[0].reset();
-        //                 load_notification();
-        //             }
-        //         });
-        //     } else {
-        //         alert("Subject & Comments Harus Diisi");
-        //     }
-        // });
         // load new notifications
         $(document).on('click', '#page-header-notifications-dropdown', function() {
-            // $('.count').html('');
             load_notification('yes');
+            refresh_notification();
         });
         setInterval(function() {
             load_notification();
-        }, 5000);
+        }, 60000);
     });
 </script>

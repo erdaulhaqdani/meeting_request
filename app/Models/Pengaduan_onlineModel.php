@@ -33,8 +33,23 @@ class Pengaduan_onlineModel extends Model
          */
         $builder = $this->db->table('pengaduan_online');
         $builder->where('idCustomer', $id);
-        $builder->orderBy('created_at', 'DESC');
+        $builder->where('Notifikasi', 0);
+        $builder->orderBy('updated_at', 'ASC');
         $builder->limit(3);
+        $query = $builder->get();
+        return $query;
+    }
+
+    public function jumlahNotifikasi($id)
+    {
+        /**
+         * SELECT * FROM pengaduan_online
+         * WHERE idCustomer = '1' AND Status LIKE "%Sedang Diproses%"
+         */
+        $builder = $this->db->table('pengaduan_online');
+        $builder->where('idCustomer', $id);
+        $builder->where('Notifikasi', 0);
+        $builder->selectCount('idPengaduan');
         $query = $builder->get();
         return $query;
     }
