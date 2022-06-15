@@ -395,6 +395,7 @@ class Landing_page extends BaseController
       $this->UploadsModel->insert_upload($data_uploads);
 
       foreach ($gambar_lampiran['gambar_lampiran'] as $key => $img) {
+
         $data_galeri = [
           'id_uploads' => $random_id,
           'File' => $img->getRandomName(),
