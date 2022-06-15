@@ -21,38 +21,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<!-- responsive style sheet -->
 	<link rel="stylesheet" type="text/css" href="/css/responsive.css">
-	<!-- Menyisipkan library Google Maps -->
-	<script src="http://maps.googleapis.com/maps/api/js"></script>
 
-
-	<script>
-		// fungsi initialize untuk mempersiapkan peta
-		function initialize() {
-			var propertiPeta = {
-				center: new google.maps.LatLng(-6.921834688616565, 107.61098839668868),
-				zoom: 15,
-				mapTypeId: google.maps.MapTypeId.ROADMAP
-			};
-
-			var peta = new google.maps.Map(document.getElementById("googleMap"), propertiPeta);
-
-			// membuat Marker
-			var marker = new google.maps.Marker({
-				position: new google.maps.LatLng(-6.921834688616565, 107.61098839668868),
-				map: peta
-			});
-		}
-
-		// event jendela di-load  
-		google.maps.event.addDomListener(window, 'load', initialize);
-	</script>
-
-	<!-- Fix Internet Explorer ______________________________________-->
-	<!--[if lt IE 9]>
-			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-			<script src="vendor/html5shiv.js"></script>
-			<script src="vendor/respond.js"></script>
-		<![endif]-->
 </head>
 
 <body>

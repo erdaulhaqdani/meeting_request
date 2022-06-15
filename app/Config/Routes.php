@@ -146,6 +146,7 @@ $routes->get('/petugasMR/form_tandaTerima', 'Petugas_MR::form_tandaTerima');
 $routes->get('/petugasMR/daftar_tandaTerima', 'Petugas_MR::daftar_tandaTerima');
 $routes->get('/petugasMR/hapus_tandaTerima/(:num)', 'Petugas_MR::delete_tandaTerima/$1');
 $routes->get('/petugasMR/edit_tandaTerima/(:num)', 'Petugas_MR::edit_tandaTerima/$1');
+$routes->get('/petugasMR/cetak_tandaTerima/(:num)', 'Petugas_MR::cetak_tandaTerima/$1');
 
 //Download Form Permohonan Info
 $routes->get('pages/Landing_page/downloadPI/(:num)', 'Landing_page::downloadPI/$1');

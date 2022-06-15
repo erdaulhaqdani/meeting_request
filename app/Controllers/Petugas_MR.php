@@ -9,6 +9,7 @@ use App\Models\Tanggapan_MRModel;
 use App\Models\PetugasModel;
 use App\Models\TandaTerimaModel;
 use App\Models\LevelModel;
+use Dompdf\Dompdf;
 
 class Petugas_MR extends BaseController
 {
@@ -210,5 +211,26 @@ class Petugas_MR extends BaseController
         session()->setFlashdata('pesan', 'Berhasil mengubah Tanda Terima');
 
         return redirect()->to('/petugasMR/daftar_tandaTerima');
+    }
+
+    public function cetak_tandaTerima($id)
+    {
+        $data = [
+            'tanda_terima' => $this->TandaTerimaModel->getTandaTerima($id),
+        ];
+        $html = view('meeting_request/cetak_tanda_terima', $data);
+
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        $dompdf->stream();
     }
 }

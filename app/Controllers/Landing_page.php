@@ -395,13 +395,13 @@ class Landing_page extends BaseController
       $this->UploadsModel->insert_upload($data_uploads);
 
       foreach ($gambar_lampiran['gambar_lampiran'] as $key => $img) {
-
+        $imgName = $img->getRandomName();
         $data_galeri = [
           'id_uploads' => $random_id,
-          'File' => $img->getRandomName(),
+          'File' => $imgName,
         ];
         $this->UploadsModel->insert_galeri($data_galeri);
-        $img->move(ROOTPATH . 'public/uploads', $img->getRandomName());
+        $img->move(ROOTPATH . 'public/uploads', $imgName);
       }
     }
 

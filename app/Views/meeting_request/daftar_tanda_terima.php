@@ -95,7 +95,7 @@
                         <td>
                           <a href="/petugasMR/edit_tandaTerima/<?= $a['id_tt']; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                           <a href="/petugasMR/hapus_tandaTerima/<?= $a['id_tt']; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
-                          <a href="/Meeting_request/detail/<?= $a['id_tt']; ?>" class="btn btn-success btn-sm w-xs">Cetak</a>
+                          <a href="/petugasMR/cetak_tandaTerima/<?= $a['id_tt']; ?>" class="btn btn-success btn-sm w-xs">Cetak</a>
                         </td>
                       </tr>
                     <?php endforeach ?>
