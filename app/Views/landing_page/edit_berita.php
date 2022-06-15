@@ -9,7 +9,9 @@
   <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
   <!-- App Css-->
   <link href="/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
   <?= $this->include("partials/head-css"); ?>
+
 </head>
 
 <?= $this->include('partials/body') ?>
@@ -46,6 +48,8 @@
                 ?>
 
                 <form action="/Landing_page/update/<?= $informasi['id_berita']; ?>" class="custom-validation" method="POST" enctype="multipart/form-data">
+
+                  <input type="hidden" name="idPetugas" value="<?= session('idPetugas'); ?>">
                   <input type="hidden" name="gambar_lama" value="<?= $informasi['Gambar']; ?>">
                   <input type="hidden" name="status" value="<?= $informasi['Status']; ?>">
 
@@ -103,13 +107,20 @@
 
                   <div class="row mb-2">
                     <label for="gambar" class="col-sm-3 col-form-label">Gambar Cover</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-7">
                       <div class="input-group">
-                        <input type="file" name="gambar" class="form-control" id="gambar" value="<?= $informasi['Gambar']; ?>" required>
+                        <input type="file" name="gambar" class="form-control" id="gambar" value="<?= $informasi['Gambar']; ?>">
                       </div>
                       <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png</p>
                     </div>
+                    <div class="col-sm-2">
+                      <div class="input-group">
+                        <a class="image-popup-vertical-fit" href="/gambar/<?= $informasi['Gambar']; ?>"><input type="button" value="Lihat Gambar" class="btn btn-primary waves-effect" /></a>
+
+                      </div>
+                    </div>
                   </div>
+
 
                   <!-- <div class="row mb-2">
                     <label for="gambar" class="col-sm-3 col-form-label">Gambar Lampiran</label>
@@ -134,15 +145,16 @@
                   <?php
                   }
                   ?>
-                  <div class="mb-0">
+                  <div class="mb-0 text-end">
                     <div>
-                      <button type="submit" class="btn btn-primary waves-effect waves-light me-2">
-                        Submit
-                      </button>
-                      <button type="reset" class="btn btn-secondary waves-effect me-2">
+                      <input type="button" value="Kembali" class="btn btn-warning waves-effect" onclick="history.back(-1)" />
+                      <button type="reset" class="btn btn-secondary waves-effect me-2 ms-2">
                         Batal
                       </button>
-                      <input type="button" value="Kembali" class="btn btn-warning waves-effect" onclick="history.back(-1)" />
+                      <button type="submit" class="btn btn-primary waves-effect waves-light ">
+                        Submit
+                      </button>
+
                     </div>
                   </div>
                 </form>
@@ -177,6 +189,12 @@
 
 <!--tinymce js-->
 <script src="/assets/libs/tinymce/tinymce.min.js"></script>
+
+<!-- Magnific Popup-->
+<script src="/assets/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<!-- lightbox init js-->
+<script src="/assets/js/pages/lightbox.init.js"></script>
 
 <!-- init js -->
 <script src="/assets/js/pages/form-editor.init.js"></script>

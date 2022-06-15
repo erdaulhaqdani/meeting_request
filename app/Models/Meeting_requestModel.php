@@ -183,4 +183,13 @@ class Meeting_requestModel extends Model
     $query = $builder->get();
     return $query;
   }
+
+  function jumlah_meetingCustomer($idCustomer)
+  {
+    $builder = $this->db->table('meeting_request');
+    $builder->where('idCustomer', $idCustomer);
+    $builder->selectCount('idMeeting');
+    $query = $builder->get();
+    return $query;
+  }
 }

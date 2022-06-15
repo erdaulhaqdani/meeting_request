@@ -58,4 +58,13 @@ class PetugasModel extends Model
     $log = $builder->get()->getRow();
     return $log;
   }
+
+  function jumlah_petugas()
+  {
+    $builder = $this->db->table('petugas_apt');
+    $builder->where('idLevel !=', 1);
+    $builder->selectCount('idPetugas');
+    $query = $builder->get();
+    return $query;
+  }
 }

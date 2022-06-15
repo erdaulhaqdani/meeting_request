@@ -257,7 +257,7 @@ class AuthCust extends BaseController
         session()->set($data);
         session()->setFlashdata('pesan', 'Berhasil Login');
 
-        return redirect()->to('Landing_page');
+        return redirect()->to('/dashboard_admin_landing');
       }
     } else {
       session()->setFlashdata('pesan', 'Password salah');

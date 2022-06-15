@@ -24,4 +24,12 @@ class TandaTerimaModel extends Model
 
         return $this->where(['id_tt' => $id])->first();
     }
+
+    function jumlah_tandaTerima()
+    {
+        $builder = $this->db->table('tanda_terima');
+        $builder->selectCount('id_tt');
+        $query = $builder->get();
+        return $query;
+    }
 }

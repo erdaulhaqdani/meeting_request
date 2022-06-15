@@ -38,7 +38,7 @@
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li>
-                    <a href="/dashboard_petugas" class=" waves-effect">
+                    <a href="/dashboard_admin_landing" class=" waves-effect">
                         <i class="ri-dashboard-line"></i>
                         <span>Beranda</span>
                     </a>

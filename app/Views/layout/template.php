@@ -63,7 +63,7 @@
 				<div class="container">
 					<div class="bg-wrapper clearfix">
 						<div class="logo float-left"><a href="/"><img src="/images/logo-kpknl.png" alt="" height="56" width="150px"></a></div>
-						<div class="right-widget float-right ">
+						<!-- <div class="right-widget float-right ">
 							<ul>
 								<li class="search-option">
 									<div class="dropdown">
@@ -75,7 +75,8 @@
 									</div>
 								</li>
 							</ul>
-						</div> <!-- /.right-widget -->
+						</div> -->
+						<!-- /.right-widget -->
 						<!-- ============== Menu Warpper ================ -->
 						<div class="menu-wrapper float-right">
 							<nav id="mega-menu-holder" class="clearfix ">

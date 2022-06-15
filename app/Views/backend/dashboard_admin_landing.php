@@ -37,22 +37,98 @@
             <div class="page-content">
 
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-xl-3 col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Statistik Pengaduan</h4>
-                                <canvas id="pengaduan"></canvas>
+                                <h4 class="card-title mb-4">Statistik Informasi</h4>
+                                <canvas id="informasi"></canvas>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-xl-3 col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Statistik Meeting</h4>
-                                <canvas id="meeting"></canvas>
+                                <h4 class="card-title mb-4">Statistik Agenda</h4>
+                                <canvas id="agenda"></canvas>
                             </div>
                         </div>
                     </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1">
+                                        <p class="text-truncate font-size-14 mb-2">Jumlah Customer</p>
+                                        <h4 class="mb-2"><?php foreach ($customer->getResultObject() as $a) : ?>
+                                                <?= $a->idCustomer; ?>
+                                            <?php endforeach ?></h4>
+                                        <p class="text-muted mb-0 font-size-13">Customer berstatus aktif</p>
+                                    </div>
+                                    <div class="avatar-sm">
+                                        <span class="avatar-title bg-light text-primary rounded-3">
+                                            <i class="ri-user-3-line font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div><!-- end cardbody -->
+                        </div><!-- end card -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1">
+                                        <p class="text-truncate font-size-14 mb-2">Jumlah Petugas APT</p>
+                                        <h4 class="mb-2"><?php foreach ($petugas->getResultObject() as $a) : ?>
+                                                <?= $a->idPetugas; ?>
+                                            <?php endforeach ?></h4>
+                                        <p class="text-muted mb-0 font-size-13">Semua level</p>
+                                    </div>
+                                    <div class="avatar-sm">
+                                        <span class="avatar-title bg-light text-dark rounded-3">
+                                            <i class="ri-user-3-line font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div><!-- end cardbody -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1">
+                                        <p class="text-truncate font-size-14 mb-2">Customer Baru</p>
+                                        <h4 class="mb-2"><?php foreach ($cust_baru->getResultObject() as $a) : ?>
+                                                <?= $a->idCustomer; ?>
+                                            <?php endforeach ?></h4>
+                                        <p class="text-muted mb-0 font-size-13">Dalam 7 hari terakhir</p>
+                                    </div>
+                                    <div class="avatar-sm">
+                                        <span class="avatar-title bg-light text-success rounded-3">
+                                            <i class="ri-user-3-line font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div><!-- end cardbody -->
+                        </div><!-- end card -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1">
+                                        <p class="text-truncate font-size-14 mb-2">Jumlah Pegawai</p>
+                                        <h4 class="mb-2"><?php foreach ($petugas->getResultObject() as $a) : ?>
+                                                <?= $a->idPetugas; ?>
+                                            <?php endforeach ?></h4>
+                                        <p class="text-muted mb-0 font-size-13">Semua level</p>
+                                    </div>
+                                    <div class="avatar-sm">
+                                        <span class="avatar-title bg-light text-warning rounded-3">
+                                            <i class="ri-user-3-line font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div><!-- end cardbody -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
                 </div>
 
                 <div class="row">
@@ -92,73 +168,72 @@
 <?= $this->include("partials/vendor-scripts") ?>
 
 <!-- Plugins js -->
-<script src="/assets/libs/apexcharts/apexcharts.min.js"></script>
+<!-- <script src="/assets/libs/apexcharts/apexcharts.min.js"></script>
+<script src="assets/js/pages/dashboard.init.js"></script> -->
 
 <!-- jquery.vectormap map -->
 <script src="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
 <script src="assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js"></script>
 
-<script src="assets/js/pages/dashboard.init.js"></script>
-
 <!-- App js -->
 <script src="<?= base_url('assets/js/app.js') ?>"></script>
 <script src="<?= base_url('assets/js/chart.min.js') ?>"></script>
 
-<!-- Chart donut statistik pengaduan -->
+<!-- Chart donut statistik agenda -->
 <script>
-    var pengaduan = document.getElementById('pengaduan');
-    var data_pengaduan = [];
-    var label_pengaduan = [];
+    var agenda = document.getElementById('agenda');
+    var data_agenda = [];
+    var label_agenda = [];
 
-    <?php foreach ($groupPengaduan->getResult() as $key => $value) : ?>
-        data_pengaduan.push(<?= $value->Jumlah ?>);
-        label_pengaduan.push('<?= $value->Status ?>');
+    <?php foreach ($groupAgenda->getResult() as $key => $value) : ?>
+        data_agenda.push(<?= $value->Jumlah ?>);
+        label_agenda.push('<?= $value->Status ?>');
     <?php endforeach ?>
 
-    var data_group_pengaduan = {
+    var data_group_agenda = {
         datasets: [{
-            data: data_pengaduan,
+            data: data_agenda,
             backgroundColor: [
-                '#0f9cf3',
+                '#ffbb44',
                 '#6fd088',
-                '#f32f53'
             ],
         }],
-        labels: label_pengaduan,
+        labels: label_agenda,
     }
 
-    var chart_pengaduan = new Chart(pengaduan, {
+    var chart_agenda = new Chart(agenda, {
         type: 'doughnut',
-        data: data_group_pengaduan
+        data: data_group_agenda
     });
 </script>
 
-<!-- Chart donut statistik meeting -->
+<!-- Chart donut statistik informasi -->
 <script>
-    var meeting = document.getElementById('meeting');
-    var data_meeting = [];
-    var label_meeting = [];
+    var informasi = document.getElementById('informasi');
+    var data_informasi = [];
+    var label_informasi = [];
 
-    <?php foreach ($groupMeeting->getResult() as $key => $value) : ?>
-        data_meeting.push(<?= $value->Jumlah ?>);
-        label_meeting.push('<?= $value->Status ?>');
+    <?php foreach ($groupInfo->getResult() as $key => $value) : ?>
+        data_informasi.push(<?= $value->Jumlah ?>);
+        label_informasi.push('<?= $value->Kategori ?>');
     <?php endforeach ?>
 
-    var data_group_meeting = {
+    var data_group_informasi = {
         datasets: [{
-            data: data_meeting,
+            data: data_informasi,
             backgroundColor: [
                 '#0f9cf3',
                 '#6fd088',
-                '#f32f53'
+                '#f32f53',
+                '#ffbb44'
             ],
         }],
-        labels: label_meeting,
+        labels: label_informasi,
     }
 
-    var chart_meeting = new Chart(meeting, {
+    var chart_informasi = new Chart(informasi, {
         type: 'doughnut',
-        data: data_group_meeting
+        data: data_group_informasi
     });
 </script>
 

@@ -21,9 +21,9 @@ class AuthFilter implements FilterInterface
     if (session('log') == TRUE && session('idLevel') == 5) {
       return redirect()->to('/dashboard_cust');
     } elseif (session('log') == TRUE && session('idLevel') == 1) {
-      return redirect()->to('Landing_page');
+      return redirect()->to('/dashboard_admin_landing');
     } elseif (session('log') == TRUE && session('idLevel') == 7) {
-      return redirect()->to('petugasMR');
+      return redirect()->to('dashboard_petugas');
     }
   }
 }

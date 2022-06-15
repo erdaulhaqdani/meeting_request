@@ -191,4 +191,29 @@ class Landing_pageModel extends Model
     $query = $builder->get();
     return $query;
   }
+
+  public function groupByStatusAgenda($idPetugas)
+  {
+    $builder = $this->db->table('berita');
+    $builder->selectCount('id_berita', 'Jumlah');
+    $builder->select('Status');
+    $builder->where('idPetugas', $idPetugas);
+    $builder->where('Kategori', 'Agenda');
+    $builder->groupBy('Status');
+    $query = $builder->get();
+    return $query;
+  }
+
+  public function groupByKategoriInfo($idPetugas)
+  {
+    $builder = $this->db->table('berita');
+    $builder->selectCount('id_berita', 'Jumlah');
+    $builder->select('Kategori');
+    $builder->where('idPetugas', $idPetugas);
+    $builder->where('Kategori !=', 'Agenda');
+    $builder->where('Status', 'Publik');
+    $builder->groupBy('Kategori');
+    $query = $builder->get();
+    return $query;
+  }
 }

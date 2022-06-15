@@ -45,7 +45,7 @@
             <div class="page-content">
 
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-xl-3 col-md-6">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-4">Statistik Pengaduan</h4>
@@ -53,7 +53,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-xl-3 col-md-6">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-4">Statistik Meeting Request</h4>
@@ -61,6 +61,44 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1">
+                                        <p class="text-truncate font-size-14 mb-2">Jumlah Pengaduan</p>
+                                        <h4 class="mb-2"><?php foreach ($jumlahPengaduan->getResultObject() as $a) : ?>
+                                                <?= $a->idPengaduan ?>
+                                            <?php endforeach ?></h4>
+                                        <p class="text-muted mb-0 font-size-13">Semua status</p>
+                                    </div>
+                                    <div class="avatar-sm">
+                                        <span class="avatar-title bg-light text-primary rounded-3">
+                                            <i class="ri-inbox-archive-line font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div><!-- end cardbody -->
+                        </div><!-- end card -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1">
+                                        <p class="text-truncate font-size-14 mb-2">Jumlah Meeting Request</p>
+                                        <h4 class="mb-2"><?php foreach ($jumlahMeeting->getResultObject() as $a) : ?>
+                                                <?= $a->idMeeting; ?>
+                                            <?php endforeach ?></h4>
+                                        <p class="text-muted mb-0 font-size-13">Semua status</p>
+                                    </div>
+                                    <div class="avatar-sm">
+                                        <span class="avatar-title bg-light text-success rounded-3">
+                                            <i class=" ri-inbox-archive-line font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div><!-- end cardbody -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
                 </div>
 
                 <div class="row">

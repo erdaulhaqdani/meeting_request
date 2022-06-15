@@ -115,7 +115,7 @@
                             <a href="/Landing_page/publik/<?= $a->id_berita; ?>" class="btn btn-success btn-sm w-xs">Publish</a>
                           <?php elseif ($a->Status == 'Publik') : ?>
                             <a href="/Landing_page/edit/<?= $a->id_berita; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
-                            <a href="/Landing_page/arsip/<?= $a->id_berita; ?>" class="btn btn-warning btn-sm w-xs">Arsipkan</a>
+                            <a href="/Landing_page/arsip/<?= $a->id_berita; ?>" class="btn btn-warning btn-sm w-xs">Arsip</a>
                           <?php endif ?>
                         </td>
                       </tr>

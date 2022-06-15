@@ -45,4 +45,23 @@ class CustModel extends Model
     $log = $builder->get()->getRow();
     return $log;
   }
+
+  function jumlah_cust()
+  {
+    $builder = $this->db->table('customer');
+    $builder->where('StatusAkun', 'Aktif');
+    $builder->selectCount('idCustomer');
+    $query = $builder->get();
+    return $query;
+  }
+
+  function cust_baru($tgl)
+  {
+    $builder = $this->db->table('customer');
+    $builder->where('StatusAkun', 'Aktif');
+    $builder->where('created_at >=', $tgl);
+    $builder->selectCount('idCustomer');
+    $query = $builder->get();
+    return $query;
+  }
 }

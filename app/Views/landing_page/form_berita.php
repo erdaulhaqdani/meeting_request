@@ -109,14 +109,11 @@
                   <?php
                   }
                   ?>
-                  <div class="mb-0">
+                  <div class="mb-0 text-end">
                     <div>
-                      <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
-                        Submit
-                      </button>
-                      <button type="reset" class="btn btn-secondary waves-effect">
-                        Cancel
-                      </button>
+                      <input type="button" value="Kembali" class="btn btn-warning waves-effect me-2" onclick="history.back(-1)" />
+                      <button type="reset" class="btn btn-secondary waves-effect me-2">Batal</button>
+                      <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
                     </div>
                   </div>
                 </form>

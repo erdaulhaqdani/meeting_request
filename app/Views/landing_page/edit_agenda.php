@@ -47,6 +47,8 @@
                 ?>
 
                 <form action="/Landing_page/update_agenda/<?= $agenda['id_berita']; ?>" class="custom-validation" method="POST" enctype="multipart/form-data">
+                  <input type="hidden" name="idPetugas" value="<?= session('idPetugas'); ?>">
+                  <input type="hidden" name="gambar_lama" value="<?= $agenda['Gambar']; ?>">
 
                   <div class="row mb-2">
                     <label for="judul" class="col-sm-3 col-form-label">Judul Agenda</label>
@@ -58,7 +60,7 @@
                   <div class="row mb-2">
                     <label for="judul" class="col-sm-3 col-form-label">Tanggal Kegiatan</label>
                     <div class="col-sm-9">
-                      <input class="form-control" type="date" id="txtDate" name="tgl" value="<?= $agenda['tgl_kegiatan']; ?>" required min="<?php echo date("Y-m-d"); ?>">
+                      <input class="form-control" type="date" id="txtDate" name="tgl" value="<?= $agenda['tgl_kegiatan']; ?>" required>
                     </div>
                   </div>
 
@@ -70,12 +72,17 @@
                   </div>
 
                   <div class="row mb-2">
-                    <label for="gambar" class="col-sm-3 col-form-label"><a href="/gambar/<?= $agenda['Gambar']; ?>" target="blank">Gambar Cover</a></label>
-                    <div class="col-sm-9">
+                    <label for="gambar" class="col-sm-3 col-form-label">Gambar Cover</label>
+                    <div class="col-sm-7">
                       <div class="input-group">
-                        <input type="file" name="gambar" class="form-control" id="gambar" required>
+                        <input type="file" name="gambar" class="form-control" id="gambar">
                       </div>
                       <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png</p>
+                    </div>
+                    <div class="col-sm-2">
+                      <div class="input-group">
+                        <a class="image-popup-vertical-fit" href="/gambar_agenda/<?= $agenda['Gambar']; ?>"><input type="button" value="Lihat Gambar" class="btn btn-primary waves-effect" /></a>
+                      </div>
                     </div>
                   </div>
 
@@ -104,8 +111,10 @@
                   ?>
                   <div class="mb-0 text-end">
                     <div>
-                      <button type="reset" class="btn btn-danger waves-effect me-2">Cancel</button>
+                      <input type="button" value="Kembali" class="btn btn-warning waves-effect" onclick="history.back(-1)" />
+                      <button type="reset" class="btn btn-secondary waves-effect me-2 ms-2">Batal</button>
                       <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+
                     </div>
                   </div>
                 </form>
@@ -140,6 +149,12 @@
 
 <!--tinymce js-->
 <script src="/assets/libs/tinymce/tinymce.min.js"></script>
+
+<!-- Magnific Popup-->
+<script src="/assets/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<!-- lightbox init js-->
+<script src="/assets/js/pages/lightbox.init.js"></script>
 
 <!-- init js -->
 <script src="/assets/js/pages/form-editor.init.js"></script>

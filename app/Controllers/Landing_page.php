@@ -155,7 +155,7 @@ class Landing_page extends BaseController
   public function index()
   {
     $data = [
-      'title' => 'Admin Landing Page',
+      'title' => 'Daftar Informasi',
       'publik' => $this->Landing_pageModel->jumlahInformasiPublik(session('id_berita')),
       'arsip' => $this->Landing_pageModel->jumlahInformasiArsip(session('id_berita')),
       'kategori' => $this->KategoriModel->getKategori(),
@@ -169,7 +169,7 @@ class Landing_page extends BaseController
   public function form()
   {
     $data = [
-      'title' => 'Form Informasi',
+      'title' => 'Tambah Informasi',
       'berita' => $this->Landing_pageModel->getInformasi(),
       'validation' => \Config\Services::validation(),
       'kategori' => $this->KategoriModel->getKategori()
@@ -228,7 +228,7 @@ class Landing_page extends BaseController
           'File' => $imgName,
         ];
         $this->UploadsModel->insert_galeri($data_galeri);
-        $img->move(ROOTPATH . 'public/uploads', $imgName());
+        $img->move(ROOTPATH . 'public/uploads', $imgName);
       }
     }
 
@@ -307,13 +307,15 @@ class Landing_page extends BaseController
     //ambil file
     $gambar = $this->request->getFile('gambar');
     if ($gambar->getError() == 4) {
-      $namagambar = 'default.png';
+      $namagambar = $this->request->getVar('gambar_lama');
     } else {
       //ambil nama file
       $namagambar = $gambar->getRandomName();
       //pindah file ke folder gambar
       $gambar->move('gambar', $namagambar);
     }
+
+
 
     $this->Landing_pageModel->save([
       'id_berita' => $id,
@@ -379,7 +381,7 @@ class Landing_page extends BaseController
       //ambil nama file
       $namagambar = $gambar->getRandomName();
       //pindah file ke folder gambar
-      $gambar->move('gambar', $namagambar);
+      $gambar->move('gambar_agenda', $namagambar);
     }
 
     $gambar_lampiran = $this->request->getFiles();
@@ -451,21 +453,22 @@ class Landing_page extends BaseController
     }
 
     $agenda = $this->Landing_pageModel->find($id);
+    $gambar_lama = $this->request->getVar('gambar_lama');
 
-    //hapus file dari direktori
-    if ($agenda['Gambar'] != 'default.png') {
+    // hapus file dari direktori
+    if ($agenda['Gambar'] != $gambar_lama) {
       //hapus file lampiran
-      unlink('gambar/' . $agenda['Gambar']);
+      unlink('gambar_agenda/' . $agenda['Gambar']);
     }
     //ambil file
     $gambar = $this->request->getFile('gambar');
     if ($gambar->getError() == 4) {
-      $namagambar = 'default.png';
+      $namagambar = $this->request->getVar('gambar_lama');
     } else {
       //ambil nama file
       $namagambar = $gambar->getRandomName();
       //pindah file ke folder gambar
-      $gambar->move('gambar', $namagambar);
+      $gambar->move('gambar_agenda', $namagambar);
     }
 
     $this->Landing_pageModel->save([
@@ -474,7 +477,7 @@ class Landing_page extends BaseController
       'tgl_kegiatan' => $this->request->getVar('tgl'),
       'Isi' => $this->request->getVar('isi_agenda'),
       'Penulis' => $this->request->getVar('penulis'),
-      'Cover' => $namagambar,
+      'Gambar' => $namagambar,
       'idPetugas' => session('idPetugas'),
     ]);
 

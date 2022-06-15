@@ -58,9 +58,9 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Judul</th>
-                                            <th>Status</th>
-                                            <th>Tanggal Kegiatan</th>
                                             <th>Penulis</th>
+                                            <th>Tanggal Kegiatan</th>
+                                            <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -70,19 +70,37 @@
                                         function formatTanggal($date)
                                         {
                                             // ubah string menjadi format tanggal
-                                            return date('d F Y', strtotime($date));
+                                            return date('d-m-Y', strtotime($date));
                                         }
 
                                         ?>
                                         <?php foreach ($agenda as $a) :
                                             $date = $a['created_at'];
+
+                                            $judul = $a['Judul'];
+                                            $textJudul = strlen($judul);
+                                            $num_char = 40;
+                                            if ($textJudul > $num_char) {
+                                                $cut_judul = substr($judul, 0, $num_char) . '...';
+                                            } else {
+                                                $cut_judul = $a['Judul'];
+                                            }
+
+                                            $penulis = $a['Penulis'];
+                                            $textPenulis = strlen($penulis);
+                                            $maks = 15;
+                                            if ($textPenulis > $maks) {
+                                                $cut_penulis = substr($penulis, 0, $maks) . '...';
+                                            } else {
+                                                $cut_penulis = $a['Penulis'];
+                                            }
                                         ?>
                                             <tr>
                                                 <td><?= $no++; ?></td>
-                                                <td><?= $a['Judul']; ?></td>
-                                                <td><?= $a['Status']; ?></td>
+                                                <td><?= $cut_judul ?></td>
+                                                <td><?= $cut_penulis ?></td>
                                                 <td><?= formatTanggal($date); ?></td>
-                                                <td><?= $a['Penulis']; ?></td>
+                                                <td><?= $a['Status']; ?></td>
                                                 <td>
                                                     <a href="/Landing_page/edit_agenda/<?= $a['id_berita']; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                                                     <?php if ($a['Status'] == 'Diarsipkan') : ?>

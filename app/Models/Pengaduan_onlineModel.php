@@ -202,4 +202,13 @@ class Pengaduan_onlineModel extends Model
         $query = $builder->get(4, 0);
         return $query;
     }
+
+    function jumlah_pengaduanCustomer($idCustomer)
+    {
+        $builder = $this->db->table('pengaduan_online');
+        $builder->where('idCustomer', $idCustomer);
+        $builder->selectCount('idPengaduan');
+        $query = $builder->get();
+        return $query;
+    }
 }
