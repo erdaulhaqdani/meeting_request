@@ -75,11 +75,11 @@
                     <div class="p-3">
                         <div class="row align-items-center">
                             <div class="col">
-                                <h6 class="m-0"> Notifications </h6>
+                                <h6 class="m-0"> Notifikasi </h6>
                             </div>
-                            <div class="col-auto">
+                            <!-- <div class="col-auto">
                                 <a href="#!" class="small"> View All</a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -89,13 +89,13 @@
                     </div>
                     <!-- end of notification list -->
 
-                    <div class="p-2 border-top">
+                    <!-- <div class="p-2 border-top">
                         <div class="d-grid">
                             <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
                                 <i class="mdi mdi-arrow-right-circle me-1"></i> View More..
                             </a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 

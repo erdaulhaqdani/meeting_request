@@ -109,6 +109,7 @@
                                 <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                         <tr>
+                                            <th>No.</th>
                                             <th>Judul</th>
                                             <th>Kategori</th>
                                             <th>Tanggal</th>
@@ -118,6 +119,14 @@
                                     </thead>
 
                                     <tbody>
+                                        <?php $no = 1;
+                                        function formatTanggal($date)
+                                        {
+                                            // ubah string menjadi format tanggal
+                                            return date('d-m-Y', strtotime($date));
+                                        }
+
+                                        ?>
                                         <?php foreach ($pengaduan->getResult() as $a) : ?>
                                             <?php //getNamaKategori
                                             $k = '';
@@ -128,10 +137,10 @@
                                             }
                                             ?>
                                             <tr>
-                                                <?php $tgl = date("d F Y", strtotime($a->updated_at)); ?>
+                                                <td><?= $no++ ?></td>
                                                 <td><?= $a->Judul; ?></td>
                                                 <td><?= $k; ?></td>
-                                                <td><?= $a->created_at; ?></td>
+                                                <td><?= formatTanggal($a->created_at); ?></td>
                                                 <td><?= $a->Status; ?></td>
                                                 <td>
                                                     <a href="/Pengaduan_online/detail/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>

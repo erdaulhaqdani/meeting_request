@@ -27,7 +27,7 @@ class Tanggapan_POModel extends Model
 
     public function getTanggapanPengaduan($id)
     {
-        $query = $this->where(['idPengaduan ' => $id])->orderBy('tgl_selesai', 'DESC')->find();
+        $query = $this->where(['idPengaduan ' => $id])->orderBy('tgl_selesai', 'DESC')->first();
         return $query;
     }
 }
