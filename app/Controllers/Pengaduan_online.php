@@ -48,9 +48,50 @@ class Pengaduan_online extends BaseController
 
     public function getNotif()
     {
-        $data = $this->Pengaduan_onlineModel->where('idPengaduan', 1)->findColumn('Judul');
-        $result['pesan'] = $data;
-        echo json_encode($result);
+        $query = $this->Pengaduan_onlineModel->notifPengaduanCustomer(session('idCustomer'))->getResultArray();
+        $output = '';
+        $count = $this->Pengaduan_onlineModel->jumlahPengaduan(session('idCustomer'), '')->getRowArray();
+        // dd($count);
+        if ($count > 0) {
+            foreach ($query as $row) {
+                $output .= '
+                <a href="/Pengaduan_online/detail/' . $row['idPengaduan'] . '" class="text-reset notification-item">
+                    <div class="d-flex">
+                        <div class="avatar-xs me-3">
+                            <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                <i class="fas fa-file-alt"></i>
+                            </span>
+                        </div>
+                        <div class="flex-1">
+                            <h6 class="mb-1">' . $row['Judul'] . '</h6>
+                            <div class="font-size-12 text-muted">
+                                <p class="mb-1">Pengaduan Online</p>
+                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> ' . $row['updated_at'] . '</p>
+                            </div>
+                        </div>
+                    </div>   
+                </a>';
+            }
+        } else {
+            $output .= '
+            <a href="#" class="text-reset notification-item">
+                <div class="d-flex">
+                    <div class="avatar-xs me-3">
+                        <span class="avatar-title bg-danger rounded-circle font-size-16">
+                            <i class="fas fa-file-alt"></i>
+                        </span>
+                    </div>
+                    <div class="flex-1">
+                        <h6 class="mb-1">Tidak ada pengaduan</h6>
+                    </div>
+                </div>';
+        }
+        $data = array(
+            'notification' => $output,
+            'unread_notification' => $count
+        );
+
+        echo json_encode($data);
     }
 
     public function daftar($status)
