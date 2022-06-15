@@ -25,6 +25,20 @@ class Pengaduan_onlineModel extends Model
         return $this->where(['idPengaduan' => $id])->first();
     }
 
+    public function notifPengaduanCustomer($id)
+    {
+        /**
+         * SELECT * FROM pengaduan_online
+         * WHERE idCustomer = '1'
+         */
+        $builder = $this->db->table('pengaduan_online');
+        $builder->where('idCustomer', $id);
+        $builder->orderBy('created_at', 'DESC');
+        $builder->limit(3);
+        $query = $builder->get();
+        return $query;
+    }
+
     public function listPengaduanCustomer($id)
     {
         /**
