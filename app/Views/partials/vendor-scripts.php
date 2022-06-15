@@ -5,22 +5,7 @@
 <script src="<?= base_url('assets/libs/simplebar/simplebar.min.js'); ?>"></script>
 <script src="<?= base_url('assets/libs/node-waves/waves.min.js'); ?>"></script>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        setInterval(function() {
-            $.ajax({
-                url: "<?= base_url('Pengaduan_online/getNotif') ?>",
-                type: "POST",
-                dataType: "JSON",
-                success: function(data) {
-                    // alert(data.pesan);
-                }
-            });
-        }, 600000);
-    });
-</script>
-
-<!-- <script>
+<script>
     $(document).ready(function() {
         // updating the view with notifications using ajax
         function load_notification(view = '') {
