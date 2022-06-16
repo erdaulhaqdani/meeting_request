@@ -95,16 +95,15 @@ class Admin_pengaduan extends BaseController
                 'kategori' => $this->KategoriModel->getKategori($pengaduan['idKategori'])
             ];
         } elseif ($pengaduan['Status'] == 'Selesai diproses') {
-            $tanggapan = $this->Tanggapan_POModel->getTanggapanPengaduan($pengaduan['idPengaduan']);
-            $petugas = $this->PetugasModel->getPetugasId($tanggapan['idPetugas']);
+            $tanggapan = $this->Tanggapan_POModel->trackTanggapanPengaduan($id);
             $data = [
                 'title' => 'Detail Pengaduan Online',
                 'pengaduan' => $pengaduan,
                 'customer' => $this->CustModel->getCustomer($pengaduan['idCustomer']),
                 'kategori' => $this->KategoriModel->getKategori($pengaduan['idKategori']),
                 'tanggapan' => $tanggapan,
-                'petugas' => $petugas,
-                'level' => $this->LevelModel->getlevel($petugas['idLevel'])
+                'petugas' => $this->PetugasModel->getPetugasId(),
+                'level' => $this->LevelModel->getlevel()
             ];
         } else {
             $data = [
@@ -262,10 +261,16 @@ class Admin_pengaduan extends BaseController
             'idPengaduan' => $this->request->getVar('idPengaduan')
         ]);
 
+        $petugas = $this->request->getVar('petugas');
+
+        if ($petugas == null) {
+            $petugas = session('idPetugas');
+        };
+
         $this->Pengaduan_onlineModel->save([
             'idPengaduan' => $this->request->getVar('idPengaduan'),
             'Status' => $this->request->getVar('status'),
-            'idPetugas' => $this->request->getVar('petugas')
+            'idPetugas' => $petugas
         ]);
 
         session()->setFlashdata('pesan', 'Tanggapan berhasil tersimpan.');
