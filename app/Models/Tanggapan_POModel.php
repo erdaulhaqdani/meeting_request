@@ -30,4 +30,10 @@ class Tanggapan_POModel extends Model
         $query = $this->where(['idPengaduan ' => $id])->orderBy('tgl_selesai', 'DESC')->first();
         return $query;
     }
+
+    public function trackTanggapanPengaduan($id)
+    {
+        $query = $this->where(['idPengaduan ' => $id])->orderBy('tgl_selesai', 'DESC')->find();
+        return $query;
+    }
 }
