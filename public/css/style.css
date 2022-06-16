@@ -1021,8 +1021,9 @@ body .theme-button-one:hover {
   left: 0;
   top: 0;
   bottom: 0;
-  width: 120px;
-  height: 140px;
+  width: 100%;
+  max-width: 120px;
+  max-height: 130px;
   border-radius: 5px;
   background: #001a57;
 }

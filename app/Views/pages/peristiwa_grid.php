@@ -52,7 +52,7 @@
             <div class="col-md-6 col-12">
               <div class="single-blog">
 
-                <div class="image-box" style="width: 370px; height:260px;">
+                <div class="image-box" style="max-height:260px;">
                   <img src="/gambar/<?= $a['Gambar']; ?>" alt="">
                   <div class="overlay"><a href="#" class="date"><?= formatTanggal($date) ?></a>
                     </a>

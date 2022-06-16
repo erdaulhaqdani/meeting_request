@@ -42,6 +42,35 @@
             <div class="post-meta">
               <h5 class="title"><?= $berita['Judul']; ?></h5>
               <p><?= $berita['Isi']; ?></p>
+              <?php if ($berita['id_uploads'] != 0) { ?>
+                <h4 class="title">Gambar Terkait Berita</h4>
+                <div class="popup-gallery">
+                  <?php
+                  foreach ($GambarLampiran as $rowLampiran) {
+
+                    if ($berita['id_uploads'] == $rowLampiran['id_uploads']) {
+
+                      foreach ($uploads as $rowUploads) {
+                        if ($rowUploads['id_uploads'] == $rowLampiran['id_uploads']) {
+
+                          $lampiran = $rowLampiran['File'];
+                  ?>
+
+                          <a class="float-start" href="/uploads/<?= $lampiran; ?>">
+                            <div class="img-fluid ">
+                              <img src="/uploads/<?= $lampiran; ?>" alt="img-1" width="120">
+                            </div>
+                          </a>
+                  <?php
+                        }
+                      }
+                    }
+                  }
+                  ?>
+                </div>
+              <?php
+              }
+              ?>
             </div> <!-- /.post-meta -->
             <div class="share-option clearfix">
               <ul class="social-icon float-right">

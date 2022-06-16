@@ -43,13 +43,13 @@ class Pages extends BaseController
     return view('pages/pencarian_grid', $data);
   }
 
-  public function detail_pencarian($id)
+  public function detail_pencarian($id, $kategori)
   {
 
     $data = [
       'title' => 'Blog KPKNL Bandung',
       'berita' => $this->Landing_pageModel->getInformasi($id),
-      'berita_lain' => $this->Landing_pageModel->listArtikelTerbaru(),
+      'informasi_lain' => $this->Landing_pageModel->listInfoLain($id, $kategori),
     ];
 
     return view('pages/detail_pencarian', $data);

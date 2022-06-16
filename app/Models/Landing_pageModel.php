@@ -9,7 +9,7 @@ class Landing_pageModel extends Model
   protected $table      = 'berita';
   protected $primaryKey = 'id_berita';
 
-  protected $allowedFields = ['Isi', 'Kategori', 'Judul', 'Status', 'Gambar', 'Penulis', 'idPetugas', 'tgl_kegiatan'];
+  protected $allowedFields = ['Isi', 'Kategori', 'Judul', 'Status', 'Gambar', 'Penulis', 'idPetugas', 'tgl_kegiatan', 'id_uploads'];
 
   protected $useAutoIncrement = true;
   protected $useTimestamps = true;
@@ -150,6 +150,18 @@ class Landing_pageModel extends Model
 
     $builder = $this->db->table('berita');
     $builder->where('Kategori', 'Agenda');
+    $builder->where('Status', 'Publik');
+    $builder->notlike('id_berita', $id);
+    $builder->orderBy('created_at', 'desc');
+    $query = $builder->get();
+    return $query;
+  }
+
+  public function listInfoLain($id, $kategori)
+  {
+
+    $builder = $this->db->table('berita');
+    $builder->where('Kategori', $kategori);
     $builder->where('Status', 'Publik');
     $builder->notlike('id_berita', $id);
     $builder->orderBy('created_at', 'desc');

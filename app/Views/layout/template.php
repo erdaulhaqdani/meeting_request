@@ -22,6 +22,9 @@
 	<!-- responsive style sheet -->
 	<link rel="stylesheet" type="text/css" href="/css/responsive.css">
 
+	<!-- Lightbox css -->
+	<link href="<?= base_url('/assets/libs/magnific-popup/magnific-popup.css'); ?> " rel="stylesheet" type="text/css" />
+
 </head>
 
 <body>
@@ -229,6 +232,14 @@
 		<script src="/vendor/jquery.countTo.js"></script>
 		<!-- Fancybox -->
 		<script src="/vendor/fancybox/dist/jquery.fancybox.min.js"></script>
+
+		<!-- Magnific Popup-->
+		<script src="/assets/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+		<!-- lightbox init js-->
+		<script src="/assets/js/pages/lightbox.init.js"></script>
+
+		<script src="/assets/js/app.js"></script>
 
 		<!-- Theme js -->
 		<script src="/js/theme.js"></script>
