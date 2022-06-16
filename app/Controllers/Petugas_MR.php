@@ -65,7 +65,7 @@ class Petugas_MR extends BaseController
             'title' => 'Tanggapan',
             'validation' => \Config\Services::validation(),
             'idMeeting' => $idMeeting,
-            'petugas' => $this->PetugasModel->getPetugas(),
+            'petugas' => $this->PetugasModel->getPetugasEskalasi(session('idPetugas'), session('idLevel'))->getResultArray(),
             'level' => $this->LevelModel->getlevel(),
         ];
 

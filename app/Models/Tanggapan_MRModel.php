@@ -25,12 +25,9 @@ class Tanggapan_MRModel extends Model
         return $this->where(['idTanggapan_MR ' => $id])->first();
     }
 
-    public function getTanggapanMeeting($id = false)
+    public function getTanggapanMeeting($id)
     {
-        if ($id == false) {
-            return $this->findAll();
-        }
-
-        return $this->where(['idMeeting' => $id])->first();
+        $query = $this->where(['idMeeting ' => $id])->orderBy('tgl_selesai', 'DESC')->find();
+        return $query;
     }
 }

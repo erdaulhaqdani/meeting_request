@@ -147,15 +147,14 @@ class Pengaduan_online extends BaseController
             ];
         } elseif ($pengaduan['Status'] == 'Selesai diproses') {
             $tanggapan = $this->Tanggapan_POModel->getTanggapanPengaduan($id);
-            $petugas = $this->PetugasModel->getPetugasId($tanggapan['idPetugas']);
             $data = [
                 'title' => 'Detail Pengaduan Online',
                 'pengaduan' => $pengaduan,
                 'customer' => $this->CustModel->getCustomer($pengaduan['idCustomer']),
                 'kategori' => $this->KategoriModel->getKategori($pengaduan['idKategori']),
                 'tanggapan' => $tanggapan,
-                'petugas' => $petugas,
-                'level' => $this->LevelModel->getlevel($petugas['idLevel'])
+                'petugas' => $this->PetugasModel->getPetugasId(),
+                'level' => $this->LevelModel->getlevel()
             ];
         } else {
             $data = [

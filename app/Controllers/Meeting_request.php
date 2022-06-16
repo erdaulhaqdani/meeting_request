@@ -98,6 +98,7 @@ class Meeting_request extends BaseController
 
     return redirect()->to('/Meeting_request');
   }
+
   public function detail($id)
   {
     $meeting = $this->Meeting_requestModel->getMeetingRequest($id);
@@ -109,16 +110,15 @@ class Meeting_request extends BaseController
         'kategori' => $this->KategoriModel->getKategori($meeting['idKategori'])
       ];
     } elseif ($meeting['Status'] == 'Selesai diproses') {
-      $tanggapan = $this->Tanggapan_MRModel->getTanggapanMeeting($meeting['idMeeting']);
-      $petugas = $this->PetugasModel->getPetugasId($tanggapan['idPetugas']);
+      $tanggapan = $this->Tanggapan_MRModel->getTanggapanMeeting($id);
       $data = [
         'title' => 'Detail Meeting Request',
         'meeting' => $meeting,
         'customer' => $this->CustModel->getCustomer($meeting['idCustomer']),
         'kategori' => $this->KategoriModel->getKategori($meeting['idKategori']),
         'tanggapan' => $tanggapan,
-        'petugas' => $petugas,
-        'level' => $this->LevelModel->getlevel($petugas['idLevel'])
+        'petugas' => $this->PetugasModel->getPetugasId(),
+        'level' => $this->LevelModel->getlevel()
       ];
     } else {
       $data = [
