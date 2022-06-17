@@ -87,33 +87,16 @@ class Admin_pengaduan extends BaseController
     public function detail($id)
     {
         $pengaduan = $this->Pengaduan_onlineModel->getPengaduan($id);
-        if ($pengaduan['Status'] == 'Belum diproses') {
-            $data = [
-                'title' => 'Detail Pengaduan Online',
-                'pengaduan' => $pengaduan,
-                'customer' => $this->CustModel->getCustomer($pengaduan['idCustomer']),
-                'kategori' => $this->KategoriModel->getKategori($pengaduan['idKategori'])
-            ];
-        } elseif ($pengaduan['Status'] == 'Selesai diproses') {
-            $tanggapan = $this->Tanggapan_POModel->trackTanggapanPengaduan($id);
-            $data = [
-                'title' => 'Detail Pengaduan Online',
-                'pengaduan' => $pengaduan,
-                'customer' => $this->CustModel->getCustomer($pengaduan['idCustomer']),
-                'kategori' => $this->KategoriModel->getKategori($pengaduan['idKategori']),
-                'tanggapan' => $tanggapan,
-                'petugas' => $this->PetugasModel->getPetugasId(),
-                'level' => $this->LevelModel->getlevel()
-            ];
-        } else {
-            $data = [
-                'title' => 'Detail Pengaduan Online',
-                'pengaduan' => $pengaduan,
-                'customer' => $this->CustModel->getCustomer($pengaduan['idCustomer']),
-                'kategori' => $this->KategoriModel->getKategori($pengaduan['idKategori'])
-            ];
-        }
-
+        $tanggapan = $this->Tanggapan_POModel->trackTanggapanPengaduan($id);
+        $data = [
+            'title' => 'Detail Pengaduan Online',
+            'pengaduan' => $pengaduan,
+            'customer' => $this->CustModel->getCustomer($pengaduan['idCustomer']),
+            'kategori' => $this->KategoriModel->getKategori($pengaduan['idKategori']),
+            'tanggapan' => $tanggapan,
+            'petugas' => $this->PetugasModel->getPetugasId(),
+            'level' => $this->LevelModel->getlevel()
+        ];
 
         return view('pengaduan_online/admin_detail', $data);
     }
@@ -261,16 +244,19 @@ class Admin_pengaduan extends BaseController
             'idPengaduan' => $this->request->getVar('idPengaduan')
         ]);
 
-        $petugas = $this->request->getVar('petugas');
+        $status = $this->request->getVar('status');
 
-        if ($petugas == null) {
+        if ($status == "Eskalasi") {
+            $petugas = $this->request->getVar('petugas');
+        } else {
             $petugas = session('idPetugas');
         };
 
         $this->Pengaduan_onlineModel->save([
             'idPengaduan' => $this->request->getVar('idPengaduan'),
-            'Status' => $this->request->getVar('status'),
-            'idPetugas' => $petugas
+            'Status' => $status,
+            'idPetugas' => $petugas,
+            'Notifikasi' => 0
         ]);
 
         session()->setFlashdata('pesan', 'Tanggapan berhasil tersimpan.');

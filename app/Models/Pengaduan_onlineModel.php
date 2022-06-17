@@ -107,11 +107,14 @@ class Pengaduan_onlineModel extends Model
         if ($level != 2) {
             $builder->where('idKategori', $kategori);
         }
-        $builder->orLike('Status', 'Eskalasi');
         $builder->where('idPetugas', $petugas);
-        $builder->orLike('Status', 'proses');
-        $builder->where('idPetugas', $petugas);
+        $builder->like('Status', 'Eskalasi');
+        $builder->orWhere('idPetugas', $petugas);
+        $builder->like('Status', 'proses');
         $builder->orWhere('idPetugas', 1);
+        if ($level != 2) {
+            $builder->where('idKategori', $kategori);
+        }
 
         $query = $builder->get();
         return $query;
@@ -161,6 +164,7 @@ class Pengaduan_onlineModel extends Model
         $builder->select('Status');
         $builder->where('idCustomer', $idCustomer);
         $builder->groupBy('Status');
+        $builder->orderBy('Status', 'ASC');
         $query = $builder->get();
         return $query;
     }
@@ -188,6 +192,7 @@ class Pengaduan_onlineModel extends Model
         $builder->where('idPetugas', $idPetugas);
         $builder->orWhere('idPetugas', 1);
         $builder->groupBy('Status');
+        $builder->orderBy('Status', 'ASC');
         $query = $builder->get();
         return $query;
     }

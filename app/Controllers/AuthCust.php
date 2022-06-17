@@ -234,6 +234,7 @@ class AuthCust extends BaseController
           'Nama' => $row_petugas->Nama,
           'Email' => $row_petugas->Email,
           'idLevel' => $row_petugas->idLevel,
+          'Unit' => $row_petugas->Unit,
           'Kelompok' => $kelompok[0]
         ];
 
