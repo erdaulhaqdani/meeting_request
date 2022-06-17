@@ -113,7 +113,7 @@ $routes->get('/Landing_page/update_agenda/(:num)', 'Landing_page::update_agenda/
 
 //Pencarian Informasi Landing Page
 $routes->get('/pages/pencarian', 'Pages::pencarian');
-$routes->get('/pages/detail_info/(:num)', 'Pages::detail_pencarian/$1');
+$routes->get('/pages/detail_info/(:num)/(:any)', 'Pages::detail_pencarian/$1/$2');
 
 $routes->get('/pages/artikel_grid', 'Landing_page::artikel_grid');
 $routes->get('/Landing_page/artikel_grid', 'Landing_page::artikel_grid');

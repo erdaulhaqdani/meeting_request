@@ -77,6 +77,8 @@ class Backend extends BaseController
       'groupAgenda' => $this->Landing_pageModel->groupByStatusAgenda(session('idPetugas')),
       'groupInfo' => $this->Landing_pageModel->groupByKategoriInfo(session('idPetugas')),
       'lastMeetingRequest' => $this->Meeting_requestModel->lastMeetingRequest(session('idPetugas')),
+      'pengaduanPerminggu' => $this->Pengaduan_onlineModel->pengaduanPetugasPerminggu(session('idPetugas')),
+      'meetingPerminggu' => $this->Meeting_requestModel->meetingRequestPetugasPerminggu(session('idPetugas')),
       'kategori' => $this->KategoriModel->getKategori(),
       'customer' => $this->CustModel->jumlah_cust(),
       'cust_baru' => $this->CustModel->cust_baru($tgl),

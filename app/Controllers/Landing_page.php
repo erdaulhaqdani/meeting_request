@@ -9,6 +9,7 @@ use App\Models\LevelModel;
 use App\Models\PetugasModel;
 use App\Models\UserModel;
 use App\Models\UploadsModel;
+use App\Models\GaleriModel;
 
 class Landing_page extends BaseController
 {
@@ -19,6 +20,7 @@ class Landing_page extends BaseController
   protected $PetugasModel;
   protected $UserModel;
   protected $UploadsModel;
+  protected $GaleriModel;
 
   public function __construct()
   {
@@ -29,6 +31,7 @@ class Landing_page extends BaseController
     $this->PetugasModel = new PetugasModel();
     $this->UserModel = new UserModel();
     $this->UploadsModel = new UploadsModel();
+    $this->GaleriModel = new GaleriModel();
   }
 
   public function form_petugas()
@@ -239,7 +242,8 @@ class Landing_page extends BaseController
       'Penulis' => $this->request->getVar('penulis'),
       'Gambar' => $namagambar,
       'Status' => 'Diarsipkan',
-      'idPetugas' => $this->request->getVar('idPetugas')
+      'idPetugas' => $this->request->getVar('idPetugas'),
+      'id_uploads'  => $random_id
     ]);
 
     session()->setFlashdata('pesan', 'Berhasil menambahkan Informasi.');
@@ -528,6 +532,8 @@ class Landing_page extends BaseController
       'title' => 'Artikel KPKNL Bandung',
       'berita' => $this->Landing_pageModel->getInformasi($id),
       'artikel' => $this->Landing_pageModel->listArtikel($id),
+      'uploads' => $this->UploadsModel->findAll(),
+      'GambarLampiran' => $this->GaleriModel->findAll(),
     ];
 
     return view('pages/detail_artikel', $data);
@@ -551,6 +557,8 @@ class Landing_page extends BaseController
       'title' => 'Berita KPKNL Bandung',
       'berita' => $this->Landing_pageModel->getInformasi($id),
       'berita_lain' => $this->Landing_pageModel->listBerita($id),
+      'uploads' => $this->UploadsModel->findAll(),
+      'GambarLampiran' => $this->GaleriModel->findAll(),
     ];
 
     return view('pages/detail_berita', $data);
@@ -573,6 +581,8 @@ class Landing_page extends BaseController
       'title' => 'Pengumuman KPKNL Bandung',
       'berita' => $this->Landing_pageModel->getInformasi($id),
       'pengumuman_lain' => $this->Landing_pageModel->listPengumuman($id),
+      'uploads' => $this->UploadsModel->findAll(),
+      'GambarLampiran' => $this->GaleriModel->findAll(),
     ];
 
     return view('pages/detail_pengumuman', $data);
@@ -595,6 +605,8 @@ class Landing_page extends BaseController
       'title' => 'Peristiwa KPKNL Bandung',
       'berita' => $this->Landing_pageModel->getInformasi($id),
       'peristiwa' => $this->Landing_pageModel->listPeristiwa($id),
+      'uploads' => $this->UploadsModel->findAll(),
+      'GambarLampiran' => $this->GaleriModel->findAll(),
     ];
 
     return view('pages/detail_peristiwa', $data);
@@ -617,7 +629,9 @@ class Landing_page extends BaseController
     $data = [
       'title' => 'Agenda KPKNL Bandung',
       'berita' => $this->Landing_pageModel->getInformasi($id),
-      'agenda_lain' => $this->Landing_pageModel->listAgenda($id)
+      'agenda_lain' => $this->Landing_pageModel->listAgenda($id),
+      'uploads' => $this->UploadsModel->findAll(),
+      'GambarLampiran' => $this->GaleriModel->findAll(),
     ];
 
     return view('pages/detail_agenda', $data);

@@ -53,15 +53,15 @@
           ?>
             <div class="col-md-6 col-12">
               <div class="single-blog">
-                <div class="image-box" style="width: 370px; height:260px;">
+                <div class="image-box" style="max-height:260px;">
                   <img src="/gambar/<?= $a['Gambar']; ?>" alt="">
                   <div class=" overlay"><a href="#" class="date"><?= formatTanggal($date) ?></a></a>
                   </div>
                 </div> <!-- /.image-box -->
                 <div class="post-meta">
-                  <h5 class="title"><a href="/pages/detail_info/<?= $a['id_berita'] ?>"><?= $cut_judul ?></a></a></h5>
+                  <h5 class="title"><a href="/pages/detail_info/<?= $a['id_berita'] ?>/<?= $a['Kategori'] ?>"><?= $cut_judul ?></a></a></h5>
                   <p><?= $cut_text; ?></p>
-                  <a href="/pages/detail_info/<?= $a['id_berita'] ?>" class="read-more">SELENGKAPNYA</a>
+                  <a href="/pages/detail_info/<?= $a['id_berita'] ?>/<?= $a['Kategori'] ?>" class="read-more">SELENGKAPNYA</a>
                 </div> <!-- /.post-meta -->
               </div> <!-- /.single-blog -->
             </div> <!-- /.col- -->

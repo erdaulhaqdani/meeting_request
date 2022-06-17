@@ -72,7 +72,7 @@
                 return date('d-m-Y', strtotime($date));
               }
 
-              foreach ($berita_lain->getResult() as $a) :
+              foreach ($informasi_lain->getResult() as $a) :
                 $date = $a->created_at;
 
                 $judul = $a->Judul;
@@ -92,8 +92,8 @@
                       <div class="overlay"><a href="#" class="date"><?= formatTanggal2($date); ?></a></div>
                     </div> <!-- /.image-box -->
                     <div class="post-meta">
-                      <h5 class="title"><a href="/pages/detail_berita/<?= $a->id_berita ?>"><?= $cut_judul; ?></a></h5>
-                      <a href="/pages/detail_berita/<?= $a->id_berita ?>" class="read-more">SELENGKAPNYA</a>
+                      <h5 class="title"><a href="/pages/detail_info/<?= $a->id_berita ?>/<?= $a->Kategori ?>"><?= $cut_judul; ?></a></h5>
+                      <a href="/pages/detail_info/<?= $a->id_berita ?>/<?= $a->Kategori ?>" class="read-more">SELENGKAPNYA</a>
                     </div> <!-- /.post-meta -->
                   </div> <!-- /.single-blog -->
                 </div> <!-- /.col- -->
