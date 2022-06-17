@@ -36,12 +36,13 @@ class Petugas_MR extends BaseController
     {
         $data = [
             'title' => 'Daftar Meeting Request',
-            'meeting' => $this->Meeting_requestModel->listMeetingPetugas(session('idLevel'), session('Unit'), session('idPetugas')),
+            'meeting' => $this->Meeting_requestModel->listMeetingPetugas(session('idPetugas')),
             'belum' => $this->Meeting_requestModel->jumlahMeetingPetugas('Belum diproses', session('idPetugas')),
             'proses' => $this->Meeting_requestModel->jumlahMeetingPetugas('Sedang diproses', session('idPetugas')),
             'selesai' => $this->Meeting_requestModel->jumlahMeetingPetugas('Selesai diproses', session('idPetugas')),
             'eskalasi' => $this->Meeting_requestModel->jumlahMeetingPetugas('Eskalasi', session('idPetugas')),
-            'kategori' => $this->KategoriModel->getKategori()
+            'kategori' => $this->KategoriModel->getKategori(),
+            'customer' => $this->CustModel->getCustomer()
         ];
 
         return view('Meeting_request/petugas_daftar_mr', $data);
@@ -49,11 +50,16 @@ class Petugas_MR extends BaseController
 
     public function detail($id)
     {
+        $meeting = $this->Meeting_requestModel->getMeetingRequest($id);
+        $tanggapan = $this->Tanggapan_MRModel->trackTanggapanMeeting($id);
         $data = [
-            'title' => 'Detail Pengaduan Online',
-            'meeting' => $this->Meeting_requestModel->getMeetingRequest($id),
-            'customer' => $this->CustModel->getCustomer(),
+            'title' => 'Detail Meeing Request',
+            'meeting' => $meeting,
+            'customer' => $this->CustModel->getCustomer($meeting['idCustomer']),
             'kategori' => $this->KategoriModel->getKategori(),
+            'tanggapan' => $tanggapan,
+            'petugas' => $this->PetugasModel->getPetugasId(),
+            'level' => $this->LevelModel->getlevel()
         ];
 
         return view('Meeting_request/petugas_detail', $data);
@@ -123,20 +129,19 @@ class Petugas_MR extends BaseController
         ]);
 
         $status =  $this->request->getVar('status');
-        if ($status == 'Eskalasi') {
-            $this->Meeting_requestModel->save([
-                'idMeeting' => $this->request->getVar('idMeeting'),
-                'Status' => $this->request->getVar('status'),
-                'idPetugas' => $this->request->getVar('petugas')
-            ]);
-        } else {
-            $this->Meeting_requestModel->save([
-                'idMeeting' => $this->request->getVar('idMeeting'),
-                'Status' => $this->request->getVar('status'),
-                'idPetugas' => session('idPetugas')
-            ]);
-        }
 
+        if ($status == "Eskalasi") {
+            $petugas = $this->request->getVar('petugas');
+        } else {
+            $petugas = session('idPetugas');
+        };
+
+        $this->Meeting_requestModel->save([
+            'idMeeting' => $this->request->getVar('idMeeting'),
+            'Status' => $status,
+            'idPetugas' => $petugas,
+            'Notifikasi' => 0
+        ]);
 
         session()->setFlashdata('pesan', 'Tanggapan berhasil tersimpan.');
 

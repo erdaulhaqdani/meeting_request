@@ -180,8 +180,8 @@
 
                   <div class="mb-1 text-end">
                     <div>
-                      <input type="button" value="Kembali" class="btn btn-warning waves-effect" style="margin-left: 5px;" onclick="history.back(-1)" />
-                      <button type="reset" class="btn btn-danger waves-effect mx-3">Cancel</button>
+                      <input type="button" value="Kembali" class="btn btn-warning waves-effect me-2" onclick="history.back(-1)" />
+                      <button type="reset" class="btn btn-danger waves-effect mx-3">Batal</button>
                       <button type="submit" class="btn btn-primary waves-effect waves-light me-1">Submit</button>
                     </div>
                   </div>

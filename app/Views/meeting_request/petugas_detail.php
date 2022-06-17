@@ -2,7 +2,7 @@
 
 <head>
 
-  <?= $this->include("partials/title-meta"); ?>
+  <?= $this->include("/partials/title-meta"); ?>
 
   <?= $this->include('/partials/head-css') ?>
   <!-- Bootstrap Css -->
@@ -39,19 +39,6 @@
               <div class="card-body">
 
                 <div class="row">
-                  <?php //get data customer
-                  $Nama = '';
-                  $NIK = '';
-                  $Email = '';
-                  foreach ($customer as $a) {
-                    if ($meeting['idCustomer'] == $a['idCustomer']) {
-                      $Nama = $a['Nama'];
-                      $NIK = $a['NIK'];
-                      $Email = $a['Email'];
-                      $Telepon = $a['noHP'];
-                    }
-                  }
-                  ?>
                   <h3 class="card-title">Detail Pengajuan Meeting Request</h3>
                   <p class="card-title-desc">Berikut adalah identitas dan detail pengajuan Meeting Request dengan id <?= $meeting['idMeeting']; ?> </p>
 
@@ -62,21 +49,24 @@
                     </div>
                     <div class="row">
                       <label class="col-sm-4">NIK</label>
-                      <label class="col-sm-8">: <?= $NIK ?></label>
+                      <label class="col-sm-8">: <?= $customer['NIK']; ?></label>
+                    </div>
+                    <div class="row">
+                      <label class="col-sm-4">Username</label>
+                      <label class="col-sm-8"> : <?= $customer['Username']; ?></label>
                     </div>
                     <div class="row">
                       <label class="col-sm-4">Nama Lengkap</label>
-                      <label class="col-sm-8"> : <?= $Nama ?></label>
-
+                      <label class="col-sm-8"> : <?= $customer['Nama']; ?></label>
                     </div>
                     <div class="row">
                       <label class="col-sm-4">Email</label>
-                      <label class="col-sm-8">: <?= $Email ?></label>
+                      <label class="col-sm-8">: <?= $customer['Email']; ?></label>
 
                     </div>
                     <div class="row">
                       <label class="col-sm-4">Nomor Telepon</label>
-                      <label class="col-sm-8">: <?= $Telepon ?></label>
+                      <label class="col-sm-8">: <?= $customer['noHP']; ?></label>
                     </div>
                     <br>
                   </div>
@@ -129,24 +119,99 @@
                   </div>
                   <div class="row">
                     <div class="col">
-                      <a href="/petugasMR"><button type="button" class="btn btn-warning waves-effect m-2">Kembali</button> </a>
+                      <input type="button" value="Kembali" class="btn btn-warning waves-effect me-2" onclick="history.back(-1)" />
                       <?php if ($meeting['Status'] == 'Belum diproses') : ?>
-                        <a href="/petugasMR/proses/<?= $meeting['idMeeting']; ?>"><button type="button" class="btn btn-success waves-effect">Mulai Proses</button> </a>
-                      <?php elseif ($meeting['Status'] == 'Sedang diproses') : ?>
-                        <a href="/petugasMR/tanggapan/<?= $meeting['idMeeting']; ?>"><button type="button" class="btn btn-success waves-effect">Tanggapan</button></a>
-                      <?php elseif ($meeting['Status'] == 'Eskalasi') : ?>
-                        <a href="/petugasMR/tanggapan/<?= $meeting['idMeeting']; ?>"><button type="button" class="btn btn-success waves-effect">Tanggapan</button></a>
+                        <a href="/petugasMR/proses/<?= $meeting['idMeeting']; ?>" class="btn btn-primary waves-effect">Proses</a>
+                      <?php elseif ($meeting['Status'] == 'Selesai diproses') : ?>
+                      <?php elseif ($meeting['Status'] != 'Belum diproses') : ?>
+                        <a href="/petugasMR/tanggapan/<?= $meeting['idMeeting']; ?>" class="btn btn-info waves-effect">Tanggapan</a>
+
                       <?php endif ?>
                     </div>
                   </div>
                 </div>
-
-
               </div>
             </div>
           </div> <!-- end col -->
         </div>
         <!-- end row -->
+
+        <?php foreach ($tanggapan as $arrTanggapan) : ?>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="invoice-title">
+                    <div class="mb-4">
+                      <h5>Tanggapan</h1>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="row">
+                        <label class="col-sm-6">IDENTITAS PETUGAS</label>
+                        <hr>
+                      </div>
+                      <?php //getPetugas
+                      $nama = '';
+                      $idLevel = '';
+                      $mail = '';
+                      $levelPetugas = '';
+                      foreach ($petugas as $p) {
+                        if ($p['idPetugas'] == $arrTanggapan['idPetugas']) {
+                          $nama = $p['Nama'];
+                          $idLevel = $p['idLevel'];
+                          $mail = $p['Email'];
+                        }
+                      };
+                      foreach ($level as $l) {
+                        if ($l['idLevel'] == $idLevel) {
+                          $levelPetugas = $l['Level'];
+                        }
+                      };
+                      ?>
+                      <div class="row">
+                        <label class="col-sm-5">Nama Lengkap</label>
+                        <label class="col-sm-7">: <?= $nama ?></label>
+                      </div>
+                      <div class="row">
+                        <label class="col-sm-5">Level</label>
+                        <label class="col-sm-7">: <?= $levelPetugas; ?></label>
+                      </div>
+                      <div class="row">
+                        <label class="col-sm-5">Email</label>
+                        <label class="col-sm-7">: <?= $mail ?></label>
+                      </div>
+                    </div>
+                    <div class="col-md-7">
+                      <div class="row">
+                        <label class="col-sm-6">DETAIL TANGGAPAN</label>
+                        <hr>
+                      </div>
+                      <div class="row">
+                        <label class="col-sm-5">Tanggal</label>
+                        <label class="col-sm-7">: <?= $arrTanggapan['tgl_selesai']; ?></label>
+                      </div>
+                      <div class="row">
+                        <label class="col-sm-5">Uraian Tanggapan</label>
+                        <label class="col-sm-7">: <?= $arrTanggapan['Isi']; ?></label>
+                      </div>
+                      <div class="row">
+                        <label class="col-sm-5">Lampiran</label>
+                        <?php if ($arrTanggapan['Lampiran'] == 'default.png') : ?>
+                          <label class="col-sm-7">: Tidak memiliki lampiran</a></label>
+                        <?php else : ?>
+                          <label class=" col-sm-7"><a href="/lampiran_petugasMR/<?= $arrTanggapan['Lampiran']; ?>">: Lihat Lampiran</a></label>
+                        <?php endif ?>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <?php endforeach; ?>
 
       </div> <!-- container-fluid -->
     </div>

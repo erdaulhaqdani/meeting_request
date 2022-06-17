@@ -30,4 +30,10 @@ class Tanggapan_MRModel extends Model
         $query = $this->where(['idMeeting ' => $id])->orderBy('tgl_selesai', 'DESC')->find();
         return $query;
     }
+
+    public function trackTanggapanMeeting($id)
+    {
+        $query = $this->where(['idMeeting' => $id])->orderBy('tgl_selesai', 'DESC')->find();
+        return $query;
+    }
 }
