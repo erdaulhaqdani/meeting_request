@@ -58,19 +58,19 @@ $routes->get('/dashboard_admin_landing', 'Backend::dashboard_admin_landing');
 $routes->get('/logout_petugas', 'AuthPetugas::logout');
 
 //Pengaduan Online
-$routes->get('/Pengaduan_online/profile', 'pengaduan_online::profile');
+$routes->get('/Pengaduan_online/profile', 'Pengaduan_online::profile');
 $routes->get('/Pengaduan_online/daftar/(:any)', 'Pengaduan_online::daftar/$1');
-$routes->get('/Pengaduan_online', 'pengaduan_online::index');
-$routes->get('/Pengaduan_online/form', 'pengaduan_online::form');
-$routes->get('/delete/(:num)', 'pengaduan_online::delete/$1');
-$routes->get('/Pengaduan_online/input', 'pengaduan_online::input');
-$routes->get('/Pengaduan_online/update/(:num)', 'pengaduan_online::update/$1');
-$routes->get('/Pengaduan_online/cancel/(:num)', 'pengaduan_online::cancel/$1');
-$routes->get('/Pengaduan_online/detail/(:num)', 'pengaduan_online::detail/$1');
-$routes->get('/Pengaduan_online/bukti/(:num)', 'pengaduan_online::bukti/$1');
-$routes->get('/Pengaduan_online/edit/(:num)', 'pengaduan_online::edit/$1');
-$routes->get('/Pengaduan_online/tanggapan/(:num)', 'pengaduan_online::edit/$1');
-$routes->get('/Pengaduan_online/rating/(:num)', 'pengaduan_online::rating/$1');
+$routes->get('/Pengaduan_online', 'Pengaduan_online::index');
+$routes->get('/Pengaduan_online/form', 'Pengaduan_online::form');
+$routes->get('/delete/(:num)', 'Pengaduan_online::delete/$1');
+$routes->get('/Pengaduan_online/input', 'Pengaduan_online::input');
+$routes->get('/Pengaduan_online/update/(:num)', 'Pengaduan_online::update/$1');
+$routes->get('/Pengaduan_online/cancel/(:num)', 'Pengaduan_online::cancel/$1');
+$routes->get('/Pengaduan_online/detail/(:num)', 'Pengaduan_online::detail/$1');
+$routes->get('/Pengaduan_online/bukti/(:num)', 'Pengaduan_online::bukti/$1');
+$routes->get('/Pengaduan_online/edit/(:num)', 'Pengaduan_online::edit/$1');
+$routes->get('/Pengaduan_online/tanggapan/(:num)', 'Pengaduan_online::edit/$1');
+$routes->get('/Pengaduan_online/rating/(:num)', 'Pengaduan_online::rating/$1');
 
 //Meeting Request
 $routes->get('/Meeting_request', 'Meeting_request::index');

@@ -80,7 +80,6 @@
                                             <div class="row">
                                                 <label class="col-sm-4">Nomor Telepon</label>
                                                 <label class="col-sm-8">: <?= $customer['noHP']; ?></label>
-
                                             </div>
                                         </div>
                                         <div class="col-6">

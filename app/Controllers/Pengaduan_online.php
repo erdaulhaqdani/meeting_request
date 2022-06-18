@@ -8,6 +8,7 @@ use App\Models\CustModel;
 use App\Models\PetugasModel;
 use App\Models\Tanggapan_POModel;
 use App\Models\LevelModel;
+use App\Models\UserModel;
 
 use Dompdf\Dompdf;
 
@@ -19,6 +20,7 @@ class Pengaduan_online extends BaseController
     protected $PetugasModel;
     protected $Tanggapan_POModel;
     protected $LevelModel;
+    protected $UserModel;
 
     public function __construct()
     {
@@ -29,6 +31,7 @@ class Pengaduan_online extends BaseController
         $this->Tanggapan_POModel = new Tanggapan_POModel();
         $this->Tanggapan_POModel = new Tanggapan_POModel();
         $this->LevelModel = new LevelModel();
+        $this->UserModel = new UserModel();
     }
 
     public function index()
@@ -280,6 +283,38 @@ class Pengaduan_online extends BaseController
         ]);
 
         session()->setFlashdata('pesan', 'Berhasil menyunting profil.');
+
+        return redirect()->to('/Pengaduan_online/profile');
+    }
+
+    public function gantiPassword()
+    {
+        $customer = $this->request->getVar('idCustomer');
+        $arrCustomer = $this->CustModel->getCustomer($customer);
+        $email = $this->UserModel->getUser($arrCustomer['Email']);
+
+        $oldPass = $this->request->getVar('oldPass');
+        $newPass = $this->request->getVar('newPass');
+        $confPass = $this->request->getVar('confPass');
+
+        if (password_verify($oldPass, $arrCustomer['Password'])) {
+            if ($newPass == $confPass) {
+                $hashedPass = password_hash($newPass, PASSWORD_DEFAULT);
+
+                $this->CustModel->save([
+                    'idCustomer' => $customer,
+                    'Password' => $hashedPass
+                ]);
+
+                $this->UserModel->update($arrCustomer['Email'], ['Password' => $hashedPass]);
+
+                session()->setFlashdata('pesan_pass', 'berhasil menyunting password.');
+            } else {
+                session()->setFlashdata('pesan_error', 'password baru dan konfirmasi password tidak sama.');
+            }
+        } else {
+            session()->setFlashdata('pesan_error', 'password lama salah.');
+        }
 
         return redirect()->to('/Pengaduan_online/profile');
     }
