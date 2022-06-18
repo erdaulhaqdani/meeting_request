@@ -40,10 +40,12 @@
         // load new notifications
         $(document).on('click', '#page-header-notifications-dropdown', function() {
             load_notification('yes');
-            refresh_notification();
+            setTimeout(function() {
+                refresh_notification();
+            }, 10000);
         });
         setInterval(function() {
             load_notification();
-        }, 60000);
+        }, 1000);
     });
 </script>

@@ -43,57 +43,101 @@
 
                                 <form action="/Pengaduan_online/in_profile" class="custom-validation" method="POST" enctype="multipart/form-data">
                                     <!-- beri penjelasan tiap input/desc -->
-                                    <div class="row mt-3">
+                                    <div class="mt-3">
                                         <?php if (session()->getFlashdata('pesan')) : ?>
                                             <div class="alert alert-success" role="alert"><?= session()->getFlashdata('pesan'); ?></div>
                                         <?php endif; ?>
-                                        <div class="col-2">
-                                            <div class="my-2">
-                                                <label class="m-2">Nama</label>
-                                            </div>
-                                            <div class="my-2">
-                                                <label class="m-2">Username</label>
-                                            </div>
-                                            <div class="my-2">
-                                                <label class="m-2">NIK</label>
-                                            </div>
-                                            <div class="my-2">
-                                                <label class="m-2">Email</label>
-                                            </div>
-                                            <div class="my-2">
-                                                <label class="m-2">No HP</label>
-                                            </div>
-                                            <div class="my-2">
-                                                <label class="m-2">Pekerjaan</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-10">
-                                            <div class="my-2">
+
+                                        <div class="row my-2">
+                                            <label class="col-sm-1 mt-2" for="nama">Nama</label>
+                                            <div class="col-sm-11">
                                                 <input class="form-control" type="text" name="nama" required minlength="4" value="<?= $customer['Nama']; ?>">
                                             </div>
-                                            <div class="my-2">
+                                        </div>
+                                        <div class="row my-2">
+                                            <label class="col-sm-1 mt-2" for="nama">Username</label>
+                                            <div class="col-sm-11">
                                                 <input class="form-control" type="text" name="username" required minlength="4" value="<?= $customer['Username']; ?>">
                                             </div>
-                                            <div class="my-2">
-                                                <input class="form-control" type="text" name="nik" disabled required minlength="5" value="<?= $customer['NIK']; ?>">
+                                        </div>
+                                        <div class="row my-2">
+                                            <label class="col-sm-1 mt-2" for="nama">NIK</label>
+                                            <div class="col-sm-11">
+                                                <input class="form-control" type="text" name="nik" required minlength="4" value="<?= $customer['NIK']; ?>">
                                             </div>
-                                            <div class="my-2">
-                                                <input class="form-control" type="email" name="email" required minlength="5" value="<?= $customer['Email']; ?>">
+                                        </div>
+                                        <div class="row my-2">
+                                            <label class="col-sm-1 mt-2" for="nama">Email</label>
+                                            <div class="col-sm-11">
+                                                <input class="form-control" type="email" name="email" required minlength="4" value="<?= $customer['Email']; ?>">
                                             </div>
-                                            <div class="my-2">
-                                                <input class="form-control" type="text" name="noHP" required minlength="5" value="<?= $customer['noHP']; ?>">
+                                        </div>
+                                        <div class="row my-2">
+                                            <label class="col-sm-1 mt-2" for="nama">No HP</label>
+                                            <div class="col-sm-11">
+                                                <input class="form-control" type="text" name="noHP" required minlength="4" value="<?= $customer['noHP']; ?>">
                                             </div>
-                                            <div class="my-2">
-                                                <input class="form-control" type="text" name="pekerjaan" required minlength="5" value="<?= $customer['Pekerjaan']; ?>">
-                                                <input type="hidden" name="idCustomer" value="<?= $customer['idCustomer']; ?>">
+                                        </div>
+                                        <div class="row my-2">
+                                            <label class="col-sm-1 mt-2" for="nama">Pekerjaan</label>
+                                            <div class="col-sm-11">
+                                                <input class="form-control" type="text" name="pekerjaan" required minlength="4" value="<?= $customer['Pekerjaan']; ?>">
                                             </div>
+                                            <input type="hidden" name="idCustomer" required value="<?= $customer['idCustomer']; ?>">
+                                        </div>
+                                        <div class="my-3 text-end">
+                                            <button type="reset" class="btn btn-danger me-3">Reset</button>
+                                            <button type="submit" class="btn btn-primary" name="rate">Simpan</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end row -->
 
-                                            <div class="my-3 text-end">
-                                                <button type="reset" class="btn btn-danger me-3">Reset</button>
-                                                <button type="submit" class="btn btn-primary" name="rate">Simpan</button>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <h4 class="card-title"> Ganti Password </h4>
+
+                                <form action="/Pengaduan_online/gantiPassword" class="custom-validation" method="POST" enctype="multipart/form-data">
+                                    <!-- beri penjelasan tiap input/desc -->
+                                    <div class="mt-3">
+                                        <?php if (session()->getFlashdata('pesan_pass')) : ?>
+                                            <div class="alert alert-success" role="alert"><?= session()->getFlashdata('pesan_pass'); ?></div>
+                                        <?php elseif (session()->getFlashdata('pesan_error')) : ?>
+                                            <div class="alert alert-danger" role="alert"><?= session()->getFlashdata('pesan_error'); ?></div>
+                                        <?php endif; ?>
+
+                                        <div class="row my-2">
+                                            <label class="col-sm-2 mt-2" for="oldPass">Password Lama</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="Password" name="oldPass" required minlength="4">
+                                            </div>
+                                        </div>
+                                        <div class="row my-2">
+                                            <label class="col-sm-2 mt-2" for="newPass">Password Baru</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="Password" name="newPass" required minlength="4">
+                                            </div>
+                                        </div>
+                                        <div class="row my-2">
+                                            <label class="col-sm-2 mt-2" for="confPass">Konfirmasi Password</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="Password" name="confPass" required minlength="4">
                                             </div>
                                         </div>
 
+                                        <input type="hidden" name="idCustomer" required value="<?= $customer['idCustomer']; ?>">
+                                        <div class="my-3 text-end">
+                                            <button type="reset" class="btn btn-danger me-3">Reset</button>
+                                            <button type="submit" class="btn btn-primary" name="save">Simpan</button>
+                                        </div>
                                     </div>
                                 </form>
 

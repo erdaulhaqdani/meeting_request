@@ -105,7 +105,7 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Pengajuan yang dibuat minggu ini</h4>
+                                <h4 class="card-title mb-4">Pengaduan yang dibuat minggu ini</h4>
                                 <canvas id="bar_pengaduan"></canvas>
                             </div>
                         </div>
@@ -113,7 +113,7 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Pengajuan yang dibuat minggu ini</h4>
+                                <h4 class="card-title mb-4">Meeting yang dibuat minggu ini</h4>
                                 <canvas id="bar_meeting"></canvas>
                             </div>
                         </div>
@@ -432,7 +432,7 @@ function formatTanggal($date)
             label: 'Meeting Request',
             backgroundColor: '#6fd088',
             borderColor: '#6fd088',
-            data: [7, 0.5, 3],
+            data: data_meeting,
         }]
     };
 

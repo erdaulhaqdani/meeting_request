@@ -8,6 +8,7 @@ use App\Models\CustModel;
 use App\Models\PetugasModel;
 use App\Models\KategoriModel;
 use App\Models\LevelModel;
+use App\Models\UserModel;
 
 use Dompdf\Dompdf;
 
@@ -19,6 +20,7 @@ class Admin_pengaduan extends BaseController
     protected $PetugasModel;
     protected $KategoriModel;
     protected $LevelModel;
+    protected $UserModel;
 
     public function __construct()
     {
@@ -28,6 +30,7 @@ class Admin_pengaduan extends BaseController
         $this->PetugasModel = new PetugasModel();
         $this->KategoriModel = new KategoriModel();
         $this->LevelModel = new LevelModel();
+        $this->UserModel = new UserModel();
     }
 
     public function index()
@@ -81,7 +84,38 @@ class Admin_pengaduan extends BaseController
 
         session()->setFlashdata('pesan', 'berhasil menyunting profil.');
 
-        return redirect()->to('/Pengaduan_online/profile');
+        return redirect()->to('/admin/profile');
+    }
+
+    public function gantiPassword()
+    {
+        $petugas = $this->request->getVar('idPetugas');
+        $arrPetugas = $this->PetugasModel->getPetugasId($petugas);
+
+        $oldPass = $this->request->getVar('oldPass');
+        $newPass = $this->request->getVar('newPass');
+        $confPass = $this->request->getVar('confPass');
+
+        if (password_verify($oldPass, $arrPetugas['Password'])) {
+            if ($newPass == $confPass) {
+                $hashedPass = password_hash($newPass, PASSWORD_DEFAULT);
+
+                $this->PetugasModel->save([
+                    'idPetugas' => $petugas,
+                    'Password' => $hashedPass
+                ]);
+
+                $this->UserModel->update($arrPetugas['Email'], ['Password' => $hashedPass]);
+
+                session()->setFlashdata('pesan_pass', 'berhasil menyunting password.');
+            } else {
+                session()->setFlashdata('pesan_error', 'password baru dan konfirmasi password tidak sama.');
+            }
+        } else {
+            session()->setFlashdata('pesan_error', 'password lama salah.');
+        }
+
+        return redirect()->to('/admin/profile');
     }
 
     public function detail($id)
