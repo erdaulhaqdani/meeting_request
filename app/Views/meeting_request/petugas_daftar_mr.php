@@ -136,7 +136,7 @@
                                                 <td><?= $k; ?></td>
                                                 <td><?= $a->Bentuk_layanan; ?></td>
                                                 <td><?= $a->Kantor; ?></td>
-                                                <td><?= $a->Tanggal_kunjungan; ?></td>
+                                                <td><?= formatTanggal($a->Tanggal_kunjungan); ?></td>
                                                 <td><?= $a->Waktu_kunjungan; ?></td>
                                                 <td><?= $a->Status; ?></td>
                                                 <td>

@@ -9,3 +9,11 @@
 <link rel="icon" type="image/png" href="<?= base_url('assets/images/favicon-32x32.png'); ?>" sizes="32x32" />
 <!-- Lightbox css -->
 <link href="<?= base_url('/assets/libs/magnific-popup/magnific-popup.css'); ?>" rel=" stylesheet" type="text/css" />
+
+<?php
+function formatTanggal($date)
+{
+    // ubah string menjadi format tanggal
+    return date('d F Y', strtotime($date));
+}
+?>

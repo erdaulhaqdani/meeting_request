@@ -87,7 +87,7 @@
                     </div>
                     <div class="row">
                       <label class="col-sm-4">Tanggal Pengajuan</label>
-                      <label class="col-sm-8">: <?= $meeting['created_at']; ?></label>
+                      <label class="col-sm-8">: <?= formatTanggal($meeting['created_at']); ?></label>
                     </div>
                     <div class="row">
                       <?php //getNamaKategori
@@ -115,7 +115,7 @@
                     </div>
                     <div class="row">
                       <label class="col-sm-4">Tanggal Kunjungan</label>
-                      <label class="col-sm-8">: <?= $meeting['Tanggal_kunjungan']; ?></label>
+                      <label class="col-sm-8">: <?= formatTanggal($meeting['Tanggal_kunjungan']); ?></label>
                     </div>
                     <div class="row">
                       <label class="col-sm-4">Waktu Kunjungan</label>

@@ -18,7 +18,7 @@
   <!-- Responsive datatable examples -->
   <link href="/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
-
+  <?= $this->include("partials/head-css"); ?>
 </head>
 
 <?= $this->include("partials/body"); ?>
@@ -72,14 +72,7 @@
                   </thead>
 
                   <tbody>
-                    <?php $no = 1;
-                    function formatTanggal($date)
-                    {
-                      // ubah string menjadi format tanggal
-                      return date('d-m-Y', strtotime($date));
-                    }
-
-                    ?>
+                    <?php $no = 1; ?>
                     <?php foreach ($informasi->getResult() as $a) :
                       $date = $a->created_at;
 

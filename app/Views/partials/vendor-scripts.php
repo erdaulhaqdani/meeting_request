@@ -18,9 +18,9 @@
                 dataType: "json",
                 success: function(data) {
                     $('#notifItem').html(data.notification);
-                    // if (data.unread_notification > 0) {
-                    //     $('.count').html(data.unread_notification);
-                    // }
+                    if (data.unread_notification > 0) {
+                        $('#notifDot').addClass("noti-dot");
+                    }
                 }
             });
         }

@@ -67,29 +67,16 @@
                   </thead>
 
                   <tbody>
-                    <?php $no = 1;
-                    function formatTanggal($date)
-                    {
-                      // ubah string menjadi format tanggal
-                      return date('d-m-Y', strtotime($date));
-                    }
-                    function formatTanggal2($date2)
-                    {
-                      // ubah string menjadi format tanggal
-                      return date('d-m-Y', strtotime($date2));
-                    }
-
-                    ?>
+                    <?php $no = 1; ?>
                     <?php foreach ($tanda_terima as $a) :
                       $date = $a['created_at'];
                       $date2 = $a['Tanggal']
-
                     ?>
                       <tr>
                         <td><?= $no++; ?></td>
                         <td><?= $a['Pengirim']; ?></td>
                         <td><?= $a['No_surat']; ?></td>
-                        <td><?= formatTanggal2($date2) ?></td>
+                        <td><?= formatTanggal($date2) ?></td>
                         <td><?= formatTanggal($date) ?></td>
                         <td><?= $a['Perihal']; ?></td>
                         <td>

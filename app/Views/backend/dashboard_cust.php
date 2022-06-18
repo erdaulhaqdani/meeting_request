@@ -155,7 +155,7 @@
                                             ?>
                                             <tr>
                                                 <td><?= $k; ?></td>
-                                                <td><?= Tanggal($date) ?></td>
+                                                <td><?= formatTanggal($date) ?></td>
                                                 <td><?= $a->Waktu_kunjungan . ' WIB'; ?></td>
                                                 <td><?= $a->Status; ?></td>
                                                 <td>
@@ -191,21 +191,14 @@
                                 <table id="datatable2" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                         <tr>
+                                            <th>Judul</th>
                                             <th>Jenis Layanan</th>
-                                            <th>Tanggal Input</th>
+                                            <th>Tanggal</th>
                                             <th>Status</th>
-                                            <th>Aksi</th>
+                                            <th style="min-width: 25%;">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php
-                                        function Tanggal($date)
-                                        {
-                                            // ubah string menjadi format tanggal
-                                            return date('d-F-Y', strtotime($date));
-                                        }
-
-                                        ?>
                                         <?php foreach ($lastPengaduan->getResult() as $a) : ?>
                                             <?php //getNamaKategori
                                             $k = '';
@@ -217,8 +210,9 @@
                                             }
                                             ?>
                                             <tr>
+                                                <td><?= $a->Judul; ?></td>
                                                 <td><?= $k; ?></td>
-                                                <td><?= Tanggal($date) ?></td>
+                                                <td><?= formatTanggal($a->created_at); ?></td>
                                                 <td><?= $a->Status; ?></td>
                                                 <td>
                                                     <a href="/Pengaduan_online/detail/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
@@ -352,14 +346,6 @@
         data: data_group_meeting
     });
 </script>
-
-<?php
-function formatTanggal($date)
-{
-    // ubah string menjadi format tanggal
-    return date('d F Y', strtotime($date));
-}
-?>
 
 <!-- Bar Chart pengaduan minggu ini -->
 <script>

@@ -237,14 +237,6 @@
     });
 </script>
 
-<?php
-function formatTanggal($date)
-{
-    // ubah string menjadi format tanggal
-    return date('d F Y', strtotime($date));
-}
-?>
-
 <!-- Bar Chart pengaduan minggu ini -->
 <script>
     // cari cara generate tanggal minggu ini via javascript/php kirim tgl ke sql

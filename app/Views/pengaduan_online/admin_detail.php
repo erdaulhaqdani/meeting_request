@@ -89,7 +89,7 @@
                                             </div>
                                             <div class="row">
                                                 <label class="col-sm-4">Tanggal Pengajuan</label>
-                                                <label class="col-sm-8">: <?= $pengaduan['created_at']; ?></label>
+                                                <label class="col-sm-8">: <?= formatTanggal($pengaduan['created_at']); ?></label>
                                             </div>
                                             <div class="row">
                                                 <label class="col-sm-4">Jenis Layanan</label>
@@ -196,7 +196,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <label class="col-sm-4">Tanggal</label>
-                                                    <label class="col-sm-8">: <?= $arrTanggapan['tgl_selesai']; ?></label>
+                                                    <label class="col-sm-8">: <?= formatTanggal($arrTanggapan['tgl_selesai']); ?></label>
                                                 </div>
                                                 <div class="row">
                                                     <label class="col-sm-4">Uraian Tanggapan</label>
