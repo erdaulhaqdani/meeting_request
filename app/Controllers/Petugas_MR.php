@@ -50,6 +50,8 @@ class Petugas_MR extends BaseController
 
     public function detail($id)
     {
+        $this->Meeting_requestModel->update(['idPengaduan' => $id], ['notifPetugas' => 1]);
+
         $meeting = $this->Meeting_requestModel->getMeetingRequest($id);
         $tanggapan = $this->Tanggapan_MRModel->trackTanggapanMeeting($id);
         $data = [
@@ -87,6 +89,8 @@ class Petugas_MR extends BaseController
             'idMeeting' => $id,
             'Status' => 'Sedang diproses',
             'idPetugas' => session('idPetugas'),
+            'notifCustomer' => 0,
+            'notifPetugas' => 1
         ]);
 
         session()->setFlashdata('pesan', 'Meeting Request mulai diproses');
@@ -140,7 +144,8 @@ class Petugas_MR extends BaseController
             'idMeeting' => $this->request->getVar('idMeeting'),
             'Status' => $status,
             'idPetugas' => $petugas,
-            'Notifikasi' => 0
+            'notifCustomer' => 0,
+            'notifPetugas' => 0
         ]);
 
         session()->setFlashdata('pesan', 'Tanggapan berhasil tersimpan.');

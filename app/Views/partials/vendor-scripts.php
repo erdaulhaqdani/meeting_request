@@ -4,13 +4,20 @@
 <script src="<?= base_url('assets/libs/metismenu/metisMenu.min.js'); ?>"></script>
 <script src="<?= base_url('assets/libs/simplebar/simplebar.min.js'); ?>"></script>
 <script src="<?= base_url('assets/libs/node-waves/waves.min.js'); ?>"></script>
-
+<?php
+$url = '';
+if (session('Kelompok') == 'APT') {
+    $url = 'Pengaduan_online/getNotifPetugas';
+} elseif (session('Kelompok') == 'Customer') {
+    $url = 'Pengaduan_online/getNotifCustomer';
+}
+?>
 <script type="text/javascript">
     $(document).ready(function() {
         // updating the view with notifications using ajax
         function load_notification(view = '') {
             $.ajax({
-                url: "<?= base_url('Pengaduan_online/getNotif') ?>",
+                url: "<?= base_url($url) ?>",
                 type: "POST",
                 data: {
                     view: view

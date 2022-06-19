@@ -14,7 +14,7 @@ use Dompdf\Dompdf;
 
 class Admin_pengaduan extends BaseController
 {
-    protected $pengaduan_onlineModel;
+    protected $Pengaduan_onlineModel;
     protected $Tanggapan_POModel;
     protected $CustModel;
     protected $PetugasModel;
@@ -52,7 +52,7 @@ class Admin_pengaduan extends BaseController
     {
         $data = [
             'title' => 'Daftar Pengaduan Online',
-            'pengaduan' => $this->Pengaduan_onlineModel->listPengaduanAdmin2($status, session('idLevel'), session('Unit')),
+            'pengaduan' => $this->Pengaduan_onlineModel->listPengaduanAdmin2($status, session('idLevel'), session('Unit'), session('idPetugas')),
             'kategori' => $this->KategoriModel->getKategori()
         ];
 
@@ -120,6 +120,8 @@ class Admin_pengaduan extends BaseController
 
     public function detail($id)
     {
+        $this->Pengaduan_onlineModel->update(['idPengaduan' => $id], ['notifPetugas' => 1]);
+
         $pengaduan = $this->Pengaduan_onlineModel->getPengaduan($id);
         $tanggapan = $this->Tanggapan_POModel->trackTanggapanPengaduan($id);
         $data = [
@@ -214,7 +216,7 @@ class Admin_pengaduan extends BaseController
         $data = [
             'title' => 'Tanggapan',
             'validation' => \Config\Services::validation(),
-            'petugas' => $this->PetugasModel->getPetugasEskalasi(session('idPetugas'), session('idLevel'))->getResultArray(),
+            'petugas' => $this->PetugasModel->getPetugasEskalasi(session('idPetugas'), session('idLevel'), session('Unit'))->getResultArray(),
             'level' => $this->LevelModel->getlevel(),
             'idPengaduan' => $idPengaduan
         ];
@@ -231,6 +233,7 @@ class Admin_pengaduan extends BaseController
             'idPengaduan' => $id,
             'Status' => 'Sedang diproses',
             'idPetugas' => session('idPetugas'),
+            'notifCustomer' => 0
         ]);
 
         session()->setFlashdata('pesan', 'Pengaduan mulai diproses');
@@ -290,7 +293,8 @@ class Admin_pengaduan extends BaseController
             'idPengaduan' => $this->request->getVar('idPengaduan'),
             'Status' => $status,
             'idPetugas' => $petugas,
-            'Notifikasi' => 0
+            'notifCustomer' => 0,
+            'notifPetugas' => 0
         ]);
 
         session()->setFlashdata('pesan', 'Tanggapan berhasil tersimpan.');

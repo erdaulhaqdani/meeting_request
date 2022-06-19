@@ -47,7 +47,6 @@ class Backend extends BaseController
       'jumlahMeeting' => $this->Meeting_requestModel->jumlah_meetingCustomer(session('idCustomer')),
       'jumlahPengaduan' => $this->Pengaduan_onlineModel->jumlah_pengaduanCustomer(session('idCustomer')),
       'kategori' => $this->KategoriModel->getKategori(),
-
     ];
 
     return view('backend/dashboard_cust', $data);
@@ -66,7 +65,7 @@ class Backend extends BaseController
       'kategori' => $this->KategoriModel->getKategori(),
       'customer' => $this->CustModel->jumlah_cust(),
       'cust_baru' => $this->CustModel->cust_baru($tgl),
-      'jumlah_tandaTerima' => $this->TandaTerimaModel->jumlah_tandaTerima()
+      'jumlah_tandaTerima' => $this->TandaTerimaModel->jumlah_tandaTerima(),
     ];
 
     return view('backend/dashboard_petugas', $data);

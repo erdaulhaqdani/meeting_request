@@ -35,12 +35,31 @@ class Pengaduan_onlineModel extends Model
          * LIMIT 3
          */
         $query = $this->db->query("SELECT `idPengaduan`,`Judul`,`updated_at`,`Tiket`,`Status` FROM `pengaduan_online`
-                                    WHERE `idCustomer` = ? AND notifCustomer = ?
+                                    WHERE `idCustomer` = ? AND notifCustomer = 0
                                     UNION ALL 
                                     SELECT `idMeeting`,`Perihal`,`updated_at`,`Tiket`,`Status` FROM meeting_request
-                                    WHERE `idCustomer` = ? AND notifCustomer = ?
+                                    WHERE `idCustomer` = ? AND notifCustomer = 0
                                     ORDER BY updated_at ASC
-                                    LIMIT 5", [$idCustomer, 0, $idCustomer, 0]);
+                                    LIMIT 5", [$idCustomer, $idCustomer]);
+        return $query;
+    }
+
+    public function notifPetugas($idPetugas, $kategori)
+    {
+        /**
+         * SELECT `idPengaduan`,`Judul`,`updated_at`, `Tiket` FROM `pengaduan_online`
+         * UNION ALL 
+         * SELECT `idMeeting`,`Perihal`,`updated_at`, `Tiket` FROM meeting_request
+         * ORDER BY updated_at DESC
+         * LIMIT 3
+         */
+        $query = $this->db->query("SELECT `idPengaduan`,`Judul`,`updated_at`,`Tiket`,`Status` FROM `pengaduan_online`
+                                    WHERE `idPetugas` = ? AND notifPetugas = 0 OR `idPetugas` = 1 AND `notifPetugas` = 0 AND `idKategori` = ?
+                                    UNION ALL 
+                                    SELECT `idMeeting`,`Perihal`,`updated_at`,`Tiket`,`Status` FROM meeting_request
+                                    WHERE `idPetugas` = ? AND notifPetugas = 0 OR `idPetugas` = 1 AND `notifPetugas` = 0 AND `idKategori` = ?
+                                    ORDER BY updated_at ASC
+                                    LIMIT 5", [$idPetugas, $kategori, $idPetugas, $kategori]);
         return $query;
     }
 
