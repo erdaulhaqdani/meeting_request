@@ -39,7 +39,7 @@ class KelolaPegawai extends BaseController
     public function input_pegawai()
     // tambah label tiap rules
     {
-        $hashedPassword = md5($this->request->getVar('password'), PASSWORD_DEFAULT);
+        $hashedPassword = md5($this->request->getVar('password'));
 
         // $cek = $this->request->getVar();
         // dd($cek);

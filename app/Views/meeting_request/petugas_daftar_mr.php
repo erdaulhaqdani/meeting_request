@@ -76,16 +76,23 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-3">
-                                        <div class="card">
-                                            <div class="card-body text-center">
-                                                <h5 class="card-title">Eskalasi masuk</h5>
-                                                <?php foreach ($eskalasi->getResultObject() as $a) : ?>
-                                                    <?= $a->idMeeting; ?>
-                                                <?php endforeach ?>
+                                    <?php
+                                    if (session('idLevel') != 7) {
+                                    ?>
+                                        <div class="col-md-3">
+                                            <div class="card">
+                                                <div class="card-body text-center">
+                                                    <h5 class="card-title">Eskalasi masuk</h5>
+                                                    <?php foreach ($eskalasi->getResultObject() as $a) : ?>
+                                                        <?= $a->idMeeting; ?>
+                                                    <?php endforeach ?>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    <?php
+                                    } else {
+                                    }
+                                    ?>
 
                                 </div>
                             </div>
@@ -110,19 +117,24 @@
                                     <thead>
                                         <tr>
                                             <th>No.</th>
+                                            <th>Customer</th>
                                             <th>Jenis Layanan</th>
                                             <th>Bentuk Layanan</th>
                                             <th>Kantor Tujuan</th>
-                                            <th>Tanggal Kunjungan</th>
-                                            <th>Waktu Kunjungan</th>
+                                            <th>Tanggal Input</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        <?php $no = 1; ?>
-                                        <?php foreach ($meeting->getResult() as $a) : ?>
+                                        <?php $no = 1;
+                                        function formatTgl($date)
+                                        {
+                                            // ubah string menjadi format tanggal
+                                            return date('d-m-Y', strtotime($date));
+                                        }
+                                        foreach ($meeting->getResult() as $a) : ?>
                                             <?php //getNamaKategori
                                             $k = '';
                                             foreach ($kategori as $b) {
@@ -130,9 +142,18 @@
                                                     $k = $b['namaKategori'];
                                                 }
                                             }
+                                            $username = '';
+                                            foreach ($customer as $c) {
+                                                if ($a->idCustomer == $c['idCustomer']) {
+                                                    $username = $c['Username'];
+                                                }
+                                            }
+                                            $date = $a->updated_at;
+
                                             ?>
                                             <tr>
                                                 <td><?= $no++; ?></td>
+                                                <td><?= $username; ?></td>
                                                 <td><?= $k; ?></td>
                                                 <td><?= $a->Bentuk_layanan; ?></td>
                                                 <td><?= $a->Kantor; ?></td>
@@ -144,7 +165,7 @@
                                                     <?php if ($a->Status == 'Sedang diproses') : ?>
                                                         <a href="/petugasMR/tanggapan/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Tanggapan</a>
                                                     <?php elseif ($a->Status == 'Belum diproses') : ?>
-                                                        <a href="petugasMR/proses/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Mulai Proses</a>
+                                                        <a href="petugasMR/proses/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Proses</a>
                                                     <?php elseif ($a->Status == 'Eskalasi') : ?>
                                                         <a href="petugasMR/proses/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Tanggapan</a>
                                                     <?php endif ?>

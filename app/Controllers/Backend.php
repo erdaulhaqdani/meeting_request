@@ -7,6 +7,7 @@ use App\Models\Meeting_requestModel;
 use App\Models\KategoriModel;
 use App\Models\CustModel;
 use App\Models\PetugasModel;
+use App\Models\PegawaiModel;
 use App\Models\Landing_pageModel;
 use App\Models\TandaTerimaModel;
 
@@ -19,6 +20,7 @@ class Backend extends BaseController
   protected $PetugasModel;
   protected $Landing_pageModel;
   protected $TandaTerimaModel;
+  protected $PegawaiModel;
 
   public function __construct()
   {
@@ -29,6 +31,7 @@ class Backend extends BaseController
     $this->PetugasModel = new PetugasModel();
     $this->Landing_pageModel = new Landing_pageModel();
     $this->TandaTerimaModel = new TandaTerimaModel();
+    $this->PegawaiModel = new PegawaiModel();
   }
 
   public function dashboard_cust()
@@ -76,13 +79,12 @@ class Backend extends BaseController
       'title' => 'Dashboard Admin Landing Page',
       'groupAgenda' => $this->Landing_pageModel->groupByStatusAgenda(session('idPetugas')),
       'groupInfo' => $this->Landing_pageModel->groupByKategoriInfo(session('idPetugas')),
-      'lastMeetingRequest' => $this->Meeting_requestModel->lastMeetingRequest(session('idPetugas')),
-      'pengaduanPerminggu' => $this->Pengaduan_onlineModel->pengaduanPetugasPerminggu(session('idPetugas')),
-      'meetingPerminggu' => $this->Meeting_requestModel->meetingRequestPetugasPerminggu(session('idPetugas')),
+      'lastBerita' => $this->Landing_pageModel->lastBerita(session('idPetugas')),
       'kategori' => $this->KategoriModel->getKategori(),
       'customer' => $this->CustModel->jumlah_cust(),
       'cust_baru' => $this->CustModel->cust_baru($tgl),
-      'petugas' => $this->PetugasModel->jumlah_petugas()
+      'petugas' => $this->PetugasModel->jumlah_petugas(),
+      'pegawai' => $this->PegawaiModel->jumlah_pegawai()
     ];
 
     return view('backend/dashboard_admin_landing', $data);

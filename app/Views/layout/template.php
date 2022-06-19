@@ -66,19 +66,19 @@
 				<div class="container">
 					<div class="bg-wrapper clearfix">
 						<div class="logo float-left"><a href="/"><img src="/images/logo-kpknl.png" alt="" height="56" width="150px"></a></div>
-						<!-- <div class="right-widget float-right ">
+						<div class="right-widget float-right ">
 							<ul>
 								<li class="search-option">
 									<div class="dropdown">
-										<button type="button" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-search" aria-hidden="true"></i></button>
+										<button disabled type="button" class="dropdown-toggle" data-toggle="dropdown"><i class=" fa fa-arrow-down-alt-circle-down" aria-hidden="true"></i></button>
 										<form action="#" class="dropdown-menu">
-											<input type="text" Placeholder="Cari...">
-											<button><i class="fa fa-search"></i></button>
+											<input type="text" Placeholder="Cari..." hidden>
+											<button disabled><i class="fa fa-search"></i></button>
 										</form>
 									</div>
 								</li>
 							</ul>
-						</div> -->
+						</div>
 						<!-- /.right-widget -->
 						<!-- ============== Menu Warpper ================ -->
 						<div class="menu-wrapper float-right">
@@ -139,7 +139,7 @@
 			<div class="top-footer">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg col-sm-6 col-12 logo-widget">
+						<div class="col-lg-4 col-sm-6 col-12 logo-widget">
 							<div class="logo"><a href="/"><img src="/images/logo-kpknl.png" alt="" height="60" width="165px"></a></div>
 							<p>KPKNL Bandung merupakan unit vertikal Direktorat Jenderal Kekayaan Negara (DJKN) <br> di bawah Kanwil DJKN Jawa Barat.
 							</p>
@@ -149,30 +149,33 @@
 								<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
 							</ul>
 						</div> <!-- /.logo-widget -->
-						<div class="col-lg col-sm-6 col-12 footer-list">
+						<div class="col-lg-2 col-sm-6 col-12 footer-list">
+							<h6 class="title">PORTAL PEGAWAI</h6>
+							<div class="row">
+								<div class="col">
+									<ul>
+										<li><a href="/pages/peristiwa_grid">Login Pegawai</a></li>
+									</ul>
+								</div>
+							</div>
+						</div> <!-- /.footer-list -->
+
+						<div class="col-lg-2 col-sm-6 col-12 footer-list">
 							<h6 class="title">JELAJAHI</h6>
 							<div class="row">
 								<div class="col">
 									<ul>
-										<li><a href="/pages/peristiwa_grid">Kilas Peristiwa</a></li>
 										<li><a href="/pages/pengumuman_grid">Pengumuman</a></li>
 										<li><a href="/pages/berita_grid">Berita</a></li>
-										<li><a href="/pages/artikel_grid">Artikel</a></li>
-									</ul>
-								</div>
-								<div class="col">
-									<ul>
-										<li><a href="/pages/profil">Profil</a></li>
 										<li><a href="/pages/agenda_grid">Agenda</a></li>
+										<li><a href="/pages/profil">Profil</a></li>
 										<li><a href="/pages/faq">FAQ</a></li>
 									</ul>
 								</div>
 							</div>
-
-
 						</div> <!-- /.footer-list -->
 
-						<div class="col-lg col-sm-6 col-12 contact-widget">
+						<div class="col-lg-4 col-sm-6 col-12 contact-widget">
 							<h6 class="title">Kontak Kami</h6>
 							<ul>
 								<li>

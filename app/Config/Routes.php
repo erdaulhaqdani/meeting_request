@@ -87,6 +87,8 @@ $routes->get('/Landing_page/form', 'Landing_page::form');
 $routes->get('/Landing_page/input', 'Landing_page::input');
 $routes->get('/Landing_page/publik/(:num)', 'Landing_page::publik/$1');
 $routes->get('/Landing_page/arsip/(:num)', 'Landing_page::arsip/$1');
+$routes->get('/Landing_page/publik_dashboard/(:num)', 'Landing_page::publik_dashboard/$1');
+$routes->get('/Landing_page/arsip_dashboard/(:num)', 'Landing_page::arsip_dashboard/$1');
 $routes->get('/Landing_page/edit/(:num)', 'Landing_page::edit/$1');
 $routes->get('/Landing_page/update/(:num)', 'Landing_page::update/$1');
 $routes->get('/Landing_page/permohonanInfo/(:num)', 'Landing_page::editPermohonan/$1');
@@ -110,6 +112,7 @@ $routes->get('/Landing_page/input_agenda', 'Landing_page::input_agenda');
 $routes->get('/Landing_page/daftar_agenda', 'Landing_page::daftar_agenda');
 $routes->get('/Landing_page/edit_agenda/(:num)', 'Landing_page::edit_agenda/$1');
 $routes->get('/Landing_page/update_agenda/(:num)', 'Landing_page::update_agenda/$1');
+$routes->get('/Landing_page/hapus_gambar/(:num)', 'Landing_page::hapus_gambar/$1');
 
 //Pencarian Informasi Landing Page
 $routes->get('/pages/pencarian', 'Pages::pencarian');

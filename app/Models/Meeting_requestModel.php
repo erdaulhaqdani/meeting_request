@@ -31,6 +31,7 @@ class Meeting_requestModel extends Model
     $builder = $this->db->table('meeting_request');
     $builder->where('idCustomer', $id);
     $builder->orderBy('created_at', 'DESC');
+    $builder->orderBy('Status', 'DESC');
     $query = $builder->get();
     return $query;
   }
@@ -64,19 +65,20 @@ class Meeting_requestModel extends Model
     return $query;
   }
 
-  public function listMeetingPetugas($level, $kategori, $petugas)
+  public function listMeetingPetugas($petugas)
   {
-
+    /**
+     * SELECT * FROM meeting_request
+     * WHERE Status LIKE 'Belum Diproses' OR Status LIKE 'Sedang Diproses'
+     */
     $builder = $this->db->table('meeting_request');
-    $builder->notlike('Status', 'Dibatalkan');
-    if ($level != 1) {
-      $builder->where('idKategori', $kategori);
-    }
-    $builder->orLike('Status', 'Eskalasi');
+
     $builder->where('idPetugas', $petugas);
-    $builder->orLike('Status', 'proses');
-    $builder->where('idPetugas', $petugas);
+    $builder->like('Status', 'Eskalasi');
+    $builder->orWhere('idPetugas', $petugas);
+    $builder->like('Status', 'proses');
     $builder->orWhere('idPetugas', 1);
+
     $query = $builder->get();
     return $query;
   }
