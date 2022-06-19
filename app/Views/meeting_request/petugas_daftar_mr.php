@@ -157,7 +157,8 @@
                                                 <td><?= $k; ?></td>
                                                 <td><?= $a->Bentuk_layanan; ?></td>
                                                 <td><?= $a->Kantor; ?></td>
-                                                <td><?= formatTgl($date); ?></td>
+                                                <td><?= formatTanggal($a->Tanggal_kunjungan); ?></td>
+                                                <td><?= $a->Waktu_kunjungan; ?></td>
                                                 <td><?= $a->Status; ?></td>
                                                 <td>
                                                     <a href="/petugasMR/detail/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>

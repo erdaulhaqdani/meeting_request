@@ -57,7 +57,7 @@
 <body>
 
   <?php
-  function formatTanggal($date)
+  function formatTanggalNum($date)
   {
     // ubah string menjadi format tanggal
 
@@ -103,7 +103,7 @@
       <tr>
         <td class="isi"> Tanggal Surat </td>
         <td>:</td>
-        <td class="isian"><?= formatTanggal($date) ?></td>
+        <td class="isian"><?= formatTanggalNum($date) ?></td>
         <td class="kanan"></td>
       </tr>
       <tr>

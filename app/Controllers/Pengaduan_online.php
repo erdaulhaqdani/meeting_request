@@ -291,7 +291,6 @@ class Pengaduan_online extends BaseController
     {
         $customer = $this->request->getVar('idCustomer');
         $arrCustomer = $this->CustModel->getCustomer($customer);
-        $email = $this->UserModel->getUser($arrCustomer['Email']);
 
         $oldPass = $this->request->getVar('oldPass');
         $newPass = $this->request->getVar('newPass');

@@ -52,7 +52,7 @@
                                     <thead>
                                         <tr>
                                             <th>Judul</th>
-                                            <th>Kategori</th>
+                                            <th>Jenis Layanan</th>
                                             <th>Tanggal</th>
                                             <th>Status</th>
                                             <th style="min-width: 25%;">Aksi</th>

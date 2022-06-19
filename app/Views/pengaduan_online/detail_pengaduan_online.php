@@ -85,13 +85,6 @@
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <?php
-                                            function formatTanggal($date)
-                                            {
-                                                // ubah string menjadi format tanggal
-                                                return date('d F Y, H:i', strtotime($date));
-                                            }
-                                            ?>
                                             <div class="row mb-1">
                                                 <label class="col-sm-6">DETAIL PENGADUAN ONLINE</label>
                                                 <hr>

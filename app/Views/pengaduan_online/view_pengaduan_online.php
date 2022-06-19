@@ -111,7 +111,7 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Judul</th>
-                                            <th>Kategori</th>
+                                            <th>Jenis Layanan</th>
                                             <th>Tanggal</th>
                                             <th>Status</th>
                                             <th style="min-width: 25%;">Aksi</th>
@@ -119,14 +119,7 @@
                                     </thead>
 
                                     <tbody>
-                                        <?php $no = 1;
-                                        function formatTanggal($date)
-                                        {
-                                            // ubah string menjadi format tanggal
-                                            return date('d-m-Y', strtotime($date));
-                                        }
-
-                                        ?>
+                                        <?php $no = 1; ?>
                                         <?php foreach ($pengaduan->getResult() as $a) : ?>
                                             <?php //getNamaKategori
                                             $k = '';

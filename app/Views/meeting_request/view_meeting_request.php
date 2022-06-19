@@ -123,15 +123,7 @@
                     </tr>
                   </thead>
 
-                  <tbody>
-                    <?php $no = 1;
-                    function formatTanggal($date)
-                    {
-                      // ubah string menjadi format tanggal
-                      return date('d-m-Y', strtotime($date));
-                    }
-
-                    ?>
+                  <tbody><?php $no = 1; ?>
                     <?php foreach ($meeting->getResult() as $a) : ?>
                       <?php //getNamaKategori
                       $k = '';

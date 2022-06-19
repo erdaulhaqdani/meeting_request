@@ -66,14 +66,7 @@
                                     </thead>
 
                                     <tbody>
-                                        <?php $no = 1;
-                                        function formatTanggal($date)
-                                        {
-                                            // ubah string menjadi format tanggal
-                                            return date('d-m-Y', strtotime($date));
-                                        }
-
-                                        ?>
+                                        <?php $no = 1; ?>
                                         <?php foreach ($agenda as $a) :
                                             $date = $a['created_at'];
 
