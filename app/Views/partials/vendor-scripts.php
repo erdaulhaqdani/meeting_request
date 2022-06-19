@@ -20,32 +20,20 @@
                     $('#notifItem').html(data.notification);
                     if (data.unread_notification > 0) {
                         $('#notifDot').addClass("noti-dot");
+                    } else {
+                        $('#notifDot').removeClass("noti-dot");
                     }
                 }
             });
         }
-
-        function refresh_notification() {
-            $.ajax({
-                url: "<?= base_url('Pengaduan_online/refreshNotif') ?>",
-                type: "POST",
-                data: {},
-                dataType: "json",
-                success: function(data) {}
-            });
-        }
-
         load_notification();
 
         // load new notifications
         $(document).on('click', '#page-header-notifications-dropdown', function() {
             load_notification('yes');
-            setTimeout(function() {
-                refresh_notification();
-            }, 10000);
         });
         setInterval(function() {
             load_notification();
-        }, 1000);
+        }, 5000);
     });
 </script>

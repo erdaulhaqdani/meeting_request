@@ -76,7 +76,7 @@
                     </div>
 
                     <!-- notification list -->
-                    <div data-simplebar style="max-height: 230px;">
+                    <div data-simplebar style="max-height: 400px;">
                         <div id="notifItem"></div>
                     </div>
                     <!-- end of notification list -->

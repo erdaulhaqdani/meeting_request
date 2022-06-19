@@ -9,7 +9,7 @@ class Pengaduan_onlineModel extends Model
     protected $table      = 'pengaduan_online';
     protected $primaryKey = 'idPengaduan';
 
-    protected $allowedFields = ['Judul', 'Isi', 'idKategori', 'Lampiran', 'Status', 'Rating', 'Ulasan', 'idCustomer', 'idPetugas'];
+    protected $allowedFields = ['Judul', 'Isi', 'idKategori', 'Lampiran', 'Status', 'Rating', 'Ulasan', 'idCustomer', 'idPetugas', 'notifCustomer', 'notifPetugas'];
 
     protected $useAutoIncrement = true;
     protected $useTimestamps = true;
@@ -25,32 +25,22 @@ class Pengaduan_onlineModel extends Model
         return $this->where(['idPengaduan' => $id])->first();
     }
 
-    public function notifPengaduanCustomer($id)
+    public function notifCustomer($idCustomer)
     {
         /**
-         * SELECT * FROM pengaduan_online
-         * WHERE idCustomer = '1'
+         * SELECT `idPengaduan`,`Judul`,`updated_at`, `Tiket` FROM `pengaduan_online`
+         * UNION ALL 
+         * SELECT `idMeeting`,`Perihal`,`updated_at`, `Tiket` FROM meeting_request
+         * ORDER BY updated_at DESC
+         * LIMIT 3
          */
-        $builder = $this->db->table('pengaduan_online');
-        $builder->where('idCustomer', $id);
-        $builder->where('Notifikasi', 0);
-        $builder->orderBy('updated_at', 'ASC');
-        $builder->limit(3);
-        $query = $builder->get();
-        return $query;
-    }
-
-    public function jumlahNotifikasi($id)
-    {
-        /**
-         * SELECT * FROM pengaduan_online
-         * WHERE idCustomer = '1' AND Status LIKE "%Sedang Diproses%"
-         */
-        $builder = $this->db->table('pengaduan_online');
-        $builder->where('idCustomer', $id);
-        $builder->where('Notifikasi', 0);
-        $builder->selectCount('idPengaduan');
-        $query = $builder->get();
+        $query = $this->db->query("SELECT `idPengaduan`,`Judul`,`updated_at`,`Tiket`,`Status` FROM `pengaduan_online`
+                                    WHERE `idCustomer` = ? AND notifCustomer = ?
+                                    UNION ALL 
+                                    SELECT `idMeeting`,`Perihal`,`updated_at`,`Tiket`,`Status` FROM meeting_request
+                                    WHERE `idCustomer` = ? AND notifCustomer = ?
+                                    ORDER BY updated_at ASC
+                                    LIMIT 5", [$idCustomer, 0, $idCustomer, 0]);
         return $query;
     }
 

@@ -90,8 +90,7 @@ class Meeting_request extends BaseController
       'idKategori' => $this->request->getVar('kategori'),
       'Status' => 'Belum diproses',
       'File_lampiran' => $namalampiran,
-      'idCustomer' => $this->request->getVar('idCustomer'),
-      'idPetugas' => 1
+      'idCustomer' => $this->request->getVar('idCustomer')
     ]);
 
     session()->setFlashdata('pesan', 'Berhasil menambahkan meeting request.');
@@ -101,6 +100,7 @@ class Meeting_request extends BaseController
 
   public function detail($id)
   {
+    $this->Meeting_requestModel->update(['idMeeting' => $id], ['notifCustomer' => 1]);
     $meeting = $this->Meeting_requestModel->getMeetingRequest($id);
     if ($meeting['Status'] == 'Belum diproses') {
       $data = [
@@ -145,7 +145,8 @@ class Meeting_request extends BaseController
   {
     $this->Meeting_requestModel->save([
       'idMeeting' => $id,
-      'Status' => 'Dibatalkan'
+      'Status' => 'Dibatalkan',
+      'idCustomer' => 0
     ]);
 
     session()->setFlashdata('pesan', 'Berhasil membatalkan meeting request.');
@@ -186,7 +187,7 @@ class Meeting_request extends BaseController
       ]
     ])) {
       $validation =  \Config\Services::validation();
-      return redirect()->to('/Meeting_request/form')->withInput()->with('validation', $validation);
+      return redirect()->to('/Meeting_request/edit/' . $id . '')->withInput()->with('validation', $validation);
     }
 
     //ambil file
@@ -209,7 +210,9 @@ class Meeting_request extends BaseController
       'Waktu_kunjungan' => $this->request->getVar('waktu_kunjungan'),
       'idKategori' => $this->request->getVar('kategori'),
       'File_lampiran' => $namalampiran,
-      'Status' => 'Belum diproses'
+      'Status' => 'Belum diproses',
+      'notifPetugas' => 0,
+      'notifPetugas' => 0
     ]);
 
     session()->setFlashdata('pesan', 'Berhasil mengubah meeting request.');

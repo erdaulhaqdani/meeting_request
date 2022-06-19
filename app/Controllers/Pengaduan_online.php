@@ -51,30 +51,51 @@ class Pengaduan_online extends BaseController
 
     public function getNotif()
     {
-        $query = $this->Pengaduan_onlineModel->notifPengaduanCustomer(session('idCustomer'))->getResultArray();
+        $query = $this->Pengaduan_onlineModel->notifCustomer(session('idCustomer'))->getResultArray();
+        $count = $this->Pengaduan_onlineModel->notifCustomer(session('idCustomer'))->getNumRows();
         $output = '';
-        $count = $this->Pengaduan_onlineModel->jumlahNotifikasi(session('idCustomer'))->getResultArray();
 
-        if ($count[0]['idPengaduan'] > 0) {
+        if ($count > 0) {
             foreach ($query as $row) {
-                $output .= '
-                <a href="/Pengaduan_online/detail/' . $row['idPengaduan'] . '" class="text-reset notification-item">
-                    <div class="d-flex">
-                        <div class="avatar-xs me-3">
-                            <span class="avatar-title bg-primary rounded-circle font-size-16">
-                                <i class="fas fa-file-alt"></i>
-                            </span>
-                        </div>
-                        <div class="flex-1">
-                            <h6 class="mb-1">' . $row['Judul'] . '</h6>
-                            <div class="font-size-12 text-muted">
-                                <p class="mb-1">Pengaduan Online</p>
-                                <p class="mb-1">' . $row['Status'] . '</p>
-                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> ' . $row['updated_at'] . '</p>
-                            </div>
-                        </div>
-                    </div>   
-                </a>';
+                if ($row['Tiket'] == 'PO') {
+                    $output .= '
+                        <a href="/Pengaduan_online/detail/' . $row['idPengaduan'] . '" class="text-reset notification-item">
+                            <div class="d-flex">
+                                <div class="avatar-xs me-3">
+                                    <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                        <i class="fas fa-file-alt"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-1">
+                                    <h6 class="mb-1">' . $row['Judul'] . '</h6>
+                                    <div class="font-size-12 text-muted">
+                                        <p class="mb-1 text-primary">Pengaduan Online</p>
+                                        <p class="mb-1">' . $row['Status'] . '</p>
+                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> ' . $row['updated_at'] . '</p>
+                                    </div>
+                                </div>
+                            </div>   
+                        </a>';
+                } elseif ($row['Tiket'] == 'MR') {
+                    $output .= '
+                        <a href="/Meeting_request/detail/' . $row['idPengaduan'] . '" class="text-reset notification-item">
+                            <div class="d-flex">
+                                <div class="avatar-xs me-3">
+                                    <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                        <i class="fas fa-calendar-day"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-1">
+                                    <h6 class="mb-1">' . $row['Judul'] . '</h6>
+                                    <div class="font-size-12 text-muted">
+                                        <p class="mb-1 text-primary">Meeting Request</p>
+                                        <p class="mb-1">' . $row['Status'] . '</p>
+                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> ' . $row['updated_at'] . '</p>
+                                    </div>
+                                </div>
+                            </div>   
+                        </a>';
+                }
             }
         } else {
             $output .= '
@@ -82,12 +103,12 @@ class Pengaduan_online extends BaseController
                 <div class="d-flex">
                     <div class="avatar-xs me-3">
                         <span class="avatar-title bg-danger rounded-circle font-size-16">
-                            <i class="fas fa-file-alt"></i>
+                            <i class="fas fa-times"></i>
                         </span>
                     </div>
                     <div class="flex-1">
                         <div class="font-size-12 text-muted">
-                            <p class="mt-2">Tidak ada pengaduan online terbaru</p>
+                            <p class="mt-2">Tidak ada notifikasi terbaru</p>
                         </div>
                     </div>
                 </div>';
@@ -95,15 +116,10 @@ class Pengaduan_online extends BaseController
 
         $data = array(
             'notification' => $output,
-            'unread_notification' => $count[0]['idPengaduan']
+            'unread_notification' => $count
         );
 
         echo json_encode($data);
-    }
-
-    public function refreshNotif()
-    {
-        $this->Pengaduan_onlineModel->query("UPDATE `pengaduan_online` SET `Notifikasi`= 1 WHERE `Notifikasi`= 0 ORDER BY `updated_at` ASC LIMIT 3");
     }
 
     public function daftar($status)
@@ -140,6 +156,8 @@ class Pengaduan_online extends BaseController
 
     public function detail($id)
     {
+        $this->Pengaduan_onlineModel->update(['idPengaduan' => $id], ['notifCustomer' => 1]);
+
         $pengaduan = $this->Pengaduan_onlineModel->getPengaduan($id);
         if ($pengaduan['Status'] == 'Belum diproses') {
             $data = [
@@ -386,7 +404,9 @@ class Pengaduan_online extends BaseController
             'idKategori' => $this->request->getVar('kategori'),
             'Lampiran' => $namalampiran,
             'Status' => 'Belum diproses',
-            'idCustomer' => $this->request->getVar('idCustomer')
+            'idCustomer' => $this->request->getVar('idCustomer'),
+            'notifCustomer' => 0,
+            'notifPetugas' => 0
         ]);
 
         session()->setFlashdata('pesan', 'berhasil mengubah pengaduan.');
@@ -398,7 +418,8 @@ class Pengaduan_online extends BaseController
     {
         $this->Pengaduan_onlineModel->save([
             'idPengaduan' => $id,
-            'Status' => 'Dibatalkan'
+            'Status' => 'Dibatalkan',
+            'notifCustomer' => 0
         ]);
 
         session()->setFlashdata('pesan', 'berhasil membatalkan pengaduan.');
