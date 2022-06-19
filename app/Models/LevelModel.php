@@ -9,7 +9,7 @@ class LevelModel extends Model
     protected $table = 'level_user';
     protected $primaryKey = 'idlevel';
 
-    protected $allowedFields = ['Level', 'Kelompok'];
+    protected $allowedFields = ['Level', 'Kelompok', 'idlevel'];
 
     public function getlevel($id = false)
     {
@@ -19,7 +19,6 @@ class LevelModel extends Model
 
         return $this->where(['idLevel' => $id])->first();
     }
-
     public function getKelompok($id = false)
     {
         if ($id == false) {

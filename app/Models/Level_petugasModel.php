@@ -9,7 +9,7 @@ class Level_petugasModel extends Model
     protected $table = 'level_petugas';
     protected $primaryKey = 'idlevel';
 
-    protected $allowedFields = ['Level'];
+    protected $allowedFields = ['Level', 'idlevel'];
 
     public function getlevel($id = false)
     {

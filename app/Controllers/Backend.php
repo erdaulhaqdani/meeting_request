@@ -66,7 +66,7 @@ class Backend extends BaseController
       'kategori' => $this->KategoriModel->getKategori(),
       'customer' => $this->CustModel->jumlah_cust(),
       'cust_baru' => $this->CustModel->cust_baru($tgl),
-      'jumlah_tandaTerima' => $this->TandaTerimaModel->jumlah_tandaTerima()
+      'jumlah_tandaTerima' => $this->TandaTerimaModel->jumlah_tandaTerima(session('idPetugas'))
     ];
 
     return view('backend/dashboard_petugas', $data);

@@ -40,6 +40,12 @@
 								<?= session()->get('pesan_regis'); ?>
 							</div>
 						<?php
+						} elseif (session()->get('regis_gagal')) {
+						?>
+							<div class="alert alert-danger" role="alert">
+								<?= session()->get('regis_gagal'); ?>
+							</div>
+						<?php
 						} elseif (session()->get('pesan_reset')) {
 						?>
 							<div class="alert alert-danger" role="alert">

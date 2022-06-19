@@ -79,6 +79,8 @@ class AuthCust extends BaseController
     return redirect()->to('/login_cust');
   }
 
+
+
   public function register()
   {
     $val = $this->validate(
@@ -127,15 +129,32 @@ class AuthCust extends BaseController
 
     $to = $this->request->getVar('email');
 
-    $message = "<h2>Verifikasi Akun APT Bersama</h2><p>Silakan verifikasi akun APTB anda dengan klik tombol di bawah ini.</p <a href='http://localhost:8080/login_cust/$to'>Verifikasi Akun APTB</a> <br> <p>Selanjutnya anda akan diarahkan ke halaman Login APT Bersama KPKNL Bandung.</p> ";
+    $message = "<h2>Verifikasi Akun APT Bersama</h2><p>Silakan verifikasi akun APTB anda dengan klik tombol di bawah ini.</p <a href='http://localhost:8080/login_cust/" . $to . "'>Verifikasi Akun APTB</a> <br> <p>Selanjutnya anda akan diarahkan ke halaman Login APT Bersama KPKNL Bandung.</p> ";
 
     $verifikasi = $this->sendEmail($to, 'Verifikasi Akun APTB', $message);
+
     if ($verifikasi) {
       session()->setFlashdata('pesan_regis', 'Anda berhasil registrasi, silakan cek email Anda untuk verifikasi');
     } else {
-      session()->setFlashdata('pesan_regis', 'Registrasi gagal');
+      session()->setFlashdata('regis_gagal', 'Registrasi gagal');
     }
     return redirect()->to('/login_cust');
+  }
+
+  public function sendEmail($to, $subject, $message)
+  {
+    $this->email->setFrom('zmika360@gmail.com', 'KPKNL Bandung');
+    $this->email->setTo($to);
+
+    $this->email->setSubject($subject);
+
+    $this->email->setMessage($message);
+
+    if (!$this->email->send()) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   public function VerifikasiAKun($email)
@@ -154,22 +173,6 @@ class AuthCust extends BaseController
       session()->setFlashdata('pesan', 'Verifikasi akun gagal');
     }
     return redirect()->to('/login_cust');
-  }
-
-  private function sendEmail($to, $subject, $message)
-  {
-    $this->email->setFrom('zmika360@gmail.com', 'Erda Ulhaq');
-    $this->email->setTo($to);
-
-    $this->email->setSubject($subject);
-
-    $this->email->setMessage($message);
-
-    if (!$this->email->send()) {
-      return false;
-    } else {
-      return true;
-    }
   }
 
   public function login()
@@ -285,7 +288,7 @@ class AuthCust extends BaseController
     } else {
       session()->setFlashdata('pesan_reset2', 'Silakan cek email anda untuk me-reset password');
 
-      $message = "<h2>Reset Password Akun APT Bersama</h2><p>Silakan klik link di bawah ini untuk masuk ke halaman reset password akun Anda.</p <a href='http://localhost:8080/reset_pw/$email'>Reset Password Akun APTB</a>";
+      $message = "<h2>Reset Password Akun APT Bersama</h2><p>Silakan klik link di bawah ini untuk masuk ke halaman reset password akun Anda.</p <a href='http://localhost:8080/reset_pw/" . $email . "'>Reset Password Akun APTB</a>";
 
       $this->sendEmail($email, 'Reset Password Akun APTB', $message);
     }

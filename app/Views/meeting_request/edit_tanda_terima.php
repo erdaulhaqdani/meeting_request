@@ -78,13 +78,14 @@
 
                   <div class="mb-0">
                     <div>
-                      <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
+
+                      <a href="/petugasMR/daftar_tandaTerima"><button type="button" class="btn btn-warning waves-effect mt-2 me-2">Kembali</button> </a>
+                      <button type="reset" class="btn btn-secondary waves-effect mt-2 me-2"">
+                        Batal
+                      </button>
+                      <button type=" submit" class="btn btn-primary waves-effect waves-light mt-2 me-2"">
                         Submit
                       </button>
-                      <button type="reset" class="btn btn-secondary waves-effect">
-                        Cancel
-                      </button>
-                      <a href="/petugasMR/daftar_tandaTerima"><button type="button" class="btn btn-warning waves-effect" style="margin-left: 5px;">Kembali</button> </a>
                     </div>
                   </div>
                 </form>
@@ -113,14 +114,14 @@
 <!-- JAVASCRIPT -->
 <?= $this->include('partials/vendor-scripts') ?>
 
-<script src="/assets/libs/parsleyjs/parsley.min.js"></script>
+<script src=" /assets/libs/parsleyjs/parsley.min.js"></script>
 
-<script src="/assets/js/pages/form-validation.init.js"></script>
+                        <script src="/assets/js/pages/form-validation.init.js"></script>
 
-<!-- Plugins js -->
-<script src="/assets/libs/dropzone/min/dropzone.min.js"></script>
-<script src="/assets/js/app.js"></script>
+                        <!-- Plugins js -->
+                        <script src="/assets/libs/dropzone/min/dropzone.min.js"></script>
+                        <script src="/assets/js/app.js"></script>
 
-</body>
+                        </body>
 
-</html>
+                        </html>

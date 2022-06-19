@@ -22,6 +22,9 @@
     <!-- Responsive datatable examples -->
     <link href="/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
+    <!-- Responsive Table css -->
+    <link href="/assets/libs/admin-resources/rwd-table/rwd-table.min.css" rel="stylesheet" type="text/css" />
+
     <!-- App favicon -->
     <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.ico'); ?>">
 
@@ -113,7 +116,7 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Meeting yang dibuat minggu ini</h4>
+                                <h4 class="card-title mb-4">Meeting Request yang dibuat minggu ini</h4>
                                 <canvas id="bar_meeting"></canvas>
                             </div>
                         </div>
@@ -127,52 +130,54 @@
                             <div class="card-body">
                                 <h4 class="card-title mb-4">4 Meeting Request Terakhir</h4>
 
-                                <a href="/Meeting_request" class="btn btn-primary btn-md me-3 mb-3">Lihat Semua</a>
-                                <a href="/Meeting_request/form" class="btn btn-success btn-md mb-3"><i class="fas fa-plus-circle"></i> Tambah</a>
+                                <a href="/Meeting_request" class="btn btn-primary btn-md me-3 mb-2">Lihat Semua</a>
+                                <a href="/Meeting_request/form" class="btn btn-success btn-md mb-2"><i class="fas fa-plus-circle"></i> Tambah</a>
 
-                                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                    <thead>
-                                        <tr>
-                                            <th>Jenis Layanan</th>
-                                            <th>Tanggal Input</th>
-                                            <th>Waktu Kunjungan</th>
-                                            <th>Status</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-
-                                        <?php foreach ($lastMeetingRequest->getResult() as $a) : ?>
-                                            <?php //getNamaKategori
-                                            $k = '';
-                                            $date = $a->created_at;
-                                            foreach ($kategori as $b) {
-                                                if ($a->idKategori == $b['idKategori']) {
-                                                    $k = $b['namaKategori'];
-                                                }
-                                            }
-                                            ?>
+                                <div class="table-responsive mb-0">
+                                    <table id="tech-companies-1" class="table">
+                                        <thead>
                                             <tr>
-                                                <td><?= $k; ?></td>
-                                                <td><?= formatTanggal($date) ?></td>
-                                                <td><?= $a->Waktu_kunjungan . ' WIB'; ?></td>
-                                                <td><?= $a->Status; ?></td>
-                                                <td>
-                                                    <a href="/Meeting_request/detail/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
-                                                    <?php if ($a->Status == 'Belum diproses') : ?>
-                                                        <a href="/Meeting_request/edit/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
-                                                        <a href="/Meeting_request/cancel/<?= $a->idMeeting; ?>" class="btn btn-warning btn-sm w-xs">Batalkan</a>
-                                                    <?php elseif ($a->Status == 'Dibatalkan') : ?>
-                                                        <a href="/Meeting_request/delete/<?= $a->idMeeting; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
-                                                    <?php elseif ($a->Status == 'Selesai diproses') : ?>
-                                                        <a href="/Meeting_request/rating/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Rating</a>
-                                                    <?php endif ?>
-                                                </td>
+                                                <th>Jenis Layanan</th>
+                                                <th>Tanggal Input</th>
+                                                <th>Tanggal Kunjungan</th>
+                                                <th>Status</th>
+                                                <th>Aksi</th>
                                             </tr>
-                                        <?php endforeach ?>
-                                    </tbody>
-                                </table>
+                                        </thead>
+
+                                        <tbody>
+
+                                            <?php foreach ($lastMeetingRequest->getResult() as $a) : ?>
+                                                <?php //getNamaKategori
+                                                $k = '';
+                                                $date = $a->created_at;
+                                                foreach ($kategori as $b) {
+                                                    if ($a->idKategori == $b['idKategori']) {
+                                                        $k = $b['namaKategori'];
+                                                    }
+                                                }
+                                                ?>
+                                                <tr>
+                                                    <td><?= $k; ?></td>
+                                                    <td><?= formatTanggal($date) ?></td>
+                                                    <td><?= formatTanggal($a->Tanggal_kunjungan); ?></td>
+                                                    <td><?= $a->Status; ?></td>
+                                                    <td>
+                                                        <a href="/Meeting_request/detail/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
+                                                        <?php if ($a->Status == 'Belum diproses') : ?>
+                                                            <a href="/Meeting_request/edit/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
+                                                            <a href="/Meeting_request/delete/<?= $a->idMeeting; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
+                                                        <?php elseif ($a->Status == 'Selesai diproses') : ?>
+                                                            <a href="/Meeting_request/rating/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Rating</a>
+                                                        <?php endif ?>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -185,50 +190,51 @@
                             <div class="card-body">
                                 <h4 class="card-title mb-4">4 Pengaduan Online Terakhir</h4>
 
-                                <a href="/Pengaduan_online" class="btn btn-primary btn-md me-3 mb-3">Lihat Semua</a>
-                                <a href="/Pengaduan_online/form" class="btn btn-success btn-md mb-3"><i class="fas fa-plus-circle"></i> Tambah</a>
+                                <a href="/Pengaduan_online" class="btn btn-primary btn-md me-3 mb-2">Lihat Semua</a>
+                                <a href="/Pengaduan_online/form" class="btn btn-success btn-md mb-2"><i class="fas fa-plus-circle"></i> Tambah</a>
 
-                                <table id="datatable2" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                    <thead>
-                                        <tr>
-                                            <th>Judul</th>
-                                            <th>Jenis Layanan</th>
-                                            <th>Tanggal</th>
-                                            <th>Status</th>
-                                            <th style="min-width: 25%;">Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($lastPengaduan->getResult() as $a) : ?>
-                                            <?php //getNamaKategori
-                                            $k = '';
-                                            $date = $a->created_at;
-                                            foreach ($kategori as $b) {
-                                                if ($a->idKategori == $b['idKategori']) {
-                                                    $k = $b['namaKategori'];
-                                                }
-                                            }
-                                            ?>
+                                <div class="table-responsive mb-0">
+                                    <table id="tech-companies-1" class="table">
+                                        <thead>
                                             <tr>
-                                                <td><?= $a->Judul; ?></td>
-                                                <td><?= $k; ?></td>
-                                                <td><?= formatTanggal($a->created_at); ?></td>
-                                                <td><?= $a->Status; ?></td>
-                                                <td>
-                                                    <a href="/Pengaduan_online/detail/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
-                                                    <?php if ($a->Status == 'Belum diproses') : ?>
-                                                        <a href="/Pengaduan_online/edit/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
-                                                        <a href="/Pengaduan_online/cancel/<?= $a->idPengaduan; ?>" class="btn btn-warning btn-sm w-xs">Batalkan</a>
-                                                    <?php elseif ($a->Status == 'Dibatalkan') : ?>
-                                                        <a href="/Pengaduan_online/delete/<?= $a->idPengaduan; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
-                                                    <?php elseif ($a->Status == 'Selesai diproses') : ?>
-                                                        <a href="/Pengaduan_online/rating/<?= $a->idPengaduan; ?>" class="btn btn-success btn-sm w-xs">Rating</a>
-                                                    <?php endif ?>
-                                                </td>
+                                                <th>Judul</th>
+                                                <th>Jenis Layanan</th>
+                                                <th>Tanggal</th>
+                                                <th>Status</th>
+                                                <th style="min-width: 25%;">Aksi</th>
                                             </tr>
-                                        <?php endforeach ?>
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($lastPengaduan->getResult() as $a) : ?>
+                                                <?php //getNamaKategori
+                                                $k = '';
+                                                $date = $a->created_at;
+                                                foreach ($kategori as $b) {
+                                                    if ($a->idKategori == $b['idKategori']) {
+                                                        $k = $b['namaKategori'];
+                                                    }
+                                                }
+                                                ?>
+                                                <tr>
+                                                    <td><?= $a->Judul; ?></td>
+                                                    <td><?= $k; ?></td>
+                                                    <td><?= formatTanggal($a->created_at); ?></td>
+                                                    <td><?= $a->Status; ?></td>
+                                                    <td>
+                                                        <a href="/Pengaduan_online/detail/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
+                                                        <?php if ($a->Status == 'Belum diproses') : ?>
+                                                            <a href="/Pengaduan_online/edit/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
+                                                            <a href="/Pengaduan_online/delete/<?= $a->idPengaduan; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
+                                                        <?php elseif ($a->Status == 'Selesai diproses') : ?>
+                                                            <a href="/Pengaduan_online/rating/<?= $a->idPengaduan; ?>" class="btn btn-success btn-sm w-xs">Rating</a>
+                                                        <?php endif ?>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -270,6 +276,12 @@
 <script src="/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
 <script src="/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
 
+<!-- Responsive Table js -->
+<script src="assets/libs/admin-resources/rwd-table/rwd-table.min.js"></script>
+
+<!-- Init js -->
+<script src="assets/js/pages/table-responsive.init.js"></script>
+
 <!-- Datatable init js -->
 <script src="/assets/js/pages/datatables.init.js"></script>
 
@@ -302,9 +314,9 @@
         datasets: [{
             data: data_pengaduan,
             backgroundColor: [
+                '#f32f53',
                 '#0f9cf3',
                 '#6fd088',
-                '#f32f53',
                 '#0097a7'
             ],
         }],
@@ -332,9 +344,9 @@
         datasets: [{
             data: data_meeting,
             backgroundColor: [
+                '#f32f53',
                 '#0f9cf3',
                 '#6fd088',
-                '#f32f53',
                 '#0097a7'
             ],
         }],

@@ -149,12 +149,13 @@
 								<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
 							</ul>
 						</div> <!-- /.logo-widget -->
-						<div class="col-lg-2 col-sm-6 col-12 footer-list">
+						<div class="col-lg-3 col-sm-6 col-12 footer-list">
 							<h6 class="title">PORTAL PEGAWAI</h6>
 							<div class="row">
 								<div class="col">
 									<ul>
-										<li><a href="/pages/peristiwa_grid">Login Pegawai</a></li>
+										<li><a href="https://damspa.000webhostapp.com/" target="_blank" />Login Pegawai</a></li>
+										<li><a href="/register_petugas" target="_blank" />Register Petugas APT</a></li>
 									</ul>
 								</div>
 							</div>
@@ -175,7 +176,7 @@
 							</div>
 						</div> <!-- /.footer-list -->
 
-						<div class="col-lg-4 col-sm-6 col-12 contact-widget">
+						<div class="col-lg-3 col-sm-6 col-12 contact-widget">
 							<h6 class="title">Kontak Kami</h6>
 							<ul>
 								<li>

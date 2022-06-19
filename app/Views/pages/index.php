@@ -294,8 +294,8 @@ Artikel Terbaru
 							<div class="hover-content">
 								<div class="text clearfix">
 									<div class="float-left">
-										<h6><a href="/pages/detail_peristiwa/<?= $c->id_berita ?>"><?= $cut_text ?></a></h6>
-										<p><?= tanggal_indonesia($tanggal);; ?></p>
+										<h6><a href="/pages/detail_peristiwa/<?= $c->id_berita ?>"><?= $c->Judul ?></a></h6>
+										<p><?= tanggal_indonesia($tanggal); ?></p>
 									</div>
 									<a href="/pages/detail_peristiwa/<?= $c->id_berita ?>" class="details float-right"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
 								</div> <!-- /.text -->

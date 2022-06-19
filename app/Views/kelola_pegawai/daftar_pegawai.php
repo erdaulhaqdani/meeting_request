@@ -41,7 +41,12 @@
               <div class="card-body">
 
                 <h4 class="card-title"><?= $title; ?></h4>
-                <p class="card-title-desc">Berikut adalah tabel Daftar pegawai.</p>
+                <div class="row">
+                  <div class="col-md-6">
+                    <p class="card-title-desc">Berikut adalah tabel Daftar pegawai.</p>
+                  </div>
+                  <div class="col-md-6"><a style="float: right ;" href="/KelolaPegawai/form_pegawai" class="btn btn-success btn-md"><i class="fas fa-plus-circle"></i> Tambah</a></div>
+                </div>
                 <?php
                 if (session()->get('pesan')) {
                 ?>
@@ -91,7 +96,7 @@
                         <td><?= $a['nip']; ?></td>
                         <td><?= $a['email']; ?></td>
                         <td>
-                          <a href="/KelolaPegawai/edit_pegawai/<?= $a['idPegawai']; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
+                          <!-- <a href="/KelolaPegawai/edit_pegawai/<?= $a['idPegawai']; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a> -->
                           <a href="/KelolaPegawai/detail_pegawai/<?= $a['idPegawai']; ?>" class="btn btn-success btn-sm w-xs">Detail</a>
                         </td>
                       </tr>

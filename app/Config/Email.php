@@ -47,7 +47,7 @@ class Email extends BaseConfig
      *
      * @var string
      */
-    public $SMTPHost = 'smtp.gmail.com';
+    public $SMTPHost = 'smtp.googlemail.com';
 
     /**
      * SMTP Username
@@ -61,7 +61,7 @@ class Email extends BaseConfig
      *
      * @var string
      */
-    public $SMTPPass = 'mikazuki360';
+    public $SMTPPass = "upchscgjwehdxseb";
 
     /**
      * SMTP Port

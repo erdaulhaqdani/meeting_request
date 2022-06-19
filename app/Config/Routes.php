@@ -93,19 +93,23 @@ $routes->get('/Landing_page/edit/(:num)', 'Landing_page::edit/$1');
 $routes->get('/Landing_page/update/(:num)', 'Landing_page::update/$1');
 $routes->get('/Landing_page/permohonanInfo/(:num)', 'Landing_page::editPermohonan/$1');
 $routes->get('/Landing_page/updatePermohonan/(:num)', 'Landing_page::updatePermohonan/$1');
+
 //Admin Landing Page Kelola Petugas
-$routes->get('/KelolaPegawai/form_petugas', 'KelolaPegawai::form_petugas');
-$routes->get('/KelolaPegawai/input_petugas', 'KelolaPegawai::input_petugas');
-$routes->get('/KelolaPegawai/daftar_petugas', 'KelolaPegawai::daftar_petugas');
-$routes->get('/KelolaPegawai/edit_petugas/*', 'KelolaPegawai::edit_petugas/$1');
-$routes->get('/KelolaPegawai/update_petugas/(:num)', 'KelolaPegawai::update_petugas/$1');
+$routes->get('/KelolaPegawai/form_pegawai', 'KelolaPegawai::form_pegawai');
+$routes->get('/KelolaPegawai/input_pegawai', 'KelolaPegawai::input_pegawai');
+$routes->get('/KelolaPegawai/daftar_pegawai', 'KelolaPegawai::daftar_pegawai');
+$routes->get('/KelolaPegawai/edit_pegawai/(:num)', 'KelolaPegawai::edit_pegawai/$1');
+$routes->get('/KelolaPegawai/detail_pegawai/(:num)', 'KelolaPegawai::edit_pegawai/$1');
+$routes->get('/KelolaPegawai/update_pegawai/(:num)', 'KelolaPegawai::update_pegawai/$1');
+
 //Admin Landing Page Kelola Pegawai
-$routes->get('/Landing_page/form_pegawai', 'Landing_page::form_pegawai');
-$routes->get('/Landing_page/input_pegawai', 'Landing_page::input_pegawai');
-$routes->get('/Landing_page/daftar_pegawai', 'Landing_page::daftar_pegawai');
-$routes->get('/Landing_page/detail_pegawai/(:num)', 'Landing_page::detail_pegawai/$1');
-$routes->get('/Landing_page/edit_pegawai/(:num)', 'Landing_page::edit_pegawai/$1');
-$routes->get('/Landing_page/update_pegawai/(:num)', 'Landing_page::update_pegawai/$1');
+$routes->get('/Landing_page/form_petugas', 'Landing_page::form_petugas');
+$routes->get('/Landing_page/input_petugas', 'Landing_page::input_petugas');
+$routes->get('/Landing_page/daftar_petugas', 'Landing_page::daftar_petugas');
+$routes->get('/Landing_page/detail_petugas/*', 'Landing_page::detail_petugas/$1');
+$routes->get('/Landing_page/edit_petugas/*', 'Landing_page::edit_petugas/$1');
+$routes->get('/Landing_page/update_petugas/*', 'Landing_page::update_petugas/$1');
+
 //Admin Landing Page Kelola Agenda
 $routes->get('/Landing_page/form_agenda', 'Landing_page::form_agenda');
 $routes->get('/Landing_page/input_agenda', 'Landing_page::input_agenda');

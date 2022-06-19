@@ -70,7 +70,7 @@ class Landing_page extends BaseController
 
     session()->setFlashdata('pesan', 'Berhasil menambahkan petugas.');
 
-    return redirect()->to('/Landing_page/form_petugas');
+    return redirect()->to('/Landing_page/daftar_petugas');
   }
 
   public function daftar_petugas()
@@ -88,13 +88,23 @@ class Landing_page extends BaseController
   public function edit_petugas($email)
   {
     $data = [
-      'title' => 'Daftar Petugas',
+      'title' => 'Ubah Data Petugas',
       'level' => $this->LevelModel->findAll(),
       'petugas' => $this->PetugasModel->getPetugas($email),
-      'level_petugas' => $this->LevelModel->findAll(),
       'validation' => \Config\Services::validation()
     ];
     return view('landing_page/edit_petugas', $data);
+  }
+
+  public function detail_petugas($email)
+  {
+    $data = [
+      'title' => 'Detail Data Petugas',
+      'level' => $this->LevelModel->findAll(),
+      'petugas' => $this->PetugasModel->getPetugas($email),
+      'kategori' => $this->KategoriModel->findAll(),
+    ];
+    return view('landing_page/detail_petugas', $data);
   }
 
   public function update_petugas($email)
@@ -103,16 +113,18 @@ class Landing_page extends BaseController
     $hashedPassword = password_hash($this->request->getVar('password'), PASSWORD_DEFAULT);
 
     $this->PetugasModel->save([
+
+      'idPetugas' => $this->request->getVar('idPetugas'),
       'idLevel' => $this->request->getVar('level'),
       'Kantor' => $this->request->getVar('kantor'),
       'Nama' => $this->request->getVar('nama'),
       'NIP' => $this->request->getVar('nip'),
-      'Email' => $email,
+      'Unit' => $this->request->getVar('unit'),
+
     ]);
 
     $this->UserModel->save([
-      'Email' => $email,
-      // 'Password' => $hashedPassword,
+      'Email' => $this->request->getVar('email'),
       'idLevel' => $this->request->getVar('level')
     ]);
 

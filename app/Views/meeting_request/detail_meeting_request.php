@@ -108,7 +108,7 @@
                       <?php if ($meeting['File_lampiran'] != 'default.png') : ?>
                         <a class="col-sm-8" href="/lampiran_customerMR/<?= $meeting['File_lampiran']; ?>">: Lihat Lampiran</a>
                       <?php else : ?>
-                        <label class="col-sm-8">Tidak ada lampiran</label>
+                        <label class="col-sm-8">: Tidak ada lampiran</label>
                       <?php endif; ?>
                     </div>
                     <div class="row">
@@ -119,10 +119,14 @@
                   </div>
                   <div class="row">
                     <div class="col-sm-5">
-                      <input type="button" value="Kembali" class="btn btn-warning waves-effect mt-2" onclick="history.back(-1)" />
+                      <input type="button" value="Kembali" class="btn btn-warning waves-effect mt-2 me-2" onclick="history.back(-1)" />
+                      <?php if ($meeting['Status'] == 'Belum diproses') : ?>
+                        <a href="/Meeting_request/edit/<?= $meeting['idMeeting']; ?>" class="btn btn-primary waves-effect mt-2">Ubah</a>
+                      <?php elseif ($meeting['Status'] == 'Tidak disetujui') : ?>
+                        <a href="/Meeting_request/edit/<?= $meeting['idMeeting']; ?>" class="btn btn-primary waves-effect mt-2">Ubah</a>
+                      <?php endif ?>
                     </div>
                   </div>
-
                 </div>
 
               </div>
@@ -130,118 +134,90 @@
           </div> <!-- end col -->
         </div>
         <!-- end row -->
-        <?php if ($meeting['Status'] == 'Selesai diproses') : ?>
-          <?php foreach ($tanggapan as $arrTanggapan) : ?>
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="invoice-title">
-                      <div class="mb-4">
-                        <h5>Tanggapan</h1>
+        <?php foreach ($tanggapan as $arrTanggapan) : ?>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="invoice-title">
+                    <div class="mb-4">
+                      <h5>Tanggapan</h1>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-md-5">
+                      <div class="row">
+                        <label class="col-sm-6">IDENTITAS PETUGAS</label>
+                        <hr>
+                      </div>
+                      <?php //getPetugas
+                      $nama = '';
+                      $idLevel = '';
+                      $mail = '';
+                      $levelPetugas = '';
+                      foreach ($petugas as $p) {
+                        if ($p['idPetugas'] == $arrTanggapan['idPetugas']) {
+                          $nama = $p['Nama'];
+                          $idLevel = $p['idLevel'];
+                          $mail = $p['Email'];
+                        }
+                      };
+                      foreach ($level as $l) {
+                        if ($l['idLevel'] == $idLevel) {
+                          $levelPetugas = $l['Level'];
+                        }
+                      };
+                      ?>
+                      <div class="row">
+                        <label class="col-sm-5">Nama Lengkap</label>
+                        <label class="col-sm-7">: <?= $nama ?></label>
+                      </div>
+                      <div class="row">
+                        <label class="col-sm-5">Level</label>
+                        <label class="col-sm-7">: <?= $levelPetugas; ?></label>
+                      </div>
+                      <div class="row">
+                        <label class="col-sm-5">Email</label>
+                        <label class="col-sm-7">: <?= $mail ?></label>
                       </div>
                     </div>
-                    <hr>
-                    <div class="row">
-                      <div class="col-4">
-                        <div class="row">
-                          <label class="col-sm-6">IDENTITAS PETUGAS</label>
-                          <hr>
-                        </div>
-                        <?php //getPetugas
-                        $nama = '';
-                        $idLevel = '';
-                        $mail = '';
-                        $levelPetugas = '';
-                        foreach ($petugas as $p) {
-                          if ($p['idPetugas'] == $arrTanggapan['idPetugas']) {
-                            $nama = $p['Nama'];
-                            $idLevel = $p['idLevel'];
-                            $mail = $p['Email'];
-                          }
-                        };
-                        foreach ($level as $l) {
-                          if ($l['idLevel'] == $idLevel) {
-                            $levelPetugas = $l['Level'];
-                          }
-                        };
-                        ?>
-                        <div class="row">
-                          <label class="col-sm-4">Nama Lengkap</label>
-                          <label class="col-sm-8">: <?= $nama ?></label>
-                        </div>
-                        <div class="row">
-                          <label class="col-sm-4">Level</label>
-                          <label class="col-sm-8">: <?= $levelPetugas; ?></label>
-                        </div>
-                        <div class="row">
-                          <label class="col-sm-4">Email</label>
-                          <label class="col-sm-8">: <?= $mail ?></label>
-                        </div>
+                    <div class="col-md-7">
+                      <div class="row">
+                        <label class="col-sm-6">DETAIL TANGGAPAN</label>
+                        <hr>
                       </div>
-                      <div class="col-6">
-                        <div class="row">
-                          <label class="col-sm-6">DETAIL TANGGAPAN</label>
-                          <hr>
-                        </div>
-                        <div class="row">
-                          <label class="col-sm-4">Uraian Tanggapan</label>
-                          <label class="col-sm-8">: <?= $arrTanggapan['Isi']; ?></label>
-                        </div>
-                        <div class="row">
-                          <label class="col-sm-4">Lampiran</label>
-                          <?php if ($arrTanggapan['Lampiran'] == 'user.png') : ?>
-                            <label class="col-sm-8"><a href="/lampiran/<?= $arrTanggapan['Lampiran']; ?>" class="isDisabled">: Tidak memiliki lampiran</a></label>
-                          <?php else : ?>
-                            <label class=" col-sm-8"><a href="/lampiran/<?= $arrTanggapan['Lampiran']; ?>">: <?= $meeting['File_lampiran']; ?></a></label>
-                          <?php endif ?>
-                        </div>
+                      <div class="row">
+                        <label class="col-sm-5">Tanggal</label>
+                        <label class="col-sm-7">: <?= $arrTanggapan['tgl_selesai']; ?></label>
                       </div>
-                    </div>
-                    <div class="row mt-2">
-                      <div class="col-2">
-                        <a href="/Pengaduan_online/tidakSesuai/<?= $meeting['idCustomer']; ?>" class="btn btn-danger waves-effect">Tidak sesuai</a>
+                      <div class="row">
+                        <label class="col-sm-5">Uraian Tanggapan</label>
+                        <label class="col-sm-7">: <?= $arrTanggapan['Isi']; ?></label>
+                      </div>
+                      <div class="row">
+                        <label class="col-sm-5">Lampiran</label>
+                        <?php if ($arrTanggapan['Lampiran'] == 'default.png') : ?>
+                          <label class="col-sm-7">: Tidak memiliki lampiran</a></label>
+                        <?php else : ?>
+                          <label class=" col-sm-7"><a href="/lampiran_petugasMR/<?= $arrTanggapan['Lampiran']; ?>">: Lihat Lampiran</a></label>
+                        <?php endif ?>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-      </div>
-    <?php endforeach; ?>
-
-  <?php elseif ($meeting['Status'] == 'Sedang diproses') : ?>
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-body">
-            <div class="invoice-title">
-              <div class="mb-4">
-                <h5>Tanggapan</h1>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <?php $tgl = date("d F Y H:i", strtotime($meeting['updated_at'])); ?>
-              <div class="col-6">
-                sudah mulai diproses sejak <?= $tgl; ?>
-              </div>
-            </div>
           </div>
-        </div>
-      </div>
+        <?php endforeach; ?>
+      </div> <!-- container-fluid -->
     </div>
-  <?php endif ?>
+    <!-- End Page-content -->
 
+    <?= $this->include('partials/footer') ?>
 
-    </div> <!-- container-fluid -->
   </div>
-  <!-- End Page-content -->
-
-  <?= $this->include('partials/footer') ?>
-
-</div>
-<!-- end main content-->
+  <!-- end main content-->
 
 </div>
 <!-- END layout-wrapper -->

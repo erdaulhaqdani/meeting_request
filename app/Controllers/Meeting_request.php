@@ -102,33 +102,45 @@ class Meeting_request extends BaseController
 
   public function detail($id)
   {
+    // $meeting = $this->Meeting_requestModel->getMeetingRequest($id);
+    // if ($meeting['Status'] == 'Belum diproses') {
+    //   $data = [
+    //     'title' => 'Detail Meeting Request',
+    //     'meeting' => $meeting,
+    //     'customer' => $this->CustModel->getCustomer($meeting['idCustomer']),
+    //     'kategori' => $this->KategoriModel->getKategori($meeting['idKategori'])
+    //   ];
+    // } elseif ($meeting['Status'] == 'Selesai diproses') {
+    //   $tanggapan = $this->Tanggapan_MRModel->getTanggapanMeeting($id);
+    //   $data = [
+    //     'title' => 'Detail Meeting Request',
+    //     'meeting' => $meeting,
+    //     'customer' => $this->CustModel->getCustomer($meeting['idCustomer']),
+    //     'kategori' => $this->KategoriModel->getKategori($meeting['idKategori']),
+    //     'tanggapan' => $tanggapan,
+    //     'petugas' => $this->PetugasModel->getPetugasId(),
+    //     'level' => $this->LevelModel->getlevel()
+    //   ];
+    // } else {
+    //   $data = [
+    //     'title' => 'Detail Meeting Request',
+    //     'meeting' => $meeting,
+    //     'customer' => $this->CustModel->getCustomer($meeting['idCustomer']),
+    //     'kategori' => $this->KategoriModel->getKategori($meeting['idKategori'])
+    //   ];
+    // }
+
     $meeting = $this->Meeting_requestModel->getMeetingRequest($id);
-    if ($meeting['Status'] == 'Belum diproses') {
-      $data = [
-        'title' => 'Detail Meeting Request',
-        'meeting' => $meeting,
-        'customer' => $this->CustModel->getCustomer($meeting['idCustomer']),
-        'kategori' => $this->KategoriModel->getKategori($meeting['idKategori'])
-      ];
-    } elseif ($meeting['Status'] == 'Selesai diproses') {
-      $tanggapan = $this->Tanggapan_MRModel->getTanggapanMeeting($id);
-      $data = [
-        'title' => 'Detail Meeting Request',
-        'meeting' => $meeting,
-        'customer' => $this->CustModel->getCustomer($meeting['idCustomer']),
-        'kategori' => $this->KategoriModel->getKategori($meeting['idKategori']),
-        'tanggapan' => $tanggapan,
-        'petugas' => $this->PetugasModel->getPetugasId(),
-        'level' => $this->LevelModel->getlevel()
-      ];
-    } else {
-      $data = [
-        'title' => 'Detail Meeting Request',
-        'meeting' => $meeting,
-        'customer' => $this->CustModel->getCustomer($meeting['idCustomer']),
-        'kategori' => $this->KategoriModel->getKategori($meeting['idKategori'])
-      ];
-    }
+    $tanggapan = $this->Tanggapan_MRModel->trackTanggapanMeeting($id);
+    $data = [
+      'title' => 'Detail Meeing Request',
+      'meeting' => $meeting,
+      'customer' => $this->CustModel->getCustomer($meeting['idCustomer']),
+      'kategori' => $this->KategoriModel->getKategori($meeting['idKategori']),
+      'tanggapan' => $tanggapan,
+      'petugas' => $this->PetugasModel->getPetugasId(),
+      'level' => $this->LevelModel->getlevel()
+    ];
 
     return view('meeting_request/detail_meeting_request', $data);
   }

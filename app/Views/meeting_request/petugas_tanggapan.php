@@ -80,9 +80,9 @@
                                     <input type="hidden" name="idMeeting" value="<?= $idMeeting; ?>">
 
                                     <div class="mb-3 text-start">
-                                        <button type="submit" class="btn btn-primary me-2" name="tanggapan">Submit</button>
-                                        <button type="reset" class="btn btn-danger me-2">Reset</button>
-                                        <input type="button" value="Kembali" class="btn btn-warning waves-effect" onclick="history.back(-1)" />
+                                        <input type="button" value="Kembali" class="btn btn-warning waves-effect me-2 mt-2" onclick="history.back(-1)" />
+                                        <button type="reset" class="btn btn-danger me-2 mt-2">Reset</button>
+                                        <button type="submit" class="btn btn-primary me-2 mt-2" name="tanggapan">Submit</button>
                                     </div>
                                 </form>
 

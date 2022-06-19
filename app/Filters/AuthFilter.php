@@ -23,7 +23,7 @@ class AuthFilter implements FilterInterface
     } elseif (session('log') == TRUE && session('Kelompok') == 'LP') {
       return redirect()->to('/dashboard_admin_landing');
     } elseif (session('log') == TRUE && session('Kelompok') == 'APT') {
-      return redirect()->to('dashboard_petugas');
+      return redirect()->to('/dashboard_petugas');
     }
   }
 }

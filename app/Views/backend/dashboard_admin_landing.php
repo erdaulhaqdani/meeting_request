@@ -168,11 +168,6 @@
 
                                             <tbody>
                                                 <?php
-                                                function formatTanggal($date)
-                                                {
-                                                    // ubah string menjadi format tanggal
-                                                    return date('d-m-Y', strtotime($date));
-                                                }
 
                                                 ?>
                                                 <?php foreach ($lastBerita->getResult() as $a) :
@@ -186,7 +181,6 @@
                                                     } else {
                                                         $cut_judul = $a->Judul;
                                                     }
-
                                                 ?>
                                                     <tr>
                                                         <td><?= $a->Kategori; ?></td>

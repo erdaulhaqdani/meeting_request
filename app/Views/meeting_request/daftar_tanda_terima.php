@@ -43,7 +43,12 @@
               <div class="card-body">
 
                 <h4 class="card-title"><?= $title; ?></h4>
-                <p class="card-title-desc">Berikut adalah tabel Daftar Tanda Terima Surat.</p>
+                <div class="row">
+                  <div class="col-md-6">
+                    <p class="card-title-desc">Berikut adalah tabel Daftar Tanda Terima Surat.</p>
+                  </div>
+                  <div class="col-md-6"><a style="float: right ;" href="/petugasMR/form_tandaTerima" class="btn btn-success btn-md"><i class="fas fa-plus-circle"></i> Tambah</a></div>
+                </div>
                 <?php
                 if (session()->get('pesan')) {
                 ?>
@@ -68,21 +73,19 @@
 
                   <tbody>
                     <?php $no = 1; ?>
-                    <?php foreach ($tanda_terima as $a) :
-                      $date = $a['created_at'];
-                      $date2 = $a['Tanggal']
+                    <?php foreach ($tanda_terima->getResult() as $a) :
                     ?>
                       <tr>
                         <td><?= $no++; ?></td>
-                        <td><?= $a['Pengirim']; ?></td>
-                        <td><?= $a['No_surat']; ?></td>
-                        <td><?= formatTanggal($date2) ?></td>
-                        <td><?= formatTanggal($date) ?></td>
-                        <td><?= $a['Perihal']; ?></td>
+                        <td><?= $a->Pengirim ?></td>
+                        <td><?= $a->No_surat ?></td>
+                        <td><?= formatTanggal($a->Tanggal) ?></td>
+                        <td><?= formatTanggal($a->created_at) ?></td>
+                        <td><?= $a->Perihal ?></td>
                         <td>
-                          <a href="/petugasMR/edit_tandaTerima/<?= $a['id_tt']; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
-                          <a href="/petugasMR/hapus_tandaTerima/<?= $a['id_tt']; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
-                          <a href="/petugasMR/cetak_tandaTerima/<?= $a['id_tt']; ?>" class="btn btn-success btn-sm w-xs">Cetak</a>
+                          <a href="/petugasMR/edit_tandaTerima/<?= $a->id_tt ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
+                          <a href="/petugasMR/hapus_tandaTerima/<?= $a->id_tt ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
+                          <a href="/petugasMR/cetak_tandaTerima/<?= $a->id_tt ?>" class="btn btn-success btn-sm w-xs">Cetak</a>
                         </td>
                       </tr>
                     <?php endforeach ?>

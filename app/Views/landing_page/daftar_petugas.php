@@ -90,7 +90,7 @@
                         <td><?= $a['Email']; ?></td>
                         <td><?= $a['Kantor'] ?></td>
                         <td>
-                          <a href="/Landing_page/edit_petugas/<?= $a['Email']; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
+                          <!-- <a href="/Landing_page/edit_petugas/<?= $a['Email']; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a> -->
                           <a href="/Landing_page/detail_petugas/<?= $a['Email']; ?>" class="btn btn-success btn-sm w-xs">Detail</a>
                         </td>
                       </tr>

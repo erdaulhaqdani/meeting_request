@@ -74,9 +74,7 @@ class Meeting_requestModel extends Model
     $builder = $this->db->table('meeting_request');
 
     $builder->where('idPetugas', $petugas);
-    $builder->like('Status', 'Eskalasi');
-    $builder->orWhere('idPetugas', $petugas);
-    $builder->like('Status', 'proses');
+    $builder->orderBy('created_at', 'DESC');
     $builder->orWhere('idPetugas', 1);
 
     $query = $builder->get();

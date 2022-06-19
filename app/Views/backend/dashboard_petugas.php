@@ -123,7 +123,7 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Pengajuan yang dibuat minggu ini</h4>
+                                <h4 class="card-title mb-4">Pengaduan yang masuk minggu ini</h4>
                                 <canvas id="bar_pengaduan"></canvas>
                             </div>
                         </div>
@@ -131,7 +131,7 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Meeting Request yang dibuat minggu ini</h4>
+                                <h4 class="card-title mb-4">Meeting Request yang masuk minggu ini</h4>
                                 <canvas id="bar_meeting"></canvas>
                             </div>
                         </div>
@@ -183,9 +183,10 @@
         datasets: [{
             data: data_pengaduan,
             backgroundColor: [
+                '#f32f53',
                 '#0f9cf3',
                 '#6fd088',
-                '#f32f53'
+                '#0097a7'
             ],
         }],
         labels: label_pengaduan,
@@ -212,9 +213,10 @@
         datasets: [{
             data: data_meeting,
             backgroundColor: [
+                '#f32f53',
                 '#0f9cf3',
                 '#6fd088',
-                '#f32f53'
+                '#0097a7'
             ],
         }],
         labels: label_meeting,

@@ -165,18 +165,19 @@ class Petugas_MR extends BaseController
             'No_surat' => $this->request->getVar('no_surat'),
             'Tanggal' => $this->request->getVar('tanggal'),
             'Perihal' => $this->request->getVar('perihal'),
+            'idPetugas' => session('idPetugas')
         ]);
 
         session()->setFlashdata('pesan', 'Tanda Terima berhasil ditambahkan.');
 
-        return redirect()->to('/petugasMR/form_tandaTerima');
+        return redirect()->to('petugasMR/daftar_tandaTerima');
     }
 
     public function daftar_tandaTerima()
     {
         $data = [
             'title' => 'Daftar Tanda Terima',
-            'tanda_terima' => $this->TandaTerimaModel->findAll(),
+            'tanda_terima' => $this->TandaTerimaModel->listTandaTerima(session('idPetugas')),
         ];
         return view('/meeting_request/daftar_tanda_terima', $data);
     }
@@ -188,7 +189,7 @@ class Petugas_MR extends BaseController
 
         session()->setFlashdata('pesan', 'Berhasil menghapus Tanda Terima.');
 
-        return redirect()->to('/petugasMR/daftar_tandaTerima');
+        return redirect()->to('petugasMR/daftar_tandaTerima');
     }
 
     public function edit_tandaTerima($id)
@@ -211,11 +212,12 @@ class Petugas_MR extends BaseController
             'No_surat' => $this->request->getVar('no_surat'),
             'Tanggal' => $this->request->getVar('tanggal'),
             'Perihal' => $this->request->getVar('perihal'),
+            'idPetugas' => session('idPetugas')
         ]);
 
         session()->setFlashdata('pesan', 'Berhasil mengubah Tanda Terima');
 
-        return redirect()->to('/petugasMR/daftar_tandaTerima');
+        return redirect()->to('petugasMR/daftar_tandaTerima');
     }
 
     public function cetak_tandaTerima($id)

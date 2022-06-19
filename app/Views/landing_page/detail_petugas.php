@@ -38,57 +38,57 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h3 class="card-title">Detail Pegawai</h3>
-                                <p class="card-title-desc">Berikut adalah identitas dan detail Pegawai</p>
+                                <h3 class="card-title">Detail Petugas</h3>
+                                <p class="card-title-desc">Berikut adalah identitas dan detail Petugas</p>
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="row mb-1">
-                                            <label class="col-sm-6">IDENTITTAS PEGAWAI</label>
+                                            <label class="col-sm-6">IDENTITTAS PETUGAS</label>
                                             <hr>
                                         </div>
                                         <div class="row">
                                             <label class="col-sm-4">NIP</label>
-                                            <label class="col-sm-8">: <?= $pegawai['nip']; ?></label>
+                                            <label class="col-sm-8">: <?= $petugas['NIP']; ?></label>
                                         </div>
                                         <div class="row">
                                             <label class="col-sm-4">Nama Lengkap</label>
-                                            <label class="col-sm-8"> : <?= $pegawai['nama']; ?></label>
+                                            <label class="col-sm-8"> : <?= $petugas['Nama']; ?></label>
                                         </div>
-                                        <?php foreach ($jabatan as $x) {
-                                            if ($pegawai['idJabatan'] == $x['idJabatan']) {
-                                                $posisiJabatan = $x['posisiJabatan'];
-                                            }
-                                        } ?>
                                         <div class="row">
-                                            <label class="col-sm-4">Jabatan</label>
-                                            <label class="col-sm-8">: <?= $posisiJabatan; ?></label>
+                                            <label class="col-sm-4">Kantor</label>
+                                            <label class="col-sm-8">: <?= $petugas['Kantor']; ?></label>
                                         </div>
-                                        <?php foreach ($unit as $x) {
-                                            if ($pegawai['idUnit'] == $x['idUnit']) {
-                                                $namaUnit = $x['namaUnit'];
-                                            }
-                                        } ?>
                                         <div class="row">
                                             <label class="col-sm-4">Unit</label>
-                                            <label class="col-sm-8">: <?= $namaUnit; ?></label>
+                                            <?php foreach ($kategori as $a) {
+                                                if ($petugas['Unit'] == $a['idKategori']) {
+                                                    $namaKategori = $a['namaKategori'];
+                                                }
+                                            }
+                                            ?>
+                                            <label class="col-sm-8">: <?= $namaKategori; ?></label>
                                         </div>
-                                        <div class="row">
-                                            <label class="col-sm-4">Jenis Kelamin</label>
-                                            <label class="col-sm-8">: <?= $pegawai['jenisKelamin']; ?></label>
-                                        </div>
+
                                         <div class="row">
                                             <label class="col-sm-4">Email</label>
-                                            <label class="col-sm-8">: <?= $pegawai['email']; ?></label>
+                                            <label class="col-sm-8">: <?= $petugas['Email']; ?></label>
                                         </div>
                                         <div class="row">
-                                            <label class="col-sm-4">Status</label>
-                                            <label class="col-sm-8">: <?= $pegawai['status']; ?></label>
+                                            <label class="col-sm-4">Level</label>
+                                            <?php
+                                            foreach ($level as $b) {
+                                                if ($petugas['idLevel'] == $b['idLevel']) {
+                                                    $namaLevel = $b['Level'];
+                                                }
+                                            }
+                                            ?>
+                                            <label class="col-sm-8">: <?= $namaLevel ?></label>
                                         </div>
                                         <br>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-5">
-                                            <input type="button" value="Kembali" class="btn btn-warning waves-effect" onclick="history.back(-1)" />
+                                            <input type="button" value="Kembali" class="btn btn-warning waves-effect mt-2" onclick="history.back(-1)" />
                                         </div>
                                     </div>
 

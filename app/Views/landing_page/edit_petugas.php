@@ -32,7 +32,7 @@
             <div class="card">
               <div class="card-body">
 
-                <h3 class="card-title">Tambah Petugas</h3>
+                <h3 class="card-title">Ubah Data Petugas</h3>
                 <p class="card-title-desc">Masukkan informasi Petugas dengan lengkap.</p>
                 <?php
                 if (session()->get('pesan')) {
@@ -47,6 +47,7 @@
                 <form action="/Landing_page/update_petugas/<?= $petugas['Email']; ?>" class="custom-validation" method="POST" enctype="multipart/form-data">
                   <input type="hidden" name="idPetugas" value="<?= $petugas['idPetugas'] ?>">
                   <input type="hidden" name="email" value="<?= $petugas['Email'] ?>">
+                  <input type="hidden" name="unit" value="<?= $petugas['Unit'] ?>">
 
                   <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Level Petugas</label>
@@ -96,22 +97,6 @@
                       <input class="form-control" type="text" placeholder="Masukkan NIP petugas" id="nip" name="nip" value="<?= $petugas['NIP']; ?>" required data-parsley-minlength="9" data-parsley-maxlength="15">
                     </div>
                   </div>
-                  <!-- end row -->
-
-                  <!-- <div class="row mb-3">
-                    <label for="email" class="col-sm-3 col-form-label">Email</label>
-                    <div class="col-sm-9">
-                      <input class="form-control" type="email" id="email" name="email_disable" value="<?= $petugas['Email']; ?>" disabled>
-                    </div>
-                  </div> -->
-                  <!-- end row -->
-
-                  <!-- <div class="row mb-3">
-                    <label for="password" class="col-sm-3 col-form-label">Password</label>
-                    <div class="col-sm-9">
-                      <input class="form-control" type="password" placeholder="Masukkan password petugas" id="petugas" name="petugas" value="<?= $petugas['Password']; ?>" required>
-                    </div>
-                  </div> -->
                   <!-- end row -->
 
                   <div class="mb-0">
