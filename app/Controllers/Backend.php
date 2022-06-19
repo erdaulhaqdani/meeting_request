@@ -47,7 +47,6 @@ class Backend extends BaseController
       'jumlahMeeting' => $this->Meeting_requestModel->jumlah_meetingCustomer(session('idCustomer')),
       'jumlahPengaduan' => $this->Pengaduan_onlineModel->jumlah_pengaduanCustomer(session('idCustomer')),
       'kategori' => $this->KategoriModel->getKategori(),
-
     ];
 
     return view('backend/dashboard_cust', $data);

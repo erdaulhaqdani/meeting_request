@@ -4,13 +4,20 @@
 <script src="<?= base_url('assets/libs/metismenu/metisMenu.min.js'); ?>"></script>
 <script src="<?= base_url('assets/libs/simplebar/simplebar.min.js'); ?>"></script>
 <script src="<?= base_url('assets/libs/node-waves/waves.min.js'); ?>"></script>
-
+<?php
+$url = '';
+if (session('Kelompok') == 'APT') {
+    $url = 'Pengaduan_online/getNotifPetugas';
+} elseif (session('Kelompok') == 'Customer') {
+    $url = 'Pengaduan_online/getNotifCustomer';
+}
+?>
 <script type="text/javascript">
     $(document).ready(function() {
         // updating the view with notifications using ajax
         function load_notification(view = '') {
             $.ajax({
-                url: "<?= base_url('Pengaduan_online/getNotif') ?>",
+                url: "<?= base_url($url) ?>",
                 type: "POST",
                 data: {
                     view: view
@@ -20,32 +27,20 @@
                     $('#notifItem').html(data.notification);
                     if (data.unread_notification > 0) {
                         $('#notifDot').addClass("noti-dot");
+                    } else {
+                        $('#notifDot').removeClass("noti-dot");
                     }
                 }
             });
         }
-
-        function refresh_notification() {
-            $.ajax({
-                url: "<?= base_url('Pengaduan_online/refreshNotif') ?>",
-                type: "POST",
-                data: {},
-                dataType: "json",
-                success: function(data) {}
-            });
-        }
-
         load_notification();
 
         // load new notifications
         $(document).on('click', '#page-header-notifications-dropdown', function() {
             load_notification('yes');
-            setTimeout(function() {
-                refresh_notification();
-            }, 10000);
         });
         setInterval(function() {
             load_notification();
-        }, 1000);
+        }, 5000);
     });
 </script>

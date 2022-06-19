@@ -53,7 +53,6 @@ $routes->get('/frontend/register_petugas', 'Frontend::register_petugas');
 $routes->get('/frontend/login_petugas', 'Frontend::login_petugas');
 $routes->get('/login_petugas', 'Frontend::login_petugas');
 $routes->get('/register_petugas', 'Frontend::register_petugas');
-$routes->get('/dashboard_petugas', 'Backend::dashboard_petugas');
 $routes->get('/dashboard_admin_landing', 'Backend::dashboard_admin_landing');
 $routes->get('/logout_petugas', 'AuthPetugas::logout');
 

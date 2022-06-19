@@ -28,15 +28,9 @@ class Home extends BaseController
         $this->Tanggapan_POModel = new Tanggapan_POModel();
         $this->LevelModel = new LevelModel();
     }
+
     public function index()
     {
         return view('welcome_message');
-    }
-
-    public function getNotif()
-    {
-        $data = $this->Pengaduan_onlineModel->listPengaduanCustomer(session('idCustomer'));
-        $result['pesan'] = 'Cek Notifikasi';
-        echo json_encode($result);
     }
 }

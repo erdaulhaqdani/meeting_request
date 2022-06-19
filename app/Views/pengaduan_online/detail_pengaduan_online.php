@@ -51,7 +51,7 @@
                 <div class="container-fluid">
 
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-xl-12">
                             <div class="card">
                                 <div class="card-body">
 
@@ -59,7 +59,7 @@
                                     <p class="card-title-desc">Berikut adalah identitas dan detail pengajuan Pengaduan Online Anda.</p>
                                     <div class="row">
 
-                                        <div class="col-4">
+                                        <div class="col-md-4">
                                             <div class="row mb-1">
                                                 <label class="col-sm-6">IDENTITAS CUSTOMER</label>
                                                 <hr>
@@ -84,7 +84,7 @@
 
                                             </div>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-md-6">
                                             <div class="row mb-1">
                                                 <label class="col-sm-6">DETAIL PENGADUAN ONLINE</label>
                                                 <hr>
@@ -118,7 +118,7 @@
                                                 <label class="col-sm-8">: <?= $pengaduan['Status']; ?></label>
                                             </div>
                                         </div>
-                                        <div class="col-2 align-right">
+                                        <div class="col-md-2 align-right">
                                             <button name="cetak" onclick="window.open('<?php echo site_url('/Pengaduan_online/print/' . $pengaduan['idPengaduan']) ?>')" class="btn btn-danger mt-5"><i class="fas fa-print align-middle me-2"></i> Cetak</button>
                                         </div>
                                         <a href="/Pengaduan_online"><button type="button" class="btn btn-warning waves-effect">Kembali</button> </a>
@@ -141,7 +141,7 @@
                                         </div>
                                         <hr>
                                         <div class="row">
-                                            <div class="col-4">
+                                            <div class="col-md-4">
                                                 <div class="row">
                                                     <label class="col-sm-6">IDENTITAS PETUGAS</label>
                                                     <hr>
@@ -159,7 +159,7 @@
                                                     <label class="col-sm-8">: <?= $petugas['Email'] ?></label>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-md-6">
                                                 <div class="row">
                                                     <label class="col-sm-6">DETAIL TANGGAPAN</label>
                                                     <hr>
