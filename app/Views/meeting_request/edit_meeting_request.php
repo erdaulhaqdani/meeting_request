@@ -139,20 +139,30 @@
                   </div>
                   <!-- end row -->
 
+                  <input type="hidden" name="file_lama" value="<?= $meeting['File_lampiran']; ?>">
+
                   <div class="row mb-2">
                     <label for="lampiran" class="col-sm-3 col-form-label">File Lampiran (opsional)</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-4">
                       <div class="input-group">
-                        <input type="file" name="lampiran" class="form-control" id="lampiran" value="<?= $meeting['File_lampiran']; ?>">
+                        <input type="file" name="lampiran" class="form-control" id="lampiran">
                       </div>
-                      <!-- <p class="mt-2 ml text-secondary">File Lampiran bersifat opsional</p> -->
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="input-group">
+                        <?php if ($meeting['File_lampiran'] != 'default.png') : ?>
+                          <a class="image-popup-vertical-fit" href="/lampiran_customerMR/<?= $meeting['File_lampiran']; ?>" onclick="window.open('/lampiran_customerMR/<?= $meeting['File_lampiran']; ?>', 'newtab'); return false;"><input type="button" value="Lihat Lampiran" class="btn btn-primary waves-effect" /></a>
+                        <?php else : ?>
+                        <?php endif ?>
+                      </div>
                     </div>
                   </div>
+
 
                   <div class="row mb-3">
                     <label for="tanggal_kunjungan" class="col-sm-3 col-form-label">Tanggal Kunjungan</label>
                     <div class="col-sm-4">
-                      <input id="my_tgl" class="form-control" type="date" id="txtDate" name="tanggal_kunjungan" value="<?= $meeting['Tanggal_kunjungan']; ?>" required min="<?php echo date("Y-m-d"); ?>">
+                      <input id="my_tgl" class="form-control" type="date" id="txtDate" name="tanggal_kunjungan" required min="<?php echo date("Y-m-d"); ?>">
                     </div>
                   </div>
                   <!-- end row -->
@@ -181,8 +191,8 @@
                   <div class="mb-1 text-end">
                     <div>
                       <input type="button" value="Kembali" class="btn btn-warning waves-effect me-2" onclick="history.back(-1)" />
-                      <button type="reset" class="btn btn-danger waves-effect mx-3">Batal</button>
-                      <button type="submit" class="btn btn-primary waves-effect waves-light me-1">Submit</button>
+                      <button type="reset" class="btn btn-danger waves-effect me-2">Batal</button>
+                      <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
                     </div>
                   </div>
                 </form>

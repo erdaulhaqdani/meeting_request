@@ -18,7 +18,7 @@ class UploadsModel extends Model
       return $this->findAll();
     }
 
-    return $this->where(['id_uploads' => $id_uploads])->findAll();
+    return $this->where(['id_uploads' => $id_uploads])->find();
   }
 
   public function insert_upload($data)

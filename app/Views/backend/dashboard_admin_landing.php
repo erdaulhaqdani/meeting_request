@@ -19,6 +19,9 @@
 
     <!-- jquery.vectormap css -->
     <link rel="stylesheet" href="<?= base_url('assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css') ?>">
+
+    <!-- Responsive Table css -->
+    <link href="/assets/libs/admin-resources/rwd-table/rwd-table.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <?= $this->include("partials/body") ?>
@@ -115,8 +118,8 @@
                                 <div class="d-flex">
                                     <div class="flex-grow-1">
                                         <p class="text-truncate font-size-14 mb-2">Jumlah Pegawai</p>
-                                        <h4 class="mb-2"><?php foreach ($petugas->getResultObject() as $a) : ?>
-                                                <?= $a->idPetugas; ?>
+                                        <h4 class="mb-2"><?php foreach ($pegawai->getResultObject() as $a) : ?>
+                                                <?= $a->idPegawai; ?>
                                             <?php endforeach ?></h4>
                                         <p class="text-muted mb-0 font-size-13">Semua level</p>
                                     </div>
@@ -131,24 +134,85 @@
                     </div><!-- end col -->
                 </div>
 
+                <!-- Last Meeting -->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Pengajuan yang dibuat minggu ini</h4>
-                                <canvas id="bar_pengaduan"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title mb-4">Meeting yang dibuat minggu ini</h4>
-                                <canvas id="bar_meeting"></canvas>
+                                <h4 class="card-title mb-4">5 Informasi Terakhir</h4>
+
+                                <a href="/Landing_page" class="btn btn-primary btn-md me-3 mb-3">Lihat Semua</a>
+                                <a href="/Landing_page/form" class="btn btn-success btn-md mb-3"><i class="fas fa-plus-circle"></i> Tambah</a>
+                                <?php
+                                if (session()->get('pesan')) {
+                                ?>
+                                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <?= session()->get('pesan'); ?>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                <?php
+                                }
+                                ?>
+                                <div class="table-rep-plugin">
+                                    <div class="table-responsive mb-0">
+                                        <table id="tech-companies-1" class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Kategori</th>
+                                                    <th>Judul</th>
+                                                    <th>Tanggal Input</th>
+                                                    <th>Status</th>
+                                                    <th>Aksi</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <?php
+                                                function formatTanggal($date)
+                                                {
+                                                    // ubah string menjadi format tanggal
+                                                    return date('d-m-Y', strtotime($date));
+                                                }
+
+                                                ?>
+                                                <?php foreach ($lastBerita->getResult() as $a) :
+                                                    $date = $a->created_at;
+
+                                                    $judul = $a->Judul;
+                                                    $textJudul = strlen($judul);
+                                                    $num_char = 50;
+                                                    if ($textJudul > $num_char) {
+                                                        $cut_judul = substr($judul, 0, $num_char) . '...';
+                                                    } else {
+                                                        $cut_judul = $a->Judul;
+                                                    }
+
+                                                ?>
+                                                    <tr>
+                                                        <td><?= $a->Kategori; ?></td>
+                                                        <td><?= $cut_judul ?></td>
+                                                        <td><?= formatTanggal($date) ?></td>
+                                                        <td><?= $a->Status; ?></td>
+                                                        <td>
+                                                            <a href="/Landing_page/edit/<?= $a->id_berita; ?>" class="btn btn-primary btn-sm w-xs me-1">Ubah</a>
+                                                            <?php if ($a->Status == 'Diarsipkan') : ?>
+                                                                <a href="/Landing_page/publik_dashboard/<?= $a->id_berita; ?>" class="btn btn-success btn-sm w-xs">Publish</a>
+                                                            <?php elseif ($a->Status == 'Publik') : ?>
+                                                                <a href="/Landing_page/arsip_dashboard/<?= $a->id_berita; ?>" class="btn btn-warning btn-sm w-xs">Arsip</a>
+                                                            <?php endif ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
             <!-- End Page-content -->
 
@@ -170,6 +234,12 @@
 <!-- Plugins js -->
 <!-- <script src="/assets/libs/apexcharts/apexcharts.min.js"></script>
 <script src="assets/js/pages/dashboard.init.js"></script> -->
+
+<!-- Responsive Table js -->
+<script src="assets/libs/admin-resources/rwd-table/rwd-table.min.js"></script>
+
+<!-- Init js -->
+<script src="assets/js/pages/table-responsive.init.js"></script>
 
 <!-- jquery.vectormap map -->
 <script src="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
@@ -235,111 +305,6 @@
         type: 'doughnut',
         data: data_group_informasi
     });
-</script>
-
-<?php
-function formatTanggal($date)
-{
-    // ubah string menjadi format tanggal
-    return date('d F Y', strtotime($date));
-}
-?>
-
-<!-- Bar Chart pengaduan minggu ini -->
-<script>
-    // cari cara generate tanggal minggu ini via javascript/php kirim tgl ke sql
-    var currentDate = new Date();
-    var day = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay() + 0)).toUTCString();
-
-    var bar_pengaduan = document.getElementById('bar_pengaduan');
-    var data_pengaduan = [];
-    var label_pengaduan = [];
-
-    <?php foreach ($pengaduanPerminggu->getResult() as $key) : ?>
-        data_pengaduan.push(<?= $key->jumlah ?>);
-        <?php $tanggal = formatTanggal($key->tanggal); ?>
-        label_pengaduan.push('<?= $tanggal ?>');
-    <?php endforeach ?>
-
-    const data = {
-        labels: label_pengaduan,
-        datasets: [{
-            label: 'Pengaduan Online',
-            backgroundColor: '#0f9cf3',
-            borderColor: '#0f9cf3',
-            data: data_pengaduan
-        }]
-    };
-
-    const config = {
-        type: 'bar',
-        data: data,
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 10
-                }
-            },
-            plugins: {
-                legend: {
-                    position: 'top',
-                }
-            }
-        },
-    };
-
-    const barPengaduan = new Chart(bar_pengaduan, config);
-</script>
-
-<!-- Bar Chart meeting minggu ini -->
-<script>
-    // cari cara generate tanggal minggu ini via javascript/php
-    var currentDate = new Date();
-    var day = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay() + 0)).toUTCString();
-
-    var bar_meeting = document.getElementById('bar_meeting');
-
-    var data_meeting = [];
-    var label_meeting = [];
-
-    <?php foreach ($meetingPerminggu->getResult() as $key) : ?>
-        data_meeting.push(<?= $key->jumlah ?>);
-        <?php $tanggal = formatTanggal($key->tanggal); ?>
-        label_meeting.push('<?= $tanggal ?>');
-    <?php endforeach ?>
-
-    const data_bar = {
-        labels: label_meeting,
-        datasets: [{
-            label: 'Meeting Request',
-            backgroundColor: '#6fd088',
-            borderColor: '#6fd088',
-            data: [7, 0.5, 3],
-        }]
-    };
-
-    const config_bar = {
-        type: 'bar',
-        data: data_bar,
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 10
-                }
-            },
-            plugins: {
-                legend: {
-                    position: 'top',
-                }
-            }
-        },
-    };
-
-    var barMeeting = new Chart(bar_meeting, config_bar);
 </script>
 
 </body>

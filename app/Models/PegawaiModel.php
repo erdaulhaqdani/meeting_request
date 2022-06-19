@@ -21,6 +21,14 @@ class PegawaiModel extends Model
         return $this->where(['idPegawai' => $idPegawai])->first();
     }
 
+    function jumlah_pegawai()
+    {
+        $builder = $this->db->table('pegawai');
+        $builder->selectCount('idPegawai');
+        $query = $builder->get();
+        return $query;
+    }
+
     // Model dan Query Builder untuk menampilan Daftar PIC terkait
     public function pegawai()
     {

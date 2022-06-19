@@ -52,6 +52,10 @@
                     </div>
                     <div class="row">
                       <label class="col-sm-4">Nama Lengkap</label>
+                      <label class="col-sm-8"> : <?= $customer['Username']; ?></label>
+                    </div>
+                    <div class="row">
+                      <label class="col-sm-4">Nama Lengkap</label>
                       <label class="col-sm-8"> : <?= $customer['Nama']; ?></label>
                     </div>
                     <div class="row">
@@ -107,6 +111,14 @@
                       <label class="col-sm-8">: <?= $meeting['Waktu_kunjungan']; ?></label>
                     </div>
                     <div class="row">
+                      <label class="col-sm-4">Lampiran</label>
+                      <?php if ($meeting['File_lampiran'] != 'default.png') : ?>
+                        <a class="col-sm-8" href="/lampiran_customerMR/<?= $meeting['File_lampiran']; ?>">: Lihat Lampiran</a>
+                      <?php else : ?>
+                        <label class="col-sm-8">Tidak ada lampiran</label>
+                      <?php endif; ?>
+                    </div>
+                    <div class="row">
                       <label class="col-sm-4">Status</label>
                       <label class="col-sm-8">: <?= $meeting['Status']; ?></label>
                     </div>
@@ -114,7 +126,7 @@
                   </div>
                   <div class="row">
                     <div class="col-sm-5">
-                      <input type="button" value="Kembali" class="btn btn-warning waves-effect" onclick="history.back(-1)" />
+                      <input type="button" value="Kembali" class="btn btn-warning waves-effect mt-2" onclick="history.back(-1)" />
                     </div>
                   </div>
 

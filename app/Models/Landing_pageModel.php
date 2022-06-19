@@ -28,10 +28,20 @@ class Landing_pageModel extends Model
   public function getAgenda($id = false)
   {
     if ($id == false) {
-      return $this->where(['Kategori' => 'Agenda'])->findAll();
+      return $this->where(['Kategori' => 'Agenda'])->orderBy('created_at', 'DESC')->findAll();
     }
 
     return $this->where(['id_berita' => $id])->first();
+  }
+
+  public function listInformasi($id)
+  {
+    $builder = $this->db->table('berita');
+    $builder->where('idPetugas', $id);
+    $builder->where('Kategori!=', 'Agenda');
+    $builder->orderBy('created_at', 'DESC');
+    $query = $builder->get();
+    return $query;
   }
 
   public function search($pencarian)
@@ -169,19 +179,6 @@ class Landing_pageModel extends Model
     return $query;
   }
 
-
-  public function listInformasi($id)
-  {
-
-    $builder = $this->db->table('berita');
-    $builder->where('idPetugas', $id);
-    $builder->like('Status', 'Publik');
-    $builder->orlike('Status', 'Diarsipkan');
-    $builder->orderBy('created_at', 'DESC');
-    $query = $builder->get();
-    return $query;
-  }
-
   public function jumlahInformasiPublik($id)
   {
 
@@ -226,6 +223,24 @@ class Landing_pageModel extends Model
     $builder->where('Status', 'Publik');
     $builder->groupBy('Kategori');
     $query = $builder->get();
+    return $query;
+  }
+
+  public function getInfoByIdUploads($id = false)
+  {
+    $builder = $this->db->table('berita');
+    $builder->where('idUploads', $id);
+    $query = $builder->get();
+    return $query;
+  }
+
+  public function lastBerita($id)
+  {
+    $builder = $this->db->table('berita');
+    $builder->where('idPetugas', $id);
+    $builder->where('Kategori!=', 'Agenda');
+    $builder->orderBy('created_at', 'DESC');
+    $query = $builder->get(5, 0);
     return $query;
   }
 }

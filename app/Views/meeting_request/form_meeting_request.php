@@ -93,7 +93,7 @@
 
                   <div class="row mb-2">
                     <label for="lampiran" class="col-sm-3 col-form-label">File Lampiran (opsional)</label>
-                    <div class="col-sm-9">
+                    <div class="col-sm-4">
                       <div class="input-group">
                         <input type="file" name="lampiran" class="form-control" id="lampiran">
                       </div>
@@ -132,8 +132,9 @@
                   </div>
                   <div class="mb-1 text-end">
                     <div>
-                      <button type="reset" class="btn btn-danger waves-effect me-3">Batal</button>
-                      <button type="submit" class="btn btn-primary waves-effect waves-light me-1">Submit</button>
+                      <input type="button" value="Kembali" class="btn btn-warning waves-effect me-2" onclick="history.back(-1)" />
+                      <button type="reset" class="btn btn-danger waves-effect me-2">Batal</button>
+                      <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
                     </div>
                   </div>
                 </form>

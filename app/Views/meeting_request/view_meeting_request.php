@@ -19,7 +19,7 @@
   <link href="/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 
   <!-- Sweet Alert-->
-  <link href="/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+  <link href="<?= base_url('/assets/libs/sweetalert2/sweetalert2.min.css'); ?>" rel="stylesheet" type="text/css" />
 
   <?= $this->include("partials/head-css"); ?>
 
@@ -95,7 +95,7 @@
                 <h4 class="card-title"><?= $title; ?></h4>
                 <div class="row">
                   <div class="col-md-6">
-                    <p class="card-title-desc">Berikut adalah tabel Riwayat Meeting Request Anda. </p>
+                    <p class="card-title-desc">Berikut adalah tabel Daftar Meeting Request Anda. </p>
                   </div>
                   <div class="col-md-6"><a style="float: right ;" href="/Meeting_request/form" class="btn btn-success btn-md"><i class="fas fa-plus-circle"></i> Tambah</a></div>
                 </div>
@@ -154,12 +154,9 @@
                           <a href="/Meeting_request/detail/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
                           <?php if ($a->Status == 'Belum diproses') : ?>
                             <a href="/Meeting_request/edit/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
-                            <a href="/Meeting_request/cancel/<?= $a->idMeeting; ?>" class="btn btn-warning btn-sm w-xs">Batalkan</a>
-                          <?php elseif ($a->Status == 'Dibatalkan') : ?>
                             <a href="/Meeting_request/delete/<?= $a->idMeeting; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
                           <?php elseif ($a->Status == 'Selesai diproses') : ?>
                             <a href="/Meeting_request/rating/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Rating</a>
-                            <!-- <a href="/Meeting_request/tanggapan/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Tanggapan</a> -->
                           <?php endif ?>
                         </td>
                       </tr>
@@ -208,13 +205,13 @@
 <!-- Datatable init js -->
 <script src="/assets/js/pages/datatables.init.js"></script>
 
-<script src="/assets/js/app.js"></script>
-
 <!-- Sweet Alerts js -->
-<script src="/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+<script src="<?= base_url('assets/libs/sweetalert2/sweetalert2.min.js'); ?> "></script>
 
 <!-- Sweet alert init js-->
-<script src="/assets/js/pages/sweet-alerts.init.js"></script>
+<script src="<?= base_url('assets/js/pages/sweet-alerts.init.js'); ?> "></script>
+
+<script src="<?= base_url('/assets/js/app.js'); ?>"></script>
 
 </body>
 

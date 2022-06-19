@@ -107,30 +107,58 @@
 
                   <div class="row mb-2">
                     <label for="gambar" class="col-sm-3 col-form-label">Gambar Cover</label>
-                    <div class="col-sm-7">
+                    <div class="col-sm-5">
                       <div class="input-group">
                         <input type="file" name="gambar" class="form-control" id="gambar" value="<?= $informasi['Gambar']; ?>">
                       </div>
                       <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png</p>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-4">
                       <div class="input-group">
-                        <a class="image-popup-vertical-fit" href="/gambar/<?= $informasi['Gambar']; ?>"><input type="button" value="Lihat Gambar" class="btn btn-primary waves-effect" /></a>
-
+                        <a class="image-popup-vertical-fit" href="/gambar/<?= $informasi['Gambar']; ?>"><input type="button" value="Lihat Gambar" class="btn btn-primary waves-effect ms-1" /></a>
                       </div>
                     </div>
                   </div>
 
-
-                  <!-- <div class="row mb-2">
-                    <label for="gambar" class="col-sm-3 col-form-label">Gambar Lampiran</label>
-                    <div class="col-sm-9">
+                  <div class="row mb-2">
+                    <label for="gambar_lampiran" class="col-sm-3 col-form-label">Gambar Lampiran (opsional)</label>
+                    <div class="col-sm-5">
                       <div class="input-group">
-                        <input type="file" name="gambar" class="form-control" id="gambar" required>
+                        <input type="file" name="gambar_lampiran[]" class="form-control" id="gambar_lampiran" multiple='true'>
                       </div>
                       <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png</p>
                     </div>
-                  </div> -->
+                    <div class="col-sm-4">
+                      <div class="popup-gallery">
+                        <?php if ($informasi['id_uploads'] != 0) :
+                          foreach ($GambarLampiran as $rowLampiran) {
+
+                            if ($informasi['id_uploads'] == $rowLampiran['id_uploads']) {
+
+                              foreach ($uploads as $rowUploads) {
+                                if ($rowUploads['id_uploads'] == $rowLampiran['id_uploads']) {
+
+                                  $lampiran = $rowLampiran['File'];
+
+                        ?>
+                                  <a class="float-start" href="/uploads/<?= $lampiran; ?>">
+                                    <input type="button" value="Lihat Gambar" class="btn btn-primary waves-effect me-1 ms-1 mb-2" />
+                                  </a>
+
+                          <?php
+                                }
+                              }
+                            }
+                          }
+                          ?>
+                          <!-- <a href="/Landing_page/hapus_gambar/<?= $informasi['id_uploads']  ?>" class="btn btn-danger waves-effect me-1 ms-1 mb-2">Hapus</a> -->
+                        <?php else : ?>
+                        <?php endif ?>
+                      </div>
+
+                    </div>
+
+                  </div>
 
                   <div class="row mb-2">
                     <textarea id="elm1" name="isi_berita" value="<?= $informasi['Isi']; ?>"><?= $informasi['Isi']; ?></textarea>

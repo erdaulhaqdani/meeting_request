@@ -8,6 +8,7 @@ use App\Models\CustModel;
 use App\Models\Tanggapan_MRModel;
 use App\Models\PetugasModel;
 use App\Models\LevelModel;
+use PhpParser\Node\Stmt\Echo_;
 
 class Meeting_request extends BaseController
 {
@@ -31,7 +32,7 @@ class Meeting_request extends BaseController
   public function index()
   {
     $data = [
-      'title' => 'Riwayat Meeting Request',
+      'title' => 'Daftar Meeting Request',
       'meeting' => $this->Meeting_requestModel->listMeetingRequest(session('idCustomer')),
       'belum' => $this->Meeting_requestModel->jumlahMeetingRequest(session('idCustomer'), 'Belum diproses'),
       'proses' => $this->Meeting_requestModel->jumlahMeetingRequest(session('idCustomer'), 'Sedang diproses'),
@@ -129,15 +130,6 @@ class Meeting_request extends BaseController
       ];
     }
 
-    // $data = [
-    //   'title' => 'Detail Meeting Reqeust',
-    //   'meeting' => $this->Meeting_requestModel->getMeetingRequest($id),
-    //   'customer' => $this->CustModel->getCustomer(session('idCustomer')),
-    //   'kategori' => $this->KategoriModel->getKategori(),
-    //   'tanggapan' => $this->Tanggapan_MRModel->getTanggapan(),
-    //   'petugas' => $this->PetugasModel->findAll(),
-    // ];
-
     return view('meeting_request/detail_meeting_request', $data);
   }
 
@@ -156,6 +148,12 @@ class Meeting_request extends BaseController
   public function delete($id)
   {
 
+    $meeting = $this->Meeting_requestModel->getMeetingRequest($id);
+    // hapus file dari direktori
+    if ($meeting['File_lampiran'] != 'default.png') {
+      //hapus file lampiran bukan default.png
+      unlink('lampiran_customerMR/' . $meeting['File_lampiran']);
+    }
     $this->Meeting_requestModel->delete($id);
 
     session()->setFlashdata('pesan', 'Berhasil menghapus meeting request.');
@@ -189,16 +187,27 @@ class Meeting_request extends BaseController
       return redirect()->to('/Meeting_request/form')->withInput()->with('validation', $validation);
     }
 
-    //ambil file
+
     $lampiran = $this->request->getFile('lampiran');
+    $meeting = $this->Meeting_requestModel->getMeetingRequest($id);
+    $file_lama = $this->request->getVar('file_lama');
+
+    // hapus file dari direktori
+    if ($lampiran != $file_lama) {
+      if ($meeting['File_lampiran'] != 'default.png')
+        //hapus file lampiran lama yg bukan default.png
+        unlink('lampiran_customerMR/' . $meeting['File_lampiran']);
+    }
+    //ambil file
     if ($lampiran->getError() == 4) {
-      $namalampiran = 'default.png';
+      $namalampiran = $file_lama;
     } else {
       //ambil nama file
-      $namalampiran = $lampiran->getRandomName();
+      $namalampiran = $lampiran->getName();
       //pindah file
       $lampiran->move('lampiran_customerMR', $namalampiran);
     }
+
 
     $this->Meeting_requestModel->save([
       'idMeeting' => $id,

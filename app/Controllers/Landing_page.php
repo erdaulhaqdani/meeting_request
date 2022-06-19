@@ -211,28 +211,26 @@ class Landing_page extends BaseController
       $gambar->move('gambar', $namagambar);
     }
 
-
     $gambar_lampiran = $this->request->getFiles();
+    $lampiran_object = (object) $gambar_lampiran;
 
-    if ($gambar_lampiran) {
-      $random_id = rand(000, 999);
+    $random_id = rand(000, 999);
 
-      $data_uploads = [
+    $data_uploads = [
+      'id_uploads' => $random_id,
+      'Judul' => $this->request->getVar('judul'),
+      'Kategori' => 'Gambar Lampiran Informasi'
+    ];
+    $this->UploadsModel->insert_upload($data_uploads);
+
+    foreach ($gambar_lampiran['gambar_lampiran'] as $key => $img) {
+      $imgName = $img->getRandomName();
+      $data_galeri = [
         'id_uploads' => $random_id,
-        'Judul' => $this->request->getVar('judul'),
-        'Kategori' => 'Gambar Lampiran Informasi'
+        'File' => $imgName,
       ];
-      $this->UploadsModel->insert_upload($data_uploads);
-
-      foreach ($gambar_lampiran['gambar_lampiran'] as $key => $img) {
-        $imgName = $img->getRandomName();
-        $data_galeri = [
-          'id_uploads' => $random_id,
-          'File' => $imgName,
-        ];
-        $this->UploadsModel->insert_galeri($data_galeri);
-        $img->move(ROOTPATH . 'public/uploads', $imgName);
-      }
+      $this->UploadsModel->insert_galeri($data_galeri);
+      $img->move(ROOTPATH . 'public/uploads', $imgName);
     }
 
     $this->Landing_pageModel->save([
@@ -263,6 +261,18 @@ class Landing_page extends BaseController
     return redirect()->to('/Landing_page');
   }
 
+  public function publik_dashboard($id)
+  {
+    $this->Landing_pageModel->save([
+      'id_berita' => $id,
+      'Status' => 'Publik'
+    ]);
+
+    session()->setFlashdata('pesan', 'Berhasil mempublikasikan Informasi.');
+
+    return redirect()->to('/dashboard_admin_landing');
+  }
+
   public function arsip($id)
   {
 
@@ -276,13 +286,28 @@ class Landing_page extends BaseController
     return redirect()->to('/Landing_page');
   }
 
+  public function arsip_dashboard($id)
+  {
+
+    $this->Landing_pageModel->save([
+      'id_berita' => $id,
+      'Status' => 'Diarsipkan'
+    ]);
+
+    session()->setFlashdata('pesan', 'Berhasil mengarsipkan Informasi.');
+
+    return redirect()->to('/dashboard_admin_landing');
+  }
+
   public function edit($id)
   {
     $data = [
       'title' => 'Ubah Informasi',
       'validation' => \Config\Services::validation(),
       'informasi' => $this->Landing_pageModel->getInformasi($id),
-      'kategori' => $this->KategoriModel->getKategori()
+      'kategori' => $this->KategoriModel->getKategori(),
+      'uploads' => $this->UploadsModel->findAll(),
+      'GambarLampiran' => $this->GaleriModel->findAll(),
     ];
 
     return view('landing_page/edit_berita', $data);
@@ -319,6 +344,27 @@ class Landing_page extends BaseController
       $gambar->move('gambar', $namagambar);
     }
 
+    $gambar_lampiran = $this->request->getFiles();
+    $lampiran_object = (object) $gambar_lampiran;
+
+    $random_id = rand(000, 999);
+
+    $data_uploads = [
+      'id_uploads' => $random_id,
+      'Judul' => $this->request->getVar('judul'),
+      'Kategori' => 'Gambar Lampiran Informasi'
+    ];
+    $this->UploadsModel->insert_upload($data_uploads);
+
+    foreach ($gambar_lampiran['gambar_lampiran'] as $key => $img) {
+      $imgName = $img->getRandomName();
+      $data_galeri = [
+        'id_uploads' => $random_id,
+        'File' => $imgName,
+      ];
+      $this->UploadsModel->insert_galeri($data_galeri);
+      $img->move(ROOTPATH . 'public/uploads', $imgName);
+    }
 
 
     $this->Landing_pageModel->save([
@@ -329,12 +375,25 @@ class Landing_page extends BaseController
       'Penulis' => $this->request->getVar('penulis'),
       'Status' => $this->request->getVar('status'),
       'Gambar' => $namagambar,
-      'idPetugas' => $this->request->getVar('idPetugas')
+      'idPetugas' => $this->request->getVar('idPetugas'),
+      'id_uploads'  => $random_id
     ]);
 
     session()->setFlashdata('pesan', 'Berhasil mengubah Informasi.');
 
     return redirect()->to('/Landing_page');
+  }
+
+  public function hapus_gambar($id)
+  {
+    // Error
+    // $informasi =  $this->Landing_pageModel->getInfoByIdUploads($id);
+
+    $this->UploadsModel->delete($id);
+
+    session()->setFlashdata('pesan', 'Berhasil menghapus meeting request.');
+
+    return redirect()->to('Landing_page');
   }
 
   // Kelola Agenda
@@ -419,7 +478,8 @@ class Landing_page extends BaseController
       'Penulis' => $this->request->getVar('penulis'),
       'Gambar' => $namagambar,
       'Status' => 'Diarsipkan',
-      'idPetugas' => session('idPetugas')
+      'idPetugas' => session('idPetugas'),
+      'id_uploads'  => $random_id
     ]);
 
     session()->setFlashdata('pesan', 'Berhasil menambahkan agenda.');
@@ -432,7 +492,9 @@ class Landing_page extends BaseController
     $data = [
       'title' => 'Edit Agenda',
       'validation' => \Config\Services::validation(),
-      'agenda' => $this->Landing_pageModel->getAgenda($id)
+      'agenda' => $this->Landing_pageModel->getAgenda($id),
+      'uploads' => $this->UploadsModel->findAll(),
+      'GambarLampiran' => $this->GaleriModel->findAll(),
     ];
     return view('landing_page/edit_agenda', $data);
   }
@@ -458,22 +520,47 @@ class Landing_page extends BaseController
 
     $agenda = $this->Landing_pageModel->find($id);
     $gambar_lama = $this->request->getVar('gambar_lama');
+    $gambar = $this->request->getFile('gambar');
 
     // hapus file dari direktori
-    if ($agenda['Gambar'] != $gambar_lama) {
-      //hapus file lampiran
-      unlink('gambar_agenda/' . $agenda['Gambar']);
+    if ($gambar != $gambar_lama) {
+      if ($agenda['Gambar'] != 'default.png')
+        //hapus file lampiran lama yg bukan default.png
+        unlink('gambar_agenda/' . $agenda['Gambar']);
     }
+
     //ambil file
-    $gambar = $this->request->getFile('gambar');
     if ($gambar->getError() == 4) {
-      $namagambar = $this->request->getVar('gambar_lama');
+      $namagambar = $gambar_lama;
     } else {
       //ambil nama file
       $namagambar = $gambar->getRandomName();
       //pindah file ke folder gambar
       $gambar->move('gambar_agenda', $namagambar);
     }
+
+    $gambar_lampiran = $this->request->getFiles();
+    $lampiran_object = (object) $gambar_lampiran;
+
+    $random_id = rand(000, 999);
+
+    $data_uploads = [
+      'id_uploads' => $random_id,
+      'Judul' => $this->request->getVar('judul'),
+      'Kategori' => 'Gambar Lampiran Informasi'
+    ];
+    $this->UploadsModel->insert_upload($data_uploads);
+
+    foreach ($gambar_lampiran['gambar_lampiran'] as $key => $img) {
+      $imgName = $img->getRandomName();
+      $data_galeri = [
+        'id_uploads' => $random_id,
+        'File' => $imgName,
+      ];
+      $this->UploadsModel->insert_galeri($data_galeri);
+      $img->move(ROOTPATH . 'public/uploads', $imgName);
+    }
+
 
     $this->Landing_pageModel->save([
       'id_berita' => $id,
@@ -483,6 +570,7 @@ class Landing_page extends BaseController
       'Penulis' => $this->request->getVar('penulis'),
       'Gambar' => $namagambar,
       'idPetugas' => session('idPetugas'),
+      'id_uploads'  => $random_id
     ]);
 
     session()->setFlashdata('pesan', 'Berhasil mengubah agenda.');
