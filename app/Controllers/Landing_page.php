@@ -535,11 +535,11 @@ class Landing_page extends BaseController
     $gambar = $this->request->getFile('gambar');
 
     // hapus file dari direktori
-    if ($gambar != $gambar_lama) {
-      if ($agenda['Gambar'] != 'default.png')
-        //hapus file lampiran lama yg bukan default.png
-        unlink('gambar_agenda/' . $agenda['Gambar']);
-    }
+    // if ($gambar != $gambar_lama) {
+    //   if ($agenda['Gambar'] != 'default.png')
+    //     //hapus file lampiran lama yg bukan default.png
+    //     unlink('gambar_agenda/' . $agenda['Gambar']);
+    // }
 
     //ambil file
     if ($gambar->getError() == 4) {

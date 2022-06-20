@@ -167,6 +167,8 @@
                                                         <?php if ($a->Status == 'Belum diproses') : ?>
                                                             <a href="/Meeting_request/edit/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                                                             <a href="/Meeting_request/delete/<?= $a->idMeeting; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
+                                                        <?php elseif ($a->Status == 'Tidak disetujui') : ?>
+                                                            <a href="/Meeting_request/edit/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                                                         <?php elseif ($a->Status == 'Selesai diproses') : ?>
                                                             <a href="/Meeting_request/rating/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Rating</a>
                                                         <?php endif ?>
@@ -293,7 +295,6 @@
 <script src="assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
 <script src="assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-us-merc-en.js"></script>
 
-<script src="assets/js/pages/dashboard.init.js"></script>
 
 <!-- App js -->
 <script src="<?= base_url('assets/js/app.js') ?>"></script>
@@ -314,10 +315,11 @@
         datasets: [{
             data: data_pengaduan,
             backgroundColor: [
-                '#f32f53',
+                '#ffbb44',
                 '#0f9cf3',
                 '#6fd088',
-                '#0097a7'
+                '#0097a7',
+                '#f32f53',
             ],
         }],
         labels: label_pengaduan,
@@ -344,10 +346,11 @@
         datasets: [{
             data: data_meeting,
             backgroundColor: [
-                '#f32f53',
+                '#ffbb44',
                 '#0f9cf3',
                 '#6fd088',
-                '#0097a7'
+                '#0097a7',
+                '#f32f53',
             ],
         }],
         labels: label_meeting,

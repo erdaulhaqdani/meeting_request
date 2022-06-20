@@ -443,7 +443,9 @@ class Pengaduan_online extends BaseController
             'idKategori' => $this->request->getVar('kategori'),
             'Lampiran' => $namalampiran,
             'Status' => 'Belum diproses',
-            'idCustomer' => $this->request->getVar('idCustomer')
+            'idCustomer' => $this->request->getVar('idCustomer'),
+            'notifCustomer' => 0,
+            'notifPetugas' => 0
         ]);
 
         session()->setFlashdata('pesan', 'berhasil menambahkan pengaduan.');

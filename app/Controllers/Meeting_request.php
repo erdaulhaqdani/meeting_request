@@ -91,7 +91,9 @@ class Meeting_request extends BaseController
       'idKategori' => $this->request->getVar('kategori'),
       'Status' => 'Belum diproses',
       'File_lampiran' => $namalampiran,
-      'idCustomer' => $this->request->getVar('idCustomer')
+      'idCustomer' => $this->request->getVar('idCustomer'),
+      'notifCustomer' => 0,
+      'notifPetugas' => 0
     ]);
 
     session()->setFlashdata('pesan', 'Berhasil menambahkan meeting request.');
@@ -232,7 +234,7 @@ class Meeting_request extends BaseController
       'idKategori' => $this->request->getVar('kategori'),
       'File_lampiran' => $namalampiran,
       'Status' => 'Belum diproses',
-      'notifPetugas' => 0,
+      'notifCustomer' => 0,
       'notifPetugas' => 0
     ]);
 
@@ -280,5 +282,78 @@ class Meeting_request extends BaseController
     }
 
     return json_encode($data);
+  }
+
+  public function getNotifPetugasMR()
+  {
+    $query = $this->Meeting_requestModel->notifPetugasMR(session('idPetugas'))->getResultArray();
+    $count = $this->Meeting_requestModel->notifPetugasMR(session('idPetugas'))->getNumRows();
+    $output = '';
+
+    if ($count > 0) {
+      foreach ($query as $row) {
+        if ($row['Tiket'] == 'PO') {
+          $output .= '
+                        <a href="/Pengaduan_online/detail/' . $row['idPengaduan'] . '" class="text-reset notification-item">
+                            <div class="d-flex">
+                                <div class="avatar-xs me-3">
+                                    <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                        <i class="fas fa-file-alt"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-1">
+                                    <h6 class="mb-1">' . $row['Judul'] . '</h6>
+                                    <div class="font-size-12 text-muted">
+                                        <p class="mb-1 text-primary">Pengaduan Online</p>
+                                        <p class="mb-1">' . $row['Status'] . '</p>
+                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> ' . $row['updated_at'] . '</p>
+                                    </div>
+                                </div>
+                            </div>   
+                        </a>';
+        } elseif ($row['Tiket'] == 'MR') {
+          $output .= '
+                        <a href="/Meeting_request/detail/' . $row['idPengaduan'] . '" class="text-reset notification-item">
+                            <div class="d-flex">
+                                <div class="avatar-xs me-3">
+                                    <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                        <i class="fas fa-calendar-day"></i>
+                                    </span>
+                                </div>
+                                <div class="flex-1">
+                                    <h6 class="mb-1">' . $row['Judul'] . '</h6>
+                                    <div class="font-size-12 text-muted">
+                                        <p class="mb-1 text-primary">Meeting Request</p>
+                                        <p class="mb-1">' . $row['Status'] . '</p>
+                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i> ' . $row['updated_at'] . '</p>
+                                    </div>
+                                </div>
+                            </div>   
+                        </a>';
+        }
+      }
+    } else {
+      $output .= '
+            <a href="#" class="text-reset notification-item">
+                <div class="d-flex">
+                    <div class="avatar-xs me-3">
+                        <span class="avatar-title bg-danger rounded-circle font-size-16">
+                            <i class="fas fa-times"></i>
+                        </span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="font-size-12 text-muted">
+                            <p class="mt-2">Tidak ada notifikasi terbaru</p>
+                        </div>
+                    </div>
+                </div>';
+    }
+
+    $data = array(
+      'notification' => $output,
+      'unread_notification' => $count
+    );
+
+    echo json_encode($data);
   }
 }

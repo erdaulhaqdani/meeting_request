@@ -81,10 +81,10 @@
                   </div>
 
                   <div class="row mb-2">
-                    <label for="gambar_lampiran" class="col-sm-3 col-form-label">Gambar Lampiran (opsional)</label>
+                    <label for="gambar_lampiran" class="col-sm-3 col-form-label">Gambar Lampiran</label>
                     <div class="col-sm-9">
                       <div class="input-group">
-                        <input type="file" name="gambar_lampiran[]" class="form-control" id="gambar_lampiran" multiple='true'>
+                        <input type="file" name="gambar_lampiran[]" class="form-control" id="gambar_lampiran" multiple='true' required>
                       </div>
                       <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png</p>
                     </div>

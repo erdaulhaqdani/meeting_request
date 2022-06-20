@@ -147,6 +147,8 @@
                           <?php if ($a->Status == 'Belum diproses') : ?>
                             <a href="/Meeting_request/edit/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                             <a href="/Meeting_request/delete/<?= $a->idMeeting; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
+                          <?php elseif ($a->Status == 'Tidak disetujui') : ?>
+                            <a href="/Meeting_request/edit/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                           <?php elseif ($a->Status == 'Selesai diproses') : ?>
                             <a href="/Meeting_request/rating/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Rating</a>
                           <?php endif ?>

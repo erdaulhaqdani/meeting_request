@@ -25,6 +25,25 @@ class Meeting_requestModel extends Model
     return $this->where(['idMeeting' => $id])->first();
   }
 
+  public function notifPetugasMR($idPetugas)
+  {
+    /**
+     * SELECT `idPengaduan`,`Judul`,`updated_at`, `Tiket` FROM `pengaduan_online`
+     * UNION ALL 
+     * SELECT `idMeeting`,`Perihal`,`updated_at`, `Tiket` FROM meeting_request
+     * ORDER BY updated_at DESC
+     * LIMIT 3
+     */
+    $query = $this->db->query("SELECT `idPengaduan`,`Judul`,`updated_at`,`Tiket`,`Status` FROM `pengaduan_online`
+                                    WHERE `idPetugas` = ? AND notifCustomer = 0
+                                    UNION ALL 
+                                    SELECT `idMeeting`,`Perihal`,`updated_at`,`Tiket`,`Status` FROM meeting_request
+                                    WHERE `idPetugas` = ? AND notifCustomer = 0
+                                    ORDER BY updated_at DESC
+                                    LIMIT 5", [$idPetugas, $idPetugas]);
+    return $query;
+  }
+
   public function listMeetingRequest($id)
   {
 
