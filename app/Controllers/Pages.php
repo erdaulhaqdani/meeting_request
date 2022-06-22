@@ -4,17 +4,23 @@ namespace App\Controllers;
 
 use App\Models\Landing_pageModel;
 use App\Models\KategoriModel;
+use App\Models\UploadsModel;
+use App\Models\GaleriModel;
 
 class Pages extends BaseController
 {
 
   protected $Landing_pageModel;
   protected $KategoriModel;
+  protected $UploadsModel;
+  protected $GaleriModel;
 
   public function __construct()
   {
     $this->Landing_pageModel = new Landing_pageModel();
     $this->KategoriModel = new kategoriModel();
+    $this->UploadsModel = new UploadsModel();
+    $this->GaleriModel = new GaleriModel();
   }
 
   public function index()
@@ -50,6 +56,8 @@ class Pages extends BaseController
       'title' => 'Blog KPKNL Bandung',
       'berita' => $this->Landing_pageModel->getInformasi($id),
       'informasi_lain' => $this->Landing_pageModel->listInfoLain($id, $kategori),
+      'uploads' => $this->UploadsModel->findAll(),
+      'GambarLampiran' => $this->GaleriModel->findAll(),
     ];
 
     return view('pages/detail_pencarian', $data);

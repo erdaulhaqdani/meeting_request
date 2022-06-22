@@ -49,6 +49,8 @@
                 <form action="/Landing_page/update_agenda/<?= $agenda['id_berita']; ?>" class="custom-validation" method="POST" enctype="multipart/form-data">
                   <input type="hidden" name="idPetugas" value="<?= session('idPetugas'); ?>">
                   <input type="hidden" name="gambar_lama" value="<?= $agenda['Gambar']; ?>">
+                  <input type="hidden" name="lampiran_lama" value="<?= $agenda['id_uploads']; ?>">
+                  <input type="hidden" name="status" value="<?= $agenda['Status']; ?>">
 
                   <div class="row mb-2">
                     <label for="judul" class="col-sm-3 col-form-label">Judul Agenda</label>
@@ -90,7 +92,7 @@
                     <label for="gambar_lampiran" class="col-sm-3 col-form-label">Gambar Lampiran</label>
                     <div class="col-sm-5">
                       <div class="input-group">
-                        <input type="file" name="gambar_lampiran[]" class="form-control" id="gambar_lampiran" multiple='true' required>
+                        <input type="file" name="gambar_lampiran[]" class="form-control" id="gambar_lampiran" multiple='true'>
                       </div>
                       <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png</p>
                     </div>

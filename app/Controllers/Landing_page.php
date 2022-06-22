@@ -224,25 +224,29 @@ class Landing_page extends BaseController
     }
 
     $gambar_lampiran = $this->request->getFiles();
-    $lampiran_object = (object) $gambar_lampiran;
+    $gambar_lamp = $gambar_lampiran['gambar_lampiran'][0];
 
-    $random_id = rand(000, 999);
+    if ($gambar_lamp->getError() == 4) {
+      $random_id = 0;
+    } else {
+      $random_id = rand(000, 999);
 
-    $data_uploads = [
-      'id_uploads' => $random_id,
-      'Judul' => $this->request->getVar('judul'),
-      'Kategori' => 'Gambar Lampiran Informasi'
-    ];
-    $this->UploadsModel->insert_upload($data_uploads);
-
-    foreach ($gambar_lampiran['gambar_lampiran'] as $key => $img) {
-      $imgName = $img->getRandomName();
-      $data_galeri = [
+      $data_uploads = [
         'id_uploads' => $random_id,
-        'File' => $imgName,
+        'Judul' => $this->request->getVar('judul'),
+        'Kategori' => 'Gambar Lampiran Informasi'
       ];
-      $this->UploadsModel->insert_galeri($data_galeri);
-      $img->move(ROOTPATH . 'public/uploads', $imgName);
+      $this->UploadsModel->insert_upload($data_uploads);
+
+      foreach ($gambar_lampiran['gambar_lampiran'] as $key => $img) {
+        $imgName = $img->getRandomName();
+        $data_galeri = [
+          'id_uploads' => $random_id,
+          'File' => $imgName,
+        ];
+        $this->UploadsModel->insert_galeri($data_galeri);
+        $img->move(ROOTPATH . 'public/uploads', $imgName);
+      }
     }
 
     $this->Landing_pageModel->save([
@@ -357,27 +361,30 @@ class Landing_page extends BaseController
     }
 
     $gambar_lampiran = $this->request->getFiles();
-    $lampiran_object = (object) $gambar_lampiran;
+    $gambar_lamp = $gambar_lampiran['gambar_lampiran'][0];
 
-    $random_id = rand(000, 999);
+    if ($gambar_lamp->getError() == 4) {
+      $random_id  = $this->request->getVar('lampiran_lama');
+    } else {
+      $random_id = rand(000, 999);
 
-    $data_uploads = [
-      'id_uploads' => $random_id,
-      'Judul' => $this->request->getVar('judul'),
-      'Kategori' => 'Gambar Lampiran Informasi'
-    ];
-    $this->UploadsModel->insert_upload($data_uploads);
-
-    foreach ($gambar_lampiran['gambar_lampiran'] as $key => $img) {
-      $imgName = $img->getRandomName();
-      $data_galeri = [
+      $data_uploads = [
         'id_uploads' => $random_id,
-        'File' => $imgName,
+        'Judul' => $this->request->getVar('judul'),
+        'Kategori' => 'Gambar Lampiran Informasi'
       ];
-      $this->UploadsModel->insert_galeri($data_galeri);
-      $img->move(ROOTPATH . 'public/uploads', $imgName);
-    }
+      $this->UploadsModel->insert_upload($data_uploads);
 
+      foreach ($gambar_lampiran['gambar_lampiran'] as $key => $img) {
+        $imgName = $img->getRandomName();
+        $data_galeri = [
+          'id_uploads' => $random_id,
+          'File' => $imgName,
+        ];
+        $this->UploadsModel->insert_galeri($data_galeri);
+        $img->move(ROOTPATH . 'public/uploads', $imgName);
+      }
+    }
 
     $this->Landing_pageModel->save([
       'id_berita' => $id,
@@ -460,8 +467,11 @@ class Landing_page extends BaseController
     }
 
     $gambar_lampiran = $this->request->getFiles();
+    $gambar_lamp = $gambar_lampiran['gambar_lampiran'][0];
 
-    if ($gambar_lampiran) {
+    if ($gambar_lamp->getError() == 4) {
+      $random_id = 0;
+    } else {
       $random_id = rand(000, 999);
 
       $data_uploads = [
@@ -552,27 +562,30 @@ class Landing_page extends BaseController
     }
 
     $gambar_lampiran = $this->request->getFiles();
-    $lampiran_object = (object) $gambar_lampiran;
+    $gambar_lamp = $gambar_lampiran['gambar_lampiran'][0];
 
-    $random_id = rand(000, 999);
+    if ($gambar_lamp->getError() == 4) {
+      $random_id  = $this->request->getVar('lampiran_lama');
+    } else {
+      $random_id = rand(000, 999);
 
-    $data_uploads = [
-      'id_uploads' => $random_id,
-      'Judul' => $this->request->getVar('judul'),
-      'Kategori' => 'Gambar Lampiran Informasi'
-    ];
-    $this->UploadsModel->insert_upload($data_uploads);
-
-    foreach ($gambar_lampiran['gambar_lampiran'] as $key => $img) {
-      $imgName = $img->getRandomName();
-      $data_galeri = [
+      $data_uploads = [
         'id_uploads' => $random_id,
-        'File' => $imgName,
+        'Judul' => $this->request->getVar('judul'),
+        'Kategori' => 'Gambar Lampiran Informasi'
       ];
-      $this->UploadsModel->insert_galeri($data_galeri);
-      $img->move(ROOTPATH . 'public/uploads', $imgName);
-    }
+      $this->UploadsModel->insert_upload($data_uploads);
 
+      foreach ($gambar_lampiran['gambar_lampiran'] as $key => $img) {
+        $imgName = $img->getRandomName();
+        $data_galeri = [
+          'id_uploads' => $random_id,
+          'File' => $imgName,
+        ];
+        $this->UploadsModel->insert_galeri($data_galeri);
+        $img->move(ROOTPATH . 'public/uploads', $imgName);
+      }
+    }
 
     $this->Landing_pageModel->save([
       'id_berita' => $id,

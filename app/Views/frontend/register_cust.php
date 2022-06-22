@@ -18,7 +18,7 @@
 				<div>
 					<h1>Registrasi APT Bersama</h1>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					<a href="/"><button type="submit" class="btn_1 half-width">Kembali ke Home</button></a>
+					<a href="/"><button type="submit" class="btn_1 half-width">Kembali ke Beranda</button></a>
 				</div>
 			</div>
 		</div>
@@ -42,15 +42,15 @@
 							</div>
 							<div class="form-group">
 								<label for="nik">NIK</label>
-								<input type="number" name="nik" id="nik" class="form-control <?= ($validation->hasError('nik')) ?>" required>
+								<input type="number" name="nik" id="nik" class="form-control <?= ($validation->hasError('nik')) ?>" required minlength="15">
 							</div>
 							<div class="form-group">
 								<label for="email">Email </label>
 								<input type="email" name="email" id="email" class="form-control <?= ($validation->hasError('email')) ?>" required>
 							</div>
 							<div class="form-group">
-								<label for="noHP">No HP</label>
-								<input type="text" name="noHP" id="noHP" class="form-control <?= ($validation->hasError('noHP')) ?>" required>
+								<label for="noHP">Nomor HP</label>
+								<input type="number" name="noHP" id="noHP" class="form-control <?= ($validation->hasError('noHP')) ?>" required minlength="10">
 							</div>
 							<div class="form-group">
 								<label for="jk">Jenis Kelamin</label>
@@ -65,7 +65,7 @@
 							</div>
 							<div class="form-group">
 								<label for="password">Password</label>
-								<input type="password" name="password" id="password" class="form-control" required>
+								<input type="password" name="password" id="password" class="form-control" required required minlength="8">
 							</div>
 							<!-- <div class="form-group">
 								<label for="password2">Confirm Password</label>

@@ -45,7 +45,7 @@ class Petugas_MR extends BaseController
             'customer' => $this->CustModel->getCustomer()
         ];
 
-        return view('Meeting_request/petugas_daftar_mr', $data);
+        return view('meeting_request/petugas_daftar_mr', $data);
     }
 
     public function detail($id)
@@ -64,7 +64,7 @@ class Petugas_MR extends BaseController
             'level' => $this->LevelModel->getlevel()
         ];
 
-        return view('Meeting_request/petugas_detail', $data);
+        return view('meeting_request/petugas_detail', $data);
     }
 
     public function tanggapan($idMeeting)
@@ -77,7 +77,7 @@ class Petugas_MR extends BaseController
             'level' => $this->LevelModel->getlevel(),
         ];
 
-        return view('Meeting_request/petugas_tanggapan', $data);
+        return view('meeting_request/petugas_tanggapan', $data);
     }
 
     public function proses($id)
@@ -95,7 +95,7 @@ class Petugas_MR extends BaseController
 
         session()->setFlashdata('pesan', 'Meeting Request mulai diproses');
 
-        return redirect()->to('/petugasMR');
+        return redirect()->to('petugasMR');
     }
 
     public function inputTanggapan()
@@ -150,7 +150,7 @@ class Petugas_MR extends BaseController
 
         session()->setFlashdata('pesan', 'Tanggapan berhasil tersimpan.');
 
-        return redirect()->to('/petugasMR');
+        return redirect()->to('petugasMR');
     }
 
     public function form_tandaTerima()
@@ -184,7 +184,7 @@ class Petugas_MR extends BaseController
             'title' => 'Daftar Tanda Terima',
             'tanda_terima' => $this->TandaTerimaModel->listTandaTerima(session('idPetugas')),
         ];
-        return view('/meeting_request/daftar_tanda_terima', $data);
+        return view('meeting_request/daftar_tanda_terima', $data);
     }
 
     public function delete_tandaTerima($id)

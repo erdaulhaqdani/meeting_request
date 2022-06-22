@@ -35,9 +35,14 @@
           foreach ($berita as $a) :
             $date = $a['created_at'];
 
-            $text = $a['Isi'];
-            $num_char = 50;
-            $cut_text = substr($text, 0, $num_char) . '...';
+            $isi = $a['Isi'];
+            $textIsi = strlen($isi);
+            $num_text = 48;
+            if ($textIsi > $num_text) {
+              $cut_text = substr($isi, 0, $num_text) . '...';
+            } else {
+              $cut_text = $a['Isi'];
+            }
 
             $judul = $a['Judul'];
             $textJudul = strlen($judul);

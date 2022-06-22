@@ -69,27 +69,8 @@ Berita Terbaru
 				function tanggal_indonesia($tanggal)
 				{
 
-					$bulan = array(
-						1 =>   	'Januari',
-						'Februari',
-						'Maret',
-						'April',
-						'Mei',
-						'Juni',
-						'Juli',
-						'Agustus',
-						'September',
-						'Oktober',
-						'November',
-						'Desember'
-					);
-
-					$var = explode('-', $tanggal);
-
-					return $var[2] . ' ' . $bulan[(int)$var[1]] . ' ' . $var[0];
-					// var 0 = tanggal
-					// var 1 = bulan
-					// var 2 = tahun
+					// ubah string menjadi format tanggal
+					return date('d F Y', strtotime($tanggal));
 				}
 
 				foreach ($berita_terbaru->getResult() as $a) :
@@ -288,7 +269,7 @@ Artikel Terbaru
 
 
 				?>
-					<div class="col-lg-3 col-sm-6 col-12">
+					<div class="col-lg-4 col-sm-6 col-12">
 						<div class="single-case-block">
 							<img src="/gambar/<?= $c->Gambar; ?>" alt="" style="height: 260px;">
 							<div class="hover-content">

@@ -48,7 +48,7 @@
             <div class="page-content">
 
                 <div class="row">
-                    <div class="col-xl-3 col-md-6">
+                    <div class="col-xl-4 col-md-6">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-4">Statistik Pengaduan</h4>
@@ -56,7 +56,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-6">
+                    <div class="col-xl-4 col-md-6">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-4">Statistik Meeting Request</h4>

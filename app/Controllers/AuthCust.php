@@ -191,7 +191,6 @@ class AuthCust extends BaseController
       return redirect()->to('/login_cust');
     }
 
-
     if (password_verify($password, $row->Password)) {
       $data = [
         'log' => TRUE,
@@ -303,7 +302,6 @@ class AuthCust extends BaseController
 
     $confirm_pw = $this->request->getVar('confirm_pw');
     $password = $this->request->getVar('password');
-
 
     if ($password == $confirm_pw) {
       $row = $model->getCustomerEmail($email, $table);

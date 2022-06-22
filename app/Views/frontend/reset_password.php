@@ -18,7 +18,7 @@
 				<div>
 					<h1>Reset Password <br> APT Bersama</h1>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					<a href="/"><button type="submit" class="btn_1 half-width">Kembali ke Home</button></a>
+					<a href="/"><button type="submit" class="btn_1 half-width">Kembali ke Beranda</button></a>
 				</div>
 			</div>
 		</div>

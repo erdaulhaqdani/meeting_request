@@ -18,7 +18,7 @@
 				<div>
 					<h1>Login APT Bersama</h1>
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					<a href="/"><button type="submit" class="btn_1 half-width">Kembali ke Home</button></a>
+					<a href="/"><button type="submit" class="btn_1 half-width">Kembali ke Beranda</button></a>
 				</div>
 			</div>
 		</div>
@@ -86,6 +86,8 @@
 							</div>
 						</form>
 						<p class="text-center mt-3 mb-0">Belum punya akun? <a href="/register_cust">Registrasi</a></p>
+						<p class="text-center mt-3 mb-0">Registrasi Petugas APT? <a href="/register_petugas" target="_blank">Registrasi</a></p>
+						<p class="text-center mt-3 mb-0">Login DAMS Pegawai? <a href="/" target="_blank">Login</a></p>
 
 						<form class="input_style_1" method="post" action="AuthCust/resetPassword">
 							<div id="forgot_pw">

@@ -51,6 +51,7 @@
 
                   <input type="hidden" name="idPetugas" value="<?= session('idPetugas'); ?>">
                   <input type="hidden" name="gambar_lama" value="<?= $informasi['Gambar']; ?>">
+                  <input type="hidden" name="lampiran_lama" value="<?= $informasi['id_uploads']; ?>">
                   <input type="hidden" name="status" value="<?= $informasi['Status']; ?>">
 
                   <div class="row mb-2">
@@ -124,7 +125,7 @@
                     <label for="gambar_lampiran" class="col-sm-3 col-form-label">Gambar Lampiran</label>
                     <div class="col-sm-5">
                       <div class="input-group">
-                        <input type="file" name="gambar_lampiran[]" class="form-control" id="gambar_lampiran" multiple='true' required>
+                        <input type="file" name="gambar_lampiran[]" class="form-control" id="gambar_lampiran" multiple='true'>
                       </div>
                       <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png</p>
                     </div>

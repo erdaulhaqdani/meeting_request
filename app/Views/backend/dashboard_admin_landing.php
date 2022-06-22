@@ -258,8 +258,8 @@
         datasets: [{
             data: data_agenda,
             backgroundColor: [
-                '#ffbb44',
                 '#6fd088',
+                '#ffbb44',
             ],
         }],
         labels: label_agenda,
