@@ -6,7 +6,7 @@
 <script src="<?= base_url('assets/libs/node-waves/waves.min.js'); ?>"></script>
 <?php
 $url = '';
-if (session('idLevel') == 6 || 7) {
+if (session('idLevel') == 6 || session('idLevel') == 7) {
     $url = 'Meeting_request/getNotifPetugasMR';
 } elseif (session('Kelompok') == 'APT') {
     $url = 'Pengaduan_online/getNotifPetugas';

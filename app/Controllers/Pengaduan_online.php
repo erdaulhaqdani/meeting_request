@@ -364,14 +364,18 @@ class Pengaduan_online extends BaseController
 
     public function in_profile()
     {
-        $this->CustModel->save([
+        $data = [
             'idCustomer' => $this->request->getVar('idCustomer'),
             'Nama' => $this->request->getVar('nama'),
             'Username' => $this->request->getVar('username'),
+            'NIK' => $this->request->getVar('nik'),
+            'tglLahir' => $this->request->getVar('tanggal'),
             'Email' => $this->request->getVar('email'),
             'noHP' => $this->request->getVar('noHP'),
             'Pekerjaan' => $this->request->getVar('pekerjaan')
-        ]);
+        ];
+        // dd($data);
+        $this->CustModel->save($data);
 
         session()->setFlashdata('pesan', 'Berhasil menyunting profil.');
 
