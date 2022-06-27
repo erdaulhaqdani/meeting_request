@@ -26,12 +26,30 @@
     <div class="page-content">
       <div class="container-fluid">
 
+        <!-- start page title -->
+        <div class="row">
+          <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+              <h4 class="mb-sm-0">Buat Janji Temu</h4>
+
+              <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Janji Temu</a></li>
+                  <li class="breadcrumb-item active">Buat Janji Temu</li>
+                </ol>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- end page title -->
+
         <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-body">
 
-                <h3 class="card-title">Pengajuan Meeting Request</h3>
+                <h3 class="card-title">Pengajuan Janji Temu</h3>
                 <p class="card-title-desc">Masukkan informasi Anda dengan lengkap.</p>
                 <?php
                 if (session()->get('pesan')) {
@@ -86,24 +104,25 @@
                   <div class="row mb-3">
                     <label for="perihal" class="col-sm-3 col-form-label">Perihal</label>
                     <div class="col-sm-9">
-                      <input class="form-control" type="text" placeholder="Ringkasan keperluan/tujuan layanan" id="perihal" name="perihal" required>
+                      <input class="form-control" type="text" placeholder="Ringkasan keperluan/tujuan layanan" id="perihal" name="perihal" required minlength="5">
                     </div>
                   </div>
                   <!-- end row -->
 
                   <div class="row mb-2">
-                    <label for="lampiran" class="col-sm-3 col-form-label">File Lampiran (opsional)</label>
-                    <div class="col-sm-4">
+                    <label for="lampiran" class="col-sm-3 col-form-label">Lampiran (opsional)</label>
+                    <div class="col-sm-5">
                       <div class="input-group">
                         <input type="file" name="lampiran" class="form-control" id="lampiran">
                       </div>
-                      <!-- <p class="mt-2 ml text-secondary">File Lampiran bersifat opsional</p> -->
+                      <p class="mt-2 ml text-secondary">Jenis file lampiran adalah JPG, PNG, PDF atau DOCX max 3MB</p>
                     </div>
+
                   </div>
 
                   <div class="row mb-3">
                     <label for="tanggal_kunjungan" class="col-sm-3 col-form-label">Tanggal Kunjungan</label>
-                    <div class="col-sm-4">
+                    <div class="col-sm-5">
                       <input id="my_tgl" class="form-control" type="date" id="txtDate" name="tanggal_kunjungan" required min="<?php echo date("Y-m-d"); ?>">
                     </div>
                   </div>

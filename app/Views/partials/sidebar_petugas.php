@@ -52,7 +52,7 @@
                 </li>
                 <li>
                     <a href="/petugasMR" class=" waves-effect">
-                        <i class=" fas fa-calendar-day"></i>
+                        <i class="fas fa-calendar-plus"></i>
                         <span>Meeting Request</span>
                     </a>
                 </li>

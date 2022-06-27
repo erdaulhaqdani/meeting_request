@@ -47,6 +47,24 @@
             <div class="swal" data-swal="<?= session()->get('pesan'); ?>"></div>
             <div class="page-content">
 
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Beranda</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">APTB</a></li>
+                                    <li class="breadcrumb-item active">Beranda</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
                 <div class="row">
                     <div class="col-xl-4 col-md-6">
                         <div class="card">
@@ -59,7 +77,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Statistik Meeting Request</h4>
+                                <h4 class="card-title mb-4">Statistik Janji Temu</h4>
                                 <canvas id="meeting"></canvas>
                             </div>
                         </div>
@@ -87,7 +105,7 @@
                             <div class="card-body">
                                 <div class="d-flex">
                                     <div class="flex-grow-1">
-                                        <p class="text-truncate font-size-14 mb-2">Jumlah Meeting Request</p>
+                                        <p class="text-truncate font-size-14 mb-2">Jumlah Janji Temu</p>
                                         <h4 class="mb-2"><?php foreach ($jumlahMeeting->getResultObject() as $a) : ?>
                                                 <?= $a->idMeeting; ?>
                                             <?php endforeach ?></h4>
@@ -116,7 +134,7 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Meeting Request yang dibuat minggu ini</h4>
+                                <h4 class="card-title mb-4">Janji Temu yang dibuat minggu ini</h4>
                                 <canvas id="bar_meeting"></canvas>
                             </div>
                         </div>
@@ -128,7 +146,7 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">4 Meeting Request Terakhir</h4>
+                                <h4 class="card-title mb-4">4 Janji Temu Terakhir</h4>
 
                                 <a href="/Meeting_request" class="btn btn-primary btn-md me-3 mb-2">Lihat Semua</a>
                                 <a href="/Meeting_request/form" class="btn btn-success btn-md mb-2"><i class="fas fa-plus-circle"></i> Tambah</a>
@@ -150,7 +168,9 @@
                                             <?php foreach ($lastMeetingRequest->getResult() as $a) : ?>
                                                 <?php //getNamaKategori
                                                 $k = '';
-                                                $date = $a->created_at;
+                                                $tanggal_input = date('Y-m-d', strtotime($a->created_at));
+                                                $tanggal_kunjungan = date('Y-m-d', strtotime($a->Tanggal_kunjungan));
+
                                                 foreach ($kategori as $b) {
                                                     if ($a->idKategori == $b['idKategori']) {
                                                         $k = $b['namaKategori'];
@@ -159,11 +179,11 @@
                                                 ?>
                                                 <tr>
                                                     <td><?= $k; ?></td>
-                                                    <td><?= formatTanggal($date) ?></td>
-                                                    <td><?= formatTanggal($a->Tanggal_kunjungan); ?></td>
+                                                    <td><?= tanggal_indo($tanggal_input) ?></td>
+                                                    <td><?= tanggal_indo($tanggal_kunjungan); ?></td>
                                                     <td><?= $a->Status; ?></td>
                                                     <td>
-                                                        <a href="/Meeting_request/detail/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
+                                                        <a href="/Meeting_request/detail/<?= $a->idMeeting; ?>" class="btn btn-info btn-sm w-xs">Detail</a>
                                                         <?php if ($a->Status == 'Belum diproses') : ?>
                                                             <a href="/Meeting_request/edit/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                                                             <a href="/Meeting_request/delete/<?= $a->idMeeting; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
@@ -210,7 +230,7 @@
                                             <?php foreach ($lastPengaduan->getResult() as $a) : ?>
                                                 <?php //getNamaKategori
                                                 $k = '';
-                                                $date = $a->created_at;
+                                                $tanggal = date('Y-m-d', strtotime($a->created_at));
                                                 foreach ($kategori as $b) {
                                                     if ($a->idKategori == $b['idKategori']) {
                                                         $k = $b['namaKategori'];
@@ -220,10 +240,10 @@
                                                 <tr>
                                                     <td><?= $a->Judul; ?></td>
                                                     <td><?= $k; ?></td>
-                                                    <td><?= formatTanggal($a->created_at); ?></td>
+                                                    <td><?= tanggal_indo($tanggal) ?></td>
                                                     <td><?= $a->Status; ?></td>
                                                     <td>
-                                                        <a href="/Pengaduan_online/detail/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
+                                                        <a href="/Pengaduan_online/detail/<?= $a->idPengaduan; ?>" class="btn btn-info btn-sm w-xs">Detail</a>
                                                         <?php if ($a->Status == 'Belum diproses') : ?>
                                                             <a href="/Pengaduan_online/edit/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                                                             <a href="/Pengaduan_online/delete/<?= $a->idPengaduan; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
@@ -394,8 +414,11 @@
 
     <?php foreach ($pengaduanPerminggu->getResult() as $key) : ?>
         data_pengaduan.push(<?= $key->jumlah ?>);
-        <?php $tanggal = formatTanggal($key->tanggal); ?>
-        label_pengaduan.push('<?= $tanggal ?>');
+        <?php $tanggal = date('Y-m-d', strtotime($key->tanggal));
+        $tanggal_indo = tanggal_indo($tanggal);
+        // $tanggal = formatTanggal($key->tanggal);
+        ?>
+        label_pengaduan.push('<?= $tanggal_indo ?>');
     <?php endforeach ?>
 
     const data = {
@@ -443,14 +466,17 @@
 
     <?php foreach ($meetingPerminggu->getResult() as $key) : ?>
         data_meeting.push(<?= $key->jumlah ?>);
-        <?php $tanggal = formatTanggal($key->tanggal); ?>
-        label_meeting.push('<?= $tanggal ?>');
+        <?php $tanggal = date('Y-m-d', strtotime($key->tanggal));
+        $tanggal_indo = tanggal_indo($tanggal);
+        // $tanggal = formatTanggal($key->tanggal);
+        ?>
+        label_meeting.push('<?= $tanggal_indo ?>');
     <?php endforeach ?>
 
     const data_bar = {
         labels: label_meeting,
         datasets: [{
-            label: 'Meeting Request',
+            label: 'Janji Temu',
             backgroundColor: '#6fd088',
             borderColor: '#6fd088',
             data: data_meeting,

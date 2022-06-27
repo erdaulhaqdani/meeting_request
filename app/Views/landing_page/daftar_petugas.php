@@ -35,12 +35,30 @@
     <div class="page-content">
       <div class="container-fluid">
 
+        <!-- start page title -->
+        <div class="row">
+          <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+              <h4 class="mb-sm-0">Daftar Petugas</h4>
+
+              <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Kelola Petugas</a></li>
+                  <li class="breadcrumb-item active">Daftar Petugas</li>
+                </ol>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- end page title -->
+
         <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-body">
 
-                <h4 class="card-title"><?= $title; ?></h4>
+                <h4 class="card-title">Tabel <?= $title; ?> APT</h4>
                 <div class="row">
                   <div class="col-md-6">
                     <p class="card-title-desc">Berikut adalah tabel Daftar Petugas.</p>
@@ -91,7 +109,7 @@
                         <td><?= $a['Kantor'] ?></td>
                         <td>
                           <!-- <a href="/Landing_page/edit_petugas/<?= $a['Email']; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a> -->
-                          <a href="/Landing_page/detail_petugas/<?= $a['Email']; ?>" class="btn btn-success btn-sm w-xs">Detail</a>
+                          <a href="/Landing_page/detail_petugas/<?= $a['Email']; ?>" class="btn btn-info btn-sm w-xs">Detail</a>
                         </td>
                       </tr>
                     <?php endforeach ?>

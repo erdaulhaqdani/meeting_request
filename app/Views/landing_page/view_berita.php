@@ -36,12 +36,30 @@
     <div class="page-content">
       <div class="container-fluid">
 
+        <!-- start page title -->
+        <div class="row">
+          <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+              <h4 class="mb-sm-0">Daftar Informasi</h4>
+
+              <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Kelola Informasi</a></li>
+                  <li class="breadcrumb-item active">Daftar Informasi</li>
+                </ol>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- end page title -->
+
         <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-body">
 
-                <h4 class="card-title">Daftar Informasi</h4>
+                <h4 class="card-title">Tabel Daftar Informasi</h4>
                 <div class="row">
                   <div class="col-md-6">
                     <p class="card-title-desc">Berikut adalah tabel Daftar Informasi.</p>
@@ -74,7 +92,7 @@
                   <tbody>
                     <?php $no = 1; ?>
                     <?php foreach ($informasi->getResult() as $a) :
-                      $date = $a->created_at;
+                      $tanggal = date('Y-m-d', strtotime($a->created_at));
 
                       $judul = $a->Judul;
                       $textJudul = strlen($judul);
@@ -100,7 +118,7 @@
                         <td><?= $a->Kategori; ?></td>
                         <td><?= $cut_judul ?></td>
                         <td><?= $cut_penulis ?></td>
-                        <td><?= formatTanggal($date) ?></td>
+                        <td><?= tanggal_indo($tanggal) ?></td>
                         <td><?= $a->Status; ?></td>
                         <td>
                           <?php if ($a->Status == 'Diarsipkan') : ?>

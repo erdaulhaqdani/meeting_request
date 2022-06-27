@@ -28,12 +28,30 @@
     <div class="page-content">
       <div class="container-fluid">
 
+        <!-- start page title -->
+        <div class="row">
+          <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+              <h4 class="mb-sm-0">Ubah Agenda</h4>
+
+              <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Kelola Agenda</a></li>
+                  <li class="breadcrumb-item active">Ubah Agenda</li>
+                </ol>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- end page title -->
+
         <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-body">
 
-                <h3 class="card-title">Edit Agenda</h3>
+                <h3 class="card-title">Form Ubah Agenda</h3>
                 <p class="card-title-desc">Masukkan data-data agenda dengan lengkap.</p>
                 <?php
                 if (session()->get('pesan')) {
@@ -79,7 +97,7 @@
                       <div class="input-group">
                         <input type="file" name="gambar" class="form-control" id="gambar">
                       </div>
-                      <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png</p>
+                      <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png max 3MB</p>
                     </div>
                     <div class="col-sm-4">
                       <div class="input-group">
@@ -89,12 +107,12 @@
                   </div>
 
                   <div class="row mb-2">
-                    <label for="gambar_lampiran" class="col-sm-3 col-form-label">Gambar Lampiran</label>
+                    <label for="gambar_lampiran" class="col-sm-3 col-form-label">Gambar Lampiran (opsional)</label>
                     <div class="col-sm-5">
                       <div class="input-group">
                         <input type="file" name="gambar_lampiran[]" class="form-control" id="gambar_lampiran" multiple='true'>
                       </div>
-                      <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png</p>
+                      <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png max 3MB</p>
                     </div>
                     <div class="col-sm-4">
                       <div class="popup-gallery">

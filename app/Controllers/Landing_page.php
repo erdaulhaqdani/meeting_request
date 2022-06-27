@@ -10,6 +10,7 @@ use App\Models\PetugasModel;
 use App\Models\UserModel;
 use App\Models\UploadsModel;
 use App\Models\GaleriModel;
+use App\Models\CustModel;
 
 class Landing_page extends BaseController
 {
@@ -21,6 +22,7 @@ class Landing_page extends BaseController
   protected $UserModel;
   protected $UploadsModel;
   protected $GaleriModel;
+  protected $CustModel;
 
   public function __construct()
   {
@@ -32,6 +34,7 @@ class Landing_page extends BaseController
     $this->UserModel = new UserModel();
     $this->UploadsModel = new UploadsModel();
     $this->GaleriModel = new GaleriModel();
+    $this->CustModel = new CustModel();
   }
 
   public function form_petugas()
@@ -71,6 +74,25 @@ class Landing_page extends BaseController
     session()->setFlashdata('pesan', 'Berhasil menambahkan petugas.');
 
     return redirect()->to('/Landing_page/daftar_petugas');
+  }
+
+  public function daftar_customer()
+  {
+    $data = [
+      'title' => 'Daftar Customer',
+      'customer' => $this->CustModel->findAll(),
+      'validation' => \Config\Services::validation()
+    ];
+    return view('landing_page/daftar_customer', $data);
+  }
+
+  public function detail_customer($id)
+  {
+    $data = [
+      'title' => 'Detail Akun Customer',
+      'customer' => $this->CustModel->getCustomer($id),
+    ];
+    return view('landing_page/detail_customer', $data);
   }
 
   public function daftar_petugas()

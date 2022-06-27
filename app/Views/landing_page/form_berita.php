@@ -28,12 +28,30 @@
     <div class="page-content">
       <div class="container-fluid">
 
+        <!-- start page title -->
+        <div class="row">
+          <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+              <h4 class="mb-sm-0">Tambah Informasi</h4>
+
+              <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Kelola Informasi</a></li>
+                  <li class="breadcrumb-item active">Tambah Informasi</li>
+                </ol>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- end page title -->
+
         <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-body">
 
-                <h3 class="card-title">Tambah Informasi</h3>
+                <h3 class="card-title">Form Tambah Informasi</h3>
                 <p class="card-title-desc">Masukkan data-data informasi dengan lengkap.</p>
                 <?php
                 if (session()->get('pesan')) {
@@ -72,7 +90,7 @@
                   <div class="row mb-2">
                     <label for="penulis" class="col-sm-3 col-form-label">Penulis</label>
                     <div class="col-sm-9">
-                      <input class="form-control" type="text" placeholder="Masukkan nama penulis" id="penulis" name="penulis" required>
+                      <input class="form-control" type="text" placeholder="Masukkan nama penulis" id="penulis" name="penulis" required minlength="5">
                     </div>
                   </div>
 
@@ -82,17 +100,17 @@
                       <div class="input-group">
                         <input type="file" name="gambar" class="form-control" id="gambar" required>
                       </div>
-                      <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png</p>
+                      <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png max 3MB</p>
                     </div>
                   </div>
 
                   <div class="row mb-2">
-                    <label for="gambar_lampiran" class="col-sm-3 col-form-label">Gambar Lampiran</label>
+                    <label for="gambar_lampiran" class="col-sm-3 col-form-label">Gambar Lampiran (opsional)</label>
                     <div class="col-sm-9">
                       <div class="input-group">
                         <input type="file" name="gambar_lampiran[]" class="form-control" id="gambar_lampiran" multiple='true'>
                       </div>
-                      <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png</p>
+                      <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png max 3MB</p>
                     </div>
                   </div>
 

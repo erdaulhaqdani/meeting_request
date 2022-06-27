@@ -28,15 +28,34 @@
     <div class="page-content">
       <div class="container-fluid">
 
+        <!-- start page title -->
+        <div class="row">
+          <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+              <h4 class="mb-sm-0">Ubah Janji Temu</h4>
+
+              <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Janji Temu</a></li>
+                  <li class="breadcrumb-item active">Ubah Janji Temu</li>
+                </ol>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- end page title -->
+
         <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-body">
 
-                <h3 class="card-title">Ubah Pengajuan Meeting Request</h3>
+                <h3 class="card-title">Ubah Pengajuan Janji Temu</h3>
                 <p class="card-title-desc">Masukkan informasi Anda dengan lengkap.</p>
 
                 <form action="/Meeting_request/update/<?= $meeting['idMeeting']; ?>" class="custom-validation" method="POST" enctype="multipart/form-data">
+
 
                   <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Jenis Layanan</label>
@@ -134,7 +153,7 @@
                   <div class="row mb-3">
                     <label for="perihal" class="col-sm-3 col-form-label">Perihal</label>
                     <div class="col-sm-9">
-                      <input class="form-control" type="text" placeholder="Ringkasan keperluan/tujuan layanan" id="perihal" name="perihal" value="<?= $meeting['Perihal']; ?>" required>
+                      <input class="form-control" type="text" placeholder="Ringkasan keperluan/tujuan layanan" id="perihal" name="perihal" value="<?= $meeting['Perihal']; ?>" required minlength="5">
                     </div>
                   </div>
                   <!-- end row -->
@@ -142,11 +161,12 @@
                   <input type="hidden" name="file_lama" value="<?= $meeting['File_lampiran']; ?>">
 
                   <div class="row mb-2">
-                    <label for="lampiran" class="col-sm-3 col-form-label">File Lampiran (opsional)</label>
-                    <div class="col-sm-4">
+                    <label for="lampiran" class="col-sm-3 col-form-label">Lampiran (opsional)</label>
+                    <div class="col-sm-5">
                       <div class="input-group">
                         <input type="file" name="lampiran" class="form-control" id="lampiran">
                       </div>
+                      <p class="mt-2 ml text-secondary">Jenis file lampiran adalah JPG, PNG, PDF atau DOCX max 3MB</p>
                     </div>
                     <div class="col-sm-4">
                       <div class="input-group">

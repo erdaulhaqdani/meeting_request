@@ -41,14 +41,32 @@
     <div class="page-content">
       <div class="container-fluid">
 
+        <!-- start page title -->
+        <div class="row">
+          <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+              <h4 class="mb-sm-0">Daftar Janji Temu</h4>
+
+              <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Janji Temu</a></li>
+                  <li class="breadcrumb-item active">Daftar Janji Temu</li>
+                </ol>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- end page title -->
+
         <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Rekap Meeting Request</h4>
+                <h4 class="card-title">Rekap Janji Temu</h4>
                 <div class="row">
 
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="card">
                       <div class="card-body text-center">
                         <h5 class="card-title">Belum diproses</h5>
@@ -59,7 +77,7 @@
                     </div>
                   </div>
 
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="card">
                       <div class="card-body text-center">
                         <h5 class="card-title">Sedang diproses</h5>
@@ -70,7 +88,18 @@
                     </div>
                   </div>
 
-                  <div class="col-4">
+                  <div class="col-3">
+                    <div class="card">
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Dieskalasi</h5>
+                        <?php foreach ($eskalasi->getResultObject() as $a) : ?>
+                          <?= $a->idMeeting; ?>
+                        <?php endforeach ?>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-3">
                     <div class="card">
                       <div class="card-body text-center">
                         <h5 class="card-title">Selesai diproses</h5>
@@ -92,10 +121,10 @@
             <div class="card">
               <div class="card-body">
 
-                <h4 class="card-title"><?= $title; ?></h4>
+                <h4 class="card-title">Tabel <?= $title; ?></h4>
                 <div class="row">
                   <div class="col-md-6">
-                    <p class="card-title-desc">Berikut adalah tabel Daftar Meeting Request Anda. </p>
+                    <p class="card-title-desc">Berikut adalah tabel Daftar Janji Temu Anda. </p>
                   </div>
                   <div class="col-md-6"><a style="float: right ;" href="/Meeting_request/form" class="btn btn-success btn-md"><i class="fas fa-plus-circle"></i> Tambah</a></div>
                 </div>
@@ -114,8 +143,8 @@
                     <tr>
                       <th>No.</th>
                       <th>Jenis Layanan</th>
-                      <th>Bentuk Layanan</th>
                       <th>Kantor Tujuan</th>
+                      <th>Tanggal Input</th>
                       <th>Tanggal Kunjungan</th>
                       <th>Waktu Kunjungan</th>
                       <th>Status</th>
@@ -127,7 +156,8 @@
                     <?php foreach ($meeting->getResult() as $a) : ?>
                       <?php //getNamaKategori
                       $k = '';
-                      $date = $a->Tanggal_kunjungan;
+                      $tanggal = date('Y-m-d', strtotime($a->Tanggal_kunjungan));
+                      $tanggal_input = date('Y-m-d', strtotime($a->created_at));
                       foreach ($kategori as $b) {
                         if ($a->idKategori == $b['idKategori']) {
                           $k = $b['namaKategori'];
@@ -137,13 +167,13 @@
                       <tr>
                         <td><?= $no++; ?></td>
                         <td><?= $k; ?></td>
-                        <td><?= $a->Bentuk_layanan; ?></td>
                         <td><?= $a->Kantor; ?></td>
-                        <td><?= formatTanggal($date) ?></td>
-                        <td><?= $a->Waktu_kunjungan; ?></td>
+                        <td><?= tanggal_indo($tanggal_input) ?></td>
+                        <td><?= tanggal_indo($tanggal) ?></td>
+                        <td><?= $a->Waktu_kunjungan; ?> WIB</td>
                         <td><?= $a->Status; ?></td>
                         <td>
-                          <a href="/Meeting_request/detail/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
+                          <a href="/Meeting_request/detail/<?= $a->idMeeting; ?>" class="btn btn-info btn-sm w-xs">Detail</a>
                           <?php if ($a->Status == 'Belum diproses') : ?>
                             <a href="/Meeting_request/edit/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                             <a href="/Meeting_request/delete/<?= $a->idMeeting; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>

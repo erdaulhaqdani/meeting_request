@@ -35,12 +35,30 @@
         <div class="page-content">
             <div class="container-fluid">
 
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Daftar Agenda</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Kelola Agenda</a></li>
+                                    <li class="breadcrumb-item active">Daftar Agenda</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title"><?= $title; ?></h4>
+                                <h4 class="card-title">Tabel <?= $title; ?></h4>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <p class="card-title-desc">Berikut adalah tabel Daftar Agenda.</p>
@@ -68,7 +86,7 @@
                                     <tbody>
                                         <?php $no = 1; ?>
                                         <?php foreach ($agenda as $a) :
-                                            $date = $a['created_at'];
+                                            $tanggal = date('Y-m-d', strtotime($a['created_at']));
 
                                             $judul = $a['Judul'];
                                             $textJudul = strlen($judul);
@@ -92,7 +110,7 @@
                                                 <td><?= $no++; ?></td>
                                                 <td><?= $cut_judul ?></td>
                                                 <td><?= $cut_penulis ?></td>
-                                                <td><?= formatTanggal($date); ?></td>
+                                                <td><?= tanggal_indo($tanggal); ?></td>
                                                 <td><?= $a['Status']; ?></td>
                                                 <td>
                                                     <a href="/Landing_page/edit_agenda/<?= $a['id_berita']; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>

@@ -32,10 +32,11 @@ class Meeting_request extends BaseController
   public function index()
   {
     $data = [
-      'title' => 'Daftar Meeting Request',
+      'title' => 'Daftar Janji Temu',
       'meeting' => $this->Meeting_requestModel->listMeetingRequest(session('idCustomer')),
       'belum' => $this->Meeting_requestModel->jumlahMeetingRequest(session('idCustomer'), 'Belum diproses'),
       'proses' => $this->Meeting_requestModel->jumlahMeetingRequest(session('idCustomer'), 'Sedang diproses'),
+      'eskalasi' => $this->Meeting_requestModel->jumlahMeetingRequest(session('idCustomer'), 'Eskalasi'),
       'selesai' => $this->Meeting_requestModel->jumlahMeetingRequest(session('idCustomer'), 'Selesai diproses'),
       'kategori' => $this->KategoriModel->getKategori(),
       'tanggapan' => $this->Tanggapan_MRModel->getTanggapan(),
@@ -48,7 +49,7 @@ class Meeting_request extends BaseController
   public function form()
   {
     $data = [
-      'title' => 'Form Meeting Request',
+      'title' => 'Form Janji Temu',
       'meeting' => $this->Meeting_requestModel->getMeetingRequest(),
       'validation' => \Config\Services::validation(),
       'kategori' => $this->KategoriModel->getKategori()
@@ -96,7 +97,7 @@ class Meeting_request extends BaseController
       'notifPetugas' => 0
     ]);
 
-    session()->setFlashdata('pesan', 'Berhasil menambahkan meeting request.');
+    session()->setFlashdata('pesan', 'Berhasil menambahkan Janji Temu.');
 
     return redirect()->to('/Meeting_request');
   }
@@ -106,7 +107,7 @@ class Meeting_request extends BaseController
     // $meeting = $this->Meeting_requestModel->getMeetingRequest($id);
     // if ($meeting['Status'] == 'Belum diproses') {
     //   $data = [
-    //     'title' => 'Detail Meeting Request',
+    //     'title' => 'Detail Janji Temu',
     //     'meeting' => $meeting,
     //     'customer' => $this->CustModel->getCustomer($meeting['idCustomer']),
     //     'kategori' => $this->KategoriModel->getKategori($meeting['idKategori'])
@@ -114,7 +115,7 @@ class Meeting_request extends BaseController
     // } elseif ($meeting['Status'] == 'Selesai diproses') {
     //   $tanggapan = $this->Tanggapan_MRModel->getTanggapanMeeting($id);
     //   $data = [
-    //     'title' => 'Detail Meeting Request',
+    //     'title' => 'Detail Janji Temu',
     //     'meeting' => $meeting,
     //     'customer' => $this->CustModel->getCustomer($meeting['idCustomer']),
     //     'kategori' => $this->KategoriModel->getKategori($meeting['idKategori']),
@@ -124,7 +125,7 @@ class Meeting_request extends BaseController
     //   ];
     // } else {
     //   $data = [
-    //     'title' => 'Detail Meeting Request',
+    //     'title' => 'Detail Janji Temu',
     //     'meeting' => $meeting,
     //     'customer' => $this->CustModel->getCustomer($meeting['idCustomer']),
     //     'kategori' => $this->KategoriModel->getKategori($meeting['idKategori'])
@@ -171,7 +172,7 @@ class Meeting_request extends BaseController
     }
     $this->Meeting_requestModel->delete($id);
 
-    session()->setFlashdata('pesan', 'Berhasil menghapus meeting request.');
+    session()->setFlashdata('pesan', 'Berhasil menghapus Janji Temu.');
 
     return redirect()->to('/Meeting_request');
   }
@@ -179,7 +180,7 @@ class Meeting_request extends BaseController
   public function edit($id)
   {
     $data = [
-      'title' => 'Ubah Meeting Request',
+      'title' => 'Ubah Janji Temu',
       'validation' => \Config\Services::validation(),
       'meeting' => $this->Meeting_requestModel->getMeetingRequest($id),
       'kategori' => $this->KategoriModel->getKategori()
@@ -238,7 +239,7 @@ class Meeting_request extends BaseController
       'notifPetugas' => 0
     ]);
 
-    session()->setFlashdata('pesan', 'Berhasil mengubah meeting request.');
+    session()->setFlashdata('pesan', 'Berhasil mengubah Janji Temu');
 
     return redirect()->to('/Meeting_request');
   }
