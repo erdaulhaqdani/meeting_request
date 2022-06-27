@@ -74,7 +74,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <h6 class="text-info" id="fileWarn">Jenis file pada lampiran pdf max 5MB</h6>
+                                        <h6 class="text-info" id="fileWarn">JJenis file pada lampiran adalah jpg, jpeg, png, atau pdf max 5MB</h6>
                                     </div>
 
                                     <div class="text-end">
@@ -119,10 +119,12 @@
                 // The size of the file.
                 if (file >= 5120) {
                     document.getElementById('fileWarn').innerHTML = "File terlalu besar";
+                    $('#fileWarn').removeClass("text-info");
                     $('#fileWarn').addClass("text-danger");
                     document.getElementById('input').disable = true;
                 } else {
-                    document.getElementById('fileWarn').innerHTML = "Jenis file pada lampiran pdf max 5MB";
+                    document.getElementById('fileWarn').innerHTML = "Jenis file pada lampiran adalah jpg, jpeg, png, atau pdf max 5MB";
+                    $('#fileWarn').removeClass("text-danger");
                     $('#fileWarn').addClass("text-info");
                     document.getElementById('input').disable = false;
                 }

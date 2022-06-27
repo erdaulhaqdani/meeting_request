@@ -272,7 +272,17 @@
 
     var chart_agenda = new Chart(agenda, {
         type: 'doughnut',
-        data: data_group_agenda
+        data: data_group_agenda,
+        options: {
+            plugins: {
+                legend: {
+                    align: 'start',
+                    labels: {
+                        boxWidth: 15
+                    }
+                }
+            }
+        }
     });
 </script>
 
@@ -302,7 +312,17 @@
 
     var chart_informasi = new Chart(informasi, {
         type: 'doughnut',
-        data: data_group_informasi
+        data: data_group_informasi,
+        options: {
+            plugins: {
+                legend: {
+                    align: 'start',
+                    labels: {
+                        boxWidth: 15
+                    }
+                }
+            }
+        }
     });
 </script>
 

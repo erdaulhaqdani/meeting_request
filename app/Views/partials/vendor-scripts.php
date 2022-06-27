@@ -6,12 +6,15 @@
 <script src="<?= base_url('assets/libs/node-waves/waves.min.js'); ?>"></script>
 <?php
 $url = '';
-if (session('idLevel') == 6 || session('idLevel') == 7) {
-    $url = 'Meeting_request/getNotifPetugasMR';
-} elseif (session('Kelompok') == 'APT') {
+if (session('Kelompok') == 'APT') {
     $url = 'Pengaduan_online/getNotifPetugas';
+    if (session('idLevel') == 6 || session('idLevel') == 7) {
+        $url = 'Meeting_request/getNotifPetugasMR';
+    }
 } elseif (session('Kelompok') == 'Customer') {
     $url = 'Pengaduan_online/getNotifCustomer';
+} elseif (session('Kelompok') == 'LP') {
+    $url = 'Pengaduan_online/getNotifLP';
 }
 ?>
 <script type="text/javascript">

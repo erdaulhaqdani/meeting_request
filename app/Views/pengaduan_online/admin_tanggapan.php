@@ -41,7 +41,7 @@
                             <div class="card-body">
 
                                 <h1 class="card-title"><?= $title ?></h1>
-                                <form action="/Admin_pengaduan/input" method="POST" enctype="multipart/form-data">
+                                <form action="/Admin_pengaduan/input" class="custom-validation" method="POST" enctype="multipart/form-data">
 
                                     <div class="mb-3">
                                         <label for="isi">Status Pengaduan</label>
@@ -70,12 +70,16 @@
 
                                     <div class="mb-3" id="isi">
                                         <label for="isi">Uraian Tanggapan</label>
-                                        <textarea name="isi" class="form-control" required minlength="5" rows="3" placeholder="Masukkan Isi"><?= old('isi'); ?></textarea>
+                                        <textarea name="isi" class="form-control" required minlength="20" rows="3" placeholder="Masukkan Isi"><?= old('isi'); ?></textarea>
                                     </div>
 
                                     <div class="mb-3" id="lampiran">
                                         <label for="lampiran">Lampiran</label>
-                                        <input type="file" class="dropify" name="lampiran" />
+                                        <input type="file" id="file" onchange="sizeValidation();" class="dropify" name="lampiran" />
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <h6 class="text-info" id="fileWarn">Jenis file pada lampiran adalah jpg, jpeg, png, atau pdf max 5MB</h6>
                                     </div>
 
                                     <input type="hidden" name="idPengaduan" value="<?= $idPengaduan; ?>">
@@ -134,6 +138,30 @@
             s.style.display = "block";
             petugas.style.display = "none";
             selectPetugas.option.value = <?= session('idPetugas'); ?>;
+        }
+    }
+
+    sizeValidation = () => {
+        const fi = document.getElementById('file');
+        // Check if any file is selected.
+        if (fi.files.length > 0) {
+            for (const i = 0; i <= fi.files.length - 1; i++) {
+
+                const fsize = fi.files.item(i).size;
+                const file = Math.round((fsize / 1024));
+                // The size of the file.
+                if (file >= 5120) {
+                    document.getElementById('fileWarn').innerHTML = "File terlalu besar";
+                    $('#fileWarn').removeClass("text-info");
+                    $('#fileWarn').addClass("text-danger");
+                    document.getElementById('input').disable = true;
+                } else {
+                    document.getElementById('fileWarn').innerHTML = "Jenis file pada lampiran adalah jpg, jpeg, png, atau pdf max 5MB";
+                    $('#fileWarn').removeClass("text-danger");
+                    $('#fileWarn').addClass("text-info");
+                    document.getElementById('input').disable = false;
+                }
+            }
         }
     }
 </script>

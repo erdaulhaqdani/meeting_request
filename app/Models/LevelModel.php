@@ -19,6 +19,11 @@ class LevelModel extends Model
 
         return $this->where(['idLevel' => $id])->first();
     }
+    public function levelPetugas()
+    {
+        return $this->where(['idLevel !=' => 1, 'idLevel !=' => 5])->find();
+    }
+
     public function getKelompok($id = false)
     {
         if ($id == false) {

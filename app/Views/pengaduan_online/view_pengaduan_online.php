@@ -137,13 +137,12 @@
                                                 <td><?= $a->Status; ?></td>
                                                 <td>
                                                     <a href="/Pengaduan_online/detail/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
-                                                    <?php if ($a->Status == 'Belum diproses' ||  $a->Status ==  'Tidak sesuai') : ?>
+                                                    <?php if ($a->Status == 'Belum diproses') : ?>
                                                         <a href="/Pengaduan_online/edit/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                                                         <a href="/Pengaduan_online/delete/<?= $a->idPengaduan; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
                                                     <?php elseif ($a->Status == 'Selesai diproses') : ?>
                                                         <?php if ($a->Rating < 1) : ?>
                                                             <a href="/Pengaduan_online/rating/<?= $a->idPengaduan; ?>" class="btn btn-success btn-sm w-xs">Rating</a>
-                                                            <a href="/Pengaduan_online/tidakSesuai/<?= $a->idPengaduan; ?>" class="btn btn-danger btn-sm w-xs">Tidak sesuai</a>
                                                         <?php endif ?>
                                                     <?php endif ?>
                                                 </td>

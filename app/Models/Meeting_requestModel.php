@@ -39,7 +39,7 @@ class Meeting_requestModel extends Model
                                     UNION ALL 
                                     SELECT `idMeeting`,`Perihal`,`updated_at`,`Tiket`,`Status` FROM meeting_request
                                     WHERE `idPetugas` = ? AND notifCustomer = 0
-                                    ORDER BY updated_at DESC
+                                    ORDER BY updated_at
                                     LIMIT 5", [$idPetugas, $idPetugas]);
     return $query;
   }

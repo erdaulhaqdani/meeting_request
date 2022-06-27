@@ -39,7 +39,7 @@ class Landing_page extends BaseController
     $data = [
       'title' => 'Tambah Petugas',
       'level' => $this->LevelModel->findAll(),
-      'level_petugas' => $this->LevelModel->findAll(),
+      'level_petugas' => $this->LevelModel->levelPetugas(),
       'kategori' => $this->KategoriModel->findAll(),
       'validation' => \Config\Services::validation()
     ];

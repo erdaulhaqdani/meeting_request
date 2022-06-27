@@ -58,7 +58,7 @@ class Pengaduan_onlineModel extends Model
                                     UNION ALL 
                                     SELECT `idMeeting`,`Perihal`,`updated_at`,`Tiket`,`Status` FROM meeting_request
                                     WHERE `idPetugas` = ? AND notifPetugas = 0 OR `idPetugas` = 1 AND `notifPetugas` = 0 AND `idKategori` = ?
-                                    ORDER BY updated_at DESCs
+                                    ORDER BY updated_at DESC
                                     LIMIT 5", [$idPetugas, $kategori, $idPetugas, $kategori]);
         return $query;
     }

@@ -190,11 +190,22 @@
             ],
         }],
         labels: label_pengaduan,
+
     }
 
     var chart_pengaduan = new Chart(pengaduan, {
         type: 'doughnut',
-        data: data_group_pengaduan
+        data: data_group_pengaduan,
+        options: {
+            plugins: {
+                legend: {
+                    align: 'start',
+                    labels: {
+                        boxWidth: 15
+                    }
+                }
+            }
+        }
     });
 </script>
 
@@ -224,7 +235,17 @@
 
     var chart_meeting = new Chart(meeting, {
         type: 'doughnut',
-        data: data_group_meeting
+        data: data_group_meeting,
+        options: {
+            plugins: {
+                legend: {
+                    align: 'start',
+                    labels: {
+                        boxWidth: 15
+                    }
+                }
+            }
+        }
     });
 </script>
 

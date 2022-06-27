@@ -128,7 +128,7 @@
                                                     <a href="/admin/detail/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
                                                     <?php if ($a->Status == 'Sedang diproses') : ?>
                                                         <a href="/admin/tanggapan/<?= $a->idPengaduan; ?>" class="btn btn-info btn-sm w-xs">Tanggapan</a>
-                                                    <?php elseif ($a->Status == 'Belum diproses' || 'Eskalasi') : ?>
+                                                    <?php elseif ($a->Status == 'Belum diproses' || $a->Status == 'Eskalasi') : ?>
                                                         <a href="/admin/proses/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Proses</a>
                                                     <?php endif ?>
                                                 </td>
