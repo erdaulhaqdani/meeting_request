@@ -49,7 +49,7 @@
 
                                     <div class="my-3">
                                         <label for="kategori">Kategori</label>
-                                        <select name="kategori" id="kategori" onchange="hideLampiran()" class="form-select" aria-label="Default select example">
+                                        <select name="kategori" id="kategori" class="form-select" aria-label="Default select example">
                                             <?php foreach ($kategori as $a) : ?>
                                                 <option value="<?= $a['idKategori'] ?>"><?= $a['namaKategori']; ?></option>
                                             <?php endforeach ?>
@@ -58,7 +58,7 @@
 
                                     <div class="mb-3">
                                         <label for="judul" class="col-md-2 col-form-label">Judul</label>
-                                        <input class="form-control" type="text" name="judul" required minlength="5" placeholder="Masukkan judul" value="<?= old('judul'); ?>">
+                                        <input class="form-control" type="text" name="judul" required minlength="5" maxlength="30" placeholder="Masukkan judul" value="<?= old('judul'); ?>">
                                     </div>
 
                                     <div class="mb-3">
@@ -69,13 +69,17 @@
 
                                     <label for="lampiran">Lampiran</label>
                                     <div class="mb-3" id="lampiran">
-                                        <input type="file" class="dropify" name="lampiran">
+                                        <input type="file" id="file" class="dropify" onchange="sizeValidation();extValidation();" name="lampiran">
                                         <!-- <button type="button" class="dropify-clear">Remove</button> -->
                                     </div>
 
-                                    <div class="mb-1 text-end">
+                                    <div class="mb-3">
+                                        <h6 class="text-info" id="fileWarn">Jenis file pada lampiran pdf max 5MB</h6>
+                                    </div>
+
+                                    <div class="text-end">
                                         <button type="reset" class="btn btn-danger me-3">Reset</button>
-                                        <button type="submit" class="btn btn-primary" name="input_PO">Submit</button>
+                                        <button type="submit" class="btn btn-primary" id="input">Submit</button>
                                     </div>
                                 </form>
 
@@ -102,6 +106,51 @@
 
 <!-- JAVASCRIPT -->
 <?= $this->include("partials/vendor-scripts") ?>
+
+<script>
+    sizeValidation = () => {
+        const fi = document.getElementById('file');
+        // Check if any file is selected.
+        if (fi.files.length > 0) {
+            for (const i = 0; i <= fi.files.length - 1; i++) {
+
+                const fsize = fi.files.item(i).size;
+                const file = Math.round((fsize / 1024));
+                // The size of the file.
+                if (file >= 5120) {
+                    document.getElementById('fileWarn').innerHTML = "File terlalu besar";
+                    $('#fileWarn').addClass("text-danger");
+                    document.getElementById('input').disable = true;
+                } else {
+                    document.getElementById('fileWarn').innerHTML = "Jenis file pada lampiran pdf max 5MB";
+                    $('#fileWarn').addClass("text-info");
+                    document.getElementById('input').disable = false;
+                }
+            }
+        }
+    }
+</script>
+
+<script>
+    function extValidation() {
+        var fileInput =
+            document.getElementById('file');
+
+        var filePath = fileInput.value;
+
+        // Allowing file type
+        var allowedExtensions =
+            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
+
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Invalid file type');
+            fileInput.value = '';
+            return false;
+        } else {
+            alert('Valid file type');
+        }
+    }
+</script>
 
 <!-- Plugins js -->
 <!-- validation -->

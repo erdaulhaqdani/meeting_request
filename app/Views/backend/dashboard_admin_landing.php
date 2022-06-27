@@ -38,6 +38,11 @@
         <div class="main-content">
             <div class="swal" data-swal="<?= session()->get('pesan'); ?>"></div>
             <div class="page-content">
+                <?php if (session()->getFlashdata('pesan_pass')) : ?>
+                    <div class="alert alert-success" role="alert"><?= session()->getFlashdata('pesan_pass'); ?></div>
+                <?php elseif (session()->getFlashdata('pesan_error')) : ?>
+                    <div class="alert alert-danger" role="alert"><?= session()->getFlashdata('pesan_error'); ?></div>
+                <?php endif; ?>
 
                 <div class="row">
                     <div class="col-xl-3 col-md-6">

@@ -76,7 +76,7 @@
                                         <div class="row my-2">
                                             <label class="col-sm-2 mt-2" for="email">Email</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="email" name="email" required minlength="4" value="<?= $customer['Email']; ?>">
+                                                <input class="form-control" type="email" name="email" disabled required minlength="4" value="<?= $customer['Email']; ?>">
                                             </div>
                                         </div>
                                         <div class="row my-2">
