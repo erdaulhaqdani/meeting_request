@@ -346,8 +346,12 @@ class Pengaduan_online extends BaseController
             'validation' => \Config\Services::validation(),
             'kategori' => $this->KategoriModel->getKategori()
         ];
-
-        return view('pengaduan_online/form_pengaduan_online', $data);
+        if (session('StatusAkun') == 'Aktif') {
+            session()->setFlashdata('pesan_error', 'Untuk melakukan pengaduan, Akun anda harus terverifikasi terlebih dahulu.');
+            return redirect()->to('/dashboard_cust');
+        } elseif (session('StatusAkun') == 'Terverifikasi') {
+            return view('pengaduan_online/form_pengaduan_online', $data);
+        }
     }
 
     public function edit($id)
