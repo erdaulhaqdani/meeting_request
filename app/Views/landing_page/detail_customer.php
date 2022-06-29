@@ -120,6 +120,7 @@
                                     <div class="row">
                                         <div class="col-sm-5">
                                             <input type="button" value="Kembali" class="btn btn-warning waves-effect mt-2" onclick="history.back(-1)" />
+                                            <a href="/detail_customer/verifikasi<?= $customer['idCustomer']; ?>" class="btn btn-info btn-sm w-xs">Verifikasi</a>
                                         </div>
                                     </div>
 
