@@ -45,12 +45,30 @@
 
             <div class="page-content">
 
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Rating Janji Temu</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Janji Temu</a></li>
+                                    <li class="breadcrumb-item active">Rating Janji Temu</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title"> <?= $title ?> Meeting Request</h4>
+                                <h4 class="card-title">Rating Pelayanan Janji Temu</h4>
 
                                 <form action="/Meeting_request/input_rating" class="custom-validation" method="POST" enctype="multipart/form-data">
                                     <!-- beri penjelasan tiap input/desc -->
@@ -70,8 +88,9 @@
                                     <input type="hidden" name="idMeeting" value="<?= $meeting['idMeeting'] ?>">
 
                                     <div class="mb-3 text-end">
-                                        <button type="reset" class="btn btn-danger me-3">Reset</button>
-                                        <button type="submit" class="btn btn-primary" name="rate">Submit</button>
+                                        <input type="button" value="Kembali" class="btn btn-warning waves-effect me-2 mt-2" onclick="history.back(-1)" />
+                                        <button type="reset" class="btn btn-secondary me-2 mt-2">Reset</button>
+                                        <button type="submit" class="btn btn-primary me-2 mt-2" name="rate">Submit</button>
                                     </div>
                                 </form>
 

@@ -37,12 +37,30 @@
     <div class="page-content">
       <div class="container-fluid">
 
+        <!-- start page title -->
+        <div class="row">
+          <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+              <h4 class="mb-sm-0">Daftar Tanda Terima</h4>
+
+              <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Tanda Terima</a></li>
+                  <li class="breadcrumb-item active">Daftar Tanda Terima</li>
+                </ol>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- end page title -->
+
         <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-body">
 
-                <h4 class="card-title"><?= $title; ?></h4>
+                <h4 class="card-title">Tabel <?= $title; ?></h4>
                 <div class="row">
                   <div class="col-md-6">
                     <p class="card-title-desc">Berikut adalah tabel Daftar Tanda Terima Surat.</p>
@@ -74,13 +92,15 @@
                   <tbody>
                     <?php $no = 1; ?>
                     <?php foreach ($tanda_terima->getResult() as $a) :
+                      $tanggal_surat = date('Y-m-d', strtotime($a->Tanggal));
+                      $tanggal_masuk = date('Y-m-d', strtotime($a->created_at));
                     ?>
                       <tr>
                         <td><?= $no++; ?></td>
                         <td><?= $a->Pengirim ?></td>
                         <td><?= $a->No_surat ?></td>
-                        <td><?= formatTanggal($a->Tanggal) ?></td>
-                        <td><?= formatTanggal($a->created_at) ?></td>
+                        <td><?= tanggal_indo($tanggal_surat) ?></td>
+                        <td><?= tanggal_indo($tanggal_masuk) ?></td>
                         <td><?= $a->Perihal ?></td>
                         <td>
                           <a href="/petugasMR/edit_tandaTerima/<?= $a->id_tt ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>

@@ -33,14 +33,32 @@
     <div class="page-content">
       <div class="container-fluid">
 
+        <!-- start page title -->
+        <div class="row">
+          <div class="col-12">
+            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+              <h4 class="mb-sm-0">Detail Janji Temu</h4>
+
+              <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Janji Temu</a></li>
+                  <li class="breadcrumb-item active">Detail Janji Temu</li>
+                </ol>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- end page title -->
+
         <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-body">
 
                 <div class="row">
-                  <h3 class="card-title">Detail Pengajuan Meeting Request</h3>
-                  <p class="card-title-desc">Berikut adalah identitas dan detail pengajuan Meeting Request dengan id <?= $meeting['idMeeting']; ?> </p>
+                  <h3 class="card-title">Detail Pengajuan Janji Temu</h3>
+                  <p class="card-title-desc">Berikut adalah identitas dan detail pengajuan Janji Temu dengan id <?= $meeting['idMeeting']; ?> </p>
 
                   <div class="col-md-6">
                     <div class="row mb-1">
@@ -72,12 +90,16 @@
                   </div>
                   <div class="col-md-6">
                     <div class="row mb-1">
-                      <label class="col-sm-6">DETAIL MEETING REQUEST</label>
+                      <label class="col-sm-6">DETAIL JANJI TEMU</label>
                       <hr>
                     </div>
+                    <?php
+                    $tanggal_input = date('Y-m-d', strtotime($meeting['created_at']));
+                    $tanggal_kunjungan = date('Y-m-d', strtotime($meeting['Tanggal_kunjungan']));
+                    ?>
                     <div class="row">
                       <label class="col-sm-4">Tanggal Pengajuan</label>
-                      <label class="col-sm-8">: <?= formatTanggal($meeting['created_at']); ?></label>
+                      <label class="col-sm-8">: <?= tanggal_indo($tanggal_input) ?></label>
                     </div>
                     <div class="row">
                       <?php //getNamaKategori
@@ -105,11 +127,19 @@
                     </div>
                     <div class="row">
                       <label class="col-sm-4">Tanggal Kunjungan</label>
-                      <label class="col-sm-8">: <?= formatTanggal($meeting['Tanggal_kunjungan']); ?></label>
+                      <label class="col-sm-8">: <?= tanggal_indo($tanggal_kunjungan) ?></label>
                     </div>
                     <div class="row">
                       <label class="col-sm-4">Waktu Kunjungan</label>
-                      <label class="col-sm-8">: <?= $meeting['Waktu_kunjungan']; ?></label>
+                      <label class="col-sm-8">: <?= $meeting['Waktu_kunjungan']; ?> WIB</label>
+                    </div>
+                    <div class="row">
+                      <label class="col-sm-4">Lampiran</label>
+                      <?php if ($meeting['File_lampiran'] != 'default.png') : ?>
+                        <a class="col-sm-8" href="/lampiran_customerMR/<?= $meeting['File_lampiran']; ?>" target="_blank">: Lihat Lampiran</a>
+                      <?php else : ?>
+                        <label class="col-sm-8">: Tidak ada lampiran</label>
+                      <?php endif; ?>
                     </div>
                     <div class="row">
                       <label class="col-sm-4">Status</label>

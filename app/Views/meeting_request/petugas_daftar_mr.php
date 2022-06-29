@@ -36,11 +36,30 @@
 
         <div class="page-content">
             <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Daftar Janji Temu</h4>
+
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">APTB</a></li>
+                                    <li class="breadcrumb-item active">Daftar Janji Temu</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Statistik Proses Meeting Request</h4>
+                                <h4 class="card-title">Statistik Proses Janji Temu</h4>
                                 <div class="row">
 
                                     <div class="col-md-3">
@@ -105,7 +124,7 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title"><?= $title; ?></h4>
+                                <h4 class="card-title">Tabel Daftar Janji Temu</h4>
                                 <?php if (session()->getFlashdata('pesan')) : ?>
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                                         <?= session()->get('pesan'); ?>
@@ -148,7 +167,7 @@
                                                     $username = $c['Username'];
                                                 }
                                             }
-                                            $date = $a->updated_at;
+                                            $tanggal =  date('Y-m-d', strtotime($a->created_at));
 
                                             ?>
                                             <tr>
@@ -157,10 +176,10 @@
                                                 <td><?= $k; ?></td>
                                                 <td><?= $a->Bentuk_layanan; ?></td>
                                                 <td><?= $a->Kantor; ?></td>
-                                                <td><?= formatTanggal($a->created_at); ?></td>
+                                                <td><?= tanggal_indo($tanggal) ?></td>
                                                 <td><?= $a->Status; ?></td>
                                                 <td>
-                                                    <a href="/petugasMR/detail/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
+                                                    <a href="/petugasMR/detail/<?= $a->idMeeting; ?>" class="btn btn-info btn-sm w-xs">Detail</a>
                                                     <?php if ($a->Status == 'Sedang diproses') : ?>
                                                         <a href="/petugasMR/tanggapan/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Tanggapan</a>
                                                     <?php elseif ($a->Status == 'Belum diproses') : ?>
