@@ -104,6 +104,7 @@ $routes->get('/KelolaPegawai/update_pegawai/(:num)', 'KelolaPegawai::update_pega
 //Admin Landing Page Kelola Customer
 $routes->get('/daftar_customer', 'Landing_page::daftar_customer');
 $routes->get('/detail_customer/(:num)', 'Landing_page::detail_customer/$1');
+$routes->get('/detail_customer/(:num)', 'Landing_page::detail_customer/$1');
 
 //Admin Landing Page Kelola Pegawai
 $routes->get('/Landing_page/form_petugas', 'Landing_page::form_petugas');

@@ -215,7 +215,8 @@ class AuthCust extends BaseController
             'noHP' => $row_cust->noHP,
             'Pekerjaan' => $row_cust->Pekerjaan,
             'idLevel' => $row_cust->idLevel,
-            'Kelompok' => $kelompok[0]
+            'Kelompok' => $kelompok[0],
+            'StatusAkun' => $row_cust->StatusAkun,
           ];
 
           session()->set($data);

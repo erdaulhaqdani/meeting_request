@@ -179,6 +179,19 @@ class Landing_page extends BaseController
     return redirect()->to('/Landing_page/permohonanInfo/1');
   }
 
+  public function verifikasiAkun($id)
+  {
+
+    $this->CustModel->save([
+      'idCustomer' => $id,
+      'StatusAkun' => 'Terverifikasi',
+    ]);
+
+    session()->setFlashdata('pesan', 'Berhasil memverifikasi akun.');
+
+    return redirect()->to('/daftar_customer');
+  }
+
   public function viewPermohonan()
   {
     $data = [
