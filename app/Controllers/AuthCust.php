@@ -112,6 +112,7 @@ class AuthCust extends BaseController
       'Nama' => $this->request->getVar('nama'),
       'Username' => $this->request->getVar('username'),
       'NIK' => $this->request->getVar('nik'),
+      'tglLahir' => $this->request->getVar('tanggal'),
       'Email' => $this->request->getVar('email'),
       'noHP' => $this->request->getVar('noHP'),
       'Pekerjaan' => $this->request->getVar('pekerjaan'),
