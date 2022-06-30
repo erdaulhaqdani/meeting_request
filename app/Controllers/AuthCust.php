@@ -202,7 +202,7 @@ class AuthCust extends BaseController
       $kelompok = $data['Kelompok'];
 
       if ($kelompok[0] == 'Customer') {
-        if ($row_customer->StatusAkun == 'Aktif') {
+        if ($row_customer->StatusAkun == 'Aktif' || $row_customer->StatusAkun == 'Terverifikasi') {
           $row_cust = $model->get_data_login($data['email'], 'customer');
 
           $data = [

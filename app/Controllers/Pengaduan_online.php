@@ -374,15 +374,14 @@ class Pengaduan_online extends BaseController
             'Username' => $this->request->getVar('username'),
             'NIK' => $this->request->getVar('nik'),
             'tglLahir' => $this->request->getVar('tanggal'),
-            'Email' => $this->request->getVar('email'),
+            // 'Email' => $this->request->getVar('email'),
             'noHP' => $this->request->getVar('noHP'),
             'Pekerjaan' => $this->request->getVar('pekerjaan')
         ];
-        // dd($data);
+
         $this->CustModel->save($data);
 
         session()->setFlashdata('pesan', 'Berhasil menyunting profil.');
-
         return redirect()->to('/Pengaduan_online/profile');
     }
 
@@ -419,15 +418,21 @@ class Pengaduan_online extends BaseController
 
     public function in_rate()
     {
-        $this->Pengaduan_onlineModel->save([
-            'idPengaduan' => $this->request->getVar('idPengaduan'),
-            'Rating' => $this->request->getVar('rating'),
-            'Ulasan' => $this->request->getVar('ulasan')
-        ]);
+        $idPengaduan = $this->request->getVar('idPengaduan');
+        $rating = $this->request->getVar('rating');
+        if ($rating < 1) {
+            session()->setFlashdata('pesan_error', 'Mohon masukkan rating.');
+            return redirect()->to("/Pengaduan_online/rating/" . $idPengaduan);
+        } else {
+            $this->Pengaduan_onlineModel->save([
+                'idPengaduan' => $idPengaduan,
+                'Rating' => $rating,
+                'Ulasan' => $this->request->getVar('ulasan')
+            ]);
 
-        session()->setFlashdata('pesan', 'Berhasil memberikan ulasan.');
-
-        return redirect()->to('/Pengaduan_online');
+            session()->setFlashdata('pesan', 'Berhasil memberikan ulasan.');
+            return redirect()->to('/Pengaduan_online');
+        }
     }
 
     public function input()
