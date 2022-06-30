@@ -163,7 +163,7 @@ class Landing_page extends BaseController
       'validation' => \Config\Services::validation()
     ];
 
-    return view('landing_page/edit_permohonan_info', $data);
+    return view('/landing_page/edit_permohonan_info', $data);
   }
 
   public function updatePermohonan($id)
@@ -176,7 +176,7 @@ class Landing_page extends BaseController
 
     session()->setFlashdata('pesan', 'Berhasil mengubah prosedur permohonan informasi.');
 
-    return redirect()->to('/Landing_page/permohonanInfo/1');
+    return redirect()->to('/Landing_page/permohonanInfo/' . session('idPetugas'));
   }
 
   public function verifikasiAkun($id)

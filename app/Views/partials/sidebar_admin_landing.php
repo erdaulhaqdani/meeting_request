@@ -51,6 +51,7 @@
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="/Landing_page/form">Tambah Informasi</a></li>
                         <li><a href="/Landing_page">Daftar Informasi</a></li>
+                        <li><a href="/Landing_page/permohonanInfo/<?= session('idPetugas'); ?>">Permohonan Informasi</a></li>
                     </ul>
                 </li>
                 <li>
