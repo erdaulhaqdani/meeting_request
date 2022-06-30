@@ -99,14 +99,13 @@
                   </div>
                   <!-- end row -->
 
-                  <div class="mb-0">
-                    <div>
-                      <button type="submit" class="btn btn-primary waves-effect waves-light me-1">
-                        Submit
-                      </button>
-                      <button type="reset" class="btn btn-secondary waves-effect">
-                        Cancel
-                      </button>
+                  <div class="row mt-2">
+                    <div class="col-sm-10">
+                      <input type="button" value="Kembali" class="btn btn-warning waves-effect" onclick="history.back(-1)" />
+                    </div>
+                    <div class="col-sm-2 text-end">
+                      <button type="reset" class="btn btn-danger waves-effect me-1">Reset </button>
+                      <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
                     </div>
                   </div>
                 </form>

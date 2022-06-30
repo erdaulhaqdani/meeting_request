@@ -100,7 +100,7 @@ class Landing_page extends BaseController
     $data = [
       'title' => 'Daftar Petugas',
       'level' => $this->LevelModel->findAll(),
-      'petugas' => $this->PetugasModel->findAll(),
+      'petugas' => $this->PetugasModel->where(['idLevel !=' => 1])->find(),
       'level_petugas' => $this->LevelModel->findAll(),
       'validation' => \Config\Services::validation()
     ];
@@ -111,7 +111,7 @@ class Landing_page extends BaseController
   {
     $data = [
       'title' => 'Ubah Data Petugas',
-      'level' => $this->LevelModel->findAll(),
+      'level' => $this->LevelModel->levelPetugas(),
       'petugas' => $this->PetugasModel->getPetugas($email),
       'validation' => \Config\Services::validation()
     ];
@@ -132,22 +132,19 @@ class Landing_page extends BaseController
   public function update_petugas($email)
   // tambah label tiap rules
   {
-    $hashedPassword = password_hash($this->request->getVar('password'), PASSWORD_DEFAULT);
+    $email = $this->request->getVar('email');
+    $level = $this->request->getVar('level');
+    $petugas = $this->UserModel->getUser($email);
+
+    $this->UserModel->update(['idUser' => $petugas[0]['idUser']], ['idLevel' => $level]);
 
     $this->PetugasModel->save([
-
       'idPetugas' => $this->request->getVar('idPetugas'),
       'idLevel' => $this->request->getVar('level'),
       'Kantor' => $this->request->getVar('kantor'),
       'Nama' => $this->request->getVar('nama'),
       'NIP' => $this->request->getVar('nip'),
       'Unit' => $this->request->getVar('unit'),
-
-    ]);
-
-    $this->UserModel->save([
-      'Email' => $this->request->getVar('email'),
-      'idLevel' => $this->request->getVar('level')
     ]);
 
     session()->setFlashdata('pesan', 'Berhasil mengubah data petugas.');
