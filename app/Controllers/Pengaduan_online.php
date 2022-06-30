@@ -381,6 +381,13 @@ class Pengaduan_online extends BaseController
         // dd($data);
         $this->CustModel->save($data);
 
+        $data = [
+            'idUser' => session('idUser'),
+            'Email' => $this->request->getVar('email'),
+        ];
+        $this->UserModel->update([]);
+
+
         session()->setFlashdata('pesan', 'Berhasil menyunting profil.');
 
         return redirect()->to('/Pengaduan_online/profile');

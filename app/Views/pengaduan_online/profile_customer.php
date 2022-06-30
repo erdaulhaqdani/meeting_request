@@ -76,11 +76,11 @@
                                         <div class="row my-2">
                                             <label class="col-sm-2 mt-2" for="email">Email</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="email" name="email" disabled required minlength="4" value="<?= $customer['Email']; ?>">
+                                                <input class="form-control" type="email" name="email" required minlength="5" value="<?= $customer['Email']; ?>">
                                             </div>
                                         </div>
                                         <div class="row my-2">
-                                            <label class="col-sm-2 mt-2" for="noHP">No HP</label>
+                                            <label class="col-sm-2 mt-2" for="noHP">Nomor HP</label>
                                             <div class="col-sm-10">
                                                 <input class="form-control" type="text" name="noHP" required minlength="9" maxlength="13" data-parsley-type="digits" value="<?= $customer['noHP']; ?>" placeholder="contoh: 085794214986">
                                             </div>

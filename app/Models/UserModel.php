@@ -11,6 +11,8 @@ class UserModel extends Model
 
     protected $allowedFields = ['Email', 'Password', 'idLevel'];
 
+    protected $useAutoIncrement = true;
+
     public function getUser($email = false)
     {
         if ($email == false) {

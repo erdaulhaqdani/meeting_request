@@ -50,7 +50,7 @@
 							</div>
 							<div class="form-group">
 								<label for="noHP">Nomor HP</label>
-								<input type="number" name="noHP" id="noHP" class="form-control <?= ($validation->hasError('noHP')) ?>" required minlength="10">
+								<input type="number" name="noHP" id="noHP" class="form-control" required minlength="10">
 							</div>
 							<div class="form-group">
 								<label for="jk">Jenis Kelamin</label>

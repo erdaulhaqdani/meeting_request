@@ -76,7 +76,7 @@ class AuthCust extends BaseController
     ]);
 
     session()->setFlashdata('pesan_regis', 'Selamat Anda Berhasil Registrasi Petugas');
-    return redirect()->to('/login_cust');
+    return redirect()->to(base_url('login_cust'));
   }
 
 
@@ -204,6 +204,7 @@ class AuthCust extends BaseController
       if ($kelompok[0] == 'Customer') {
         if ($row_customer->StatusAkun == 'Aktif') {
           $row_cust = $model->get_data_login($data['email'], 'customer');
+          $row_user = $model->get_data_login($data['email'], 'user');
 
           $data = [
             'log' => TRUE,
@@ -217,6 +218,7 @@ class AuthCust extends BaseController
             'idLevel' => $row_cust->idLevel,
             'Kelompok' => $kelompok[0],
             'StatusAkun' => $row_cust->StatusAkun,
+            'idUser' => $row_user->idUser
           ];
 
           session()->set($data);

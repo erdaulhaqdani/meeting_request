@@ -26,7 +26,7 @@ class Pages extends BaseController
   public function index()
   {
     $data = [
-      'title' => 'Landing Page DJKN Bandung',
+      'title' => 'Landing Page KPKNL Bandung',
       'berita_terbaru' => $this->Landing_pageModel->listBeritaTerbaru(),
       'jumbotron' => $this->Landing_pageModel->jumbotron(),
       'peristiwa_terbaru' => $this->Landing_pageModel->listPeristiwaTerbaru(),
