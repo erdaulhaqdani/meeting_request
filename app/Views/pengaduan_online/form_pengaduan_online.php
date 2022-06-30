@@ -74,7 +74,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <h6 class="text-info" id="fileWarn">JJenis file pada lampiran adalah jpg, jpeg, png, atau pdf max 5MB</h6>
+                                        <h6 class="text-info" id="fileWarn">Jenis file pada lampiran adalah jpg, jpeg, png, atau pdf max 5MB</h6>
                                     </div>
 
                                     <div class="text-end">

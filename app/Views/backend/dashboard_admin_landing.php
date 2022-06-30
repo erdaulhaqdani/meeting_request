@@ -248,10 +248,6 @@
 <!-- JAVASCRIPT -->
 <?= $this->include("partials/vendor-scripts") ?>
 
-<!-- Plugins js -->
-<!-- <script src="/assets/libs/apexcharts/apexcharts.min.js"></script>
-<script src="assets/js/pages/dashboard.init.js"></script> -->
-
 <!-- Responsive Table js -->
 <script src="assets/libs/admin-resources/rwd-table/rwd-table.min.js"></script>
 

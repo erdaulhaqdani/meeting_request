@@ -53,14 +53,18 @@
                             <div class="card-body">
 
                                 <h4 class="card-title"> <?= $title ?></h4>
-
+                                <?php if (session()->getFlashdata('pesan_pass')) : ?>
+                                    <div class="alert alert-success" role="alert"><?= session()->getFlashdata('pesan_pass'); ?></div>
+                                <?php elseif (session()->getFlashdata('pesan_error')) : ?>
+                                    <div class="alert alert-danger" role="alert"><?= session()->getFlashdata('pesan_error'); ?></div>
+                                <?php endif; ?>
                                 <form action="/Pengaduan_online/in_rate" class="custom-validation" method="POST" enctype="multipart/form-data">
                                     <!-- beri penjelasan tiap input/desc -->
 
                                     <div class="my-3">
                                         <label for="rating">Rating</label>
                                         <div class="rating-star text-center">
-                                            <input type="text" id="rating" name="rating" oninput="hideUlasan()" class="rating" data-filled="mdi mdi-star custom-star2 text-primary" data-empty="mdi mdi-star-outline custom-star text-muted" />
+                                            <input type="hidden" id="rating" name="rating" oninput="hideUlasan()" required class="rating" data-filled="mdi mdi-star custom-star2 text-primary" data-empty="mdi mdi-star-outline custom-star text-muted" />
                                         </div>
                                     </div>
 
@@ -70,6 +74,10 @@
                                     </div>
 
                                     <input type="hidden" name="idPengaduan" value="<?= $pengaduan['idPengaduan'] ?>">
+
+                                    <div class="mb-3">
+                                        <h6 class="text-info" id="fileWarn">JJenis file pada lampiran adalah jpg, jpeg, png, atau pdf max 5MB</h6>
+                                    </div>
 
                                     <div class="mb-3 text-end">
                                         <button type="reset" class="btn btn-danger me-3">Reset</button>
@@ -101,6 +109,10 @@
 <!-- JAVASCRIPT -->
 <?= $this->include('partials/vendor-scripts') ?>
 
+<!-- Plugins js -->
+<!-- validation -->
+<script src="<?= base_url('assets/libs/parsleyjs/parsley.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/pages/form-validation.init.js') ?>"></script>
 <!-- Bootstrap rating js -->
 <script type="text/javascript" src="<?= base_url('assets/libs/bootstrap-rating/bootstrap-rating.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/pages/rating-init.js') ?>"></script>

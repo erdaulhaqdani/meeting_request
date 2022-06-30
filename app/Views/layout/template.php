@@ -216,37 +216,37 @@
 
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 		<!-- jQuery -->
-		<script src="/vendor/jquery.2.2.3.min.js"></script>
+		<script src="<?= base_url("/vendor/jquery.2.2.3.min.js"); ?>"></script>
 		<!-- Popper js -->
-		<script src="/vendor/popper.js/popper.min.js"></script>
+		<script src="<?= base_url('/vendor/popper.js/popper.min.js'); ?>"></script>
 		<!-- Bootstrap JS -->
-		<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="<?= base_url('/vendor/bootstrap/js/bootstrap.min.js'); ?>"></script>
 		<!-- Camera Slider -->
-		<script src="/vendor/Camera-master/scripts/jquery.mobile.customized.min.js"></script>
-		<script src="/vendor/Camera-master/scripts/jquery.easing.1.3.js"></script>
-		<script src="/vendor/Camera-master/scripts/camera.min.js "></script>
+		<script src="<?= base_url('/vendor/Camera-master/scripts/jquery.mobile.customized.min.js'); ?>"></script>
+		<script src="<?= base_url('/vendor/Camera-master/scripts/jquery.easing.1.3.js'); ?>"></script>
+		<script src="<?= base_url('/vendor/Camera-master/scripts/camera.min.js'); ?>"></script>
 		<!-- menu  -->
-		<script src="/vendor/menu/src/js/jquery.slimmenu.js"></script>
+		<script src="<?= base_url('/vendor/menu/src/js/jquery.slimmenu.js'); ?>"></script>
 		<!-- WOW js -->
-		<script src="/vendor/WOW-master/dist/wow.min.js "></script>
+		<script src="<?= base_url('/vendor/WOW-master/dist/wow.min.js'); ?> "></script>
 		<!-- owl.carousel -->
-		<script src="/vendor/owl-carousel/owl.carousel.min.js"></script>
+		<script src="<?= base_url('/vendor/owl-carousel/owl.carousel.min.js'); ?>"></script>
 		<!-- js count to -->
-		<script src="/vendor/jquery.appear.js"></script>
-		<script src="/vendor/jquery.countTo.js"></script>
+		<script src="<?= base_url('/vendor/jquery.appear.js'); ?>"></script>
+		<script src="<?= base_url('/vendor/jquery.countTo.js'); ?>"></script>
 		<!-- Fancybox -->
-		<script src="/vendor/fancybox/dist/jquery.fancybox.min.js"></script>
+		<script src="<?= base_url('/vendor/fancybox/dist/jquery.fancybox.min.js'); ?>"></script>
 
 		<!-- Magnific Popup-->
-		<script src="/assets/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+		<script src="<?= base_url('/assets/libs/magnific-popup/jquery.magnific-popup.min.js'); ?>"></script>
 
 		<!-- lightbox init js-->
-		<script src="/assets/js/pages/lightbox.init.js"></script>
+		<script src="<?= base_url('/assets/js/pages/lightbox.init.js'); ?>"></script>
 
-		<script src="/assets/js/app.js"></script>
+		<script src="<?= base_url('/assets/js/app.js'); ?>"></script>
 
 		<!-- Theme js -->
-		<script src="/js/theme.js"></script>
+		<script src="<?= base_url('/js/theme.js'); ?>"></script>
 	</div>
 	<!-- /.main-page-wrapper -->
 </body>
