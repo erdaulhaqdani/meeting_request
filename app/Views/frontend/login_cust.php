@@ -112,12 +112,12 @@
 <!-- /container -->
 
 <!-- COMMON SCRIPTS -->
-<script src="/login_regis/js/common_scripts.js" type="text/javascript"></script>
-<script src="/login_regis/js/common_func.js" type="text/javascript"></script>
+<script src="<?= base_url('/login_regis/js/common_scripts.js'); ?>" type="text/javascript"></script>
+<script src="<?= base_url('/login_regis/js/common_func.js'); ?>" type="text/javascript"></script>
 
 <!-- SPECIFIC SCRIPTS -->
-<script src="/login_regis/js/jquery.validate.js" type="text/javascript"></script>
-<script src="/login_regis/js/login_cust.js" type="text/javascript"></script>
+<script src="<?= base_url('/login_regis/js/jquery.validate.js'); ?>" type="text/javascript"></script>
+<script src="<?= base_url('/login_regis/js/login_cust.js'); ?>" type="text/javascript"></script>
 
 <script>
 	$('#login_cust').validate();
