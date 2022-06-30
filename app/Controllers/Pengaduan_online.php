@@ -370,8 +370,6 @@ class Pengaduan_online extends BaseController
     public function in_profile()
     {
         $email = $this->request->getVar('email');
-        $customer = $this->CustModel->get_data(session('Email'), 'customer');
-
         $this->UserModel->update(['idUser' => session('idUser')], ['Email' => $email]);
 
         $data = [

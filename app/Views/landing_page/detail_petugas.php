@@ -104,6 +104,7 @@
                                     <div class="row">
                                         <div class="col-sm-5">
                                             <input type="button" value="Kembali" class="btn btn-warning waves-effect mt-2" onclick="history.back(-1)" />
+                                            <a href="/Landing_page/edit_petugas/<?= $petugas['Email']; ?>" class="btn btn-info waves-effect ms-2 mt-2">Edit Petugas</a>
                                         </div>
                                     </div>
 
