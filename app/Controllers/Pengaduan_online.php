@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Database\Migrations\Customer;
 use App\Models\Pengaduan_onlineModel;
 use App\Models\KategoriModel;
 use App\Models\CustModel;
@@ -368,25 +369,23 @@ class Pengaduan_online extends BaseController
 
     public function in_profile()
     {
+        $email = $this->request->getVar('email');
+        $customer = $this->CustModel->get_data(session('Email'), 'customer');
+
+        $this->UserModel->update(['idUser' => session('idUser')], ['Email' => $email]);
+
         $data = [
             'idCustomer' => $this->request->getVar('idCustomer'),
             'Nama' => $this->request->getVar('nama'),
             'Username' => $this->request->getVar('username'),
             'NIK' => $this->request->getVar('nik'),
             'tglLahir' => $this->request->getVar('tanggal'),
-            // 'Email' => $this->request->getVar('email'),
+            'Email' => $this->request->getVar('email'),
             'noHP' => $this->request->getVar('noHP'),
             'Pekerjaan' => $this->request->getVar('pekerjaan')
         ];
 
         $this->CustModel->save($data);
-
-        $data = [
-            'idUser' => session('idUser'),
-            'Email' => $this->request->getVar('email'),
-        ];
-        $this->UserModel->update([]);
-
 
         session()->setFlashdata('pesan', 'Berhasil menyunting profil.');
         return redirect()->to('/Pengaduan_online/profile');

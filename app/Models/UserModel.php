@@ -19,6 +19,6 @@ class UserModel extends Model
             return $this->findAll();
         }
 
-        return $this->where(['Email ' => $email])->first();
+        return $this->where(['Email ' => $email])->find();
     }
 }
