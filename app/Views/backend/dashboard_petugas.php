@@ -342,7 +342,7 @@
             label: 'Janji Temu',
             backgroundColor: '#6fd088',
             borderColor: '#6fd088',
-            data: [7, 0.5, 3],
+            data: data_meeting,
         }]
     };
 

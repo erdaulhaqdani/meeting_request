@@ -69,10 +69,12 @@
 
                                     <label for="lampiran">Lampiran</label>: <a href="/lampiran/<?= $pengaduan['Lampiran'] ?>">Lampiran</a>
                                     <div class="mb-3">
-                                        <input type="file" class="dropify" name="lampiran" />
+                                        <input type="file" id="file" class="dropify" name="lampiran" />
                                         <!-- <button type="button" class="dropify-clear">Remove</button> -->
                                     </div>
-
+                                    <div class="mb-3">
+                                        <h6 class="text-info" id="fileWarn">Jenis file pada lampiran adalah jpg, jpeg, png, atau pdf max 5MB</h6>
+                                    </div>
                                     <div class="mb-3 text-end">
                                         <button type="reset" class="btn btn-danger me-3">Reset</button>
                                         <button type="submit" class="btn btn-primary" name="input_PO">Submit</button>
@@ -102,6 +104,53 @@
 
 <!-- JAVASCRIPT -->
 <?= $this->include('partials/vendor-scripts') ?>
+
+<script>
+    sizeValidation = () => {
+        const fi = document.getElementById('file');
+        // Check if any file is selected.
+        if (fi.files.length > 0) {
+            for (const i = 0; i <= fi.files.length - 1; i++) {
+
+                const fsize = fi.files.item(i).size;
+                const file = Math.round((fsize / 1024));
+                // The size of the file.
+                if (file >= 5120) {
+                    document.getElementById('fileWarn').innerHTML = "File terlalu besar";
+                    $('#fileWarn').removeClass("text-info");
+                    $('#fileWarn').addClass("text-danger");
+                    document.getElementById('input').disable = true;
+                } else {
+                    document.getElementById('fileWarn').innerHTML = "Jenis file pada lampiran adalah jpg, jpeg, png, atau pdf max 5MB";
+                    $('#fileWarn').removeClass("text-danger");
+                    $('#fileWarn').addClass("text-info");
+                    document.getElementById('input').disable = false;
+                }
+            }
+        }
+    }
+</script>
+
+<script>
+    function extValidation() {
+        var fileInput =
+            document.getElementById('file');
+
+        var filePath = fileInput.value;
+
+        // Allowing file type
+        var allowedExtensions =
+            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
+
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Invalid file type');
+            fileInput.value = '';
+            return false;
+        } else {
+            alert('Valid file type');
+        }
+    }
+</script>
 
 <!-- Plugins js -->
 <!-- validation -->
