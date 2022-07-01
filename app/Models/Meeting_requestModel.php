@@ -167,7 +167,7 @@ class Meeting_requestModel extends Model
     $builder->where('idCustomer', $idCustomer);
     $builder->where('created_at >=', 'NOW()');
     $builder->groupBy('DATE_FORMAT(created_at, "%e %M %Y")');
-    $builder->orderBy('created_at', 'asc');
+    $builder->orderBy('created_at', 'desc');
     $builder->limit(7);
     $query = $builder->get();
     return $query;
@@ -197,7 +197,7 @@ class Meeting_requestModel extends Model
     $builder->orWhere('idPetugas', 1);
     $builder->where('created_at >=', 'NOW()');
     $builder->groupBy('DATE_FORMAT(created_at, "%e %M %Y")');
-    $builder->orderBy('created_at', 'asc');
+    $builder->orderBy('created_at', 'desc');
     $builder->limit(7);
     $query = $builder->get();
     return $query;

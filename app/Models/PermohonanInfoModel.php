@@ -11,6 +11,7 @@ class PermohonanInfoModel extends Model
 
     protected $allowedFields = ['Isi'];
 
+    protected $useAutoIncrement = true;
     protected $useTimestamps = true;
     protected $updatedField  = 'updated_at';
 
@@ -20,6 +21,6 @@ class PermohonanInfoModel extends Model
             return $this->findAll();
         }
 
-        return $this->where(['idPermohonan' => $id])->first();
+        return $this->where(['idPetugas' => $id])->first();
     }
 }
