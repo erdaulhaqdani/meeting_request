@@ -72,13 +72,7 @@
                                         <label for="ulasan">Ulasan</label>
                                         <input class="form-control" type="text" name="ulasan" required minlength="5" placeholder="Berikan ulasan" value="<?= old('ulasan'); ?>">
                                     </div>
-
                                     <input type="hidden" name="idPengaduan" value="<?= $pengaduan['idPengaduan'] ?>">
-
-                                    <div class="mb-3">
-                                        <h6 class="text-info" id="fileWarn">JJenis file pada lampiran adalah jpg, jpeg, png, atau pdf max 5MB</h6>
-                                    </div>
-
                                     <div class="mb-3 text-end">
                                         <button type="reset" class="btn btn-danger me-3">Reset</button>
                                         <button type="submit" class="btn btn-primary" name="rate">Submit</button>

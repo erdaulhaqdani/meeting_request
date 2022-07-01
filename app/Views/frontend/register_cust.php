@@ -41,10 +41,6 @@
 								<input type="text" name="nama" id="nama" class="form-control " required>
 							</div>
 							<div class="form-group">
-								<label for="tanggal">Tanggal Lahir</label>
-								<input class="form-control" type="date" name="tanggal" required max="<?php echo date("Y-m-d"); ?>">
-							</div>
-							<div class="form-group">
 								<label for="nik">NIK</label>
 								<input type="number" name="nik" id="nik" class="form-control <?= ($validation->hasError('nik')) ?>" required minlength="15">
 							</div>

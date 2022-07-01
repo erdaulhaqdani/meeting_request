@@ -100,7 +100,7 @@ class Landing_page extends BaseController
     $data = [
       'title' => 'Daftar Petugas',
       'level' => $this->LevelModel->findAll(),
-      'petugas' => $this->PetugasModel->where(['idLevel !=' => 1])->find(),
+      'petugas' => $this->PetugasModel->where(['idLevel !=' => 1, 'idPetugas !=' => 1,])->find(),
       'level_petugas' => $this->LevelModel->findAll(),
       'validation' => \Config\Services::validation()
     ];
