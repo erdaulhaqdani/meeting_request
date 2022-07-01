@@ -143,6 +143,7 @@ $routes->get('/admin', 'Admin_pengaduan::index');
 $routes->get('/admin/profile', 'Admin_pengaduan::profile');
 $routes->get('/admin/daftar/(:any)', 'Admin_pengaduan::daftar/$1');
 $routes->get('/admin/tanggapan/(:num)', 'Admin_pengaduan::tanggapan/$1');
+
 // $routes->get('/admin/input', 'Admin_pengaduan::input');
 $routes->get('/admin/proses/(:num)', 'Admin_pengaduan::proses/$1');
 $routes->get('/admin/detail/(:num)', 'Admin_pengaduan::detail/$1');
@@ -152,6 +153,8 @@ $routes->get('/petugasMR', 'Petugas_MR::index');
 $routes->get('/petugasMR/tanggapan/(:num)', 'Petugas_MR::tanggapan/$1');
 $routes->get('/petugasMR/proses/(:num)', 'Petugas_MR::proses/$1');
 $routes->get('/petugasMR/detail/(:num)', 'Petugas_MR::detail/$1');
+$routes->get('/petugasMR/edit/(:num)', 'Petugas_MR::edit/$1');
+$routes->get('/petugasMR/update/(:num)', 'Petugas_MR::update/$1');
 $routes->get('/petugasMR/inputTanggapan', 'Petugas_MR::input');
 $routes->get('/petugasMR/input_tandaTerima', 'Petugas_MR::input_tandaTerima');
 $routes->get('/petugasMR/form_tandaTerima', 'Petugas_MR::form_tandaTerima');

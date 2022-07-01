@@ -67,6 +67,71 @@ class Petugas_MR extends BaseController
         return view('meeting_request/petugas_detail', $data);
     }
 
+    public function edit($id)
+    {
+        $data = [
+            'title' => 'Ubah Janji Temu',
+            'validation' => \Config\Services::validation(),
+            'meeting' => $this->Meeting_requestModel->getMeetingRequest($id),
+            'kategori' => $this->KategoriModel->getKategori()
+        ];
+
+        return view('meeting_request/petugas_edit_mr', $data);
+    }
+
+    public function update($id)
+    {
+        if (!$this->validate([
+            'lampiran' => [
+                'rules' => 'max_size[lampiran,3072]',
+                'errors' => [
+                    'max_size' => 'Ukuran file maksimal 3MB'
+                ]
+            ]
+        ])) {
+            $validation =  \Config\Services::validation();
+            return redirect()->to('/petugasMR/edit/' . $id . '')->withInput()->with('validation', $validation);
+        }
+
+
+        $lampiran = $this->request->getFile('lampiran');
+        $meeting = $this->Meeting_requestModel->getMeetingRequest($id);
+        $file_lama = $this->request->getVar('file_lama');
+
+        // hapus file dari direktori
+        if ($lampiran != $file_lama) {
+            if ($meeting['File_lampiran'] != 'default.png') {
+                //hapus file lampiran lama yg bukan default.png
+                unlink('lampiran_customerMR/' . $meeting['File_lampiran']);
+            }
+        }
+        //ambil file
+        if ($lampiran->getError() == 4) {
+            $namalampiran = $file_lama;
+        } else {
+            //ambil nama file
+            $namalampiran = $lampiran->getName();
+            //pindah file
+            $lampiran->move('lampiran_customerMR', $namalampiran);
+        }
+
+
+        $this->Meeting_requestModel->save([
+            'idMeeting' => $id,
+            'Bentuk_layanan' => $this->request->getVar('bentuk_layanan'),
+            'Kantor' => $this->request->getVar('kantor'),
+            'Perihal' => $this->request->getVar('perihal'),
+            'Tanggal_kunjungan' => $this->request->getVar('tanggal_kunjungan'),
+            'Waktu_kunjungan' => $this->request->getVar('waktu_kunjungan'),
+            'idKategori' => $this->request->getVar('kategori'),
+            'File_lampiran' => $namalampiran,
+        ]);
+
+        session()->setFlashdata('pesan', 'Berhasil mengubah Janji Temu');
+
+        return redirect()->to('/petugasMR');
+    }
+
     public function tanggapan($idMeeting)
     {
         $data = [

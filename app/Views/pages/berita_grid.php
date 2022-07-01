@@ -25,6 +25,7 @@
     <div class="row">
       <div class="col-xl-9 col-lg-8 col-12 our-blog">
         <div class="post-wrapper row">
+
           <?php
           function formatTanggal($date)
           {
@@ -46,7 +47,7 @@
 
             $judul = $a['Judul'];
             $textJudul = strlen($judul);
-            $num_char = 70;
+            $num_char = 62;
             if ($textJudul > $num_char) {
               $cut_judul = substr($judul, 0, $num_char) . '...';
             } else {
@@ -68,8 +69,7 @@
               </div> <!-- /.single-blog -->
             </div> <!-- /.col- -->
           <?php
-
-          endforeach
+          endforeach;
           ?>
         </div> <!-- /.post-wrapper -->
         <div class="theme-pagination">

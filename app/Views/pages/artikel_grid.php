@@ -48,7 +48,7 @@
             $judul = $a['Judul'];
             $textJudul = strlen($judul);
             $num_char = 70;
-            if ($textJudul > $num_char) {
+            if ($textjudul > $num_char) {
               $cut_judul = substr($judul, 0, $num_char) . '...';
             } else {
               $cut_judul = $a['Judul'];
@@ -59,7 +59,7 @@
               <div class="single-blog">
                 <div class="image-box" style="max-height:260px;">
                   <img src="/gambar/<?= $a['Gambar']; ?>" alt="">
-                  <div class=" overlay"><a href="#" class="date"><?= formatTanggal($date) ?></a></a>
+                  <div class="overlay"><a href="#" class="date"><?= formatTanggal($date) ?></a></a>
                   </div>
                 </div> <!-- /.image-box -->
                 <div class="post-meta">

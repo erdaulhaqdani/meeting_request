@@ -181,11 +181,13 @@
                                                 <td>
                                                     <a href="/petugasMR/detail/<?= $a->idMeeting; ?>" class="btn btn-info btn-sm w-xs">Detail</a>
                                                     <?php if ($a->Status == 'Sedang diproses') : ?>
+                                                        <a href="/petugasMR/edit/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                                                         <a href="/petugasMR/tanggapan/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Tanggapan</a>
                                                     <?php elseif ($a->Status == 'Belum diproses') : ?>
                                                         <a href="petugasMR/proses/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Proses</a>
                                                     <?php elseif ($a->Status == 'Eskalasi') : ?>
                                                         <a href="petugasMR/proses/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Tanggapan</a>
+                                                    <?php elseif ($a->Status == 'Selesai diproses') : ?>
                                                     <?php endif ?>
                                                 </td>
                                             </tr>

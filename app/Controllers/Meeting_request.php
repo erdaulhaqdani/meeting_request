@@ -210,16 +210,17 @@ class Meeting_request extends BaseController
 
     // hapus file dari direktori
     if ($lampiran != $file_lama) {
-      if ($meeting['File_lampiran'] != 'default.png')
+      if ($meeting['File_lampiran'] != 'default.png') {
         //hapus file lampiran lama yg bukan default.png
         unlink('lampiran_customerMR/' . $meeting['File_lampiran']);
+      }
     }
     //ambil file
     if ($lampiran->getError() == 4) {
       $namalampiran = $file_lama;
     } else {
       //ambil nama file
-      $namalampiran = $lampiran->getName();
+      $namalampiran = $lampiran . $id;
       //pindah file
       $lampiran->move('lampiran_customerMR', $namalampiran);
     }

@@ -41,7 +41,7 @@
                 <li>
                     <a href="/dashboard_petugas" class="waves-effect">
                         <i class="ri-dashboard-line"></i>
-                        <span>Beranda</span>
+                        <span>Dashboard</span>
                     </a>
                 </li>
                 <li>

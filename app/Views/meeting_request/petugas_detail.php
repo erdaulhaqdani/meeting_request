@@ -149,13 +149,13 @@
                   </div>
                   <div class="row">
                     <div class="col">
-                      <input type="button" value="Kembali" class="btn btn-warning waves-effect me-2" onclick="history.back(-1)" />
+                      <input type="button" value="Kembali" class="btn btn-warning waves-effect me-2 mt-2" onclick="history.back(-1)" />
                       <?php if ($meeting['Status'] == 'Belum diproses') : ?>
-                        <a href="/petugasMR/proses/<?= $meeting['idMeeting']; ?>" class="btn btn-primary waves-effect">Proses</a>
+                        <a href="/petugasMR/proses/<?= $meeting['idMeeting']; ?>" class="btn btn-success waves-effect me-2 mt-2">Proses</a>
                       <?php elseif ($meeting['Status'] == 'Selesai diproses') : ?>
                       <?php elseif ($meeting['Status'] != 'Belum diproses') : ?>
-                        <a href="/petugasMR/tanggapan/<?= $meeting['idMeeting']; ?>" class="btn btn-info waves-effect">Tanggapan</a>
-
+                        <a href="/petugasMR/edit/<?= $meeting['idMeeting']; ?>" class="btn btn-primary waves-effect me-2 mt-2">Ubah</a>
+                        <a href="/petugasMR/tanggapan/<?= $meeting['idMeeting']; ?>" class="btn btn-success waves-effect me-2 mt-2">Tanggapan</a>
                       <?php endif ?>
                     </div>
                   </div>

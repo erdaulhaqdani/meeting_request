@@ -45,12 +45,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0">Beranda</h4>
+                            <h4 class="mb-sm-0">Dashboard</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">APTB</a></li>
-                                    <li class="breadcrumb-item active">Beranda</li>
+                                    <li class="breadcrumb-item active">Dashboard</li>
                                 </ol>
                             </div>
 
@@ -279,8 +279,10 @@
 
     <?php foreach ($pengaduanPerminggu->getResult() as $key) : ?>
         data_pengaduan.push(<?= $key->jumlah ?>);
-        <?php $tanggal = formatTanggal($key->tanggal); ?>
-        label_pengaduan.push('<?= $tanggal ?>');
+        <?php $tanggal = date('Y-m-d', strtotime($key->tanggal));
+        $tanggal_indo = tanggal_indo($tanggal);
+        ?>
+        label_pengaduan.push('<?= $tanggal_indo ?>');
     <?php endforeach ?>
 
     const data = {
@@ -328,14 +330,16 @@
 
     <?php foreach ($meetingPerminggu->getResult() as $key) : ?>
         data_meeting.push(<?= $key->jumlah ?>);
-        <?php $tanggal = formatTanggal($key->tanggal); ?>
-        label_meeting.push('<?= $tanggal ?>');
+        <?php $tanggal = date('Y-m-d', strtotime($key->tanggal));
+        $tanggal_indo = tanggal_indo($tanggal);
+        ?>
+        label_meeting.push('<?= $tanggal_indo ?>');
     <?php endforeach ?>
 
     const data_bar = {
         labels: label_meeting,
         datasets: [{
-            label: 'Meeting Request',
+            label: 'Janji Temu',
             backgroundColor: '#6fd088',
             borderColor: '#6fd088',
             data: [7, 0.5, 3],
