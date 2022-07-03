@@ -89,7 +89,7 @@
 
                                     <div class="mb-3 text-end">
                                         <input type="button" value="Kembali" class="btn btn-warning waves-effect me-2 mt-2" onclick="history.back(-1)" />
-                                        <button type="reset" class="btn btn-secondary me-2 mt-2">Reset</button>
+                                        <button type="reset" class="btn btn-danger me-2 mt-2">Reset</button>
                                         <button type="submit" class="btn btn-primary me-2 mt-2" name="rate">Submit</button>
                                     </div>
                                 </form>

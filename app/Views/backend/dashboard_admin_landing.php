@@ -211,6 +211,7 @@
                                                         <td><?= tanggal_indo($tanggal) ?></td>
                                                         <td><?= $a->Status; ?></td>
                                                         <td>
+                                                            <a href="/Landing_page/delete/<?= $a->id_berita; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
                                                             <a href="/Landing_page/edit/<?= $a->id_berita; ?>" class="btn btn-primary btn-sm w-xs me-1">Ubah</a>
                                                             <?php if ($a->Status == 'Diarsipkan') : ?>
                                                                 <a href="/Landing_page/publik_dashboard/<?= $a->id_berita; ?>" class="btn btn-success btn-sm w-xs">Publish</a>

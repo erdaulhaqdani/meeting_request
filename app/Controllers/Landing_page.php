@@ -215,6 +215,7 @@ class Landing_page extends BaseController
 
   public function form()
   {
+    session();
     $data = [
       'title' => 'Tambah Informasi',
       'berita' => $this->Landing_pageModel->getInformasi(),
@@ -230,9 +231,16 @@ class Landing_page extends BaseController
     $val = $this->validate(
       [
         'gambar' => [
-          'rules' => 'max_size[gambar,5120]|ext_in[gambar,jpg,jpeg,png]',
+          'rules' => 'max_size[gambar,3072]|ext_in[gambar,jpg,jpeg,png]',
           'errors' => [
-            'max_size' => 'Ukuran file gambar maksimal 5MB',
+            'max_size' => 'Ukuran file gambar maksimal 3MB',
+            'ext_in' => 'Jenis file harus jpg atau png'
+          ]
+        ],
+        'gambar_lampiran[]' => [
+          'rules' => 'max_size[gambar,3072]|ext_in[gambar,jpg,jpeg,png]',
+          'errors' => [
+            'max_size' => 'Ukuran file gambar maksimal 3MB',
             'ext_in' => 'Jenis file harus jpg atau png'
           ]
         ]
@@ -241,7 +249,7 @@ class Landing_page extends BaseController
     );
     if (!$val) {
       $validation = \Config\Services::validation();
-      return redirect()->to('/Landing_page/form')->withInput()->with('validation', $validation);
+      return redirect()->to('Landing_page/form')->withInput()->with('validation', $validation);
     }
 
     //ambil file
@@ -293,6 +301,22 @@ class Landing_page extends BaseController
     ]);
 
     session()->setFlashdata('pesan', 'Berhasil menambahkan Informasi.');
+
+    return redirect()->to('/Landing_page');
+  }
+
+  public function delete($id)
+  {
+
+    $informasi =  $this->Landing_pageModel->getInformasi($id);
+    $galeri = $this->GaleriModel->getGambar($informasi['id_uploads']);
+
+    // hapus gambar cover dari direktori
+    unlink('gambar/' . $informasi['Gambar']);
+
+    $this->Landing_pageModel->delete($id);
+
+    session()->setFlashdata('pesan', 'Berhasil menghapus Informasi');
 
     return redirect()->to('/Landing_page');
   }
@@ -367,9 +391,9 @@ class Landing_page extends BaseController
     $val = $this->validate(
       [
         'gambar' => [
-          'rules' => 'max_size[gambar,5120]|ext_in[gambar,jpg,jpeg,png]',
+          'rules' => 'max_size[gambar,3072]|ext_in[gambar,jpg,jpeg,png]',
           'errors' => [
-            'max_size' => 'Ukuran file gambar maksimal 5MB',
+            'max_size' => 'Ukuran file gambar maksimal 3MB',
             'ext_in' => 'Jenis file harus jpg atau png'
           ]
         ]
@@ -473,9 +497,16 @@ class Landing_page extends BaseController
     $val = $this->validate(
       [
         'gambar' => [
-          'rules' => 'max_size[gambar,5120]|ext_in[gambar,jpg,jpeg,png]',
+          'rules' => 'max_size[gambar,3072]|ext_in[gambar,jpg,jpeg,png]',
           'errors' => [
-            'max_size' => 'Ukuran file gambar maksimal 5MB',
+            'max_size' => 'Ukuran file gambar maksimal 3MB',
+            'ext_in' => 'Jenis file harus jpg atau png'
+          ]
+        ],
+        'gambar_lampiran[]' => [
+          'rules' => 'max_size[gambar,3072]|ext_in[gambar,jpg,jpeg,png]',
+          'errors' => [
+            'max_size' => 'Ukuran file gambar maksimal 3MB',
             'ext_in' => 'Jenis file harus jpg atau png'
           ]
         ]
@@ -541,6 +572,22 @@ class Landing_page extends BaseController
     return redirect()->to('/Landing_page/daftar_agenda');
   }
 
+  public function delete_agenda($id)
+  {
+
+    $informasi =  $this->Landing_pageModel->getInformasi($id);
+    $galeri = $this->GaleriModel->getGambar($informasi['id_uploads']);
+
+    // hapus gambar cover dari direktori
+    unlink('gambar_agenda/' . $informasi['Gambar']);
+
+    $this->Landing_pageModel->delete($id);
+
+    session()->setFlashdata('pesan', 'Berhasil menghapus Agenda');
+
+    return redirect()->to('/Landing_page/daftar_agenda');
+  }
+
   public function edit_agenda($id)
   {
     $data = [
@@ -558,9 +605,16 @@ class Landing_page extends BaseController
     $val = $this->validate(
       [
         'gambar' => [
-          'rules' => 'max_size[gambar,5120]|ext_in[gambar,jpg,jpeg,png]',
+          'rules' => 'max_size[gambar,3072]|ext_in[gambar,jpg,jpeg,png]',
           'errors' => [
-            'max_size' => 'Ukuran file gambar maksimal 5MB',
+            'max_size' => 'Ukuran file gambar maksimal 3MB',
+            'ext_in' => 'Jenis file harus jpg atau png'
+          ]
+        ],
+        'gambar_lampiran[]' => [
+          'rules' => 'max_size[gambar,3072]|ext_in[gambar,jpg,jpeg,png]',
+          'errors' => [
+            'max_size' => 'Ukuran file gambar maksimal 3MB',
             'ext_in' => 'Jenis file harus jpg atau png'
           ]
         ]

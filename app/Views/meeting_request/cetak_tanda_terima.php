@@ -47,10 +47,27 @@
     text-align: left
   }
 
-  ;
-
   .kanan {
     width: 10%;
+  }
+
+  .penerima {
+    margin-top: 50px;
+  }
+
+  .penerima .p {
+    text-align: right;
+    padding-bottom: 80px;
+    width: 90%;
+  }
+
+  .penerima.kanan {
+    width: 10%;
+  }
+
+  .penerima .nama {
+    text-align: right;
+    width: 90%;
   }
 </style>
 
@@ -67,9 +84,11 @@
   ?>
 
   <div class="rangkaSurat">
-    <table class="kop" width="100%">
+    <table class="kop" width="100%" border="0">
       <tr>
-        <td><img src="images/Logo_kemenkeu.png" width="140px" alt=""></td>
+        <!-- <td>
+          <center><img src="logo_kemenkeu.png" width="140px" alt=""></center>
+        </td> -->
         <td class="tengah">
           <h3>KEMENTERIAN KEUANGAN REPUBLIK INDONESIA</h3>
           <h3>DIREKTORAT JENDERAL KEKAYAAN NEGARA</h3>
@@ -112,6 +131,18 @@
         <td class="isian"><?= $tanda_terima['Perihal']; ?></td>
         <td class="kanan"></td>
       </tr>
+    </table>
+
+    <table class="penerima" border="0" width="100%">
+      <tr>
+        <td class="p">Penerima</td>
+        <td class="kanan"></td>
+      </tr>
+      <tr>
+        <td class="nama">(<?= session()->get('Nama'); ?>)</td>
+        <td class="kanan"></td>
+      </tr>
+
     </table>
 
     <!-- <table>

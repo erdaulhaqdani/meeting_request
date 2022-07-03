@@ -30,19 +30,19 @@
 
 						<?= session()->get('pesan'); ?>
 
-						<form class="input_style_1" method="post" action="AuthCust/register" id="regis_cust">
+						<form class="input_style_1" method="post" action="AuthCust/register" id="register_cust">
 
 							<div class="form-group">
 								<label for="username">Username</label>
-								<input type="text" name="username" id="username" class="form-control " required>
+								<input type="text" name="username" id="username" class="form-control " required minlength="5" maxlength="15">
 							</div>
 							<div class="form-group">
 								<label for="nama">Nama Lengkap</label>
-								<input type="text" name="nama" id="nama" class="form-control " required>
+								<input type="text" name="nama" id="nama" class="form-control " required minlength="5">
 							</div>
 							<div class="form-group">
 								<label for="nik">NIK</label>
-								<input type="number" name="nik" id="nik" class="form-control <?= ($validation->hasError('nik')) ?>" required minlength="15">
+								<input type="number" name="nik" id="nik" class="form-control <?= ($validation->hasError('nik')) ?>" required minlength="16" maxlength="16">
 							</div>
 							<div class="form-group">
 								<label for="email">Email </label>
@@ -50,7 +50,7 @@
 							</div>
 							<div class="form-group">
 								<label for="noHP">Nomor HP</label>
-								<input type="number" name="noHP" id="noHP" class="form-control" required minlength="10">
+								<input type="number" name="noHP" id="noHP" class="form-control" required minlength="11">
 							</div>
 							<div class="form-group">
 								<label for="jk">Jenis Kelamin</label>
@@ -61,11 +61,11 @@
 							</div>
 							<div class="form-group">
 								<label for="pekerjaan">Pekerjaan</label>
-								<input type="text" name="pekerjaan" id="pekerjaan" class="form-control" required>
+								<input type="text" name="pekerjaan" id="pekerjaan" class="form-control" required minlength="5">
 							</div>
 							<div class="form-group">
 								<label for="password">Password</label>
-								<input type="password" name="password" id="password" class="form-control" required required minlength="8">
+								<input type="password" name="password" id="password" class="form-control" required minlength="8">
 							</div>
 							<!-- <div class="form-group">
 								<label for="password2">Confirm Password</label>
@@ -120,7 +120,7 @@
 <script src="/login_regis/js/pw_strenght.js" type="text/javascript"></script>
 
 <script>
-	$('#regis_cust').validate();
+	$('#register_cust').validate();
 </script>
 
 <?= $this->endSection(); ?>

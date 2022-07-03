@@ -1,6 +1,27 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
+<?php
+function tanggal_indo($tanggal)
+{
+	$bulan = array(
+		1 =>   'Januari',
+		'Februari',
+		'Maret',
+		'April',
+		'Mei',
+		'Juni',
+		'Juli',
+		'Agustus',
+		'September',
+		'Oktober',
+		'November',
+		'Desember'
+	);
+	$split = explode('-', $tanggal);
+	return $split[2] . ' ' . $bulan[(int)$split[1]] . ' ' . $split[0];
+}
+?>
 <!-- 
 =============================================
 Theme Main Banner
@@ -10,7 +31,6 @@ Theme Main Banner
 
 	<?php
 	foreach ($jumbotron->getResult() as $j) :
-		$tanggal = $j->created_at;
 
 		$text = $j->Judul;
 		$jumlahText = strlen($text);
@@ -66,15 +86,9 @@ Berita Terbaru
 		<div class="wrapper">
 			<div class="row">
 				<?php
-				function tanggal_indonesia($tanggal)
-				{
-
-					// ubah string menjadi format tanggal
-					return date('d F Y', strtotime($tanggal));
-				}
 
 				foreach ($berita_terbaru->getResult() as $a) :
-					$tanggal = $a->created_at;
+					$tanggal = date('Y-m-d', strtotime($a->created_at));
 
 					$text = $a->Judul;
 					$jumlahText = strlen($text);
@@ -91,7 +105,7 @@ Berita Terbaru
 							<div class="text">
 								<h6><a href="/pages/detail_berita/<?= $a->id_berita ?>"><?= $cut_text ?></a></h6>
 
-								<p style="font-size:16px ;"><i class="fa fa-calendar"></i> <?= tanggal_indonesia($tanggal); ?></p>
+								<p style="font-size:16px ;"><i class="fa fa-calendar"></i> <?= tanggal_indo($tanggal); ?></p>
 								<a href="/pages/detail_berita/<?= $a->id_berita ?>" class="read-more">SELENGKAPNYA</a>
 							</div> <!-- /.text -->
 						</div> <!-- /.single-service -->
@@ -122,7 +136,7 @@ Pengumuman Terbaru
 				<?php
 
 				foreach ($pengumuman_terbaru->getResult() as $a) :
-					$tanggal = $a->created_at;
+					$tanggal = date('Y-m-d', strtotime($a->created_at));
 
 					$text = $a->Judul;
 					$jumlahText = strlen($text);
@@ -139,7 +153,7 @@ Pengumuman Terbaru
 							<div class="text">
 								<h6><a href="/pages/detail_pengumuman/<?= $a->id_berita ?>"><?= $cut_text ?></a></h6>
 
-								<p style="font-size:16px ;"><i class="fa fa-calendar"></i> <?= tanggal_indonesia($tanggal); ?></p>
+								<p style="font-size:16px ;"><i class="fa fa-calendar"></i> <?= tanggal_indo($tanggal); ?> </p>
 								<a href="/pages/detail_pengumuman/<?= $a->id_berita ?>" class="read-more">SELENGKAPNYA</a>
 							</div> <!-- /.text -->
 						</div> <!-- /.single-service -->
@@ -208,7 +222,7 @@ Artikel Terbaru
 				<?php
 
 				foreach ($artikel_terbaru->getResult() as $b) :
-					$tanggal = $b->created_at;
+					$tanggal = date('Y-m-d', strtotime($b->created_at));
 
 					$text = $b->Judul;
 					$jumlahText = strlen($text);
@@ -225,7 +239,7 @@ Artikel Terbaru
 							<div class="img-box"><img src="/gambar/<?= $b->Gambar; ?>" alt=""></div>
 							<div class="text">
 								<h6><a href="/pages/detail_artikel/<?= $b->id_berita ?>"><?= $cut_text ?></a></h6>
-								<p style="font-size:16px ;"><i class="fa fa-calendar"></i> <?= tanggal_indonesia($tanggal); ?></p>
+								<p style="font-size:16px ;"><i class="fa fa-calendar"></i> <?= tanggal_indo($tanggal); ?> </p>
 								<a href="/pages/detail_artikel/<?= $b->id_berita ?>" class="read-more">SELENGKAPNYA <i class="fa fa-angle-right" aria-hidden="true"></i></a>
 							</div> <!-- /.text -->
 						</div> <!-- /.single-service -->
@@ -256,7 +270,7 @@ Artikel Terbaru
 				<?php
 
 				foreach ($peristiwa_terbaru->getResult() as $c) :
-					$tanggal = $c->created_at;
+					$tanggal = date('Y-m-d', strtotime($b->created_at));
 
 					$text = $c->Judul;
 					$jumlahText = strlen($text);
@@ -276,7 +290,7 @@ Artikel Terbaru
 								<div class="text clearfix">
 									<div class="float-left">
 										<h6><a href="/pages/detail_peristiwa/<?= $c->id_berita ?>"><?= $c->Judul ?></a></h6>
-										<p><?= tanggal_indonesia($tanggal); ?></p>
+										<p> <?= tanggal_indo($tanggal); ?></p>
 									</div>
 									<a href="/pages/detail_peristiwa/<?= $c->id_berita ?>" class="details float-right"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
 								</div> <!-- /.text -->

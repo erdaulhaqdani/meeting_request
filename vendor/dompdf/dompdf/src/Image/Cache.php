@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package dompdf
  * @link    http://dompdf.github.com/
@@ -7,6 +8,7 @@
  * @author  Fabien Ménager <fabien.menager@gmail.com>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
+
 namespace Dompdf\Image;
 
 use Dompdf\Dompdf;
@@ -42,7 +44,7 @@ class Cache
     public static $broken_image = "data:image/svg+xml;charset=utf8,%3C?xml version='1.0'?%3E%3Csvg width='64' height='64' xmlns='http://www.w3.org/2000/svg'%3E%3Cg%3E%3Crect stroke='%23666666' id='svg_1' height='60.499994' width='60.166667' y='1.666669' x='1.999998' stroke-width='1.5' fill='none'/%3E%3Cline stroke-linecap='null' stroke-linejoin='null' id='svg_3' y2='59.333253' x2='59.749916' y1='4.333415' x1='4.250079' stroke-width='1.5' stroke='%23999999' fill='none'/%3E%3Cline stroke-linecap='null' stroke-linejoin='null' id='svg_4' y2='59.999665' x2='4.062838' y1='3.750342' x1='60.062164' stroke-width='1.5' stroke='%23999999' fill='none'/%3E%3C/g%3E%3C/svg%3E";
 
     public static $error_message = "Image not found or type unknown";
-    
+
     /**
      * Current dompdf instance
      *
@@ -65,7 +67,7 @@ class Cache
     static function resolve_url($url, $protocol, $host, $base_path, Dompdf $dompdf)
     {
         self::$_dompdf = $dompdf;
-        
+
         $protocol = mb_strtolower($protocol);
         $parsed_url = Helpers::explode_url($url);
         $message = null;
@@ -83,7 +85,7 @@ class Cache
             if (!$enable_remote && $remote && !$data_uri) {
                 throw new ImageException("Remote file access is disabled.", E_WARNING);
             }
-            
+
             // remote allowed or DataURI
             if (($enable_remote && $remote) || $data_uri) {
                 // Download remote files to a temporary directory
@@ -131,7 +133,7 @@ class Cache
 
                 if ($protocol === "" || $protocol === "file://") {
                     $realfile = realpath($resolved_url);
-        
+
                     $rootDir = realpath($dompdf->getOptions()->getRootDir());
                     if (strpos($realfile, $rootDir) !== 0) {
                         $chroot = $dompdf->getOptions()->getChroot();
@@ -147,11 +149,11 @@ class Cache
                             throw new ImageException("Permission denied on $resolved_url. The file could not be found under the paths specified by Options::chroot.", E_WARNING);
                         }
                     }
-        
+
                     if (!$realfile) {
                         throw new ImageException("File '$realfile' not found.", E_WARNING);
                     }
-        
+
                     $resolved_url = $realfile;
                 }
             }
@@ -164,7 +166,7 @@ class Cache
                 list($width, $height, $type) = Helpers::dompdf_getimagesize($resolved_url, $dompdf->getHttpContext());
 
                 // Known image type
-                if ($width && $height && in_array($type, ["gif", "png", "jpeg", "bmp", "svg","webp"], true)) {
+                if ($width && $height && in_array($type, ["gif", "png", "jpeg", "bmp", "svg", "webp"], true)) {
                     //Don't put replacement image into cache - otherwise it will be deleted on cache cleanup.
                     //Only execute on successful caching of remote image.
                     if ($enable_remote && $remote || $data_uri) {
@@ -252,7 +254,7 @@ class Cache
 
     static function detect_type($file, $context = null)
     {
-        list(, , $type) = Helpers::dompdf_getimagesize($file, $context);
+        list(,, $type) = Helpers::dompdf_getimagesize($file, $context);
 
         return $type;
     }

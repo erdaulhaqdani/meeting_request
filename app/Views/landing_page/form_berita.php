@@ -53,12 +53,18 @@
 
                 <h3 class="card-title">Form Tambah Informasi</h3>
                 <p class="card-title-desc">Masukkan data-data informasi dengan lengkap.</p>
+
                 <?php
-                if (session()->get('pesan')) {
+                if ($validation->hasError('gambar')) {
                 ?>
-                  <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <?= session()->get('pesan'); ?>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  <div class="alert alert-danger" role="alert">
+                    <?= $validation->getError('gambar'); ?>
+                  </div>
+                <?php
+                } elseif ($validation->hasError('gambar_lampiran[]')) {
+                ?>
+                  <div class="alert alert-danger" role="alert">
+                    <?= $validation->getError('gambar_lampiran[]'); ?>
                   </div>
                 <?php
                 }
@@ -83,7 +89,7 @@
                   <div class="row mb-2">
                     <label for="judul" class="col-sm-3 col-form-label">Judul Informasi</label>
                     <div class="col-sm-9">
-                      <input class="form-control" type="text" placeholder="Masukkan judul informasi" id="judul" name="judul" required>
+                      <input class="form-control" type="text" placeholder="Masukkan judul informasi" id="judul" name="judul" required minlength="5">
                     </div>
                   </div>
 
@@ -98,7 +104,7 @@
                     <label for="gambar" class="col-sm-3 col-form-label">Gambar Cover</label>
                     <div class="col-sm-9">
                       <div class="input-group">
-                        <input type="file" name="gambar" class="form-control" id="gambar" required>
+                        <input type="file" name="gambar" class="form-control <?= ($validation->hasError('gambar')) ?>" id="gambar" required>
                       </div>
                       <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png max 3MB</p>
                     </div>
@@ -108,7 +114,7 @@
                     <label for="gambar_lampiran" class="col-sm-3 col-form-label">Gambar Lampiran (opsional)</label>
                     <div class="col-sm-9">
                       <div class="input-group">
-                        <input type="file" name="gambar_lampiran[]" class="form-control" id="gambar_lampiran" multiple='true'>
+                        <input type="file" name="gambar_lampiran[]" class="form-control <?= ($validation->hasError('gambar_lampiran[]')) ?>" id="gambar_lampiran" multiple='true'>
                       </div>
                       <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png max 3MB</p>
                     </div>
@@ -118,19 +124,10 @@
                     <textarea id="elm1" name="isi_berita"></textarea>
                   </div>
 
-                  <?php
-                  if ($validation->hasError('gambar')) {
-                  ?>
-                    <div class="alert alert-danger" role="alert">
-                      <?= $validation->getError('gambar'); ?><br>
-                    </div>
-                  <?php
-                  }
-                  ?>
                   <div class="mb-0 text-end">
                     <div>
                       <input type="button" value="Kembali" class="btn btn-warning waves-effect me-2" onclick="history.back(-1)" />
-                      <button type="reset" class="btn btn-secondary waves-effect me-2">Batal</button>
+                      <button type="reset" class="btn btn-danger waves-effect me-2">Reset</button>
                       <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
                     </div>
                   </div>

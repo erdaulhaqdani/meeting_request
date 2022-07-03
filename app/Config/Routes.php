@@ -89,6 +89,7 @@ $routes->get('/Landing_page/arsip/(:num)', 'Landing_page::arsip/$1');
 $routes->get('/Landing_page/publik_dashboard/(:num)', 'Landing_page::publik_dashboard/$1');
 $routes->get('/Landing_page/arsip_dashboard/(:num)', 'Landing_page::arsip_dashboard/$1');
 $routes->get('/Landing_page/edit/(:num)', 'Landing_page::edit/$1');
+$routes->get('/Landing_page/delete/(:num)', 'Landing_page::delete/$1');
 $routes->get('/Landing_page/update/(:num)', 'Landing_page::update/$1');
 $routes->get('/Landing_page/permohonanInfo/(:num)', 'Landing_page::editPermohonan/$1');
 $routes->get('/Landing_page/updatePermohonan/(:num)', 'Landing_page::updatePermohonan/$1');
@@ -120,14 +121,13 @@ $routes->get('/Landing_page/input_agenda', 'Landing_page::input_agenda');
 $routes->get('/Landing_page/daftar_agenda', 'Landing_page::daftar_agenda');
 $routes->get('/Landing_page/edit_agenda/(:num)', 'Landing_page::edit_agenda/$1');
 $routes->get('/Landing_page/update_agenda/(:num)', 'Landing_page::update_agenda/$1');
-$routes->get('/Landing_page/hapus_gambar/(:num)', 'Landing_page::hapus_gambar/$1');
+$routes->get('/Landing_page/delete_agenda/(:num)', 'Landing_page::delete_agenda/$1');
 
 //Pencarian Informasi Landing Page
 $routes->get('/pages/pencarian', 'Pages::pencarian');
 $routes->get('/pages/detail_info/(:num)/(:any)', 'Pages::detail_pencarian/$1/$2');
 
 $routes->get('/pages/artikel_grid', 'Landing_page::artikel_grid');
-$routes->get('/Landing_page/artikel_grid', 'Landing_page::artikel_grid');
 $routes->get('/pages/detail_artikel/(:num)', 'Landing_page::detail_artikel/$1');
 $routes->get('/pages/berita_grid', 'Landing_page::berita_grid');
 $routes->get('/pages/detail_berita/(:num)', 'Landing_page::detail_berita/$1');

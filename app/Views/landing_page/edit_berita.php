@@ -65,6 +65,16 @@
                 }
                 ?>
 
+                <?php
+                if ($validation->hasError('gambar')) {
+                ?>
+                  <div class="alert alert-danger" role="alert">
+                    <?= $validation->getError('gambar'); ?><br>
+                  </div>
+                <?php
+                }
+                ?>
+
                 <form action="/Landing_page/update/<?= $informasi['id_berita']; ?>" class="custom-validation" method="POST" enctype="multipart/form-data">
 
                   <input type="hidden" name="idPetugas" value="<?= session('idPetugas'); ?>">
@@ -113,7 +123,7 @@
                   <div class="row mb-2">
                     <label for="judul" class="col-sm-3 col-form-label">Judul Informasi</label>
                     <div class="col-sm-9">
-                      <input class="form-control" type="text" placeholder="Masukkan judul informasi" id="judul" name="judul" value="<?= $informasi['Judul']; ?>" required>
+                      <input class="form-control" type="text" placeholder="Masukkan judul informasi" id="judul" name="judul" value="<?= $informasi['Judul']; ?>" required minlength="5">
                     </div>
                   </div>
 
@@ -128,7 +138,7 @@
                     <label for="gambar" class="col-sm-3 col-form-label">Gambar Cover</label>
                     <div class="col-sm-5">
                       <div class="input-group">
-                        <input type="file" name="gambar" class="form-control" id="gambar" value="<?= $informasi['Gambar']; ?>">
+                        <input type="file" name="gambar" class="form-control <?= ($validation->hasError('gambar')) ?>" id="gambar" value="<?= $informasi['Gambar']; ?>" required>
                       </div>
                       <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png max 3MB</p>
                     </div>
@@ -183,15 +193,6 @@
                     <textarea id="elm1" name="isi_berita" value="<?= $informasi['Isi']; ?>"><?= $informasi['Isi']; ?></textarea>
                   </div>
 
-                  <?php
-                  if ($validation->hasError('gambar')) {
-                  ?>
-                    <div class="alert alert-danger" role="alert">
-                      <?= $validation->getError('gambar'); ?><br>
-                    </div>
-                  <?php
-                  }
-                  ?>
                   <div class="mb-0 text-end">
                     <div>
                       <input type="button" value="Kembali" class="btn btn-warning waves-effect" onclick="history.back(-1)" />

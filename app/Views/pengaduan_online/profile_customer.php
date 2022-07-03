@@ -34,12 +34,30 @@
 
             <div class="page-content">
 
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Profil</h4>
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">APTB</a></li>
+                                    <li class="breadcrumb-item active">Profil</li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
 
                                 <h4 class="card-title">Profil Customer</h4>
+                                <p>Anda dapat mengubah data diri Anda melalui form di bawah ini</p>
 
                                 <form action="/Pengaduan_online/in_profile" class="custom-validation" method="POST" enctype="multipart/form-data">
                                     <!-- beri penjelasan tiap input/desc -->
@@ -58,7 +76,7 @@
                                         <div class="row my-2">
                                             <label class="col-sm-2 mt-2" for="username">Username</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" name="username" required minlength="4" value="<?= $customer['Username']; ?>">
+                                                <input class="form-control" type="text" name="username" required minlength="5" maxlength="15" value="<?= $customer['Username']; ?>">
                                             </div>
                                         </div>
                                         <div class="row my-2">
@@ -67,12 +85,12 @@
                                                 <input class="form-control" type="text" name="nik" required minlength="16" maxlength="16" data-parsley-type="digits" value="<?= $customer['NIK']; ?>">
                                             </div>
                                         </div>
-                                        <div class="row my-2">
+                                        <!-- <div class="row my-2">
                                             <label class="col-sm-2 mt-2" for="tanggal">Tanggal Lahir</label>
                                             <div class="col-sm-10">
                                                 <input class="form-control" type="date" name="tanggal" max="<?php echo date("Y-m-d"); ?>" value="<?= $customer['tglLahir']; ?>">
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="row my-2">
                                             <label class="col-sm-2 mt-2" for="email">Email</label>
                                             <div class="col-sm-10">
@@ -88,7 +106,7 @@
                                         <div class="row my-2">
                                             <label class="col-sm-2 mt-2" for="pekerjaan">Pekerjaan</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="text" name="pekerjaan" required minlength="4" value="<?= $customer['Pekerjaan']; ?>">
+                                                <input class="form-control" type="text" name="pekerjaan" required minlength="5" value="<?= $customer['Pekerjaan']; ?>">
                                             </div>
                                             <input type="hidden" name="idCustomer" required value="<?= $customer['idCustomer']; ?>">
                                         </div>
@@ -111,6 +129,7 @@
                             <div class="card-body">
 
                                 <h4 class="card-title"> Ganti Password </h4>
+                                <p>Anda dapat mengubah password Anda melalui form di bawah ini</p>
 
                                 <form action="/Pengaduan_online/gantiPassword" class="custom-validation" method="POST" enctype="multipart/form-data">
                                     <!-- beri penjelasan tiap input/desc -->
@@ -124,19 +143,19 @@
                                         <div class="row my-2">
                                             <label class="col-sm-2 mt-2" for="oldPass">Password Lama</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="Password" name="oldPass" required minlength="4">
+                                                <input class="form-control" type="Password" name="oldPass" required minlength="8">
                                             </div>
                                         </div>
                                         <div class="row my-2">
                                             <label class="col-sm-2 mt-2" for="newPass">Password Baru</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="Password" name="newPass" required minlength="4">
+                                                <input class="form-control" type="Password" name="newPass" required minlength="8">
                                             </div>
                                         </div>
                                         <div class="row my-2">
                                             <label class="col-sm-2 mt-2" for="confPass">Konfirmasi Password</label>
                                             <div class="col-sm-10">
-                                                <input class="form-control" type="Password" name="confPass" required minlength="4">
+                                                <input class="form-control" type="Password" name="confPass" required minlength="8 ">
                                             </div>
                                         </div>
 

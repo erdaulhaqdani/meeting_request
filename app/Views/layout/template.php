@@ -88,7 +88,7 @@
 									<li><a href="#">Halaman</a>
 										<ul class="dropdown">
 											<li><a href="/pages/profil">Profil KPKNL Bandung</a></li>
-											<li><a href="/pages/faq">FAQ</a></li>
+											<!-- <li><a href="/pages/faq">FAQ</a></li> -->
 											<li><a href="/pages/permohonan_info">Permohonan Informasi</a></li>
 										</ul>
 									</li>
@@ -168,9 +168,10 @@
 									<ul>
 										<li><a href="/pages/pengumuman_grid">Pengumuman</a></li>
 										<li><a href="/pages/berita_grid">Berita</a></li>
+										<li><a href="/pages/berita_grid">Artikel</a></li>
 										<li><a href="/pages/agenda_grid">Agenda</a></li>
 										<li><a href="/pages/profil">Profil</a></li>
-										<li><a href="/pages/faq">FAQ</a></li>
+										<!-- <li><a href="/pages/faq">FAQ</a></li> -->
 									</ul>
 								</div>
 							</div>

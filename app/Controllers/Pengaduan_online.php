@@ -377,7 +377,6 @@ class Pengaduan_online extends BaseController
             'Nama' => $this->request->getVar('nama'),
             'Username' => $this->request->getVar('username'),
             'NIK' => $this->request->getVar('nik'),
-            'tglLahir' => $this->request->getVar('tanggal'),
             'Email' => $this->request->getVar('email'),
             'noHP' => $this->request->getVar('noHP'),
             'Pekerjaan' => $this->request->getVar('pekerjaan')
@@ -393,6 +392,10 @@ class Pengaduan_online extends BaseController
     {
         $customer = $this->request->getVar('idCustomer');
         $arrCustomer = $this->CustModel->getCustomer($customer);
+        $getUser = $this->UserModel->getUser($arrCustomer['Email']);
+        foreach ($getUser as $a) {
+            $id = $a['idUser'];
+        }
 
         $oldPass = $this->request->getVar('oldPass');
         $newPass = $this->request->getVar('newPass');
@@ -407,15 +410,17 @@ class Pengaduan_online extends BaseController
                     'Password' => $hashedPass
                 ]);
 
-                $this->UserModel->update($arrCustomer['Email'], ['Password' => $hashedPass]);
+                $this->UserModel->update($id, ['Password' => $hashedPass]);
 
-                session()->setFlashdata('pesan_pass', 'berhasil menyunting password.');
+                session()->setFlashdata('pesan_pass', 'Berhasil menyunting password.');
             } else {
-                session()->setFlashdata('pesan_error', 'password baru dan konfirmasi password tidak sama.');
+                session()->setFlashdata('pesan_error', 'Password baru dan konfirmasi password tidak sama.');
             }
         } else {
-            session()->setFlashdata('pesan_error', 'password lama salah.');
+            session()->setFlashdata('pesan_error', 'Password lama salah.');
         }
+
+
 
         return redirect()->to('/Pengaduan_online/profile');
     }

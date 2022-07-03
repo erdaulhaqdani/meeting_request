@@ -48,7 +48,7 @@
             $judul = $a['Judul'];
             $textJudul = strlen($judul);
             $num_char = 70;
-            if ($textjudul > $num_char) {
+            if ($textJudul > $num_char) {
               $cut_judul = substr($judul, 0, $num_char) . '...';
             } else {
               $cut_judul = $a['Judul'];

@@ -97,9 +97,9 @@
                   <div class="mb-0 text-end">
                     <div>
 
-                      <a href="/petugasMR/daftar_tandaTerima"><button type="button" class="btn btn-warning waves-effect mt-2 me-2">Kembali</button> </a>
+                      <input type="button" value="Kembali" class="btn btn-warning waves-effect me-2 mt-2" onclick="history.back(-1)" />
                       <button type="reset" class="btn btn-secondary waves-effect mt-2 me-2"">
-                        Reset
+                        Batal
                       </button>
                       <button type=" submit" class="btn btn-primary waves-effect waves-light mt-2 me-2"">
                         Submit

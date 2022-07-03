@@ -82,7 +82,7 @@
                       <th>No.</th>
                       <th>Kategori</th>
                       <th>Judul</th>
-                      <th>Penulis</th>
+                      <!-- <th>Penulis</th> -->
                       <th>Tanggal Input</th>
                       <th>Status</th>
                       <th>Aksi</th>
@@ -117,16 +117,19 @@
                         <td><?= $no++; ?></td>
                         <td><?= $a->Kategori; ?></td>
                         <td><?= $cut_judul ?></td>
-                        <td><?= $cut_penulis ?></td>
+                        <!-- <td><?= $cut_penulis ?></td> -->
                         <td><?= tanggal_indo($tanggal) ?></td>
                         <td><?= $a->Status; ?></td>
                         <td>
                           <?php if ($a->Status == 'Diarsipkan') : ?>
+                            <a href="/Landing_page/delete/<?= $a->id_berita; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
                             <a href="/Landing_page/edit/<?= $a->id_berita; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                             <a href="/Landing_page/publik/<?= $a->id_berita; ?>" class="btn btn-success btn-sm w-xs">Publish</a>
                           <?php elseif ($a->Status == 'Publik') : ?>
+                            <a href="/Landing_page/delete/<?= $a->id_berita; ?>" class="btn btn-danger btn-sm w-xs">Hapus</a>
                             <a href="/Landing_page/edit/<?= $a->id_berita; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                             <a href="/Landing_page/arsip/<?= $a->id_berita; ?>" class="btn btn-warning btn-sm w-xs">Arsip</a>
+
                           <?php endif ?>
                         </td>
                       </tr>

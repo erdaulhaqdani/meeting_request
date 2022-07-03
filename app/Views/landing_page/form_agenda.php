@@ -64,13 +64,23 @@
                 }
                 ?>
 
+                <?php
+                if ($validation->hasError('gambar')) {
+                ?>
+                  <div class="alert alert-danger" role="alert">
+                    <?= $validation->getError('gambar'); ?><br>
+                  </div>
+                <?php
+                }
+                ?>
+
                 <form action="/Landing_page/input_agenda" class="custom-validation" method="POST" enctype="multipart/form-data">
                   <input type="hidden" name="idPetugas" value="<?= session('idPetugas'); ?>">
 
                   <div class="row mb-2">
                     <label for="judul" class="col-sm-3 col-form-label">Judul Agenda</label>
                     <div class="col-sm-9">
-                      <input class="form-control" type="text" placeholder="Masukkan judul agenda" id="judul" name="judul" required>
+                      <input class="form-control" type="text" placeholder="Masukkan judul agenda" id="judul" name="judul" required minlength="5">
                     </div>
                   </div>
 
@@ -92,7 +102,7 @@
                     <label for="gambar" class="col-sm-3 col-form-label">Gambar Cover</label>
                     <div class="col-sm-9">
                       <div class="input-group">
-                        <input type="file" name="gambar" class="form-control" id="gambar" required>
+                        <input type="file" name="gambar" class="form-control <?= ($validation->hasError('gambar')) ?>" id="gambar" required>
                       </div>
                       <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png max 3MB</p>
                     </div>
@@ -112,19 +122,11 @@
                     <textarea id="elm1" name="isi_agenda"></textarea>
                   </div>
 
-                  <?php
-                  if ($validation->hasError('gambar')) {
-                  ?>
-                    <div class="alert alert-danger" role="alert">
-                      <?= $validation->getError('gambar'); ?><br>
-                    </div>
-                  <?php
-                  }
-                  ?>
+
                   <div class="mb-0 text-end">
                     <div>
                       <input type="button" value="Kembali" class="btn btn-warning waves-effect me-2" onclick="history.back(-1)" />
-                      <button type="reset" class="btn btn-secondary waves-effect me-2">Batal</button>
+                      <button type="reset" class="btn btn-danger waves-effect me-2">Reset</button>
                       <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
                     </div>
                   </div>
