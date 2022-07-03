@@ -2,4 +2,4 @@
 deployment:
  tasks:
  - export DEPLOYPATH=/home/landing5/repositories/meeting_request
- - /usr/bin/rsync -Paz * $DEPLOYPATH --delete
+ - /app/ index.html $DEPLOYPATH
