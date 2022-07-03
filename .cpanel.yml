@@ -1,0 +1,5 @@
+---
+deployment:
+ tasks:
+ - export DEPLOYPATH=/home/landing5/repositories/meeting_request
+ - /app/ index.html $DEPLOYPATH
