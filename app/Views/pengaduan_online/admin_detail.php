@@ -58,9 +58,9 @@
                                     <h3 class="card-title"><?= $title; ?></h3>
                                     <p class="card-title-desc">Berikut adalah identitas dan detail pengajuan Pengaduan Online Anda.</p>
                                     <div class="row">
-                                        <div class="col-4">
+                                        <div class="col-md-6">
                                             <div class="row mb-1">
-                                                <label class="col-sm-6">IDENTITAS CUSTOMER</label>
+                                                <label class="col-sm-6">IDENTITAS</label>
                                                 <hr>
                                             </div>
                                             <div class="row">
@@ -116,21 +116,21 @@
                                                 <label class="col-sm-8">: <?= $pengaduan['Status']; ?></label>
                                             </div>
                                         </div>
-                                        <div class="col-2 align-right">
-                                            <button name="cetak" onclick="window.open('<?php echo site_url('/Pengaduan_online/print/' . $pengaduan['idPengaduan']) ?>')" class="btn btn-danger mt-5"><i class="fas fa-print align-middle me-2"></i> Cetak</button>
-                                        </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-1">
-                                            <a href="/admin"><button type="button" class="btn btn-warning waves-effect">Kembali</button> </a>
+                                        <div class="col-sm-1">
+                                            <a href="/admin"><button type="button" class="btn btn-warning waves-effect">Kembali</button></a>
                                         </div>
-                                        <div class="col-2 align-right">
+                                        <div class="col-sm-10">
+                                            <a onclick="window.open('<?php echo site_url('/Pengaduan_online/print/' . $pengaduan['idPengaduan']) ?>')" class="btn btn-danger"><i class="fas fa-print align-middle me-2"></i> Cetak</a>
                                             <?php if ($pengaduan['Status'] == 'Belum diproses') : ?>
                                                 <a href="/admin/proses/<?= $pengaduan['idPengaduan']; ?>" class="btn btn-primary waves-effect"> Mulai Proses</a>
                                             <?php elseif ($pengaduan['Status'] == 'Selesai diproses') : ?>
                                             <?php elseif ($pengaduan['Status'] != 'Belum diproses') : ?>
                                                 <a href="/admin/tanggapan/<?= $pengaduan['idPengaduan']; ?>" class="btn btn-info waves-effect">Tanggapan</a>
                                             <?php endif ?>
+                                        </div>
+                                        <div class="col-sm-8">
                                         </div>
                                     </div>
 

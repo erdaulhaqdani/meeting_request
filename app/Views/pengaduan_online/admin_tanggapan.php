@@ -48,9 +48,9 @@
                                         <select name="status" id="s" onchange="tampilPetugas()" class="form-select" aria-label="Default select example">
                                             <option value="Selesai diproses">Selesai diproses</option>
                                             <option value="Eskalasi">Eskalasi</option>
-                                            <option value="Sedang diproses">Sedang diproses</option>
-                                            <option value="Tidak dapat diproses">Tidak dapat diproses</option>
-                                            <option value="Belum bisa diproses">Belum bisa diproses</option>
+                                            <!-- <option value="Sedang diproses">Sedang diproses</option> -->
+                                            <!-- <option value="Tidak dapat diproses">Tidak dapat diproses</option> -->
+                                            <!-- <option value="Belum bisa diproses">Belum bisa diproses</option> -->
                                         </select>
                                     </div>
 
@@ -75,7 +75,7 @@
 
                                     <div class="mb-3" id="lampiran">
                                         <label for="lampiran">Lampiran</label>
-                                        <input type="file" id="file" onchange="sizeValidation();" class="dropify" name="lampiran" />
+                                        <input type="file" id="file" onchange="validation()" class="dropify" name="lampiran" />
                                     </div>
 
                                     <div class="mb-3">
@@ -86,7 +86,7 @@
 
                                     <div class="mt-3 text-end">
                                         <button type="reset" class="btn btn-danger me-3">Reset</button>
-                                        <button type="submit" class="btn btn-primary" name="tanggapan">Submit</button>
+                                        <button type="submit" class="btn btn-primary" name="tanggapan" id="submit">Submit</button>
                                     </div>
                                 </form>
 
@@ -141,25 +141,38 @@
         }
     }
 
-    sizeValidation = () => {
+    validation = () => {
         const fi = document.getElementById('file');
+        const submit = document.getElementById('submit')
+        const fileWarn = document.getElementById('fileWarn')
         // Check if any file is selected.
         if (fi.files.length > 0) {
             for (const i = 0; i <= fi.files.length - 1; i++) {
 
                 const fsize = fi.files.item(i).size;
                 const file = Math.round((fsize / 1024));
-                // The size of the file.
-                if (file >= 5120) {
-                    document.getElementById('fileWarn').innerHTML = "File terlalu besar";
+                const filePath = fi.value;
+                // Allowing file type
+                var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
+                // file type validation
+                if (!allowedExtensions.exec(filePath)) {
+                    fileWarn.innerHTML = "Jenis file pada lampiran salah, harus jpg, jpeg, png, atau pdf";
                     $('#fileWarn').removeClass("text-info");
                     $('#fileWarn').addClass("text-danger");
-                    document.getElementById('input').disable = true;
+                    submit.disabled = true;
                 } else {
-                    document.getElementById('fileWarn').innerHTML = "Jenis file pada lampiran adalah jpg, jpeg, png, atau pdf max 5MB";
-                    $('#fileWarn').removeClass("text-danger");
-                    $('#fileWarn').addClass("text-info");
-                    document.getElementById('input').disable = false;
+                    // The size of the file.
+                    if (file >= 5120) {
+                        fileWarn.innerHTML = "File terlalu besar";
+                        $('#fileWarn').removeClass("text-info");
+                        $('#fileWarn').addClass("text-danger");
+                        submit.disabled = true;
+                    } else {
+                        fileWarn.innerHTML = "Jenis file pada lampiran adalah jpg, jpeg, png, atau pdf max 5MB";
+                        $('#fileWarn').removeClass("text-danger");
+                        $('#fileWarn').addClass("text-info");
+                        submit.disabled = false;
+                    }
                 }
             }
         }

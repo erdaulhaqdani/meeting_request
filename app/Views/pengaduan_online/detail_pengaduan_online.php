@@ -58,7 +58,6 @@
                                     <h3 class="card-title"><?= $title; ?></h3>
                                     <p class="card-title-desc">Berikut adalah identitas dan detail pengajuan Pengaduan Online Anda.</p>
                                     <div class="row">
-
                                         <div class="col-md-4">
                                             <div class="row mb-1">
                                                 <label class="col-sm-6">IDENTITAS CUSTOMER</label>
@@ -117,6 +116,16 @@
                                                 <label class="col-sm-4">Status</label>
                                                 <label class="col-sm-8">: <?= $pengaduan['Status']; ?></label>
                                             </div>
+                                            <?php if ($pengaduan['Rating'] > 0) : ?>
+                                                <div class="row">
+                                                    <label class="col-sm-4">Rating</label>
+                                                    <label class="col-sm-8">: <?= $pengaduan['Rating']; ?></label>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-sm-4">Ulasan</label>
+                                                    <label class="col-sm-8">: <?= $pengaduan['Ulasan']; ?></label>
+                                                </div>
+                                            <?php endif ?>
                                         </div>
                                         <div class="col-md-2 align-right">
                                             <button name="cetak" onclick="window.open('<?php echo site_url('/Pengaduan_online/print/' . $pengaduan['idPengaduan']) ?>')" class="btn btn-danger mt-5"><i class="fas fa-print align-middle me-2"></i> Cetak</button>

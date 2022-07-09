@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css') ?>">
 </head>
 
-<?= $this->include("partials/body") ?>
+<?= $this->include("partials/body"); ?>
 
 <div class="container-fluid">
     <!-- Begin page -->
@@ -46,6 +46,13 @@
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                             <h4 class="mb-sm-0">Dashboard</h4>
+                            <form action="Backend/dashboard_petugas" method="POST">
+                                <select class="form-select" style="max-width: 120px;" name="filter" id="filter">
+                                    <option value=1>1 Bulan</option>
+                                    <option value=3>3 Bulan</option>
+                                    <option value=6>6 Bulan</option>
+                                </select>
+                            </form>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
@@ -53,89 +60,12 @@
                                     <li class="breadcrumb-item active">Dashboard</li>
                                 </ol>
                             </div>
-
                         </div>
                     </div>
                 </div>
                 <!-- end page title -->
 
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title mb-4">Statistik Pengaduan</h4>
-                                <canvas id="pengaduan"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title mb-4">Statistik Janji Temu</h4>
-                                <canvas id="meeting"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="flex-grow-1">
-                                        <p class="text-truncate font-size-14 mb-2">Jumlah Customer</p>
-                                        <h4 class="mb-2"><?php foreach ($customer->getResultObject() as $a) : ?>
-                                                <?= $a->idCustomer; ?>
-                                            <?php endforeach ?></h4>
-                                        <p class="text-muted mb-0 font-size-13">Customer berstatus aktif</p>
-                                    </div>
-                                    <div class="avatar-sm">
-                                        <span class="avatar-title bg-light text-primary rounded-3">
-                                            <i class="ri-user-3-line font-size-24"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div><!-- end cardbody -->
-                        </div><!-- end card -->
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="flex-grow-1">
-                                        <p class="text-truncate font-size-14 mb-2">Tanda Terima</p>
-                                        <h4 class="mb-2"><?php foreach ($jumlah_tandaTerima->getResultObject() as $a) : ?>
-                                                <?= $a->id_tt; ?>
-                                            <?php endforeach ?></h4>
-                                        <p class="text-muted mb-0 font-size-13">Jumlah tanda terima masuk</p>
-                                    </div>
-                                    <div class="avatar-sm">
-                                        <span class="avatar-title bg-light text-primary rounded-3">
-                                            <i class=" ri-mail-check-line font-size-24"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div><!-- end cardbody -->
-                        </div><!-- end card -->
-                    </div><!-- end col -->
-                    <div class="col-xl-3 col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex">
-
-                                    <div class="flex-grow-1">
-                                        <p class="text-truncate font-size-14 mb-2">Customer Baru</p>
-                                        <h4 class="mb-2"><?php foreach ($cust_baru->getResultObject() as $a) : ?>
-                                                <?= $a->idCustomer; ?>
-                                            <?php endforeach ?></h4>
-                                        <p class="text-muted mb-0 font-size-13">Dalam 7 hari terakhir</p>
-                                    </div>
-                                    <div class="avatar-sm">
-                                        <span class="avatar-title bg-light text-success rounded-3">
-                                            <i class="ri-user-3-line font-size-24"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div><!-- end cardbody -->
-                        </div><!-- end card -->
-                    </div>
-                </div>
+                <div class="row" id="stat"></div>
 
                 <div class="row">
                     <div class="col-md-6">
@@ -186,6 +116,31 @@
 <script src="<?= base_url('assets/js/app.js') ?>"></script>
 <script src="<?= base_url('assets/js/chart.min.js') ?>"></script>
 
+
+<!-- Filter dashboard -->
+<script type="text/javascript">
+    function statistik() {
+        $.ajax({
+            url: "<?= base_url('Backend/statistik_petugas'); ?>",
+            type: "POST",
+            dataType: "json",
+            data: $(this).serialize(),
+            success: function(message) {
+                alert(message.date);
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+            }
+        })
+    }
+    $(document).ready(function() {
+        statistik();
+        $("#filter").change(function() {
+            var date = $(this).val();
+            statistik();
+        });
+    });
+</script>
 <!-- Chart donut statistik pengaduan -->
 <script>
     var pengaduan = document.getElementById('pengaduan');
