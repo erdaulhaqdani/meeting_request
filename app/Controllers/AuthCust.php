@@ -47,12 +47,19 @@ class AuthCust extends BaseController
     $model = new PetugasModel();
     $table = 'petugas_apt';
     $nip = $this->request->getVar('nip');
-    $password = $this->request->getVar('password');
+    $email = $this->request->getVar('email');
     $row = $model->get_nip($nip, $table);
+    $domain =  substr($email, -14, 14);
+
     if ($row == NULL) {
       session()->setFlashdata('pesan', 'NIP anda tidak terdaftar');
       return redirect()->to('/register_petugas');
     } elseif ($row) {
+
+      if ($domain != 'kemenkeu.go.id') {
+        session()->setFlashdata('pesan', 'Mohon gunakan email kemenkeu');
+        return redirect()->to('/register_petugas');
+      }
       $data = [
         'nip' => $row->NIP,
       ];
@@ -65,7 +72,7 @@ class AuthCust extends BaseController
     }
     $this->PetugasModel->save([
       'idPetugas' => $data['idPetugas'],
-      'Email' => $this->request->getVar('email'),
+      'Email' => $email,
       'Password' => $hashedPassword,
     ]);
 

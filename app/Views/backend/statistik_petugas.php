@@ -1,6 +1,6 @@
 <div class="col-md-3">
     <div class="card">
-        <div class="card-body">
+        <div class="card-body" id="donutPengaduan">
             <h4 class="card-title mb-4">Statistik Pengaduan</h4>
             <canvas id="pengaduan"></canvas>
         </div>
@@ -8,8 +8,8 @@
 </div>
 <div class="col-md-3">
     <div class="card">
-        <div class="card-body">
-            <h4 class="card-title mb-4">Statistik Janji Temu</h4>
+        <div class="card-body" id="donutMeeting">
+            <h4 class="card-title mb-4">Statistik Meeting</h4>
             <canvas id="meeting"></canvas>
         </div>
     </div>
@@ -74,83 +74,87 @@
     </div><!-- end card -->
 </div>
 
-<!-- Chart donut statistik pengaduan -->
 <script>
-    var pengaduan = document.getElementById('pengaduan');
-    var data_pengaduan = [];
-    var label_pengaduan = [];
+    //Chart donut statistik pengaduan
+    function statPengaduan() {
+        var pengaduan = document.getElementById('pengaduan');
+        var data_pengaduan = [];
+        var label_pengaduan = [];
 
-    <?php foreach ($groupPengaduan->getResult() as $key => $value) : ?>
-        data_pengaduan.push(<?= $value->Jumlah ?>);
-        label_pengaduan.push('<?= $value->Status ?>');
-    <?php endforeach ?>
+        <?php foreach ($groupPengaduan->getResult() as $key => $value) : ?>
+            data_pengaduan.push(<?= $value->Jumlah ?>);
+            label_pengaduan.push('<?= $value->Status ?>');
+        <?php endforeach ?>
 
-    var data_group_pengaduan = {
-        datasets: [{
-            data: data_pengaduan,
-            backgroundColor: [
-                '#f32f53',
-                '#0f9cf3',
-                '#6fd088',
-                '#0097a7'
-            ],
-        }],
-        labels: label_pengaduan,
+        var data_group_pengaduan = {
+            datasets: [{
+                data: data_pengaduan,
+                backgroundColor: [
+                    '#f32f53',
+                    '#0f9cf3',
+                    '#6fd088',
+                    '#0097a7'
+                ],
+            }],
+            labels: label_pengaduan,
+        }
 
-    }
-
-    var chart_pengaduan = new Chart(pengaduan, {
-        type: 'doughnut',
-        data: data_group_pengaduan,
-        options: {
-            plugins: {
-                legend: {
-                    align: 'start',
-                    labels: {
-                        boxWidth: 15
+        var chart_pengaduan = new Chart(pengaduan, {
+            type: 'doughnut',
+            data: data_group_pengaduan,
+            options: {
+                plugins: {
+                    legend: {
+                        align: 'start',
+                        labels: {
+                            boxWidth: 15
+                        }
                     }
                 }
             }
-        }
-    });
+        });
+        console.log(label_pengaduan);
+    }
 </script>
-
-<!-- Chart donut statistik meeting -->
 <script>
-    var meeting = document.getElementById('meeting');
-    var data_meeting = [];
-    var label_meeting = [];
+    // Chart donut statistik meeting
+    function statMeeting() {
+        var meeting = document.getElementById('meeting');
+        var data_meeting = [];
+        var label_meeting = [];
 
-    <?php foreach ($groupMeeting->getResult() as $key => $value) : ?>
-        data_meeting.push(<?= $value->Jumlah ?>);
-        label_meeting.push('<?= $value->Status ?>');
-    <?php endforeach ?>
+        <?php foreach ($groupMeeting->getResult() as $key => $value) : ?>
+            data_meeting.push(<?= $value->Jumlah ?>);
+            label_meeting.push('<?= $value->Status ?>');
+        <?php endforeach ?>
 
-    var data_group_meeting = {
-        datasets: [{
-            data: data_meeting,
-            backgroundColor: [
-                '#f32f53',
-                '#0f9cf3',
-                '#6fd088',
-                '#0097a7'
-            ],
-        }],
-        labels: label_meeting,
-    }
+        var data_group_meeting = {
+            datasets: [{
+                data: data_meeting,
+                backgroundColor: [
+                    '#f32f53',
+                    '#0f9cf3',
+                    '#6fd088',
+                    '#0097a7'
+                ],
+            }],
+            labels: label_meeting,
+        }
 
-    var chart_meeting = new Chart(meeting, {
-        type: 'doughnut',
-        data: data_group_meeting,
-        options: {
-            plugins: {
-                legend: {
-                    align: 'start',
-                    labels: {
-                        boxWidth: 15
+        var chart_meeting = new Chart(meeting, {
+            type: 'doughnut',
+            data: data_group_meeting,
+            options: {
+                plugins: {
+                    legend: {
+                        align: 'start',
+                        labels: {
+                            boxWidth: 15
+                        }
                     }
                 }
             }
-        }
-    });
+        });
+        console.log(label_meeting);
+    }
 </script>

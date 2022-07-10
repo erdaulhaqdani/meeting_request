@@ -199,6 +199,7 @@ class Pengaduan_onlineModel extends Model
         $builder->where('updated_at >=', $period);
         $builder->orWhere('idPetugas', 1);
         $builder->where('idKategori', $kategori);
+        $builder->where('updated_at >=', $period);
         $builder->groupBy('Status');
         $builder->orderBy('Status', 'ASC');
         $query = $builder->get();

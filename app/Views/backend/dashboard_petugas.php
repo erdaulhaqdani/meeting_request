@@ -20,7 +20,6 @@
     <!-- jquery.vectormap css -->
     <link rel="stylesheet" href="<?= base_url('assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css') ?>">
 </head>
-
 <?= $this->include("partials/body"); ?>
 
 <div class="container-fluid">
@@ -65,7 +64,7 @@
                 </div>
                 <!-- end page title -->
 
-                <div class="row" id="stat"></div>
+                <div class="row" id="rowStat"></div>
 
                 <div class="row">
                     <div class="col-md-6">
@@ -119,111 +118,34 @@
 
 <!-- Filter dashboard -->
 <script type="text/javascript">
-    function statistik() {
+    $(document).ready(function() {
+        pieDashboard();
+
+        $("#filter").change(function() {
+            pieDashboard();
+        });
+    });
+</script>
+
+<script>
+    function pieDashboard() {
         $.ajax({
-            url: "<?= base_url('Backend/statistik_petugas'); ?>",
+            url: "<?= base_url('Backend/dashboard_petugas'); ?>",
             type: "POST",
             dataType: "json",
             data: $(this).serialize(),
-            success: function(message) {
-                alert(message.date);
+            success: function(response) {
+                $('#rowStat').html(response.data);
+                statPengaduan();
+                statMeeting();
             },
             error: function(xhr, ajaxOptions, thrownError) {
                 alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
             }
-        })
-    }
-    $(document).ready(function() {
-        statistik();
-        $("#filter").change(function() {
-            var date = $(this).val();
-            statistik();
         });
-    });
-</script>
-<!-- Chart donut statistik pengaduan -->
-<script>
-    var pengaduan = document.getElementById('pengaduan');
-    var data_pengaduan = [];
-    var label_pengaduan = [];
-
-    <?php foreach ($groupPengaduan->getResult() as $key => $value) : ?>
-        data_pengaduan.push(<?= $value->Jumlah ?>);
-        label_pengaduan.push('<?= $value->Status ?>');
-    <?php endforeach ?>
-
-    var data_group_pengaduan = {
-        datasets: [{
-            data: data_pengaduan,
-            backgroundColor: [
-                '#f32f53',
-                '#0f9cf3',
-                '#6fd088',
-                '#0097a7'
-            ],
-        }],
-        labels: label_pengaduan,
-
     }
 
-    var chart_pengaduan = new Chart(pengaduan, {
-        type: 'doughnut',
-        data: data_group_pengaduan,
-        options: {
-            plugins: {
-                legend: {
-                    align: 'start',
-                    labels: {
-                        boxWidth: 15
-                    }
-                }
-            }
-        }
-    });
-</script>
-
-<!-- Chart donut statistik meeting -->
-<script>
-    var meeting = document.getElementById('meeting');
-    var data_meeting = [];
-    var label_meeting = [];
-
-    <?php foreach ($groupMeeting->getResult() as $key => $value) : ?>
-        data_meeting.push(<?= $value->Jumlah ?>);
-        label_meeting.push('<?= $value->Status ?>');
-    <?php endforeach ?>
-
-    var data_group_meeting = {
-        datasets: [{
-            data: data_meeting,
-            backgroundColor: [
-                '#f32f53',
-                '#0f9cf3',
-                '#6fd088',
-                '#0097a7'
-            ],
-        }],
-        labels: label_meeting,
-    }
-
-    var chart_meeting = new Chart(meeting, {
-        type: 'doughnut',
-        data: data_group_meeting,
-        options: {
-            plugins: {
-                legend: {
-                    align: 'start',
-                    labels: {
-                        boxWidth: 15
-                    }
-                }
-            }
-        }
-    });
-</script>
-
-<!-- Bar Chart pengaduan minggu ini -->
-<script>
+    // Bar Chart pengaduan minggu ini
     // cari cara generate tanggal minggu ini via javascript/php kirim tgl ke sql
     var currentDate = new Date();
     var day = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay() + 0)).toUTCString();
