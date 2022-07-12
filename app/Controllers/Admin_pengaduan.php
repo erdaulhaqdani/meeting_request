@@ -38,10 +38,10 @@ class Admin_pengaduan extends BaseController
         $data = [
             'title' => 'Daftar Pengaduan Online',
             'pengaduan' => $this->Pengaduan_onlineModel->listPengaduanAdmin(session('idLevel'), session('Unit'), session('idPetugas')),
-            'belum' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Belum diproses', session('idPetugas')),
-            'proses' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Sedang diproses', session('idPetugas')),
-            'selesai' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Selesai diproses', session('idPetugas')),
-            'eskalasi' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Eskalasi', session('idPetugas')),
+            'belum' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Belum diproses', session('idPetugas'), session('Unit')),
+            'proses' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Sedang diproses', session('idPetugas'), session('Unit')),
+            'selesai' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Selesai diproses', session('idPetugas'), session('Unit')),
+            'eskalasi' => $this->Pengaduan_onlineModel->jumlahPengaduanAdmin('Eskalasi', session('idPetugas'), session('Unit')),
             'kategori' => $this->KategoriModel->getKategori()
         ];
 

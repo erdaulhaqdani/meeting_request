@@ -116,15 +116,11 @@ class Pengaduan_onlineModel extends Model
         if ($level != 2) {
             $builder->where('idKategori', $kategori);
         }
-        $builder->where('idPetugas', $petugas);
+        $builder->where('idPetugas', 1);
+        $builder->like('Status', 'Belum diproses');
+        $builder->orWhere('idPetugas', $petugas);
         $builder->like('Status', 'Eskalasi');
         $builder->orWhere('idPetugas', $petugas);
-        $builder->like('Status', 'proses');
-        $builder->orWhere('idPetugas', 1);
-        if ($level != 2) {
-            $builder->where('idKategori', $kategori);
-        }
-
         $query = $builder->get();
         return $query;
     }
@@ -150,7 +146,7 @@ class Pengaduan_onlineModel extends Model
         return $query;
     }
 
-    public function jumlahPengaduanAdmin($status, $petugas)
+    public function jumlahPengaduanAdmin($status, $petugas, $kategori)
     {
         /**
          * SELECT * FROM pengaduan_online
@@ -160,6 +156,7 @@ class Pengaduan_onlineModel extends Model
         $builder->like('Status', $status);
         $builder->where('idPetugas', $petugas);
         $builder->orWhere('idPetugas', 1);
+        $builder->where('idKategori', $kategori);
         $builder->like('Status', $status);
         $builder->selectCount('idPengaduan');
         $query = $builder->get();
@@ -193,19 +190,22 @@ class Pengaduan_onlineModel extends Model
         return $query;
     }
 
-    public function groupByStatusPetugas($idPetugas)
+    public function groupByStatusPetugas($idPetugas, $kategori, $period)
     {
         $builder = $this->db->table('pengaduan_online');
         $builder->selectCount('idPengaduan', 'Jumlah');
         $builder->select('Status');
         $builder->where('idPetugas', $idPetugas);
+        $builder->where('updated_at >=', $period);
         $builder->orWhere('idPetugas', 1);
+        $builder->where('idKategori', $kategori);
+        $builder->where('updated_at >=', $period);
         $builder->groupBy('Status');
         $builder->orderBy('Status', 'ASC');
         $query = $builder->get();
         return $query;
     }
-    public function pengaduanPetugasPerminggu($idPetugas)
+    public function pengaduanPetugasPerminggu($idPetugas, $kategori)
     {
         /*SELECT COUNT(created_at) AS 'Jumlah', DATE_FORMAT(created_at, "%e %M %Y")
         FROM `pengaduan_online` GROUP BY DATE_FORMAT(created_at, "%e %M %Y")*/
@@ -215,6 +215,7 @@ class Pengaduan_onlineModel extends Model
         $builder->where('idPetugas', $idPetugas);
         $builder->where('created_at >=', 'NOW()');
         $builder->orWhere('idPetugas', 1);
+        $builder->where('idKategori', $kategori);
         $builder->where('created_at >=', 'NOW()');
         $builder->groupBy('DATE_FORMAT(created_at, "%e %M %Y")');
         $builder->orderBy('created_at', 'desc');

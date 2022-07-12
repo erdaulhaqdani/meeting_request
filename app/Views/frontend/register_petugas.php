@@ -31,7 +31,7 @@
 						<?php
 						if (session()->get('pesan')) :
 						?>
-							<div class="alert alert-danger" role="alert">
+							<div class="alert alert-danger" id="alert" role="alert">
 								<?= session()->get('pesan'); ?>
 							</div>
 						<?php
@@ -86,5 +86,6 @@
 <script>
 	$('#regis_cust').validate();
 </script>
+
 
 <?= $this->endSection(); ?>

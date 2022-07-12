@@ -69,7 +69,7 @@
 
                                     <label for="lampiran">Lampiran</label>
                                     <div class="mb-3" id="lampiran">
-                                        <input type="file" id="file" class="dropify" onchange="sizeValidation();extValidation();" name="lampiran">
+                                        <input type="file" id="file" class="dropify" onchange="validation();" name="lampiran">
                                         <!-- <button type="button" class="dropify-clear">Remove</button> -->
                                     </div>
 
@@ -79,7 +79,7 @@
 
                                     <div class="text-end">
                                         <button type="reset" class="btn btn-danger me-3">Reset</button>
-                                        <button type="submit" class="btn btn-primary" id="input">Submit</button>
+                                        <button type="submit" class="btn btn-primary" id="submit">Submit</button>
                                     </div>
                                 </form>
 
@@ -108,48 +108,40 @@
 <?= $this->include("partials/vendor-scripts") ?>
 
 <script>
-    sizeValidation = () => {
+    validation = () => {
         const fi = document.getElementById('file');
+        const submit = document.getElementById('submit')
+        const fileWarn = document.getElementById('fileWarn')
         // Check if any file is selected.
         if (fi.files.length > 0) {
             for (const i = 0; i <= fi.files.length - 1; i++) {
 
                 const fsize = fi.files.item(i).size;
                 const file = Math.round((fsize / 1024));
-                // The size of the file.
-                if (file >= 5120) {
-                    document.getElementById('fileWarn').innerHTML = "File terlalu besar";
+                const filePath = fi.value;
+                // Allowing file type
+                var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
+                // file type validation
+                if (!allowedExtensions.exec(filePath)) {
+                    fileWarn.innerHTML = "Jenis file pada lampiran salah, harus jpg, jpeg, png, atau pdf";
                     $('#fileWarn').removeClass("text-info");
                     $('#fileWarn').addClass("text-danger");
-                    document.getElementById('input').disable = true;
+                    submit.disabled = true;
                 } else {
-                    document.getElementById('fileWarn').innerHTML = "Jenis file pada lampiran adalah jpg, jpeg, png, atau pdf max 5MB";
-                    $('#fileWarn').removeClass("text-danger");
-                    $('#fileWarn').addClass("text-info");
-                    document.getElementById('input').disable = false;
+                    // The size of the file.
+                    if (file >= 5120) {
+                        fileWarn.innerHTML = "File terlalu besar";
+                        $('#fileWarn').removeClass("text-info");
+                        $('#fileWarn').addClass("text-danger");
+                        submit.disabled = true;
+                    } else {
+                        fileWarn.innerHTML = "Jenis file pada lampiran adalah jpg, jpeg, png, atau pdf max 5MB";
+                        $('#fileWarn').removeClass("text-danger");
+                        $('#fileWarn').addClass("text-info");
+                        submit.disabled = false;
+                    }
                 }
             }
-        }
-    }
-</script>
-
-<script>
-    function extValidation() {
-        var fileInput =
-            document.getElementById('file');
-
-        var filePath = fileInput.value;
-
-        // Allowing file type
-        var allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-
-        if (!allowedExtensions.exec(filePath)) {
-            alert('Invalid file type');
-            fileInput.value = '';
-            return false;
-        } else {
-            alert('Valid file type');
         }
     }
 </script>
