@@ -81,7 +81,7 @@
                     <div class="col-xl-4 col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Statistik Janji Temu</h4>
+                                <h4 class="card-title mb-4">Statistik Meeting Request</h4>
                                 <canvas id="meeting"></canvas>
                             </div>
                         </div>
@@ -109,7 +109,7 @@
                             <div class="card-body">
                                 <div class="d-flex">
                                     <div class="flex-grow-1">
-                                        <p class="text-truncate font-size-14 mb-2">Jumlah Janji Temu</p>
+                                        <p class="text-truncate font-size-14 mb-2">Jumlah Meeting Request</p>
                                         <h4 class="mb-2"><?php foreach ($jumlahMeeting->getResultObject() as $a) : ?>
                                                 <?= $a->idMeeting; ?>
                                             <?php endforeach ?></h4>
@@ -138,7 +138,7 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Janji Temu yang dibuat minggu ini</h4>
+                                <h4 class="card-title mb-4">Meeting Request yang dibuat minggu ini</h4>
                                 <canvas id="bar_meeting"></canvas>
                             </div>
                         </div>
@@ -150,7 +150,7 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">4 Janji Temu Terakhir</h4>
+                                <h4 class="card-title mb-4">4 Meeting Request Terakhir</h4>
 
                                 <a href="/Meeting_request" class="btn btn-primary btn-md me-3 mb-2">Lihat Semua</a>
                                 <a href="/Meeting_request/form" class="btn btn-success btn-md mb-2"><i class="fas fa-plus-circle"></i> Tambah</a>
@@ -476,7 +476,7 @@
     const data_bar = {
         labels: label_meeting,
         datasets: [{
-            label: 'Janji Temu',
+            label: 'Meeting Request',
             backgroundColor: '#6fd088',
             borderColor: '#6fd088',
             data: data_meeting,

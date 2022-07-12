@@ -57,11 +57,11 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fas fa-calendar-plus"></i>
-                        <span>Janji Temu</span>
+                        <span>Meeting Request</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="/Meeting_request/form">Buat Janji Temu</a></li>
-                        <li><a href="/Meeting_request">Daftar Janji Temu</a></li>
+                        <li><a href="/Meeting_request/form">Buat Meeting Request</a></li>
+                        <li><a href="/Meeting_request">Daftar Meeting Request</a></li>
                     </ul>
                 </li>
             </ul>

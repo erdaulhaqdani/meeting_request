@@ -75,7 +75,7 @@
         </div> <!-- /.post-wrapper -->
         <div class="theme-pagination">
           <?php
-          echo $pager->only(['berita'])->links();
+          // echo $pager->only(['berita'])->links();
           ?>
         </div>
       </div>

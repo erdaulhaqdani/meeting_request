@@ -2,10 +2,13 @@
 
 <head>
   <?= $this->include("partials/title-meta"); ?>
+
   <!-- Bootstrap Css -->
-  <link href="<?= base_url('assets/css/bootstrap.min.css'); ?> " id="bootstrap-style" rel="stylesheet" type="text/css" />
+  <link href="<?= base_url('/assets/css/bootstrap.min.css'); ?>" id="bootstrap-style" rel="stylesheet" type="text/css" />
+  <!-- Icons Css -->
+  <link href="<?= base_url('/assets/css/icons.min.css'); ?>" rel="stylesheet" type="text/css" />
   <!-- App Css-->
-  <link href="<?= base_url('assets/css/app.min.css'); ?>" id="app-style" rel="stylesheet" type="text/css" />
+  <link href="<?= base_url('/assets/css/app.min.css'); ?>" id="app-style" rel="stylesheet" type="text/css" />
 
   <?= $this->include("partials/head-css"); ?>
 </head>
@@ -30,12 +33,12 @@
         <div class="row">
           <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-              <h4 class="mb-sm-0">Buat Janji Temu</h4>
+              <h4 class="mb-sm-0">Buat Meeting Request</h4>
 
               <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                  <li class="breadcrumb-item"><a href="javascript: void(0);">Janji Temu</a></li>
-                  <li class="breadcrumb-item active">Buat Janji Temu</li>
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Meeting Request</a></li>
+                  <li class="breadcrumb-item active">Buat Meeting Request</li>
                 </ol>
               </div>
 
@@ -49,7 +52,7 @@
             <div class="card">
               <div class="card-body">
 
-                <h3 class="card-title">Pengajuan Janji Temu</h3>
+                <h3 class="card-title">Pengajuan Meeting Request</h3>
                 <p class="card-title-desc">Masukkan informasi Anda dengan lengkap.</p>
                 <?php
                 if (session()->get('pesan')) {
@@ -62,6 +65,16 @@
                 ?>
 
                 <form action="/Meeting_request/input" class="custom-validation" method="POST" enctype="multipart/form-data">
+                  <?php
+                  if ($validation->hasError('lampiran')) {
+                  ?>
+                    <div class="alert alert-danger" role="alert">
+                      <?= $validation->getError('lampiran'); ?>
+                    </div>
+                  <?php
+                  }
+                  ?>
+
                   <input type="hidden" name="idCustomer" value="<?= session('idCustomer'); ?>">
 
                   <div class="row mb-3">
@@ -95,7 +108,7 @@
                       <select class="form-select" name="kantor" aria-label="Default select example" required>
                         <option selected disabled value="">Pilih kantor tujuan</option>
                         <option value="KPKNL Bandung">KPKNL Bandung</option>
-                        <option value="DJKN Jabar">DJKN Jawa Barat</option>
+                        <option value="Kanwil DJKN Jawa Barat">Kanwil DJKN Jawa Barat</option>
                       </select>
                     </div>
                   </div>
@@ -113,7 +126,7 @@
                     <label for="lampiran" class="col-sm-3 col-form-label">Lampiran (opsional)</label>
                     <div class="col-sm-5">
                       <div class="input-group">
-                        <input type="file" name="lampiran" class="form-control" id="lampiran">
+                        <input type="file" name="lampiran" class="form-control <?= ($validation->hasError('lampiran')) ?>" id="lampiran">
                       </div>
                       <p class="mt-2 ml text-secondary">Jenis file lampiran adalah JPG, PNG, PDF atau DOCX max 3MB</p>
                     </div>
@@ -123,7 +136,7 @@
                   <div class="row mb-3">
                     <label for="tanggal_kunjungan" class="col-sm-3 col-form-label">Tanggal Kunjungan</label>
                     <div class="col-sm-5">
-                      <input id="my_tgl" class="form-control" type="date" id="txtDate" name="tanggal_kunjungan" required min="<?php echo date("Y-m-d"); ?>">
+                      <input class="form-control" type="text" id="my_tgl" name="tanggal_kunjungan" placeholder="Tanggal Kunjungan" autocomplete="off" required readonly>
                     </div>
                   </div>
                   <!-- end row -->
@@ -182,15 +195,25 @@
 <!-- JAVASCRIPT -->
 <?= $this->include('partials/vendor-scripts') ?>
 
-<script src="/assets/libs/parsleyjs/parsley.min.js"></script>
+<script src="<?= base_url('assets/libs/parsleyjs/parsley.min.js'); ?>"></script>
 
-<script src="/assets/js/pages/form-validation.init.js"></script>
+<script src="<?= base_url('assets/js/pages/form-validation.init.js'); ?>"></script>
+
+<!-- <script src=" https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/id.js "></script> -->
 
 <!-- Plugins js -->
-<script src="<?= base_url('/assets/js/app.js'); ?>"></script>
+<script src="<?= base_url('assets/js/app.js'); ?>"></script>
 
 <script>
-  $("#my_tgl").on("input", function(e) {
+  $(function() {
+    $("#my_tgl").datepicker({
+      minDate: 0,
+      dateFormat: 'dd-mm-yy',
+      beforeShowDay: $.datepicker.noWeekends
+    });
+  });
+
+  $("#my_tgl").on("change", function(e) {
     // alert("ganti");
     var a = $("#my_tgl").val();
     console.log(a);

@@ -53,7 +53,7 @@
                 <li>
                     <a href="/petugasMR" class=" waves-effect">
                         <i class="fas fa-calendar-plus"></i>
-                        <span>Janji Temu</span>
+                        <span>Meeting Request</span>
                     </a>
                 </li>
                 <li>

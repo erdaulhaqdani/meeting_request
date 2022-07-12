@@ -54,23 +54,22 @@
                 <h3 class="card-title">Form Tambah Informasi</h3>
                 <p class="card-title-desc">Masukkan data-data informasi dengan lengkap.</p>
 
-                <?php
-                if ($validation->hasError('gambar')) {
-                ?>
-                  <div class="alert alert-danger" role="alert">
-                    <?= $validation->getError('gambar'); ?>
-                  </div>
-                <?php
-                } elseif ($validation->hasError('gambar_lampiran[]')) {
-                ?>
-                  <div class="alert alert-danger" role="alert">
-                    <?= $validation->getError('gambar_lampiran[]'); ?>
-                  </div>
-                <?php
-                }
-                ?>
-
                 <form action="/Landing_page/input" class="custom-validation" method="POST" enctype="multipart/form-data">
+                  <?php
+                  if ($validation->hasError('gambar')) {
+                  ?>
+                    <div class="alert alert-danger" role="alert">
+                      <?= $validation->getError('gambar'); ?>
+                    </div>
+                  <?php
+                  } elseif ($validation->hasError('gambar_lampiran[]')) {
+                  ?>
+                    <div class="alert alert-danger" role="alert">
+                      <?= $validation->getError('gambar_lampiran[]'); ?>
+                    </div>
+                  <?php
+                  }
+                  ?>
                   <input type="hidden" name="idPetugas" value="<?= session('idPetugas'); ?>">
 
                   <div class="row mb-2">

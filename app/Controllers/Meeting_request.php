@@ -32,7 +32,7 @@ class Meeting_request extends BaseController
   public function index()
   {
     $data = [
-      'title' => 'Daftar Janji Temu',
+      'title' => 'Daftar Meeting Request',
       'meeting' => $this->Meeting_requestModel->listMeetingRequest(session('idCustomer')),
       'belum' => $this->Meeting_requestModel->jumlahMeetingRequest(session('idCustomer'), 'Belum diproses'),
       'proses' => $this->Meeting_requestModel->jumlahMeetingRequest(session('idCustomer'), 'Sedang diproses'),
@@ -49,7 +49,7 @@ class Meeting_request extends BaseController
   public function form()
   {
     $data = [
-      'title' => 'Form Janji Temu',
+      'title' => 'Form Meeting Request',
       'meeting' => $this->Meeting_requestModel->getMeetingRequest(),
       'validation' => \Config\Services::validation(),
       'kategori' => $this->KategoriModel->getKategori()
@@ -62,9 +62,10 @@ class Meeting_request extends BaseController
   {
     if (!$this->validate([
       'lampiran' => [
-        'rules' => 'max_size[lampiran,5120]',
+        'rules' => 'max_size[lampiran,3072]|ext_in[lampiran,jpg,jpeg,png,pdf,docx]',
         'errors' => [
-          'max_size' => 'Ukuran file maksimal 5MB'
+          'max_size' => 'Ukuran file maksimal 3MB',
+          'ext_in' => 'Jenis file harus jpg,jpeg,png,pdf,atau docx'
         ]
       ]
     ])) {
@@ -97,7 +98,7 @@ class Meeting_request extends BaseController
       'notifPetugas' => 0
     ]);
 
-    session()->setFlashdata('pesan', 'Berhasil menambahkan Janji Temu.');
+    session()->setFlashdata('pesan', 'Berhasil menambahkan Meeting Request.');
 
     return redirect()->to('/Meeting_request');
   }
@@ -107,7 +108,7 @@ class Meeting_request extends BaseController
     // $meeting = $this->Meeting_requestModel->getMeetingRequest($id);
     // if ($meeting['Status'] == 'Belum diproses') {
     //   $data = [
-    //     'title' => 'Detail Janji Temu',
+    //     'title' => 'Detail Meeting Request',
     //     'meeting' => $meeting,
     //     'customer' => $this->CustModel->getCustomer($meeting['idCustomer']),
     //     'kategori' => $this->KategoriModel->getKategori($meeting['idKategori'])
@@ -115,7 +116,7 @@ class Meeting_request extends BaseController
     // } elseif ($meeting['Status'] == 'Selesai diproses') {
     //   $tanggapan = $this->Tanggapan_MRModel->getTanggapanMeeting($id);
     //   $data = [
-    //     'title' => 'Detail Janji Temu',
+    //     'title' => 'Detail Meeting Request',
     //     'meeting' => $meeting,
     //     'customer' => $this->CustModel->getCustomer($meeting['idCustomer']),
     //     'kategori' => $this->KategoriModel->getKategori($meeting['idKategori']),
@@ -125,7 +126,7 @@ class Meeting_request extends BaseController
     //   ];
     // } else {
     //   $data = [
-    //     'title' => 'Detail Janji Temu',
+    //     'title' => 'Detail Meeting Request',
     //     'meeting' => $meeting,
     //     'customer' => $this->CustModel->getCustomer($meeting['idCustomer']),
     //     'kategori' => $this->KategoriModel->getKategori($meeting['idKategori'])
@@ -172,7 +173,7 @@ class Meeting_request extends BaseController
     }
     $this->Meeting_requestModel->delete($id);
 
-    session()->setFlashdata('pesan', 'Berhasil menghapus Janji Temu.');
+    session()->setFlashdata('pesan', 'Berhasil menghapus Meeting Request.');
 
     return redirect()->to('/Meeting_request');
   }
@@ -180,7 +181,7 @@ class Meeting_request extends BaseController
   public function edit($id)
   {
     $data = [
-      'title' => 'Ubah Janji Temu',
+      'title' => 'Ubah Meeting Request',
       'validation' => \Config\Services::validation(),
       'meeting' => $this->Meeting_requestModel->getMeetingRequest($id),
       'kategori' => $this->KategoriModel->getKategori()
@@ -193,9 +194,10 @@ class Meeting_request extends BaseController
   {
     if (!$this->validate([
       'lampiran' => [
-        'rules' => 'max_size[lampiran,5120]',
+        'rules' => 'max_size[lampiran,3072]|ext_in[lampiran,jpg,jpeg,png,pdf,docx]',
         'errors' => [
-          'max_size' => 'Ukuran file maksimal 5MB'
+          'max_size' => 'Ukuran file maksimal 3MB',
+          'ext_in' => 'Jenis file harus jpg,jpeg,png,pdf,atau docx'
         ]
       ]
     ])) {
@@ -240,7 +242,7 @@ class Meeting_request extends BaseController
       'notifPetugas' => 0
     ]);
 
-    session()->setFlashdata('pesan', 'Berhasil mengubah Janji Temu');
+    session()->setFlashdata('pesan', 'Berhasil mengubah Meeting Request');
 
     return redirect()->to('/Meeting_request');
   }

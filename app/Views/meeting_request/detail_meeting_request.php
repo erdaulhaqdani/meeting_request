@@ -37,12 +37,12 @@
         <div class="row">
           <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-              <h4 class="mb-sm-0">Detail Janji Temu</h4>
+              <h4 class="mb-sm-0">Detail Meeting Request</h4>
 
               <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                  <li class="breadcrumb-item"><a href="javascript: void(0);">Janji Temu</a></li>
-                  <li class="breadcrumb-item active">Detail Janji Temu</li>
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Meeting Request</a></li>
+                  <li class="breadcrumb-item active">Detail Meeting Request</li>
                 </ol>
               </div>
 
@@ -56,8 +56,8 @@
             <div class="card">
               <div class="card-body">
 
-                <h3 class="card-title">Detail Pengajuan Janji Temu</h3>
-                <p class="card-title-desc">Berikut adalah identitas dan detail pengajuan Janji Temu Anda.</p>
+                <h3 class="card-title">Detail Pengajuan Meeting Request</h3>
+                <p class="card-title-desc">Berikut adalah identitas dan detail pengajuan Meeting Request Anda.</p>
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="row mb-1">
@@ -69,7 +69,7 @@
                       <label class="col-sm-8">: <?= $customer['NIK']; ?></label>
                     </div>
                     <div class="row">
-                      <label class="col-sm-4">Nama Lengkap</label>
+                      <label class="col-sm-4">Username</label>
                       <label class="col-sm-8"> : <?= $customer['Username']; ?></label>
                     </div>
                     <div class="row">
@@ -89,7 +89,7 @@
                   </div>
                   <div class="col-lg-6">
                     <div class="row mb-1">
-                      <label class="col-sm-6">DETAIL JANJI TEMU</label>
+                      <label class="col-sm-6">DETAIL MEETING REQUEST</label>
                       <hr>
                     </div>
                     <div class="row">
@@ -137,6 +137,16 @@
                       <label class="col-sm-4">Status</label>
                       <label class="col-sm-8">: <?= $meeting['Status']; ?></label>
                     </div>
+                    <?php if ($meeting['Rating'] != 0) : ?>
+                      <div class="row">
+                        <label class="col-sm-4">Rating</label>
+                        <label class="col-sm-8">: <?= $meeting['Rating']; ?></label>
+                      </div>
+                      <div class="row">
+                        <label class="col-sm-4">Ulasan</label>
+                        <label class="col-sm-8">: <?= $meeting['Ulasan']; ?></label>
+                      </div>
+                    <?php endif ?>
 
                   </div>
                   <div class="row">
@@ -221,7 +231,7 @@
                       <div class="row">
                         <label class="col-sm-5">Lampiran</label>
                         <?php if ($arrTanggapan['Lampiran'] == 'default.png') : ?>
-                          <label class="col-sm-7">: Tidak memiliki lampiran</a></label>
+                          <label class="col-sm-7">: Tidak ada lampiran</a></label>
                         <?php else : ?>
                           <label class=" col-sm-7"><a href="/lampiran_petugasMR/<?= $arrTanggapan['Lampiran']; ?>">: Lihat Lampiran</a></label>
                         <?php endif ?>

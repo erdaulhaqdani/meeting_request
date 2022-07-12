@@ -2,6 +2,8 @@
 
 <head>
 
+  <?= $this->include("partials/title-meta"); ?>
+
   <?= $this->include("partials/head-css"); ?>
 
   <!-- Bootstrap Css -->
@@ -32,12 +34,12 @@
         <div class="row">
           <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-              <h4 class="mb-sm-0">Ubah Janji Temu</h4>
+              <h4 class="mb-sm-0">Ubah Meeting Request</h4>
 
               <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                  <li class="breadcrumb-item"><a href="javascript: void(0);">Janji Temu</a></li>
-                  <li class="breadcrumb-item active">Ubah Janji Temu</li>
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Meeting Request</a></li>
+                  <li class="breadcrumb-item active">Ubah Meeting Request</li>
                 </ol>
               </div>
 
@@ -51,11 +53,20 @@
             <div class="card">
               <div class="card-body">
 
-                <h3 class="card-title">Ubah Pengajuan Janji Temu</h3>
+                <h3 class="card-title">Ubah Pengajuan Meeting Request</h3>
                 <p class="card-title-desc">Masukkan informasi Anda dengan lengkap.</p>
 
-                <form action="/Meeting_request/update/<?= $meeting['idMeeting']; ?>" class="custom-validation" method="POST" enctype="multipart/form-data">
 
+                <form action="/Meeting_request/update/<?= $meeting['idMeeting']; ?>" class="custom-validation" method="POST" enctype="multipart/form-data">
+                  <?php
+                  if ($validation->hasError('lampiran')) {
+                  ?>
+                    <div class="alert alert-danger" role="alert">
+                      <?= $validation->getError('lampiran'); ?>
+                    </div>
+                  <?php
+                  }
+                  ?>
 
                   <div class="row mb-3">
                     <label class="col-sm-3 col-form-label">Jenis Layanan</label>
@@ -133,15 +144,15 @@
                     <label class="col-sm-3 col-form-label">Kantor Tujuan</label>
                     <div class="col-sm-9">
                       <select class="form-select" name="kantor" aria-label="Default select example" required>
-                        <?php if ($meeting['Kantor'] == 'DJKN Jabar') {
+                        <?php if ($meeting['Kantor'] == 'Kanwil DJKN Jawa Barat') {
                         ?>
-                          <option selected value="DJKN Jabar">DJKN Jawa Barat</option>
+                          <option selected value="Kanwil DJKN Jawa Barat">Kanwil DJKN Jawa Barat</option>
                           <option value="KPKNL Bandung">KPKNL Bandung</option>
                         <?php
                         } elseif ($meeting['Kantor'] == 'KPKNL Bandung') {
                         ?>
                           <option selected value="KPKNL Bandung">KPKNL Bandung</option>
-                          <option value="DJKN Jabar">DJKN Jawa Barat</option>
+                          <option value="Kanwil DJKN Jawa Barat">Kanwil DJKN Jawa Barat</option>
                         <?php
                         }
                         ?>
@@ -181,8 +192,8 @@
 
                   <div class="row mb-3">
                     <label for="tanggal_kunjungan" class="col-sm-3 col-form-label">Tanggal Kunjungan</label>
-                    <div class="col-sm-4">
-                      <input id="my_tgl" class="form-control" type="date" id="txtDate" name="tanggal_kunjungan" required min="<?php echo date("Y-m-d"); ?>">
+                    <div class="col-sm-5">
+                      <input id="my_tgl" class="form-control" type="text" name="tanggal_kunjungan" autocomplete="off" placeholder="Tanggal Kunjungan" value="<?= $meeting['Tanggal_kunjungan']; ?>" readonly required>
                     </div>
                   </div>
                   <!-- end row -->
@@ -239,7 +250,7 @@
 <!-- JAVASCRIPT -->
 <?= $this->include('partials/vendor-scripts') ?>
 
-<script src=" /assets/libs/parsleyjs/parsley.min.js"></script>
+                        <script src=" /assets/libs/parsleyjs/parsley.min.js"></script>
 
                         <script src="/assets/js/pages/form-validation.init.js"></script>
 
@@ -247,7 +258,15 @@
                         <script src="/assets/js/app.js"></script>
 
                         <script>
-                          $("#my_tgl").on("input", function(e) {
+                          $(function() {
+                            $("#my_tgl").datepicker({
+                              minDate: 0,
+                              dateFormat: 'dd-mm-yy',
+                              beforeShowDay: $.datepicker.noWeekends,
+                            });
+                          });
+
+                          $("#my_tgl").on("change", function(e) {
                             // alert("ganti");
                             var a = $("#my_tgl").val();
                             console.log(a);

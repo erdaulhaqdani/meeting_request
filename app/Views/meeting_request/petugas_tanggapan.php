@@ -39,12 +39,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0">Tanggapan Janji Temu</h4>
+                            <h4 class="mb-sm-0">Tanggapan Meeting Request</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Janji Temu</a></li>
-                                    <li class="breadcrumb-item active">Tanggapan Janji Temu</li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Meeting Request</a></li>
+                                    <li class="breadcrumb-item active">Tanggapan Meeting Request</li>
                                 </ol>
                             </div>
 
@@ -63,7 +63,7 @@
                                 <form action="/petugas_MR/inputTanggapan" method="POST" enctype="multipart/form-data" class="custom-validation">
 
                                     <div class="row mb-3">
-                                        <label class="col-sm-3 col-form-label" for="status">Status Janji Temu </label>
+                                        <label class="col-sm-3 col-form-label" for="status">Status Meeting Request </label>
                                         <div class="col-sm-9">
                                             <select name="status" id="s" onchange="tampilPetugas()" class="form-select">
                                                 <option selected disabled value="">Pilih status</option>
@@ -113,7 +113,7 @@
 
                                     <div class="mb-3 text-end">
                                         <input type="button" value="Kembali" class="btn btn-warning waves-effect me-2 mt-2" onclick="history.back(-1)" />
-                                        <button type="reset" class="btn btn-secondary me-2 mt-2">Reset</button>
+                                        <button type="reset" class="btn btn-danger me-2 mt-2">Reset</button>
                                         <button type="submit" class="btn btn-primary me-2 mt-2" name="tanggapan">Submit</button>
                                     </div>
                                 </form>

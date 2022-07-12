@@ -71,7 +71,7 @@
                     <div class="col-md-3">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Statistik Janji Temu</h4>
+                                <h4 class="card-title mb-4">Statistik Meeting Request</h4>
                                 <canvas id="meeting"></canvas>
                             </div>
                         </div>
@@ -149,7 +149,7 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Janji Temu yang masuk minggu ini</h4>
+                                <h4 class="card-title mb-4">Meeting Request yang masuk minggu ini</h4>
                                 <canvas id="bar_meeting"></canvas>
                             </div>
                         </div>
@@ -339,7 +339,7 @@
     const data_bar = {
         labels: label_meeting,
         datasets: [{
-            label: 'Janji Temu',
+            label: 'Meeting Request',
             backgroundColor: '#6fd088',
             borderColor: '#6fd088',
             data: data_meeting,
