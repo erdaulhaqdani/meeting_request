@@ -69,6 +69,26 @@
                 </div>
                 <!-- end page title -->
 
+                <!-- Filter row -->
+                <form action="Backend/dashboard_cust" class="d-flex flex-row align-items-center mb-3" method="POST">
+                    <label for="period">Rentang waktu:</label>
+                    <select class="form-select mx-2" style="max-width: 120px;" name="period">
+                        <option value='-1'>1 Bulan</option>
+                        <option value='-3'>3 Bulan</option>
+                        <option value='-6'>6 Bulan</option>
+                    </select>
+                    <label for="kategori" class="ms-3">Kategori:</label>
+                    <select class="form-select mx-2" style="max-width: 240px;" name="kategori">
+                        <option value="0">Semua Kategori</option>
+                        <?php foreach ($kategori as $a) : ?>
+                            <option value="<?= $a['idKategori'] ?>"><?= $a['namaKategori']; ?></option>
+                        <?php endforeach ?>
+                    </select>
+                    <input type="hidden" name="cek" value="ok">
+                    <button type="submit" class="btn btn-outline-dark" id="submit">Filter</button>
+                </form>
+                <!-- end filter -->
+
                 <div class="row">
                     <div class="col-xl-4 col-md-6">
                         <div class="card">

@@ -163,12 +163,16 @@ class Pengaduan_onlineModel extends Model
         return $query;
     }
 
-    public function groupByStatus($idCustomer)
+    public function groupByStatus($idCustomer, $kategori, $period)
     {
         $builder = $this->db->table('pengaduan_online');
         $builder->selectCount('idPengaduan', 'Jumlah');
         $builder->select('Status');
         $builder->where('idCustomer', $idCustomer);
+        if ($kategori != 0) {
+            $builder->where('idKategori', $kategori);
+        }
+        $builder->where('updated_at >=', $period);
         $builder->groupBy('Status');
         $builder->orderBy('Status', 'ASC');
         $query = $builder->get();
