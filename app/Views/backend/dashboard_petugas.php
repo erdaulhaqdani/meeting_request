@@ -64,6 +64,83 @@
                 </div>
                 <!-- end page title -->
 
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4">Statistik Pengaduan</h4>
+                                <canvas id="pengaduan"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4">Statistik Meeting Request</h4>
+                                <canvas id="meeting"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1">
+                                        <p class="text-truncate font-size-14 mb-2">Jumlah Customer</p>
+                                        <h4 class="mb-2"><?php foreach ($customer->getResultObject() as $a) : ?>
+                                                <?= $a->idCustomer; ?>
+                                            <?php endforeach ?></h4>
+                                        <p class="text-muted mb-0 font-size-13">Customer berstatus aktif</p>
+                                    </div>
+                                    <div class="avatar-sm">
+                                        <span class="avatar-title bg-light text-primary rounded-3">
+                                            <i class="ri-user-3-line font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div><!-- end cardbody -->
+                        </div><!-- end card -->
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="flex-grow-1">
+                                        <p class="text-truncate font-size-14 mb-2">Tanda Terima</p>
+                                        <h4 class="mb-2"><?php foreach ($jumlah_tandaTerima->getResultObject() as $a) : ?>
+                                                <?= $a->id_tt; ?>
+                                            <?php endforeach ?></h4>
+                                        <p class="text-muted mb-0 font-size-13">Jumlah tanda terima masuk</p>
+                                    </div>
+                                    <div class="avatar-sm">
+                                        <span class="avatar-title bg-light text-primary rounded-3">
+                                            <i class=" ri-mail-check-line font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div><!-- end cardbody -->
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+                    <div class="col-xl-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+
+                                    <div class="flex-grow-1">
+                                        <p class="text-truncate font-size-14 mb-2">Customer Baru</p>
+                                        <h4 class="mb-2"><?php foreach ($cust_baru->getResultObject() as $a) : ?>
+                                                <?= $a->idCustomer; ?>
+                                            <?php endforeach ?></h4>
+                                        <p class="text-muted mb-0 font-size-13">Dalam 7 hari terakhir</p>
+                                    </div>
+                                    <div class="avatar-sm">
+                                        <span class="avatar-title bg-light text-success rounded-3">
+                                            <i class="ri-user-3-line font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div><!-- end cardbody -->
+                        </div><!-- end card -->
+                    </div>
+                </div>
                 <div class="row" id="rowStat"></div>
 
                 <div class="row">
@@ -78,7 +155,7 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Janji Temu yang masuk minggu ini</h4>
+                                <h4 class="card-title mb-4">Meeting Request yang masuk minggu ini</h4>
                                 <canvas id="bar_meeting"></canvas>
                             </div>
                         </div>
@@ -216,7 +293,7 @@
     const data_bar = {
         labels: label_meeting,
         datasets: [{
-            label: 'Janji Temu',
+            label: 'Meeting Request',
             backgroundColor: '#6fd088',
             borderColor: '#6fd088',
             data: data_meeting,

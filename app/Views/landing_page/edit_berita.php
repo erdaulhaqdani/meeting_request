@@ -65,17 +65,16 @@
                 }
                 ?>
 
-                <?php
-                if ($validation->hasError('gambar')) {
-                ?>
-                  <div class="alert alert-danger" role="alert">
-                    <?= $validation->getError('gambar'); ?><br>
-                  </div>
-                <?php
-                }
-                ?>
-
                 <form action="/Landing_page/update/<?= $informasi['id_berita']; ?>" class="custom-validation" method="POST" enctype="multipart/form-data">
+                  <?php
+                  if ($validation->hasError('gambar')) {
+                  ?>
+                    <div class="alert alert-danger" role="alert">
+                      <?= $validation->getError('gambar'); ?><br>
+                    </div>
+                  <?php
+                  }
+                  ?>
 
                   <input type="hidden" name="idPetugas" value="<?= session('idPetugas'); ?>">
                   <input type="hidden" name="gambar_lama" value="<?= $informasi['Gambar']; ?>">
@@ -138,7 +137,7 @@
                     <label for="gambar" class="col-sm-3 col-form-label">Gambar Cover</label>
                     <div class="col-sm-5">
                       <div class="input-group">
-                        <input type="file" name="gambar" class="form-control <?= ($validation->hasError('gambar')) ?>" id="gambar" value="<?= $informasi['Gambar']; ?>" required>
+                        <input type="file" name="gambar" class="form-control <?= ($validation->hasError('gambar')) ?>" id="gambar" value="<?= $informasi['Gambar']; ?>">
                       </div>
                       <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png max 3MB</p>
                     </div>

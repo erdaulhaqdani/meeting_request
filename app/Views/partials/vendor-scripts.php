@@ -3,14 +3,18 @@
 <script src="<?= base_url('assets/libs/bootstrap/js/bootstrap.bundle.min.js'); ?>"></script>
 <script src="<?= base_url('assets/libs/metismenu/metisMenu.min.js'); ?>"></script>
 <script src="<?= base_url('assets/libs/simplebar/simplebar.min.js'); ?>"></script>
-<script src="<?= base_url('assets/libs/node-waves/waves.min.js'); ?>"></script>
+
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
 <?php
 $url = '';
 if (session('Kelompok') == 'APT') {
     $url = 'Pengaduan_online/getNotifPetugas';
-    if (session('idLevel') == 6 || session('idLevel') == 7) {
-        $url = 'Meeting_request/getNotifPetugasMR';
-    }
 } elseif (session('Kelompok') == 'Customer') {
     $url = 'Pengaduan_online/getNotifCustomer';
 } elseif (session('Kelompok') == 'LP') {

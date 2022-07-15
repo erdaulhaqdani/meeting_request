@@ -64,17 +64,17 @@
                 }
                 ?>
 
-                <?php
-                if ($validation->hasError('gambar')) {
-                ?>
-                  <div class="alert alert-danger" role="alert">
-                    <?= $validation->getError('gambar'); ?><br>
-                  </div>
-                <?php
-                }
-                ?>
-
                 <form action="/Landing_page/input_agenda" class="custom-validation" method="POST" enctype="multipart/form-data">
+                  <?php
+                  if ($validation->hasError('gambar')) {
+                  ?>
+                    <div class="alert alert-danger" role="alert">
+                      <?= $validation->getError('gambar'); ?><br>
+                    </div>
+                  <?php
+                  }
+                  ?>
+
                   <input type="hidden" name="idPetugas" value="<?= session('idPetugas'); ?>">
 
                   <div class="row mb-2">

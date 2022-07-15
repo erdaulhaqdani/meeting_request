@@ -70,7 +70,7 @@ class Petugas_MR extends BaseController
     public function edit($id)
     {
         $data = [
-            'title' => 'Ubah Janji Temu',
+            'title' => 'Ubah Meeting Request',
             'validation' => \Config\Services::validation(),
             'meeting' => $this->Meeting_requestModel->getMeetingRequest($id),
             'kategori' => $this->KategoriModel->getKategori()
@@ -127,7 +127,7 @@ class Petugas_MR extends BaseController
             'File_lampiran' => $namalampiran,
         ]);
 
-        session()->setFlashdata('pesan', 'Berhasil mengubah Janji Temu');
+        session()->setFlashdata('pesan', 'Berhasil mengubah Meeting Request');
 
         return redirect()->to('/petugasMR');
     }

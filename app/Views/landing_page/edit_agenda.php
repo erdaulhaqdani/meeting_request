@@ -65,6 +65,17 @@
                 ?>
 
                 <form action="/Landing_page/update_agenda/<?= $agenda['id_berita']; ?>" class="custom-validation" method="POST" enctype="multipart/form-data">
+
+                  <?php
+                  if ($validation->hasError('gambar')) {
+                  ?>
+                    <div class="alert alert-danger" role="alert">
+                      <?= $validation->getError('gambar'); ?><br>
+                    </div>
+                  <?php
+                  }
+                  ?>
+
                   <input type="hidden" name="idPetugas" value="<?= session('idPetugas'); ?>">
                   <input type="hidden" name="gambar_lama" value="<?= $agenda['Gambar']; ?>">
                   <input type="hidden" name="lampiran_lama" value="<?= $agenda['id_uploads']; ?>">
@@ -95,7 +106,7 @@
                     <label for="gambar" class="col-sm-3 col-form-label">Gambar Cover</label>
                     <div class="col-sm-5">
                       <div class="input-group">
-                        <input type="file" name="gambar" class="form-control" id="gambar">
+                        <input type="file" name="gambar" class="form-control  <?= ($validation->hasError('gambar')) ?>" id="gambar">
                       </div>
                       <p class="mt-2 ml text-secondary">Gambar menggunakan format jpg atau png max 3MB</p>
                     </div>

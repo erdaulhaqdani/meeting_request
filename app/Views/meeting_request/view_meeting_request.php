@@ -45,12 +45,12 @@
         <div class="row">
           <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-              <h4 class="mb-sm-0">Daftar Janji Temu</h4>
+              <h4 class="mb-sm-0">Daftar Meeting Request</h4>
 
               <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                  <li class="breadcrumb-item"><a href="javascript: void(0);">Janji Temu</a></li>
-                  <li class="breadcrumb-item active">Daftar Janji Temu</li>
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Meeting Request</a></li>
+                  <li class="breadcrumb-item active">Daftar Meeting Request</li>
                 </ol>
               </div>
 
@@ -63,7 +63,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Rekap Janji Temu</h4>
+                <h4 class="card-title">Rekap Status Meeting Request</h4>
                 <div class="row">
 
                   <div class="col-3">
@@ -124,7 +124,7 @@
                 <h4 class="card-title">Tabel <?= $title; ?></h4>
                 <div class="row">
                   <div class="col-md-6">
-                    <p class="card-title-desc">Berikut adalah tabel Daftar Janji Temu Anda. </p>
+                    <p class="card-title-desc">Berikut adalah tabel Daftar Meeting Request Anda. </p>
                   </div>
                   <div class="col-md-6"><a style="float: right ;" href="/Meeting_request/form" class="btn btn-success btn-md"><i class="fas fa-plus-circle"></i> Tambah</a></div>
                 </div>
@@ -143,7 +143,6 @@
                     <tr>
                       <th>No.</th>
                       <th>Jenis Layanan</th>
-                      <th>Kantor Tujuan</th>
                       <th>Tanggal Input</th>
                       <th>Tanggal Kunjungan</th>
                       <th>Waktu Kunjungan</th>
@@ -156,8 +155,8 @@
                     <?php foreach ($meeting->getResult() as $a) : ?>
                       <?php //getNamaKategori
                       $k = '';
-                      $tanggal = date('Y-m-d', strtotime($a->Tanggal_kunjungan));
                       $tanggal_input = date('Y-m-d', strtotime($a->created_at));
+                      $tanggal = date('Y-m-d', strtotime($a->Tanggal_kunjungan));
                       foreach ($kategori as $b) {
                         if ($a->idKategori == $b['idKategori']) {
                           $k = $b['namaKategori'];
@@ -167,9 +166,8 @@
                       <tr>
                         <td><?= $no++; ?></td>
                         <td><?= $k; ?></td>
-                        <td><?= $a->Kantor; ?></td>
                         <td><?= tanggal_indo($tanggal_input) ?></td>
-                        <td><?= tanggal_indo($tanggal) ?></td>
+                        <td><?= tanggal_indo($tanggal); ?></td>
                         <td><?= $a->Waktu_kunjungan; ?> WIB</td>
                         <td><?= $a->Status; ?></td>
                         <td>
@@ -180,7 +178,9 @@
                           <?php elseif ($a->Status == 'Tidak disetujui') : ?>
                             <a href="/Meeting_request/edit/<?= $a->idMeeting; ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>
                           <?php elseif ($a->Status == 'Selesai diproses') : ?>
-                            <a href="/Meeting_request/rating/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Rating</a>
+                            <?php if ($a->Rating < 1) : ?>
+                              <a href="/Meeting_request/rating/<?= $a->idMeeting; ?>" class="btn btn-success btn-sm w-xs">Rating</a>
+                            <?php endif ?>
                           <?php endif ?>
                         </td>
                       </tr>
