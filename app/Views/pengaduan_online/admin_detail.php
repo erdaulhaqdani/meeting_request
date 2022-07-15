@@ -196,7 +196,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <label class="col-sm-4">Tanggal</label>
-                                                    <label class="col-sm-8">: <?= formatTanggal($arrTanggapan['tgl_selesai']); ?></label>
+                                                    <label class="col-sm-8">: <?= tanggal_indo($tgl); ?></label>
                                                 </div>
                                                 <div class="row">
                                                     <label class="col-sm-4">Uraian Tanggapan</label>
