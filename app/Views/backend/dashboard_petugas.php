@@ -45,14 +45,6 @@
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                             <h4 class="mb-sm-0">Dashboard</h4>
-                            <form action="Backend/dashboard_petugas" method="POST">
-                                <select class="form-select" style="max-width: 120px;" name="filter" id="filter">
-                                    <option value=1>1 Bulan</option>
-                                    <option value=3>3 Bulan</option>
-                                    <option value=6>6 Bulan</option>
-                                </select>
-                            </form>
-
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">APTB</a></li>
@@ -63,6 +55,15 @@
                     </div>
                 </div>
                 <!-- end page title -->
+
+                <!-- Filter row -->
+                <div class="d-flex flex-row align-items-center mb-3">
+                    <p class="me-2">Rentang waktu:</p>
+                    <a href="/dashboard_petugas/1" class="btn btn-outline-dark me-2">1 Bulan</a>
+                    <a href="/dashboard_petugas/3" class="btn btn-outline-dark me-2">3 Bulan</a>
+                    <a href="/dashboard_petugas/6" class="btn btn-outline-dark me-2">6 Bulan</a>
+                </div>
+                <!-- end filter -->
 
                 <div class="row">
                     <div class="col-md-3">
@@ -192,37 +193,87 @@
 <script src="<?= base_url('assets/js/app.js') ?>"></script>
 <script src="<?= base_url('assets/js/chart.min.js') ?>"></script>
 
+<!-- Chart donut statistik pengaduan -->
+<script>
+    var pengaduan = document.getElementById('pengaduan');
+    var data_pengaduan = [];
+    var label_pengaduan = [];
 
-<!-- Filter dashboard -->
-<script type="text/javascript">
-    $(document).ready(function() {
-        pieDashboard();
+    <?php foreach ($groupPengaduan->getResult() as $key => $value) : ?>
+        data_pengaduan.push(<?= $value->Jumlah ?>);
+        label_pengaduan.push('<?= $value->Status ?>');
+    <?php endforeach ?>
 
-        $("#filter").change(function() {
-            pieDashboard();
-        });
+    var data_group_pengaduan = {
+        datasets: [{
+            data: data_pengaduan,
+            backgroundColor: [
+                '#f32f53',
+                '#0f9cf3',
+                '#6fd088',
+                '#0097a7'
+            ],
+        }],
+        labels: label_pengaduan,
+    }
+
+    var chart_pengaduan = new Chart(pengaduan, {
+        type: 'doughnut',
+        data: data_group_pengaduan,
+        options: {
+            plugins: {
+                legend: {
+                    align: 'start',
+                    labels: {
+                        boxWidth: 15
+                    }
+                }
+            }
+        }
     });
 </script>
 
+<!-- Chart donut statistik meeting -->
 <script>
-    function pieDashboard() {
-        $.ajax({
-            url: "<?= base_url('Backend/dashboard_petugas'); ?>",
-            type: "POST",
-            dataType: "json",
-            data: $(this).serialize(),
-            success: function(response) {
-                $('#rowStat').html(response.data);
-                statPengaduan();
-                statMeeting();
-            },
-            error: function(xhr, ajaxOptions, thrownError) {
-                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
-            }
-        });
+    var meeting = document.getElementById('meeting');
+    var data_meeting = [];
+    var label_meeting = [];
+
+    <?php foreach ($groupMeeting->getResult() as $key => $value) : ?>
+        data_meeting.push(<?= $value->Jumlah ?>);
+        label_meeting.push('<?= $value->Status ?>');
+    <?php endforeach ?>
+
+    var data_group_meeting = {
+        datasets: [{
+            data: data_meeting,
+            backgroundColor: [
+                '#f32f53',
+                '#0f9cf3',
+                '#6fd088',
+                '#0097a7'
+            ],
+        }],
+        labels: label_meeting,
     }
 
-    // Bar Chart pengaduan minggu ini
+    var chart_meeting = new Chart(meeting, {
+        type: 'doughnut',
+        data: data_group_meeting,
+        options: {
+            plugins: {
+                legend: {
+                    align: 'start',
+                    labels: {
+                        boxWidth: 15
+                    }
+                }
+            }
+        }
+    });
+</script>
+<!-- Bar Chart pengaduan minggu ini -->
+<script>
     // cari cara generate tanggal minggu ini via javascript/php kirim tgl ke sql
     var currentDate = new Date();
     var day = new Date(currentDate.setDate(currentDate.getDate() - currentDate.getDay() + 0)).toUTCString();

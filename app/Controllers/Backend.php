@@ -41,7 +41,7 @@ class Backend extends BaseController
       $kategori = $this->request->getVar('kategori');
       $period = $this->request->getVar('period');
       $monthAgo = date('Y-m-d', strtotime($period . " month", strtotime(date("Y-m-d"))));
-      dd($monthAgo);
+      // dd($monthAgo);
     } else {
       $kategori = 0;
       $monthAgo = date('Y-m-d', strtotime("-1 month", strtotime(date("Y-m-d"))));
@@ -62,10 +62,16 @@ class Backend extends BaseController
     return view('backend/dashboard_cust', $data);
   }
 
-  public function dashboard_petugas()
+  public function dashboard_petugas($period = 1)
   {
+    if ($period == 1) {
+      $monthAgo = date('Y-m-d', strtotime("-1 month", strtotime(date("Y-m-d"))));
+    } elseif ($period == 3) {
+      $monthAgo = date('Y-m-d', strtotime("-3 month", strtotime(date("Y-m-d"))));
+    } elseif ($period == 6) {
+      $monthAgo = date('Y-m-d', strtotime("-6 month", strtotime(date("Y-m-d"))));
+    }
     $tgl = date('Y-m-d', strtotime("-7 day", strtotime(date("Y-m-d"))));
-    $monthAgo = date('Y-m-d', strtotime("-1 month", strtotime(date("Y-m-d"))));
 
     $data = [
       'title' => 'Dashboard Petugas',
@@ -77,43 +83,11 @@ class Backend extends BaseController
       'kategori' => $this->KategoriModel->getKategori(),
       'customer' => $this->CustModel->jumlah_cust(),
       'cust_baru' => $this->CustModel->cust_baru($tgl),
-      'jumlah_tandaTerima' => $this->TandaTerimaModel->jumlah_tandaTerima(session('idPetugas'))
+      'jumlah_tandaTerima' => $this->TandaTerimaModel->jumlah_tandaTerima(session('idPetugas')),
+      'month' => $monthAgo
     ];
 
     return view('backend/dashboard_petugas', $data);
-  }
-
-  public function filter_dashboard_petugas()
-  {
-    if ($this->request->isAJAX()) {
-      $tgl = date('Y-m-d', strtotime("-7 day", strtotime(date("Y-m-d"))));
-
-      $filter = $this->request->getPost('filter');
-      // dd($filter);
-      $period = "-" . $filter . " month";
-
-      $monthAgo = date('Y-m-d', strtotime("-1 day", strtotime(date("Y-m-d"))));
-
-      $data = [
-        'title' => 'Dashboard Petugas',
-        'groupPengaduan' => $this->Pengaduan_onlineModel->groupByStatusPetugas(session('idPetugas'), session('Unit'), $monthAgo),
-        'groupMeeting' => $this->Meeting_requestModel->groupByStatusPetugas(session('idPetugas')),
-        'pengaduanPerminggu' => $this->Pengaduan_onlineModel->pengaduanPetugasPerminggu(session('idPetugas'), session('Unit')),
-        'meetingPerminggu' => $this->Meeting_requestModel->meetingRequestPetugasPerminggu(session('idPetugas')),
-        'lastMeetingRequest' => $this->Meeting_requestModel->lastMeetingRequest(session('idPetugas')),
-        'kategori' => $this->KategoriModel->getKategori(),
-        'customer' => $this->CustModel->jumlah_cust(),
-        'cust_baru' => $this->CustModel->cust_baru($tgl),
-        'jumlah_tandaTerima' => $this->TandaTerimaModel->jumlah_tandaTerima(session('idPetugas'))
-      ];
-
-      $response = [
-        'data' => view('backend/statistik_petugas', $data),
-        'date' => $this->request->getVar('filter')
-      ];
-
-      echo json_encode($response);
-    }
   }
 
   public function dashboard_admin_landing()
