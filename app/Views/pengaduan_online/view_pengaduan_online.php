@@ -122,6 +122,7 @@
                                         <?php $no = 1; ?>
                                         <?php foreach ($pengaduan->getResult() as $a) : ?>
                                             <?php //getNamaKategori
+                                            $tanggal = date('Y-m-d', strtotime($a->created_at));
                                             $k = '';
                                             foreach ($kategori as $b) {
                                                 if ($a->idKategori == $b['idKategori']) {
@@ -130,10 +131,11 @@
                                             }
                                             ?>
                                             <tr>
+
                                                 <td><?= $no++ ?></td>
                                                 <td><?= $a->Judul; ?></td>
                                                 <td><?= $k; ?></td>
-                                                <td><?= formatTanggal($a->created_at); ?></td>
+                                                <td><?= tanggal_indo($tanggal); ?></td>
                                                 <td><?= $a->Status; ?></td>
                                                 <td>
                                                     <a href="/Pengaduan_online/detail/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>

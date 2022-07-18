@@ -48,7 +48,7 @@
 
                                 <h4 class="card-title"><?= $title; ?></h4>
 
-                                <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                <table id="datatable-buttons" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                     <thead>
                                         <tr>
                                             <th>Judul</th>
@@ -62,6 +62,7 @@
                                     <tbody>
                                         <?php foreach ($pengaduan->getResult() as $a) : ?>
                                             <?php //getNamaKategori
+                                            $tanggal = date('Y-m-d', strtotime($a->updated_at));
                                             $k = '';
                                             foreach ($kategori as $b) {
                                                 if ($a->idKategori == $b['idKategori']) {
@@ -70,10 +71,9 @@
                                             }
                                             ?>
                                             <tr>
-                                                <?php $tgl = date("d F Y", strtotime($a->updated_at)); ?>
                                                 <td><?= $a->Judul; ?></td>
                                                 <td><?= $k; ?></td>
-                                                <td><?= $tgl; ?></td>
+                                                <td><?= tanggal_indo($tanggal) ?></td>
                                                 <td><?= $a->Status; ?></td>
                                                 <td>
                                                     <a href="/Pengaduan_online/detail/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>

@@ -89,8 +89,9 @@
                                                 <hr>
                                             </div>
                                             <div class="row">
+                                                <?php $tanggal = date('Y-m-d', strtotime($pengaduan['created_at'])); ?>
                                                 <label class="col-sm-4">Tanggal Pengajuan</label>
-                                                <label class="col-sm-8">: <?= formatTanggal($pengaduan['created_at']); ?></label>
+                                                <label class="col-sm-8">: <?= tanggal_indo($tanggal); ?></label>
                                             </div>
                                             <div class="row">
                                                 <label class="col-sm-4">Jenis Layanan</label>
@@ -174,8 +175,9 @@
                                                     <hr>
                                                 </div>
                                                 <div class="row">
+                                                    <?php $tanggal_selesai = date('Y-m-d', strtotime($tanggapan['tgl_selesai'])); ?>
                                                     <label class="col-sm-4">Tanggal Selesai</label>
-                                                    <label class="col-sm-8">: <?= formatTanggal($tanggapan['tgl_selesai']); ?></label>
+                                                    <label class="col-sm-8">: <?= tanggal_indo($tanggal_selesai); ?></label>
                                                 </div>
                                                 <div class="row">
                                                     <label class="col-sm-4">Uraian Tanggapan</label>
@@ -208,9 +210,9 @@
                                         </div>
                                         <hr>
                                         <div class="row">
-                                            <?php $tgl = date("d F Y H:i", strtotime($pengaduan['updated_at'])); ?>
+                                            <?php $tgl = date("Y-m-d", strtotime($pengaduan['updated_at'])); ?>
                                             <div class="col-6">
-                                                sudah mulai diproses sejak <?= $tgl; ?>
+                                                sudah mulai diproses sejak <?= tanggal_indo($tanggal); ?>
                                             </div>
                                         </div>
                                     </div>

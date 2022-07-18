@@ -35,32 +35,46 @@ class Backend extends BaseController
     $this->PegawaiModel = new PegawaiModel();
   }
 
-  public function dashboard_cust()
+  public function filter_cust()
   {
-    if ($this->request->getVar('cek')) {
-      $kategori = $this->request->getVar('kategori');
-      $period = $this->request->getVar('period');
-      $monthAgo = date('Y-m-d', strtotime($period . " month", strtotime(date("Y-m-d"))));
-      // dd($monthAgo);
-    } else {
-      $kategori = 0;
-      $monthAgo = date('Y-m-d', strtotime("-1 month", strtotime(date("Y-m-d"))));
-    }
-    $data = [
-      'title' => 'Dashboard Customer',
-      'groupPengaduan' => $this->Pengaduan_onlineModel->groupByStatus(session('idCustomer'), $kategori, $monthAgo),
-      'groupMeeting' => $this->Meeting_requestModel->groupByStatus(session('idCustomer'), $monthAgo),
-      'pengaduanPerminggu' => $this->Pengaduan_onlineModel->pengaduanPerminggu(session('idCustomer')),
-      'meetingPerminggu' => $this->Meeting_requestModel->meetingRequestPerminggu(session('idCustomer')),
-      'lastPengaduan' => $this->Pengaduan_onlineModel->lastPengaduan(session('idCustomer')),
-      'lastMeetingRequest' => $this->Meeting_requestModel->lastMeetingRequest(session('idCustomer')),
-      'jumlahMeeting' => $this->Meeting_requestModel->jumlah_meetingCustomer(session('idCustomer')),
-      'jumlahPengaduan' => $this->Pengaduan_onlineModel->jumlah_pengaduanCustomer(session('idCustomer')),
-      'kategori' => $this->KategoriModel->getKategori(),
-    ];
+    $cek = $this->request->getVar('cek');
+    $kategori = $this->request->getVar('kategori');
+    $period = $this->request->getVar('period');
+    $monthAgo = date('Y-m-d', strtotime($period . " month", strtotime(date("Y-m-d"))));
+    function dashboard_cust($cek = '', $kategori = '', $monthAgo = '')
+    {
+      $Pengaduan_onlineModel = new Pengaduan_onlineModel();
+      $Meeting_requestModel = new Meeting_requestModel();
+      $KategoriModel = new KategoriModel();
 
-    return view('backend/dashboard_cust', $data);
+      if ($cek == 'ok') {
+        $kategori = $kategori;
+        $monthAgo = $monthAgo;
+        dd($kategori);
+      } else {
+        $kategori = 0;
+        $monthAgo = date('Y-m-d', strtotime("-1 month", strtotime(date("Y-m-d"))));
+      }
+
+      $data = [
+        'title' => 'Dashboard Customer',
+        'groupPengaduan' => $Pengaduan_onlineModel->groupByStatus(session('idCustomer'), $kategori, $monthAgo),
+        'groupMeeting' => $Meeting_requestModel->groupByStatus(session('idCustomer'), $monthAgo),
+        'pengaduanPerminggu' => $Pengaduan_onlineModel->pengaduanPerminggu(session('idCustomer')),
+        'meetingPerminggu' => $Meeting_requestModel->meetingRequestPerminggu(session('idCustomer')),
+        'lastPengaduan' => $Pengaduan_onlineModel->lastPengaduan(session('idCustomer')),
+        'lastMeetingRequest' => $Meeting_requestModel->lastMeetingRequest(session('idCustomer')),
+        'jumlahMeeting' => $Meeting_requestModel->jumlah_meetingCustomer(session('idCustomer')),
+        'jumlahPengaduan' => $Pengaduan_onlineModel->jumlah_pengaduanCustomer(session('idCustomer')),
+        'kategori' => $KategoriModel->getKategori(),
+      ];
+
+      return view('backend/dashboard_cust', $data);
+    }
+
+    return dashboard_cust($cek, $kategori, $monthAgo);
   }
+
 
   public function dashboard_petugas($period = 1)
   {

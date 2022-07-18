@@ -70,7 +70,7 @@
                 <!-- end page title -->
 
                 <!-- Filter row -->
-                <form action="Backend/dashboard_cust" class="d-flex flex-row align-items-center mb-3" method="POST">
+                <form action="Backend/filter_cust" class="d-flex flex-row align-items-center mb-3" method="POST">
                     <label for="period">Rentang waktu:</label>
                     <select class="form-select mx-2" style="max-width: 120px;" name="period">
                         <option value='-1'>1 Bulan</option>

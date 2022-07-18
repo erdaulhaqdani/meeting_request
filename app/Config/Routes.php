@@ -45,7 +45,8 @@ $routes->get('/login_cust', 'Frontend::login_cust');
 $routes->get('/register_cust', 'Frontend::register_cust');
 $routes->get('/reset_pw/(:any)', 'Frontend::reset_pw_cust/$1');
 $routes->get('/login_cust/(:any)', 'AuthCust::VerifikasiAkun/$1');
-$routes->get('/dashboard_cust', 'Backend::dashboard_cust');
+
+$routes->get('/dashboard_cust', 'Backend::filter_cust');
 $routes->get('/dashboard_petugas', 'Backend::dashboard_petugas');
 $routes->get('/dashboard_petugas/(:any)', 'Backend::dashboard_petugas/$1');
 $routes->get('/logout_cust', 'AuthCust::logout');
