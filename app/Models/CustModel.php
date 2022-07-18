@@ -50,6 +50,7 @@ class CustModel extends Model
   {
     $builder = $this->db->table('customer');
     $builder->where('StatusAkun', 'Aktif');
+    $builder->orWhere('StatusAkun', 'Terverifikasi');
     $builder->selectCount('idCustomer');
     $query = $builder->get();
     return $query;

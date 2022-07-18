@@ -130,7 +130,7 @@
                                         <h4 class="mb-2"><?php foreach ($cust_baru->getResultObject() as $a) : ?>
                                                 <?= $a->idCustomer; ?>
                                             <?php endforeach ?></h4>
-                                        <p class="text-muted mb-0 font-size-13">Dalam 7 hari terakhir</p>
+                                        <p class="text-muted mb-0 font-size-13">Dalam rentang waktu di atas</p>
                                     </div>
                                     <div class="avatar-sm">
                                         <span class="avatar-title bg-light text-success rounded-3">

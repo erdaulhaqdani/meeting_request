@@ -49,7 +49,7 @@ class Backend extends BaseController
     $data = [
       'title' => 'Dashboard Customer',
       'groupPengaduan' => $this->Pengaduan_onlineModel->groupByStatus(session('idCustomer'), $kategori, $monthAgo),
-      'groupMeeting' => $this->Meeting_requestModel->groupByStatus(session('idCustomer')),
+      'groupMeeting' => $this->Meeting_requestModel->groupByStatus(session('idCustomer'), $monthAgo),
       'pengaduanPerminggu' => $this->Pengaduan_onlineModel->pengaduanPerminggu(session('idCustomer')),
       'meetingPerminggu' => $this->Meeting_requestModel->meetingRequestPerminggu(session('idCustomer')),
       'lastPengaduan' => $this->Pengaduan_onlineModel->lastPengaduan(session('idCustomer')),
@@ -64,25 +64,18 @@ class Backend extends BaseController
 
   public function dashboard_petugas($period = 1)
   {
-    if ($period == 1) {
-      $monthAgo = date('Y-m-d', strtotime("-1 month", strtotime(date("Y-m-d"))));
-    } elseif ($period == 3) {
-      $monthAgo = date('Y-m-d', strtotime("-3 month", strtotime(date("Y-m-d"))));
-    } elseif ($period == 6) {
-      $monthAgo = date('Y-m-d', strtotime("-6 month", strtotime(date("Y-m-d"))));
-    }
-    $tgl = date('Y-m-d', strtotime("-7 day", strtotime(date("Y-m-d"))));
+    $monthAgo = date('Y-m-d', strtotime("-" . $period . " month", strtotime(date("Y-m-d"))));
 
     $data = [
       'title' => 'Dashboard Petugas',
       'groupPengaduan' => $this->Pengaduan_onlineModel->groupByStatusPetugas(session('idPetugas'), session('Unit'), $monthAgo),
-      'groupMeeting' => $this->Meeting_requestModel->groupByStatusPetugas(session('idPetugas')),
-      'pengaduanPerminggu' => $this->Pengaduan_onlineModel->pengaduanPetugasPerminggu(session('idPetugas'), session('Unit')),
-      'meetingPerminggu' => $this->Meeting_requestModel->meetingRequestPetugasPerminggu(session('idPetugas')),
+      'groupMeeting' => $this->Meeting_requestModel->groupByStatusPetugas(session('idPetugas'), $monthAgo),
+      'pengaduanPerminggu' => $this->Pengaduan_onlineModel->pengaduanPetugasPerminggu(session('idPetugas'), session('Unit'), $monthAgo),
+      'meetingPerminggu' => $this->Meeting_requestModel->meetingRequestPetugasPerminggu(session('idPetugas'), $monthAgo),
       'lastMeetingRequest' => $this->Meeting_requestModel->lastMeetingRequest(session('idPetugas')),
       'kategori' => $this->KategoriModel->getKategori(),
       'customer' => $this->CustModel->jumlah_cust(),
-      'cust_baru' => $this->CustModel->cust_baru($tgl),
+      'cust_baru' => $this->CustModel->cust_baru($monthAgo),
       'jumlah_tandaTerima' => $this->TandaTerimaModel->jumlah_tandaTerima(session('idPetugas')),
       'month' => $monthAgo
     ];

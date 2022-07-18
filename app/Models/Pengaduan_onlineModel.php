@@ -189,7 +189,6 @@ class Pengaduan_onlineModel extends Model
         $builder->where('created_at >=', 'NOW()');
         $builder->groupBy('DATE_FORMAT(created_at, "%e %M %Y")');
         $builder->orderBy('created_at', 'desc');
-        $builder->limit(7);
         $query = $builder->get();
         return $query;
     }
@@ -209,7 +208,7 @@ class Pengaduan_onlineModel extends Model
         $query = $builder->get();
         return $query;
     }
-    public function pengaduanPetugasPerminggu($idPetugas, $kategori)
+    public function pengaduanPetugasPerminggu($idPetugas, $kategori, $period)
     {
         /*SELECT COUNT(created_at) AS 'Jumlah', DATE_FORMAT(created_at, "%e %M %Y")
         FROM `pengaduan_online` GROUP BY DATE_FORMAT(created_at, "%e %M %Y")*/
@@ -217,10 +216,10 @@ class Pengaduan_onlineModel extends Model
         $builder = $this->db->table('pengaduan_online');
         $builder->select('COUNT(created_at) AS jumlah, created_at as tanggal');
         $builder->where('idPetugas', $idPetugas);
-        $builder->where('created_at >=', 'NOW()');
+        $builder->where('created_at >=', $period);
         $builder->orWhere('idPetugas', 1);
         $builder->where('idKategori', $kategori);
-        $builder->where('created_at >=', 'NOW()');
+        $builder->where('created_at >=', $period);
         $builder->groupBy('DATE_FORMAT(created_at, "%e %M %Y")');
         $builder->orderBy('created_at', 'desc');
         $builder->limit(7);

@@ -136,10 +136,10 @@
                                             }
                                             ?>
                                             <tr>
-                                                <?php $tgl = date("d F Y", strtotime($a->updated_at)); ?>
+                                                <?php $tgl = date("Y-m-d", strtotime($a->updated_at)); ?>
                                                 <td><?= $a->Judul; ?></td>
                                                 <td><?= $k; ?></td>
-                                                <td><?= $tgl; ?></td>
+                                                <td><?= tanggal_indo($tgl); ?></td>
                                                 <td><?= $a->Status; ?></td>
                                                 <td>
                                                     <a href="/admin/detail/<?= $a->idPengaduan; ?>" class="btn btn-primary btn-sm w-xs">Detail</a>
