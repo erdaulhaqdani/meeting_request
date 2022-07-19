@@ -114,6 +114,13 @@ class AuthCust extends BaseController
     }
 
     $hashedPassword = password_hash($this->request->getPost('password'), PASSWORD_DEFAULT);
+    $email = $this->request->getVar('email');
+    $domain =  substr($email, -9, 9);
+
+    if ($domain != 'gmail.com') {
+      session()->setFlashdata('pesan', 'Email tidak valid');
+      return redirect()->to('/register_cust');
+    }
 
     $this->CustModel->save([
       'Nama' => $this->request->getVar('nama'),

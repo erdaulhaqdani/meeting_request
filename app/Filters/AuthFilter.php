@@ -19,11 +19,11 @@ class AuthFilter implements FilterInterface
   public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
   {
     if (session('log') == TRUE && session('Kelompok') == 'Customer') {
-      return redirect()->to('/dashboard_cust');
+      return redirect()->to('/dashboard_cust/1/0');
     } elseif (session('log') == TRUE && session('Kelompok') == 'LP') {
       return redirect()->to('/dashboard_admin_landing');
     } elseif (session('log') == TRUE && session('Kelompok') == 'APT') {
-      return redirect()->to('/dashboard_petugas');
+      return redirect()->to('/dashboard_petugas/1/0');
     }
   }
 }

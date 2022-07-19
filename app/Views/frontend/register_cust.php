@@ -74,7 +74,13 @@
 							<div id="pass-info" class="clearfix"></div>
 
 							<?php
-							if ($validation->hasError('nik') && $validation->hasError('email')) {
+							if (session()->get('pesan')) {
+							?>
+								<div class="alert alert-danger" id="alert" role="alert">
+									<?= session()->get('pesan'); ?>
+								</div>
+							<?php
+							} elseif ($validation->hasError('nik') && $validation->hasError('email')) {
 							?>
 								<div class="alert alert-danger" role="alert">
 									<?= $validation->getError('nik'); ?><br>

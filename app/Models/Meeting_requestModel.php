@@ -155,7 +155,7 @@ class Meeting_requestModel extends Model
     if ($kategori != 0) {
       $builder->where('idKategori', $kategori);
     }
-    $builder->where('Tanggal_kunjungan >=', $period);
+    $builder->where('updated_at >=', $period);
     $builder->groupBy('Status');
     $query = $builder->get();
     return $query;
@@ -181,12 +181,12 @@ class Meeting_requestModel extends Model
     $builder->selectCount('idMeeting', 'Jumlah');
     $builder->select('Status');
     $builder->where('idPetugas', $idPetugas);
-    $builder->where('Tanggal_kunjungan >=', $period);
+    $builder->where('updated_at >=', $period);
     if ($kategori != 0) {
       $builder->where('idKategori', $kategori);
     }
     $builder->orWhere('idPetugas', 1);
-    $builder->where('Tanggal_kunjungan >=', $period);
+    $builder->where('updated_at >=', $period);
     if ($kategori != 0) {
       $builder->where('idKategori', $kategori);
     }
