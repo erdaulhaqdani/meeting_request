@@ -214,13 +214,13 @@ class Pengaduan_onlineModel extends Model
         FROM `pengaduan_online` GROUP BY DATE_FORMAT(created_at, "%e %M %Y")*/
 
         $builder = $this->db->table('pengaduan_online');
-        $builder->select('COUNT(created_at) AS jumlah, created_at as tanggal');
+        $builder->select('COUNT(created_at) AS jumlah, updated_at as tanggal');
         $builder->where('idPetugas', $idPetugas);
-        $builder->where('created_at >=', $period);
+        $builder->where('updated_at >=', $period);
         $builder->orWhere('idPetugas', 1);
         $builder->where('idKategori', $kategori);
-        $builder->where('created_at >=', $period);
-        $builder->groupBy('DATE_FORMAT(created_at, "%e %M %Y")');
+        $builder->where('updated_at >=', $period);
+        $builder->groupBy('DATE_FORMAT(updated_at, "%e %M %Y")');
         $builder->orderBy('created_at', 'desc');
         $builder->limit(7);
         $query = $builder->get();

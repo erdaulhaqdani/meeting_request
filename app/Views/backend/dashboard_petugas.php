@@ -59,9 +59,10 @@
                 <!-- Filter row -->
                 <div class="d-flex flex-row align-items-center mb-3">
                     <p class="me-2">Rentang waktu:</p>
-                    <a href="/dashboard_petugas/1" class="btn btn-outline-dark me-2">1 Bulan</a>
-                    <a href="/dashboard_petugas/3" class="btn btn-outline-dark me-2">3 Bulan</a>
-                    <a href="/dashboard_petugas/6" class="btn btn-outline-dark me-2">6 Bulan</a>
+                    <p class="me-2"></p>
+                    <a href="/dashboard_petugas/1" class="btn <?= $segment == 1 ? "btn-dark" : "btn-outline-dark"; ?> me-2">1 Bulan</a>
+                    <a href="/dashboard_petugas/3" class="btn <?= $segment == 3 ? "btn-dark" : "btn-outline-dark"; ?> me-2">3 Bulan</a>
+                    <a href="/dashboard_petugas/6" class="btn <?= $segment == 6 ? "btn-dark" : "btn-outline-dark"; ?> me-2">6 Bulan</a>
                 </div>
                 <!-- end filter -->
 

@@ -79,6 +79,8 @@ class Backend extends BaseController
   public function dashboard_petugas($period = 1)
   {
     $monthAgo = date('Y-m-d', strtotime("-" . $period . " month", strtotime(date("Y-m-d"))));
+    $uri = new \CodeIgniter\HTTP\URI(current_url(true));
+    $segment = $uri->getSegment(2);
 
     $data = [
       'title' => 'Dashboard Petugas',
@@ -91,7 +93,8 @@ class Backend extends BaseController
       'customer' => $this->CustModel->jumlah_cust(),
       'cust_baru' => $this->CustModel->cust_baru($monthAgo),
       'jumlah_tandaTerima' => $this->TandaTerimaModel->jumlah_tandaTerima(session('idPetugas')),
-      'month' => $monthAgo
+      'month' => $monthAgo,
+      'segment' => $segment,
     ];
 
     return view('backend/dashboard_petugas', $data);
