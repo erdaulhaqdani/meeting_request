@@ -232,7 +232,7 @@ class AuthCust extends BaseController
           session()->set($data);
           session()->setFlashdata('pesan', 'Berhasil Login');
 
-          return redirect()->to('/dashboard_cust');
+          return redirect()->to('/dashboard_cust/1/0');
         } else {
           session()->setFlashdata('pesan', 'Akun belum aktif, silakan verifikasi melalui email');
           return redirect()->to('/login_cust');
@@ -254,7 +254,7 @@ class AuthCust extends BaseController
         session()->set($data);
         session()->setFlashdata('pesan', 'Berhasil Login');
 
-        return redirect()->to('/dashboard_petugas');
+        return redirect()->to('/dashboard_petugas/1/0');
       } elseif ($kelompok[0] == 'LP') {
         $row_petugas = $model->get_data_login($data['email'], 'petugas_apt');
 

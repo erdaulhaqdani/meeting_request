@@ -39,7 +39,7 @@
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li>
-                    <a href="/dashboard_cust" class="waves-effect">
+                    <a href="/dashboard_cust/1/0" class="waves-effect">
                         <i class="ri-dashboard-line"></i>
                         <span>Dashboard</span>
                     </a>

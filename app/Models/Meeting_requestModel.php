@@ -146,43 +146,50 @@ class Meeting_requestModel extends Model
   //   return $query;
   // }
 
-  public function groupByStatus($idCustomer, $period)
+  public function groupByStatus($idCustomer, $kategori, $period)
   {
     $builder = $this->db->table('meeting_request');
     $builder->selectCount('idMeeting', 'Jumlah');
     $builder->select('Status');
     $builder->where('idCustomer', $idCustomer);
-    $builder->where('updated_at >=', $period);
+    if ($kategori != 0) {
+      $builder->where('idKategori', $kategori);
+    }
+    $builder->where('Tanggal_kunjungan >=', $period);
     $builder->groupBy('Status');
     $query = $builder->get();
     return $query;
   }
 
-  public function meetingRequestPerminggu($idCustomer)
+  public function meetingRequestPerminggu($idCustomer, $period)
   {
     /*SELECT COUNT(created_at) AS 'Jumlah', DATE_FORMAT(created_at, "%e %M %Y")
         FROM `pengaduan_online` GROUP BY DATE_FORMAT(created_at, "%e %M %Y")*/
 
     $builder = $this->db->table('meeting_request');
-    $builder->select('COUNT(created_at) AS jumlah, created_at as tanggal');
+    $builder->select('COUNT(updated_at) AS jumlah, updated_at as tanggal');
     $builder->where('idCustomer', $idCustomer);
-    $builder->where('created_at >=', 'NOW()');
-    $builder->groupBy('DATE_FORMAT(created_at, "%e %M %Y")');
-    $builder->orderBy('created_at', 'desc');
-    $builder->limit(7);
+    $builder->where('updated_at >=', $period);
+    $builder->groupBy('DATE_FORMAT(updated_at, "%e %M %Y")');
     $query = $builder->get();
     return $query;
   }
 
-  public function groupByStatusPetugas($idPetugas, $period)
+  public function groupByStatusPetugas($idPetugas, $kategori, $period)
   {
     $builder = $this->db->table('meeting_request');
     $builder->selectCount('idMeeting', 'Jumlah');
     $builder->select('Status');
     $builder->where('idPetugas', $idPetugas);
-    $builder->where('updated_at >=', $period);
+    $builder->where('Tanggal_kunjungan >=', $period);
+    if ($kategori != 0) {
+      $builder->where('idKategori', $kategori);
+    }
     $builder->orWhere('idPetugas', 1);
-    $builder->where('updated_at >=', $period);
+    $builder->where('Tanggal_kunjungan >=', $period);
+    if ($kategori != 0) {
+      $builder->where('idKategori', $kategori);
+    }
     $builder->groupBy('Status');
     $query = $builder->get();
     return $query;
@@ -194,14 +201,12 @@ class Meeting_requestModel extends Model
         FROM `pengaduan_online` GROUP BY DATE_FORMAT(created_at, "%e %M %Y") WHERE idPetugas = 'id' AND created_at >= NOW() */
 
     $builder = $this->db->table('meeting_request');
-    $builder->select('COUNT(created_at) AS jumlah, created_at as tanggal');
+    $builder->select('COUNT(updated_at) AS jumlah, updated_at as tanggal');
     $builder->where('idPetugas', $idPetugas);
-    $builder->where('created_at >=', $period);
+    $builder->where('updated_at >=', $period);
     $builder->orWhere('idPetugas', 1);
-    $builder->where('created_at >=', $period);
-    $builder->groupBy('DATE_FORMAT(created_at, "%e %M %Y")');
-    $builder->orderBy('created_at', 'desc');
-    $builder->limit(7);
+    $builder->where('updated_at >=', $period);
+    $builder->groupBy('DATE_FORMAT(updated_at, "%e %M %Y")');
     $query = $builder->get();
     return $query;
   }

@@ -58,11 +58,20 @@
 
                 <!-- Filter row -->
                 <div class="d-flex flex-row align-items-center mb-3">
-                    <p class="me-2">Rentang waktu:</p>
-                    <p class="me-2"></p>
-                    <a href="/dashboard_petugas/1" class="btn <?= $segment == 1 ? "btn-dark" : "btn-outline-dark"; ?> me-2">1 Bulan</a>
-                    <a href="/dashboard_petugas/3" class="btn <?= $segment == 3 ? "btn-dark" : "btn-outline-dark"; ?> me-2">3 Bulan</a>
-                    <a href="/dashboard_petugas/6" class="btn <?= $segment == 6 ? "btn-dark" : "btn-outline-dark"; ?> me-2">6 Bulan</a>
+                    <label for="period">Rentang waktu:</label>
+                    <select class="form-select mx-2" style="max-width: 120px;" name="period" id="period">
+                        <option <?= $filterPeriod == 1 ? "selected" : ""; ?> value='1'>1 Bulan</option>
+                        <option <?= $filterPeriod == 3 ? "selected" : ""; ?> value='3'>3 Bulan</option>
+                        <option <?= $filterPeriod == 6 ? "selected" : ""; ?> value='6'>6 Bulan</option>
+                    </select>
+                    <label for="kategori" class="ms-3">Kategori:</label>
+                    <select class="form-select mx-2" style="max-width: 240px;" name="kategori" id="kategori">
+                        <option value="0">Semua Kategori</option>
+                        <?php foreach ($kategori as $a) : ?>
+                            <option <?= $filterKategori == $a['idKategori'] ? "selected" : ""; ?> value="<?= $a['idKategori'] ?>"><?= $a['namaKategori']; ?></option>
+                        <?php endforeach ?>
+                    </select>
+                    <button type="submit" class="btn btn-outline-dark" id="filter">Filter</button>
                 </div>
                 <!-- end filter -->
 
@@ -193,6 +202,16 @@
 <!-- App js -->
 <script src="<?= base_url('assets/js/app.js') ?>"></script>
 <script src="<?= base_url('assets/js/chart.min.js') ?>"></script>
+
+<script>
+    $('#filter').click(function() {
+        const period = $('#period').val();
+        const kategori = $('#kategori').val();
+        const url = "http://localhost:8080/dashboard_petugas/" + period + "/" + kategori;
+        location.href = url;
+        // alert(url);
+    });
+</script>
 
 <!-- Chart donut statistik pengaduan -->
 <script>

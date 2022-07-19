@@ -140,7 +140,7 @@
                                             <th>Jenis Layanan</th>
                                             <th>Bentuk Layanan</th>
                                             <th>Kantor Tujuan</th>
-                                            <th>Tanggal Input</th>
+                                            <th>Tanggal Kunjungan</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -167,7 +167,7 @@
                                                     $username = $c['Username'];
                                                 }
                                             }
-                                            $tanggal =  date('Y-m-d', strtotime($a->created_at));
+                                            $tanggal =  date('Y-m-d', strtotime($a->Tanggal_kunjungan));
 
                                             ?>
                                             <tr>

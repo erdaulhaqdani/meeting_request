@@ -70,23 +70,22 @@
                 <!-- end page title -->
 
                 <!-- Filter row -->
-                <form action="Backend/filter_cust" class="d-flex flex-row align-items-center mb-3" method="POST">
+                <div class="d-flex flex-row align-items-center mb-3">
                     <label for="period">Rentang waktu:</label>
-                    <select class="form-select mx-2" style="max-width: 120px;" name="period">
-                        <option value='-1'>1 Bulan</option>
-                        <option value='-3'>3 Bulan</option>
-                        <option value='-6'>6 Bulan</option>
+                    <select class="form-select mx-2" style="max-width: 120px;" name="period" id="period">
+                        <option <?= $filterPeriod == 1 ? "selected" : ""; ?> value='1'>1 Bulan</option>
+                        <option <?= $filterPeriod == 3 ? "selected" : ""; ?> value='3'>3 Bulan</option>
+                        <option <?= $filterPeriod == 6 ? "selected" : ""; ?> value='6'>6 Bulan</option>
                     </select>
                     <label for="kategori" class="ms-3">Kategori:</label>
-                    <select class="form-select mx-2" style="max-width: 240px;" name="kategori">
+                    <select class="form-select mx-2" style="max-width: 240px;" name="kategori" id="kategori">
                         <option value="0">Semua Kategori</option>
                         <?php foreach ($kategori as $a) : ?>
-                            <option value="<?= $a['idKategori'] ?>"><?= $a['namaKategori']; ?></option>
+                            <option <?= $filterKategori == $a['idKategori'] ? "selected" : ""; ?> value="<?= $a['idKategori'] ?>"><?= $a['namaKategori']; ?></option>
                         <?php endforeach ?>
                     </select>
-                    <input type="hidden" name="cek" value="ok">
-                    <button type="submit" class="btn btn-outline-dark" id="submit">Filter</button>
-                </form>
+                    <button type="submit" class="btn btn-outline-dark" id="filter">Filter</button>
+                </div>
                 <!-- end filter -->
 
                 <div class="row">
@@ -254,7 +253,7 @@
                                             <?php foreach ($lastPengaduan->getResult() as $a) : ?>
                                                 <?php //getNamaKategori
                                                 $k = '';
-                                                $tanggal = date('Y-m-d', strtotime($a->created_at));
+                                                $tanggal = date('Y-m-d', strtotime($a->updated_at));
                                                 foreach ($kategori as $b) {
                                                     if ($a->idKategori == $b['idKategori']) {
                                                         $k = $b['namaKategori'];
@@ -340,6 +339,14 @@
 <script src="<?= base_url('/assets/js/app.js') ?>"></script>
 <script src="<?= base_url('/assets/js/chart.min.js') ?>"></script>
 
+<script>
+    $('#filter').click(function() {
+        const period = $('#period').val();
+        const kategori = $('#kategori').val();
+        const url = "http://localhost:8080/dashboard_cust/" + period + "/" + kategori;
+        location.href = url;
+    });
+</script>
 <!-- Chart donut statistik pengaduan -->
 <script>
     var pengaduan = document.getElementById('pengaduan');
@@ -436,7 +443,6 @@
         data_pengaduan.push(<?= $key->jumlah ?>);
         <?php $tanggal = date('Y-m-d', strtotime($key->tanggal));
         $tanggal_indo = tanggal_indo($tanggal);
-        // $tanggal = formatTanggal($key->tanggal);
         ?>
         label_pengaduan.push('<?= $tanggal_indo ?>');
     <?php endforeach ?>

@@ -35,66 +35,49 @@ class Backend extends BaseController
     $this->PegawaiModel = new PegawaiModel();
   }
 
-  public function filter_cust()
-  {
-    $cek = $this->request->getVar('cek');
-    $kategori = $this->request->getVar('kategori');
-    $period = $this->request->getVar('period');
-    $monthAgo = date('Y-m-d', strtotime($period . " month", strtotime(date("Y-m-d"))));
-    function dashboard_cust($cek = '', $kategori = '', $monthAgo = '')
-    {
-      $Pengaduan_onlineModel = new Pengaduan_onlineModel();
-      $Meeting_requestModel = new Meeting_requestModel();
-      $KategoriModel = new KategoriModel();
-
-      if ($cek == 'ok') {
-        $kategori = $kategori;
-        $monthAgo = $monthAgo;
-        dd($kategori);
-      } else {
-        $kategori = 0;
-        $monthAgo = date('Y-m-d', strtotime("-1 month", strtotime(date("Y-m-d"))));
-      }
-
-      $data = [
-        'title' => 'Dashboard Customer',
-        'groupPengaduan' => $Pengaduan_onlineModel->groupByStatus(session('idCustomer'), $kategori, $monthAgo),
-        'groupMeeting' => $Meeting_requestModel->groupByStatus(session('idCustomer'), $monthAgo),
-        'pengaduanPerminggu' => $Pengaduan_onlineModel->pengaduanPerminggu(session('idCustomer')),
-        'meetingPerminggu' => $Meeting_requestModel->meetingRequestPerminggu(session('idCustomer')),
-        'lastPengaduan' => $Pengaduan_onlineModel->lastPengaduan(session('idCustomer')),
-        'lastMeetingRequest' => $Meeting_requestModel->lastMeetingRequest(session('idCustomer')),
-        'jumlahMeeting' => $Meeting_requestModel->jumlah_meetingCustomer(session('idCustomer')),
-        'jumlahPengaduan' => $Pengaduan_onlineModel->jumlah_pengaduanCustomer(session('idCustomer')),
-        'kategori' => $KategoriModel->getKategori(),
-      ];
-
-      return view('backend/dashboard_cust', $data);
-    }
-
-    return dashboard_cust($cek, $kategori, $monthAgo);
-  }
-
-
-  public function dashboard_petugas($period = 1)
+  public function dashboard_cust($period = 1, $kategori = 0)
   {
     $monthAgo = date('Y-m-d', strtotime("-" . $period . " month", strtotime(date("Y-m-d"))));
+    $week = date('Y-m-d', strtotime("-7 day", strtotime(date("Y-m-d"))));
     $uri = new \CodeIgniter\HTTP\URI(current_url(true));
-    $segment = $uri->getSegment(2);
+
+    $data = [
+      'title' => 'Dashboard Customer',
+      'groupPengaduan' => $this->Pengaduan_onlineModel->groupByStatus(session('idCustomer'), $kategori, $monthAgo),
+      'groupMeeting' => $this->Meeting_requestModel->groupByStatus(session('idCustomer'), $kategori, $monthAgo),
+      'pengaduanPerminggu' => $this->Pengaduan_onlineModel->pengaduanPerminggu(session('idCustomer'), $week),
+      'meetingPerminggu' => $this->Meeting_requestModel->meetingRequestPerminggu(session('idCustomer'), $week),
+      'lastPengaduan' => $this->Pengaduan_onlineModel->lastPengaduan(session('idCustomer')),
+      'lastMeetingRequest' => $this->Meeting_requestModel->lastMeetingRequest(session('idCustomer')),
+      'jumlahMeeting' => $this->Meeting_requestModel->jumlah_meetingCustomer(session('idCustomer')),
+      'jumlahPengaduan' => $this->Pengaduan_onlineModel->jumlah_pengaduanCustomer(session('idCustomer')),
+      'kategori' => $this->KategoriModel->getKategori(),
+      'filterPeriod' => $uri->getSegment(2),
+      'filterKategori' => $uri->getSegment(3),
+    ];
+
+    return view('backend/dashboard_cust', $data);
+  }
+
+  public function dashboard_petugas($period = 1, $kategori = 0)
+  {
+    $monthAgo = date('Y-m-d', strtotime("-" . $period . " month", strtotime(date("Y-m-d"))));
+    $week = date('Y-m-d', strtotime("-7 day", strtotime(date("Y-m-d"))));
+    $uri = new \CodeIgniter\HTTP\URI(current_url(true));
 
     $data = [
       'title' => 'Dashboard Petugas',
       'groupPengaduan' => $this->Pengaduan_onlineModel->groupByStatusPetugas(session('idPetugas'), session('Unit'), $monthAgo),
-      'groupMeeting' => $this->Meeting_requestModel->groupByStatusPetugas(session('idPetugas'), $monthAgo),
-      'pengaduanPerminggu' => $this->Pengaduan_onlineModel->pengaduanPetugasPerminggu(session('idPetugas'), session('Unit'), $monthAgo),
-      'meetingPerminggu' => $this->Meeting_requestModel->meetingRequestPetugasPerminggu(session('idPetugas'), $monthAgo),
+      'groupMeeting' => $this->Meeting_requestModel->groupByStatusPetugas(session('idPetugas'), $kategori, $monthAgo),
+      'pengaduanPerminggu' => $this->Pengaduan_onlineModel->pengaduanPetugasPerminggu(session('idPetugas'), session('Unit'), $week),
+      'meetingPerminggu' => $this->Meeting_requestModel->meetingRequestPetugasPerminggu(session('idPetugas'), $week),
       'lastMeetingRequest' => $this->Meeting_requestModel->lastMeetingRequest(session('idPetugas')),
       'kategori' => $this->KategoriModel->getKategori(),
       'customer' => $this->CustModel->jumlah_cust(),
       'cust_baru' => $this->CustModel->cust_baru($monthAgo),
       'jumlah_tandaTerima' => $this->TandaTerimaModel->jumlah_tandaTerima(session('idPetugas')),
-      'month' => $monthAgo,
-      'segment' => $segment,
+      'filterPeriod' => $uri->getSegment(2),
+      'filterKategori' => $uri->getSegment(3),
     ];
 
     return view('backend/dashboard_petugas', $data);
