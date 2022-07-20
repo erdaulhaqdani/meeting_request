@@ -392,10 +392,7 @@ class Pengaduan_online extends BaseController
     {
         $customer = $this->request->getVar('idCustomer');
         $arrCustomer = $this->CustModel->getCustomer($customer);
-        $getUser = $this->UserModel->getUser($arrCustomer['Email']);
-        foreach ($getUser as $a) {
-            $id = $a['idUser'];
-        }
+        $arrUser = $this->UserModel->getUser($arrCustomer['Email']);
 
         $oldPass = $this->request->getVar('oldPass');
         $newPass = $this->request->getVar('newPass');
@@ -410,7 +407,7 @@ class Pengaduan_online extends BaseController
                     'Password' => $hashedPass
                 ]);
 
-                $this->UserModel->update($id, ['Password' => $hashedPass]);
+                $this->UserModel->update($arrUser[0]['idUser'], ['Password' => $hashedPass]);
 
                 session()->setFlashdata('pesan_pass', 'Berhasil menyunting password.');
             } else {

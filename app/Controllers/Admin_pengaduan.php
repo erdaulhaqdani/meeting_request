@@ -91,6 +91,7 @@ class Admin_pengaduan extends BaseController
     {
         $petugas = $this->request->getVar('idPetugas');
         $arrPetugas = $this->PetugasModel->getPetugasId($petugas);
+        $arrUser = $this->UserModel->getUser($arrPetugas['Email']);
 
         $oldPass = $this->request->getVar('oldPass');
         $newPass = $this->request->getVar('newPass');
@@ -100,12 +101,9 @@ class Admin_pengaduan extends BaseController
             if ($newPass == $confPass) {
                 $hashedPass = password_hash($newPass, PASSWORD_DEFAULT);
 
-                $this->PetugasModel->save([
-                    'idPetugas' => $petugas,
-                    'Password' => $hashedPass
-                ]);
+                $this->PetugasModel->update($petugas, ['Password' => $hashedPass]);
 
-                $this->UserModel->update($arrPetugas['Email'], ['Password' => $hashedPass]);
+                $this->UserModel->update($arrUser[0]['idUser'], ['Password' => $hashedPass]);
 
                 session()->setFlashdata('pesan_pass', 'berhasil menyunting password.');
             } else {
