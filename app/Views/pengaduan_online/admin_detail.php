@@ -116,6 +116,16 @@
                                                 <label class="col-sm-4">Status</label>
                                                 <label class="col-sm-8">: <?= $pengaduan['Status']; ?></label>
                                             </div>
+                                            <?php if ($pengaduan['Rating'] > 0) : ?>
+                                                <div class="row">
+                                                    <label class="col-sm-4">Rating</label>
+                                                    <label class="col-sm-8">: <?= $pengaduan['Rating']; ?></label>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-sm-4">Ulasan</label>
+                                                    <label class="col-sm-8">: <?= $pengaduan['Ulasan']; ?></label>
+                                                </div>
+                                            <?php endif ?>
                                         </div>
                                     </div>
                                     <div class="row">

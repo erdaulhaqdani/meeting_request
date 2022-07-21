@@ -206,6 +206,8 @@ class AuthCust extends BaseController
       return redirect()->to('/login_cust');
     }
 
+    // $password = password_hash($password, PASSWORD_DEFAULT);
+    // dd($password, $row->Password);
     if (password_verify($password, $row->Password)) {
       $data = [
         'log' => TRUE,
