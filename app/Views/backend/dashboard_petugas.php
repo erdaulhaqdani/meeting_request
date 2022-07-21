@@ -61,8 +61,17 @@
                     <label for="period">Rentang waktu:</label>
                     <select class="form-select mx-2" style="max-width: 120px;" name="period" id="period">
                         <option <?= $filterPeriod == 1 ? "selected" : ""; ?> value='1'>1 Bulan</option>
+                        <option <?= $filterPeriod == 2 ? "selected" : ""; ?> value='2'>2 Bulan</option>
                         <option <?= $filterPeriod == 3 ? "selected" : ""; ?> value='3'>3 Bulan</option>
+                        <option <?= $filterPeriod == 4 ? "selected" : ""; ?> value='4'>4 Bulan</option>
+                        <option <?= $filterPeriod == 5 ? "selected" : ""; ?> value='5'>5 Bulan</option>
                         <option <?= $filterPeriod == 6 ? "selected" : ""; ?> value='6'>6 Bulan</option>
+                        <option <?= $filterPeriod == 7 ? "selected" : ""; ?> value='7'>7 Bulan</option>
+                        <option <?= $filterPeriod == 8 ? "selected" : ""; ?> value='8'>8 Bulan</option>
+                        <option <?= $filterPeriod == 9 ? "selected" : ""; ?> value='9'>9 Bulan</option>
+                        <option <?= $filterPeriod == 10 ? "selected" : ""; ?> value='10'>10 Bulan</option>
+                        <option <?= $filterPeriod == 11 ? "selected" : ""; ?> value='11'>11 Bulan</option>
+                        <option <?= $filterPeriod == 12 ? "selected" : ""; ?> value='12'>12 Bulan</option>
                     </select>
                     <label for="kategori" class="ms-3">Kategori:</label>
                     <select class="form-select mx-2" style="max-width: 240px;" name="kategori" id="kategori">
