@@ -6,9 +6,7 @@ Daftar akun yang dapat digunakan untuk login APTB berdasarkan file sql terlampir
 | Level    | Email                   | Password  |
 | :------- | :---------------------- | :-------- |
 | Customer | erdaulhaqdani@gmail.com | danihipya |
-| :------- | :---------------------- | :-------- |
 | Admin Landing Page | petugas@gmail.com | petugas |
-| :------- | :---------------------- | :-------- |
 | Petugas | loket@gmail.com | loket |
 
 ## Menjalankan aplikasi
