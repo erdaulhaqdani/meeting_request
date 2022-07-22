@@ -14,6 +14,6 @@ Untuk menjalankan built-in server ketikkan:
 ```bash 
 php spark serve
 ```
-pada folder root dan nyalakan apache dan mysql pada web-server seperti XAMPP
+pada folder root dan nyalakan apache dan mysql pada web-server seperti XAMPP, database yang digunakan terdapat pada folder root dengan nama 'Kanwil.sql'
 
 [CodeIgniter](https://codeigniter.com/user_guide/tutorial/index.html#getting-up-and-running)
