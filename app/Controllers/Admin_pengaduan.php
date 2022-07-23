@@ -78,8 +78,8 @@ class Admin_pengaduan extends BaseController
         $this->PetugasModel->save([
             'idPetugas' => $this->request->getVar('idPetugas'),
             'Nama' => $this->request->getVar('nama'),
-            // 'Email' => $this->request->getVar('email'),
-            'Kantor' => $this->request->getVar('kantor')
+            'Email' => $this->request->getVar('email'),
+            // 'Kantor' => $this->request->getVar('kantor')
         ]);
 
         session()->setFlashdata('pesan', 'berhasil menyunting profil.');

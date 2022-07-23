@@ -73,7 +73,7 @@
                                             <label class="col-sm-1 mt-2" for="nama">Kantor</label>
                                             <div class="col-sm-11">
                                                 <select class="form-select" name="kantor" aria-label="Default select example" disabled required>
-                                                    <option selected disabled value=""><?= $petugas['Kantor']; ?></option>
+                                                    <option selected><?= $petugas['Kantor']; ?></option>
                                                     <option value="KPKNL Bandung">KPKNL Bandung</option>
                                                     <option value="DJKN Jabar">DJKN Jawa Barat</option>
                                                 </select>
