@@ -40,7 +40,14 @@ class Backend extends BaseController
     $monthAgo = date('Y-m-d', strtotime("-" . $period . " month", strtotime(date("Y-m-d"))));
     $week = date('Y-m-d', strtotime("-7 day", strtotime(date("Y-m-d"))));
     $uri = new \CodeIgniter\HTTP\URI(current_url(true));
-
+    dd(count($uri->getSegments()));
+    if (count($uri->getSegments()) == 1) {
+      $filterPeriod = 1;
+      $filterKategori = 0;
+    } elseif (count($uri->getSegments()) == 3) {
+      $filterPeriod = $uri->getSegment(2);
+      $filterKategori = $uri->getSegment(3);
+    }
     $data = [
       'title' => 'Dashboard Customer',
       'groupPengaduan' => $this->Pengaduan_onlineModel->groupByStatus(session('idCustomer'), $kategori, $monthAgo),
@@ -52,8 +59,8 @@ class Backend extends BaseController
       'jumlahMeeting' => $this->Meeting_requestModel->jumlah_meetingCustomer(session('idCustomer')),
       'jumlahPengaduan' => $this->Pengaduan_onlineModel->jumlah_pengaduanCustomer(session('idCustomer')),
       'kategori' => $this->KategoriModel->getKategori(),
-      'filterPeriod' => $uri->getSegment(2),
-      'filterKategori' => $uri->getSegment(3),
+      'filterPeriod' => $filterPeriod,
+      'filterKategori' => $filterKategori,
     ];
 
     return view('backend/dashboard_cust', $data);
