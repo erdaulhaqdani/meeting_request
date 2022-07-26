@@ -47,17 +47,17 @@
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fas fa-file-alt "></i>
-                        <span>Pengaduan Online</span>
+                        <span>JAMPARING</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="/Pengaduan_online/form">Pengajuan Pengaduan Online</a></li>
-                        <li><a href="/Pengaduan_online">Daftar Pengaduan Online</a></li>
+                        <li><a href="/Pengaduan_online">Riwayat Pengaduan Online</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="fas fa-calendar-plus"></i>
-                        <span>Meeting Request</span>
+                        <span>PASINI</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="/Meeting_request/form">Buat Meeting Request</a></li>
