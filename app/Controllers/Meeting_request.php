@@ -272,8 +272,6 @@ class Meeting_request extends BaseController
 
   function getData($myDate)
   {
-    $tgl = $myDate;
-
     $query = $this->Meeting_requestModel->TanggalKunjungan($myDate);
 
     $data = array();
