@@ -37,12 +37,12 @@
         <div class="row">
           <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-              <h4 class="mb-sm-0">Detail Meeting Request</h4>
+              <h4 class="mb-sm-0">Aplikasi Admisi dengan Janji (PASINI)</h4>
 
               <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                  <li class="breadcrumb-item"><a href="javascript: void(0);">Meeting Request</a></li>
-                  <li class="breadcrumb-item active">Detail Meeting Request</li>
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Janji Temu</a></li>
+                  <li class="breadcrumb-item active">Detail Janji Temu</li>
                 </ol>
               </div>
 
@@ -57,8 +57,8 @@
               <div class="card-body">
 
                 <div class="row">
-                  <h3 class="card-title">Detail Pengajuan Meeting Request</h3>
-                  <p class="card-title-desc">Berikut adalah identitas dan detail pengajuan Meeting Request dengan id <?= $meeting['idMeeting']; ?> </p>
+                  <h3 class="card-title">Detail Pengajuan Janji Temu</h3>
+                  <p class="card-title-desc">Berikut adalah identitas dan detail pengajuan Janji Temu dengan id <?= $meeting['idMeeting']; ?> </p>
 
                   <div class="col-md-6">
                     <div class="row mb-1">
@@ -90,7 +90,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="row mb-1">
-                      <label class="col-sm-6">DETAIL MEETING REQUEST</label>
+                      <label class="col-sm-6">DETAIL JANJI TEMU</label>
                       <hr>
                     </div>
                     <?php
@@ -227,7 +227,7 @@
                     </div>
                     <div class="col-md-7">
                       <div class="row">
-                        <label class="col-sm-6">DETAIL TANGGAPAN</label>
+                        <label class="col-sm-6">DETAIL TANGGAPAN JANJI TEMU</label>
                         <hr>
                       </div>
                       <div class="row">

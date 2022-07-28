@@ -57,30 +57,39 @@
                 <!-- end page title -->
 
                 <!-- Filter row -->
-                <div class="d-flex flex-row align-items-center mb-3">
-                    <label for="period">Rentang waktu:</label>
-                    <select class="form-select mx-2" style="max-width: 120px;" name="period" id="period">
-                        <option <?= $filterPeriod == 1 ? "selected" : ""; ?> value='1'>1 Bulan</option>
-                        <option <?= $filterPeriod == 2 ? "selected" : ""; ?> value='2'>2 Bulan</option>
-                        <option <?= $filterPeriod == 3 ? "selected" : ""; ?> value='3'>3 Bulan</option>
-                        <option <?= $filterPeriod == 4 ? "selected" : ""; ?> value='4'>4 Bulan</option>
-                        <option <?= $filterPeriod == 5 ? "selected" : ""; ?> value='5'>5 Bulan</option>
-                        <option <?= $filterPeriod == 6 ? "selected" : ""; ?> value='6'>6 Bulan</option>
-                        <option <?= $filterPeriod == 7 ? "selected" : ""; ?> value='7'>7 Bulan</option>
-                        <option <?= $filterPeriod == 8 ? "selected" : ""; ?> value='8'>8 Bulan</option>
-                        <option <?= $filterPeriod == 9 ? "selected" : ""; ?> value='9'>9 Bulan</option>
-                        <option <?= $filterPeriod == 10 ? "selected" : ""; ?> value='10'>10 Bulan</option>
-                        <option <?= $filterPeriod == 11 ? "selected" : ""; ?> value='11'>11 Bulan</option>
-                        <option <?= $filterPeriod == 12 ? "selected" : ""; ?> value='12'>12 Bulan</option>
-                    </select>
-                    <label for="kategori" class="ms-3">Kategori:</label>
-                    <select class="form-select mx-2" style="max-width: 240px;" name="kategori" id="kategori">
-                        <option value="0">Semua Kategori</option>
-                        <?php foreach ($kategori as $a) : ?>
-                            <option <?= $filterKategori == $a['idKategori'] ? "selected" : ""; ?> value="<?= $a['idKategori'] ?>"><?= $a['namaKategori']; ?></option>
-                        <?php endforeach ?>
-                    </select>
-                    <button type="submit" class="btn btn-outline-dark" id="filter">Filter</button>
+                <div class="row">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="d-flex flex-row align-items-center mb-3">
+                            <label for="period">Rentang waktu</label>
+                            <select class="form-select mx-2" style="max-width: 120px;" name="period" id="period">
+                                <option <?= $filterPeriod == 1 ? "selected" : ""; ?> value='1'>1 Bulan</option>
+                                <option <?= $filterPeriod == 2 ? "selected" : ""; ?> value='2'>2 Bulan</option>
+                                <option <?= $filterPeriod == 3 ? "selected" : ""; ?> value='3'>3 Bulan</option>
+                                <option <?= $filterPeriod == 4 ? "selected" : ""; ?> value='4'>4 Bulan</option>
+                                <option <?= $filterPeriod == 5 ? "selected" : ""; ?> value='5'>5 Bulan</option>
+                                <option <?= $filterPeriod == 6 ? "selected" : ""; ?> value='6'>6 Bulan</option>
+                                <option <?= $filterPeriod == 7 ? "selected" : ""; ?> value='7'>7 Bulan</option>
+                                <option <?= $filterPeriod == 8 ? "selected" : ""; ?> value='8'>8 Bulan</option>
+                                <option <?= $filterPeriod == 9 ? "selected" : ""; ?> value='9'>9 Bulan</option>
+                                <option <?= $filterPeriod == 10 ? "selected" : ""; ?> value='10'>10 Bulan</option>
+                                <option <?= $filterPeriod == 11 ? "selected" : ""; ?> value='11'>11 Bulan</option>
+                                <option <?= $filterPeriod == 12 ? "selected" : ""; ?> value='12'>12 Bulan</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-4 col-md-6">
+                        <div class="d-flex flex-row align-items-center mb-3">
+                            <label for="kategori">Kategori</label>
+                            <select class="form-select mx-2" style="max-width: 240px;" name="kategori" id="kategori">
+                                <option value="0">Semua Kategori</option>
+                                <?php foreach ($kategori as $a) : ?>
+                                    <option <?= $filterKategori == $a['idKategori'] ? "selected" : ""; ?> value="<?= $a['idKategori'] ?>"><?= $a['namaKategori']; ?></option>
+                                <?php endforeach ?>
+                            </select>
+                            <button type="submit" class="btn btn-outline-dark" id="filter">Filter</button>
+                        </div>
+                    </div>
                 </div>
                 <!-- end filter -->
 
@@ -96,7 +105,7 @@
                     <div class="col-md-3">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Statistik Meeting Request</h4>
+                                <h4 class="card-title mb-4">Statistik Janji Temu</h4>
                                 <canvas id="meeting"></canvas>
                             </div>
                         </div>
@@ -175,7 +184,7 @@
                     <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-4">Meeting Request yang masuk minggu ini</h4>
+                                <h4 class="card-title mb-4">Janji Temu yang masuk minggu ini</h4>
                                 <canvas id="bar_meeting"></canvas>
                             </div>
                         </div>
@@ -373,7 +382,7 @@
     const data_bar = {
         labels: label_meeting,
         datasets: [{
-            label: 'Meeting Request',
+            label: 'Janji Temu',
             backgroundColor: '#6fd088',
             borderColor: '#6fd088',
             data: data_meeting,

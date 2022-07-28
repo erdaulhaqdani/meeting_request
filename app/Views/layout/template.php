@@ -53,9 +53,9 @@
 						</div>
 						<div class="col-md-6 col-sm-4 col-12">
 							<ul class="social-icon">
-								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href="https://www.facebook.com/kapekaenel.oke.1/?show_switched_toast=0&show_invite_to_follow=0&show_switched_tooltip=0&show_podcast_settings=0&show_community_transition=0&show_community_review_changes=0&show_follower_visibility_disclosure=0" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href="https://twitter.com/BandungKpknl" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href="https://www.instagram.com/kpknlbandung/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
 							</ul>
 						</div>
 					</div> <!-- /.row -->
@@ -144,9 +144,9 @@
 							<p>KPKNL Bandung merupakan unit vertikal Direktorat Jenderal Kekayaan Negara (DJKN) <br> di bawah Kanwil DJKN Jawa Barat.
 							</p>
 							<ul class="social-icon">
-								<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-								<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+								<li><a href="https://www.facebook.com/kapekaenel.oke.1/?show_switched_toast=0&show_invite_to_follow=0&show_switched_tooltip=0&show_podcast_settings=0&show_community_transition=0&show_community_review_changes=0&show_follower_visibility_disclosure=0" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+								<li><a href="https://twitter.com/BandungKpknl" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+								<li><a href="https://www.instagram.com/kpknlbandung/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
 							</ul>
 						</div> <!-- /.logo-widget -->
 						<div class="col-lg-3 col-sm-6 col-12 footer-list">
@@ -167,8 +167,9 @@
 								<div class="col">
 									<ul>
 										<li><a href="/pages/pengumuman_grid">Pengumuman</a></li>
+										<li><a href="/pages/peristiwa_grid">Kilas Peristiwa</a></li>
 										<li><a href="/pages/berita_grid">Berita</a></li>
-										<li><a href="/pages/berita_grid">Artikel</a></li>
+										<li><a href="/pages/artikel_grid">Artikel</a></li>
 										<li><a href="/pages/agenda_grid">Agenda</a></li>
 										<li><a href="/pages/profil">Profil</a></li>
 										<!-- <li><a href="/pages/faq">FAQ</a></li> -->
@@ -190,7 +191,7 @@
 								</li>
 								<li>
 									<i class="fa fa-phone" aria-hidden="true"></i>
-									<a href="#">(022)4216161</a>
+									<a href="#">(022) 4216161</a>
 								</li>
 								<li>
 									<i class="fa fa-fax" aria-hidden="true"></i>

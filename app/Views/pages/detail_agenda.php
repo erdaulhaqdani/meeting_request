@@ -75,14 +75,32 @@
             </div> <!-- /.post-meta -->
             <div class="share-option clearfix">
               <ul class="social-icon float-right">
-                <li>Share : </li>
-                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
+                <?php
+                function tanggal_indo($tanggal)
+                {
+                  $bulan = array(
+                    1 =>   'Januari',
+                    'Februari',
+                    'Maret',
+                    'April',
+                    'Mei',
+                    'Juni',
+                    'Juli',
+                    'Agustus',
+                    'September',
+                    'Oktober',
+                    'November',
+                    'Desember'
+                  );
+                  $split = explode('-', $tanggal);
+                  return $split[2] . ' ' . $bulan[(int)$split[1]] . ' ' . $split[0];
+                }
+
+                $tanggal = date('Y-m-d', strtotime($berita['tgl_kegiatan'])); ?>
+                <li>Tanggal Kegiatan : <?= tanggal_indo($tanggal); ?> </li>
               </ul>
               <ul class="tag-meta float-left">
-                <li>Author : <?= $berita['Penulis']; ?></li>
+                <li>Penulis : <?= $berita['Penulis']; ?></li>
               </ul>
             </div> <!-- /.share-option -->
           </div> <!-- /.single-blog -->

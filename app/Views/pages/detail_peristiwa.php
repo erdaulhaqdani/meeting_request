@@ -73,15 +73,8 @@
               ?>
             </div> <!-- /.post-meta -->
             <div class="share-option clearfix">
-              <ul class="social-icon float-right">
-                <li></i> Share :</li>
-                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
-              </ul>
               <ul class="tag-meta float-left">
-                <li>Author : <?= $berita['Penulis']; ?></li>
+                <li>Penulis : <?= $berita['Penulis']; ?></li>
               </ul>
             </div> <!-- /.share-option -->
           </div> <!-- /.single-blog -->

@@ -49,12 +49,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0">Rating Meeting Request</h4>
+                            <h4 class="mb-sm-0">Aplikasi Admisi dengan Janji (PASINI)</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Meeting Request</a></li>
-                                    <li class="breadcrumb-item active">Rating Meeting Request</li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Janji Temu</a></li>
+                                    <li class="breadcrumb-item active">Rating Janji Temu</li>
                                 </ol>
                             </div>
 
@@ -68,7 +68,8 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h4 class="card-title">Rating Pelayanan Meeting Request</h4>
+                                <h4 class="card-title">Rating Pelayanan Janji Temu</h4>
+                                <p class="card-title-desc">Masukkan rating dan ulasan Anda dengan lengkap.</p>
 
                                 <form action="/Meeting_request/input_rating" class="custom-validation" method="POST" enctype="multipart/form-data">
                                     <!-- beri penjelasan tiap input/desc -->

@@ -33,12 +33,12 @@
         <div class="row">
           <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-              <h4 class="mb-sm-0">Ubah Meeting Request</h4>
+              <h4 class="mb-sm-0">Aplikasi Admisi dengan Janji (PASINI)</h4>
 
               <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                  <li class="breadcrumb-item"><a href="javascript: void(0);">Meeting Request</a></li>
-                  <li class="breadcrumb-item active">Ubah Meeting Request</li>
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Janji Temu</a></li>
+                  <li class="breadcrumb-item active">Ubah Janji Temu</li>
                 </ol>
               </div>
 
@@ -52,7 +52,7 @@
             <div class="card">
               <div class="card-body">
 
-                <h3 class="card-title">Ubah Pengajuan Meeting Request</h3>
+                <h3 class="card-title">Ubah Pengajuan Janji Temu</h3>
                 <p class="card-title-desc">Masukkan informasi Anda dengan lengkap.</p>
 
                 <form action="/Petugas_MR/update/<?= $meeting['idMeeting']; ?>" class="custom-validation" method="POST" enctype="multipart/form-data">

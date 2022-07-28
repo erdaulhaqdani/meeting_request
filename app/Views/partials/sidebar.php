@@ -60,8 +60,8 @@
                         <span>PASINI</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="/Meeting_request/form">Buat Meeting Request</a></li>
-                        <li><a href="/Meeting_request">Daftar Meeting Request</a></li>
+                        <li><a href="/Meeting_request/form">Buat Janji Temu</a></li>
+                        <li><a href="/Meeting_request">Daftar Janji Temu</a></li>
                     </ul>
                 </li>
             </ul>

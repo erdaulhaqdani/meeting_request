@@ -9,15 +9,15 @@
 				<a href="/" id="logo"><img src="/images/logo-kpknl.png" alt="" width="100" height="40"></a>
 				<div id="social">
 					<ul>
-						<li><a href="#0"><i class="social_facebook"></i></a></li>
-						<li><a href="#0"><i class="social_twitter"></i></a></li>
-						<li><a href="#0"><i class="social_instagram"></i></a></li>
+						<li><a href="https://www.facebook.com/kapekaenel.oke.1/?show_switched_toast=0&show_invite_to_follow=0&show_switched_tooltip=0&show_podcast_settings=0&show_community_transition=0&show_community_review_changes=0&show_follower_visibility_disclosure=0" target="_blank"><i class="social_facebook"></i></a></li>
+						<li><a href="https://twitter.com/BandungKpknl" target="_blank"><i class="social_twitter"></i></a></li>
+						<li><a href="https://www.instagram.com/kpknlbandung/" target="_blank"><i class="social_instagram"></i></a></li>
 					</ul>
 				</div>
 				<!-- /social -->
 				<div>
 					<h1>Registrasi APT Bersama</h1>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					<p>Area Pelayanan Terpadu Bersama (APTB) amerupakan sinergi antara KPKNL Bandung dan Kanwil DJKN Jawa Barat untuk memberikan layanan yang lebih baik.</p>
 					<a href="/"><button type="submit" class="btn_1 half-width">Kembali ke Beranda</button></a>
 				</div>
 			</div>

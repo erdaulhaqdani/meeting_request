@@ -34,10 +34,10 @@
               <h4 class="mb-sm-0">Ubah Tanda Terima</h4>
 
               <div class="page-title-right">
-                <ol class="breadcrumb m-0">
+                <ul class="breadcrumb m-0">
                   <li class="breadcrumb-item"><a href="javascript: void(0);">Tanda Terima</a></li>
                   <li class="breadcrumb-item active">Ubah Tanda Terima</li>
-                </ol>
+                </ul>
               </div>
 
             </div>

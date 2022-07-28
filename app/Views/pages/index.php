@@ -67,7 +67,7 @@ CallOut Banner
 <div class="callout-banner section-spacing">
 	<div class="container clearfix">
 		<h3 class="title">Area Pelayanan Terpadu Bersama</h3>
-		<p>Area Pelayanan Terpadu Bersama (APTB) adalah... tale of a fateful trip that started from this tropic port aboard this tiny ship today still wanted by the government they survive as soldiers of fortune to ever wondered the east side </p>
+		<p align="justify">Area Pelayanan Terpadu Bersama (APTB) amerupakan sinergi antara KPKNL Bandung dan Kanwil DJKN Jawa Barat untuk memberikan layanan yang lebih baik. </p>
 		<a href="/register_cust" class="theme-button-one">Registrasi</a>
 	</div>
 </div> <!-- /.callout-banner -->

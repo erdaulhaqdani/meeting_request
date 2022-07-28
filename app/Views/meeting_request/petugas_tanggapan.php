@@ -39,12 +39,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0">Tanggapan Meeting Request</h4>
+                            <h4 class="mb-sm-0">Aplikasi Admisi dengan Janji (PASINI)</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Meeting Request</a></li>
-                                    <li class="breadcrumb-item active">Tanggapan Meeting Request</li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Janji Temu</a></li>
+                                    <li class="breadcrumb-item active">Tanggapan Janji Temu</li>
                                 </ol>
                             </div>
 
@@ -58,12 +58,12 @@
                         <div class="card">
                             <div class="card-body">
 
-                                <h1 class="card-title">Form Tanggapan</h1>
+                                <h1 class="card-title">Form Tanggapan Janji Temu</h1>
                                 <p class="card-title-desc">Masukkan informasi Tanggapan dengan lengkap.</p>
                                 <form action="/petugas_MR/inputTanggapan" method="POST" enctype="multipart/form-data" class="custom-validation">
 
                                     <div class="row mb-3">
-                                        <label class="col-sm-3 col-form-label" for="status">Status Meeting Request </label>
+                                        <label class="col-sm-3 col-form-label" for="status">Status Janji Temu </label>
                                         <div class="col-sm-9">
                                             <select name="status" id="s" onchange="tampilPetugas()" class="form-select">
                                                 <option selected disabled value="">Pilih status</option>

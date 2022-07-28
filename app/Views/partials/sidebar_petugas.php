@@ -47,13 +47,13 @@
                 <li>
                     <a href="/admin" class=" waves-effect">
                         <i class="fas fa-file-alt "></i>
-                        <span>Pengaduan Online</span>
+                        <span>JAMPARING</span>
                     </a>
                 </li>
                 <li>
                     <a href="/petugasMR" class=" waves-effect">
                         <i class="fas fa-calendar-plus"></i>
-                        <span>Meeting Request</span>
+                        <span>PASINI</span>
                     </a>
                 </li>
                 <li>

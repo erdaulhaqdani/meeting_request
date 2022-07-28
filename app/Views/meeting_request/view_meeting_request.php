@@ -45,13 +45,13 @@
         <div class="row">
           <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-              <h4 class="mb-sm-0">Daftar Meeting Request</h4>
+              <h4 class="mb-sm-0">Aplikasi Admisi dengan Janji (PASINI)</h4>
 
               <div class="page-title-right">
-                <ol class="breadcrumb m-0">
-                  <li class="breadcrumb-item"><a href="javascript: void(0);">Meeting Request</a></li>
-                  <li class="breadcrumb-item active">Daftar Meeting Request</li>
-                </ol>
+                <ul class="breadcrumb m-0">
+                  <li class="breadcrumb-item"><a href="javascript: void(0);">Janji Temu</a></li>
+                  <li class="breadcrumb-item active">Daftar Janji Temu</li>
+                </ul>
               </div>
 
             </div>
@@ -63,10 +63,10 @@
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Rekap Status Meeting Request</h4>
+                <h4 class="card-title">Rekap Status Janji Temu</h4>
                 <div class="row">
 
-                  <div class="col-3">
+                  <div class="col-lg-3 col-md-6">
                     <div class="card">
                       <div class="card-body text-center">
                         <h5 class="card-title">Belum diproses</h5>
@@ -77,7 +77,7 @@
                     </div>
                   </div>
 
-                  <div class="col-3">
+                  <div class="col-lg-3 col-md-6">
                     <div class="card">
                       <div class="card-body text-center">
                         <h5 class="card-title">Sedang diproses</h5>
@@ -88,7 +88,7 @@
                     </div>
                   </div>
 
-                  <div class="col-3">
+                  <div class="col-lg-3 col-md-6">
                     <div class="card">
                       <div class="card-body text-center">
                         <h5 class="card-title">Dieskalasi</h5>
@@ -99,7 +99,7 @@
                     </div>
                   </div>
 
-                  <div class="col-3">
+                  <div class="col-lg-3 col-md-6">
                     <div class="card">
                       <div class="card-body text-center">
                         <h5 class="card-title">Selesai diproses</h5>
@@ -121,10 +121,10 @@
             <div class="card">
               <div class="card-body">
 
-                <h4 class="card-title">Tabel <?= $title; ?></h4>
+                <h4 class="card-title">Tabel Daftar Janji Temu</h4>
                 <div class="row">
                   <div class="col-md-6">
-                    <p class="card-title-desc">Berikut adalah tabel Daftar Meeting Request Anda. </p>
+                    <p class="card-title-desc">Berikut adalah tabel Daftar Janji Temu Anda. </p>
                   </div>
                   <div class="col-md-6"><a style="float: right ;" href="/Meeting_request/form" class="btn btn-success btn-md"><i class="fas fa-plus-circle"></i> Tambah</a></div>
                 </div>

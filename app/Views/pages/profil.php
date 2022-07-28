@@ -27,9 +27,9 @@
           <div class="theme-title-one">
             <h2>TENTANG KAMI</h2>
           </div> <!-- /.theme-title-one -->
-          <p>A tale of a fateful trip that started from this tropic port aboard this tiny ship today still wanted by the government they survive as soldiers of fortune to a deluxe you apartment in the sky to explore strange new worlds to seek out new life and new civilizations to boldly go where no man has gone.</p>
-          <p>You would see the biggest gift would be from me and the card attached would so thank you for being a friend the biggest gift.</p>
-          <p>You would see the biggest gift would be from me and the card attached would so thank you for being a friend the biggest gift.You would see the biggest gift would</p>
+          <p align="justify">Kantor Pelayanan Kekayaan Negara dan Lelang (KPKNL) Bandung merupakan unit vertikal Direktorat Jenderal Kekayaan Negara (DJKN) di bawah Kantor Wilayah (Kanwil) DJKN Jawa Barat. Berdasarkan Peraturan Menteri Keuangan Nomor 154/PMK.01/2022 tentang Organisasi dan Tata Kerja Instansi Vertikal Direktorat Jenderal Kekayaan Negara.</p>
+          <p align="justify">Sebagai unit vertikal di bawah DJKN, KPKNL Bandung selalu berupaya untuk mewujudkan visi DJKN dan menjalankan misi DJKN, dengan meningkatkan pelayanan kepada pengguna jasa/stakeholders dan berpedoman pada nilai-nilai kementerian keuangan yaitu Integritas, Profesionalisme, Sinergi, Pelayanan dan Kesempumaan.</p>
+          <!-- <p>You would see the biggest gift would be from me and the card attached would so thank you for being a friend the biggest gift.You would see the biggest gift would</p> -->
         </div> <!-- /.col- -->
         <div class="col-lg-6 col-12 order-lg-first">
           <img src="/images/profil KPKNL.jpeg" alt="" class="left-img">
@@ -39,6 +39,65 @@
   </div> <!-- /.overlay -->
 </div> <!-- /.about-compnay-two -->
 
+<!-- 
+			=============================================
+				Our Solution
+			============================================== 
+			-->
+<div class="our-solution section-spacing">
+  <div class="container">
+    <div class="theme-title-one">
+      <h2>PRESTASI KPKNL BANDUNG</h2>
+    </div> <!-- /.theme-title-one -->
+    <div class="wrapper">
+      <div class="row">
+        <div class="col-lg-4 col-sm-6 col-12">
+          <div class="single-solution-block">
+            <img src="/images/icon/trophy (6).png" alt="" class="icon">
+            <h5><a href="service-details.html">Wilayah Bebas Korupsi (WBK)</a></h5>
+            <p>KPKNL Bandung memperoleh Predikat Wilayah Bebas dari Korupsi (WBK) Tahun 2020 dari KEMENPANRB</p>
+          </div> <!-- /.single-solution-block -->
+        </div> <!-- /.col- -->
+        <div class="col-lg-4 col-sm-6 col-12">
+          <div class="single-solution-block">
+            <img src="/images/icon/trophy (6).png" alt="" class="icon">
+            <h5><a href="service-details.html">Pegawai Teladan DJKN</a></h5>
+            <p>Peringkat keempat Pegawai Teladan DJKN Tahun 2020 a.n. Keni Kurniasih</p>
+          </div> <!-- /.single-solution-block -->
+        </div> <!-- /.col- -->
+        <div class="col-lg-4 col-sm-6 col-12">
+          <div class="single-solution-block">
+            <img src="/images/icon/trophy (6).png" alt="" class="icon">
+            <h5><a href="service-details.html">Pokok Lelang Tertinggi</a></h5>
+            <p>Pokok Lelang tertinggi keempat se Indonesia dengan total 780,68 M Tahun 2019</p>
+          </div> <!-- /.single-solution-block -->
+        </div> <!-- /.col- -->
+        <div class="col-lg-4 col-sm-6 col-12">
+          <div class="single-solution-block">
+            <img src="/images/icon/trophy (6).png" alt="" class="icon">
+            <h5><a href="service-details.html">Best Delegates DJKN Muda</a></h5>
+            <p>Piagam Penghargaan 2nd Runner Up Best Delegates DJKN Muda Tahun 2019 a.n. Fildzah Rio, diberikan oleh DJKN</p>
+          </div> <!-- /.single-solution-block -->
+        </div> <!-- /.col- -->
+        <div class="col-lg-4 col-sm-6 col-12">
+          <div class="single-solution-block">
+            <img src="/images/icon/trophy (6).png" alt="" class="icon">
+            <h5><a href="service-details.html">Frekuensi Lelang Tertinggi</a></h5>
+            <p>Frekuensi Lelang tertinggi ketiga se Indonesia dengan total Frekuensi 1.978</p>
+          </div> <!-- /.single-solution-block -->
+        </div> <!-- /.col- -->
+        <div class="col-lg-4 col-sm-6 col-12">
+          <div class="single-solution-block">
+            <img src="/images/icon/trophy (6).png" alt="" class="icon">
+            <h5><a href="service-details.html">Peringkat Ketiga IKPA</a></h5>
+            <p>Lelang Tahun 2019 Peringkat Ketiga IKPA Tahun 2019 dari KPPN1 Bandung</p>
+          </div> <!-- /.single-solution-block -->
+        </div> <!-- /.col- -->
+      </div> <!-- /.row -->
+    </div> <!-- /.wrapper -->
+  </div> <!-- /.container -->
+</div> <!-- /.our-solution -->
+
 <!--
 			=====================================================
 			Jobdesc Page
@@ -47,30 +106,66 @@
 <div class="faq-page section-spacing">
   <div class="container">
     <div class="theme-title-one">
-      <h2>TUGAS DAN FUNGSI</h2>
-      <p>A tale of a fateful trip that started from this tropic port aboard this tiny ship today stillers</p>
+      <h2>VISI, TUGAS, DAN FUNGSI</h2>
+      <p>Berikut adalah Visi, Misi, Tugas, Fungsi, dan Wilayah Kerja KPKNL Bandung</p>
     </div> <!-- /.theme-title-one -->
 
     <div class="faq-panel">
       <div class="panel-group theme-accordion" id="accordion">
+
         <div class="panel">
           <div class="panel-heading active-panel">
             <h6 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                Tugas Kanwil Bandung</a>
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                Visi KPKNL Bandung</a>
             </h6>
           </div>
-          <div id="collapse1" class="panel-collapse collapse show">
+          <div id="collapse4" class="panel-collapse collapse show">
             <div class="panel-body">
-              <p> Melaksanakan koordinasi, bimbingan teknis, pengendalian, evaluasi dan pelaksanaan tugas di bidang kekayaan negara, piutang negara dan lelang.</p>
+              <p>Melaksanakan koordinasi, bimbingan teknis, pengendalian, evaluasi dan pelaksanaan tugas di bidang kekayaan negara, piutang negara dan lelang. </p>
             </div>
           </div>
         </div> <!-- /panel 1 -->
+
+        <div class="panel">
+          <div class="panel-heading">
+            <h6 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+                Misi KPKNL Bandung</a>
+            </h6>
+          </div>
+          <div id="collapse5" class="panel-collapse collapse">
+            <div class="panel-body">
+              <ol>
+                <li>Mengoptimalkan pengelolaan kekayaan negara.</li>
+                <li>Mengamankan kekayaan negara secara fisik, administrasi, dan hukum.</li>
+                <li>Meningkatkan tata kelola dan nilai tambah pengelolaan kekayaan negara.</li>
+                <li>Mengahasilkan nilai kekayaan negara yang wajar dan dapat dijadikan acuan dalam berbagai keperluan.</li>
+                <li>Mewujudkan lelang yang efisien, transparan, akuntabel, adil, dan kompetitf, sebagai instrumen jual beli yang mampu mengakomodasi kepentingan masyarakat.</li>
+              </ol>
+            </div>
+          </div>
+        </div> <!-- /panel 2 -->
+
+        <div class="panel">
+          <div class="panel-heading">
+            <h6 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                Tugas KPKNL Bandung </a>
+            </h6>
+          </div>
+          <div id="collapse1" class="panel-collapse collapse">
+            <div class="panel-body">
+              <p>Melaksanakan koordinasi, bimbingan teknis, pengendalian, evaluasi dan pelaksanaan tugas di bidang kekayaan negara, piutang negara dan lelang. </p>
+            </div>
+          </div>
+        </div> <!-- /panel 4 -->
+
         <div class="panel">
           <div class="panel-heading">
             <h6 class="panel-title">
               <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                Fungsi Kanwil Bandung</a>
+                Fungsi KPKNL Bandung</a>
             </h6>
           </div>
           <div id="collapse2" class="panel-collapse collapse">
@@ -91,47 +186,26 @@
             </div>
           </div>
         </div> <!-- /panel 2 -->
+
         <div class="panel">
           <div class="panel-heading">
             <h6 class="panel-title">
               <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                Wilayah Kerja DJKN Bandung</a>
+                Wilayah Kerja KPKNL Bandung</a>
             </h6>
           </div>
           <div id="collapse3" class="panel-collapse collapse">
             <div class="panel-body">
               <ol>
-                <li>KPKNL Bandung.</li>
-                <li>KPKNL Bekasi.</li>
-                <li>KPKNL Bogor.</li>
-                <li>KPKNL Purwakarta.</li>
-                <li>KPKNL Cirebon.</li>
-                <li>KPKNL Tasikmalaya.</li>
+                <li>Kota Bandung</li>
+                <li>Kabupaten Bandung</li>
+                <li>Kabupaten Bandung Barat</li>
+                <li>Kota Cimahi</li>
+                <li>Kabupaten Sumedang</li>
               </ol>
             </div>
           </div>
         </div> <!-- /panel 3 -->
-
-        <div class="panel">
-          <div class="panel-heading">
-            <h6 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-                Ut wisi enim ad minim veniam, quis nostrud exerci tation?</a>
-            </h6>
-          </div>
-          <div id="collapse4" class="panel-collapse collapse">
-            <div class="panel-body">
-              <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
-              <ol>
-                <li>Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorperadipiscing elit,</li>
-                <li>sed diam nonummynibh suscipit lobortis nisl ut aliquip ex.</li>
-                <li>vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et.</li>
-              </ol>
-              <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu.
-                vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
-            </div>
-          </div>
-        </div> <!-- /panel 4 -->
 
       </div> <!-- end #accordion -->
     </div> <!-- /.faq-panel -->
@@ -156,8 +230,8 @@
               <img src="/images/team/1.jpg" alt="">
             </div> <!-- /.image-box -->
             <div class="text">
-              <h6>Richards Mills</h6>
-              <span>Sales Consultant</span>
+              <h6>Sigit Prasetyo Nugroho</h6>
+              <span>Kepala Kantor</span>
             </div> <!-- /.text -->
           </div> <!-- /.team-member -->
         </div> <!-- /.col- -->
@@ -167,8 +241,8 @@
               <img src="/images/team/2.jpg" alt="">
             </div> <!-- /.image-box -->
             <div class="text">
-              <h6>Mike Hussey</h6>
-              <span>Founder, CEO</span>
+              <h6>Tini Sugini Sugandi</h6>
+              <span>Kasubbag Umum</span>
             </div> <!-- /.text -->
           </div> <!-- /.team-member -->
         </div> <!-- /.col- -->
@@ -178,8 +252,8 @@
               <img src="/images/team/3.jpg" alt="">
             </div> <!-- /.image-box -->
             <div class="text">
-              <h6>Jenilia D’sosa</h6>
-              <span>Marketing Lead</span>
+              <h6>Iknasius Joko Legowo</h6>
+              <span>Kepala Seksi Pengelolaan Kekayaan Negara</span>
             </div> <!-- /.text -->
           </div> <!-- /.team-member -->
         </div> <!-- /.col- -->
@@ -189,8 +263,8 @@
               <img src="/images/team/4.jpg" alt="">
             </div> <!-- /.image-box -->
             <div class="text">
-              <h6>David Warner</h6>
-              <span>SEO Analyst</span>
+              <h6>Kukuh Aggraito</h6>
+              <span>Kepala Seksi Pelayanan Penilaian</span>
             </div> <!-- /.text -->
           </div> <!-- /.team-member -->
         </div> <!-- /.col- -->
@@ -200,8 +274,8 @@
               <img src="/images/team/1.jpg" alt="">
             </div> <!-- /.image-box -->
             <div class="text">
-              <h6>Richards Mills</h6>
-              <span>Sales Consultant</span>
+              <h6>Elsa Marta Oktavia</h6>
+              <span>Kepala Seksi Piutang Negara</span>
             </div> <!-- /.text -->
           </div> <!-- /.team-member -->
         </div> <!-- /.col- -->
@@ -211,8 +285,8 @@
               <img src="/images/team/4.jpg" alt="">
             </div> <!-- /.image-box -->
             <div class="text">
-              <h6>Mike Hussey</h6>
-              <span>Founder, CEO</span>
+              <h6>Wasis Winarto</h6>
+              <span>Kepala Seksi Pelayanan Lelang</span>
             </div> <!-- /.text -->
           </div> <!-- /.team-member -->
         </div> <!-- /.col- -->
@@ -222,8 +296,8 @@
               <img src="/images/team/3.jpg" alt="">
             </div> <!-- /.image-box -->
             <div class="text">
-              <h6>Jenilia D’sosa</h6>
-              <span>Marketing Lead</span>
+              <h6>Yulianto</h6>
+              <span>Kepala Seksi Hukum dan Informasi</span>
             </div> <!-- /.text -->
           </div> <!-- /.team-member -->
         </div> <!-- /.col- -->
@@ -233,8 +307,8 @@
               <img src="/images/team/1.jpg" alt="">
             </div> <!-- /.image-box -->
             <div class="text">
-              <h6>David Warner</h6>
-              <span>SEO Analyst</span>
+              <h6>Agus Priyanto H.</h6>
+              <span>Kepala Seksi Kepatuhan Internal</span>
             </div> <!-- /.text -->
           </div> <!-- /.team-member -->
         </div> <!-- /.col- -->
