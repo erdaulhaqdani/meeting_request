@@ -223,33 +223,33 @@
       <div class="theme-title-one">
         <h2>STRUKTUR ORGANISASI</h2>
       </div> <!-- /.theme-title-one -->
-      <div class="row">
+      <div class="row justify-content-center">
         <div class="col-lg-3 col-sm-6 col-12">
           <div class="team-member">
             <div class="image-box">
-              <img src="/images/team/1.jpg" alt="">
+              <img src="/images/Kepala_KPKNL.jpeg" alt="">
             </div> <!-- /.image-box -->
             <div class="text">
-              <h6>Sigit Prasetyo Nugroho</h6>
-              <span>Kepala Kantor</span>
+              <h6>Guntur Sumitro</h6>
+              <span>Kepala KPKNL Bandung</span>
             </div> <!-- /.text -->
           </div> <!-- /.team-member -->
         </div> <!-- /.col- -->
         <div class="col-lg-3 col-sm-6 col-12">
           <div class="team-member">
             <div class="image-box">
-              <img src="/images/team/2.jpg" alt="">
+              <img src="/images/Kasubag_Umum.jpeg" alt="">
             </div> <!-- /.image-box -->
             <div class="text">
               <h6>Tini Sugini Sugandi</h6>
-              <span>Kasubbag Umum</span>
+              <span>Kepala Sub Bagian Umum</span>
             </div> <!-- /.text -->
           </div> <!-- /.team-member -->
         </div> <!-- /.col- -->
         <div class="col-lg-3 col-sm-6 col-12">
           <div class="team-member">
             <div class="image-box">
-              <img src="/images/team/3.jpg" alt="">
+              <img src="/images/Kasi_PKN.jpeg" alt="">
             </div> <!-- /.image-box -->
             <div class="text">
               <h6>Iknasius Joko Legowo</h6>
@@ -257,24 +257,15 @@
             </div> <!-- /.text -->
           </div> <!-- /.team-member -->
         </div> <!-- /.col- -->
-        <div class="col-lg-3 col-sm-6 col-12">
+      </div>
+      <div class="row justify-content-center">
+        <div class=" col-lg-3 col-sm-6 col-12">
           <div class="team-member">
             <div class="image-box">
-              <img src="/images/team/4.jpg" alt="">
+              <img src="/images/Kasi_Piutang.jpeg" alt="">
             </div> <!-- /.image-box -->
             <div class="text">
-              <h6>Kukuh Aggraito</h6>
-              <span>Kepala Seksi Pelayanan Penilaian</span>
-            </div> <!-- /.text -->
-          </div> <!-- /.team-member -->
-        </div> <!-- /.col- -->
-        <div class="col-lg-3 col-sm-6 col-12">
-          <div class="team-member">
-            <div class="image-box">
-              <img src="/images/team/1.jpg" alt="">
-            </div> <!-- /.image-box -->
-            <div class="text">
-              <h6>Elsa Marta Oktavia</h6>
+              <h6>Ersa Marta Oktavia</h6>
               <span>Kepala Seksi Piutang Negara</span>
             </div> <!-- /.text -->
           </div> <!-- /.team-member -->
@@ -282,18 +273,7 @@
         <div class="col-lg-3 col-sm-6 col-12">
           <div class="team-member">
             <div class="image-box">
-              <img src="/images/team/4.jpg" alt="">
-            </div> <!-- /.image-box -->
-            <div class="text">
-              <h6>Wasis Winarto</h6>
-              <span>Kepala Seksi Pelayanan Lelang</span>
-            </div> <!-- /.text -->
-          </div> <!-- /.team-member -->
-        </div> <!-- /.col- -->
-        <div class="col-lg-3 col-sm-6 col-12">
-          <div class="team-member">
-            <div class="image-box">
-              <img src="/images/team/3.jpg" alt="">
+              <img src="/images/Kasi_Hukum Informasi.jpeg" alt="">
             </div> <!-- /.image-box -->
             <div class="text">
               <h6>Yulianto</h6>
@@ -304,7 +284,7 @@
         <div class="col-lg-3 col-sm-6 col-12">
           <div class="team-member">
             <div class="image-box">
-              <img src="/images/team/1.jpg" alt="">
+              <img src="/images/Kasi_Kepatuhan.jpeg" alt="">
             </div> <!-- /.image-box -->
             <div class="text">
               <h6>Agus Priyanto H.</h6>

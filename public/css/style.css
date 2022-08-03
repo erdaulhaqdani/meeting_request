@@ -1139,7 +1139,10 @@ body .theme-button-one:hover {
   margin-top: 25px;
 }
 .our-team .team-member .image-box img {
-  width: 100%;
+  width: 270px;
+  height: 286px;
+  object-fit: cover;
+  object-position: top;
   border-radius: 5px 5px 0 0;
 }
 .our-team .team-member .image-box {
@@ -1148,7 +1151,7 @@ body .theme-button-one:hover {
 }
 .our-team .team-member .text {
   padding: 13px 0;
-  border: 1px solid #eaeaea;
+  border: 1px solid #dadada3f;
   border-top: none;
   border-radius: 0 0 5px 5px;
 }
@@ -1927,7 +1930,7 @@ body .theme-button-one:hover {
 }
 .our-blog .single-blog .image-box img {
   width: 100%;
-  height: 100%
+  height: 100%;
 }
 .our-blog .single-blog:hover .image-box img {
   -webkit-transform: scale3D(1.1, 1.1, 1);
