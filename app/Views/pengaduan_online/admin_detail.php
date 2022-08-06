@@ -128,23 +128,15 @@
                                             <?php endif ?>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-1">
-                                            <a href="/admin"><button type="button" class="btn btn-warning waves-effect">Kembali</button></a>
-                                        </div>
-                                        <div class="col-sm-10">
-                                            <a onclick="window.open('<?php echo site_url('/Pengaduan_online/print/' . $pengaduan['idPengaduan']) ?>')" class="btn btn-danger"><i class="fas fa-print align-middle me-2"></i> Cetak</a>
-                                            <?php if ($pengaduan['Status'] == 'Belum diproses') : ?>
-                                                <a href="/admin/proses/<?= $pengaduan['idPengaduan']; ?>" class="btn btn-primary waves-effect"> Mulai Proses</a>
-                                            <?php elseif ($pengaduan['Status'] == 'Selesai diproses') : ?>
-                                            <?php elseif ($pengaduan['Status'] != 'Belum diproses') : ?>
-                                                <a href="/admin/tanggapan/<?= $pengaduan['idPengaduan']; ?>" class="btn btn-info waves-effect">Tanggapan</a>
-                                            <?php endif ?>
-                                        </div>
-                                        <div class="col-sm-8">
-                                        </div>
+                                    <div class="page-title-box d-sm-flex align-items-left">
+                                        <input type="button" value="Kembali" class="btn btn-warning waves-effect me-2 mt-2" onclick="history.back(-1)" />
+                                        <a onclick="window.open('<?php echo site_url('/Pengaduan_online/print/' . $pengaduan['idPengaduan']) ?>')" class="btn btn-danger me-2 mt-2"><i class="fas fa-print align-middle me-2 mt-2"></i>Cetak</a>
+                                        <?php if ($pengaduan['Status'] == 'Belum diproses') : ?>
+                                            <a href="/admin/proses/<?= $pengaduan['idPengaduan']; ?>" class="btn btn-primary waves-effect me-2 mt-2"> Mulai Proses</a>
+                                        <?php elseif ($pengaduan['Status'] != 'Belum diproses') : ?>
+                                            <a href="/admin/tanggapan/<?= $pengaduan['idPengaduan']; ?>" class="btn btn-info waves-effect me-2 mt-2">Tanggapan</a>
+                                        <?php endif ?>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
