@@ -360,7 +360,7 @@
     $('#filter').click(function() {
         const period = $('#period').val();
         const kategori = $('#kategori').val();
-        const url = "http://localhost:8080/dashboard_cust/" + period + "/" + kategori;
+        const url = "/dashboard_cust/" + period + "/" + kategori;
         location.href = url;
     });
 </script>
