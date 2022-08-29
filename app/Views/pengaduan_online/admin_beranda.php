@@ -54,7 +54,7 @@
                                 <h4 class="card-title">Statistik Pengaduan Online</h4>
                                 <div class="row">
 
-                                    <div class="col-3">
+                                    <div class="col-lg-3 col-md-6">
                                         <div class="card">
                                             <div class="card-body text-center">
                                                 <h5 class="card-title">Belum diproses</h5>
@@ -65,7 +65,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-3">
+                                    <div class="col-lg-3 col-md-6">
                                         <div class="card">
                                             <div class="card-body text-center">
                                                 <h5 class="card-title">Sedang diproses</h5>
@@ -76,7 +76,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-3">
+                                    <div class="col-lg-3 col-md-6">
                                         <div class="card">
                                             <div class="card-body text-center">
                                                 <h5 class="card-title">Eskalasi masuk</h5>
@@ -87,7 +87,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-3">
+                                    <div class="col-lg-3 col-md-6">
                                         <div class="card">
                                             <div class="card-body text-center">
                                                 <h5 class="card-title">Selesai diproses</h5>

@@ -30,15 +30,32 @@
 
         <div class="page-content">
             <div class="container-fluid">
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Jalur Penyampaian Aduan Secara Daring (Jamparing)</h4>
+
+                            <div class="page-title-right">
+                                <ul class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Jamparing</a></li>
+                                    <li class="breadcrumb-item active">Riwayat Pengaduan Online</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
 
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Rekap Pengaduan</h4>
+                                <h4 class="card-title">Rekap Status Pengaduan</h4>
                                 <div class="row">
 
-                                    <div class="col-3">
+                                    <div class="col-lg-3 col-md-6">
                                         <div class="card">
                                             <div class="card-body text-center">
                                                 <a href="/Pengaduan_online/daftar/Belum">
@@ -51,7 +68,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-3">
+                                    <div class="col-lg-3 col-md-6">
                                         <div class="card">
                                             <div class="card-body text-center">
                                                 <a href="/Pengaduan_online/daftar/Sedang">
@@ -64,7 +81,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-3">
+                                    <div class="col-lg-3 col-md-6">
                                         <div class="card">
                                             <div class="card-body text-center">
                                                 <a href="/Pengaduan_online/daftar/Eskalasi">
@@ -77,7 +94,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-3">
+                                    <div class="col-lg-3 col-md-6">
                                         <div class="card">
                                             <div class="card-body text-center">
                                                 <a href="/Pengaduan_online/daftar/Selesai">
