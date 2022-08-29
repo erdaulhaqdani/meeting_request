@@ -254,7 +254,7 @@ class Meeting_request extends BaseController
       'meeting' => $this->Meeting_requestModel->getMeetingRequest($id),
     ];
 
-    return view('/Meeting_request/rating_meeting_request', $data);
+    return view('meeting_request/rating_meeting_request', $data);
   }
 
   public function input_rating()

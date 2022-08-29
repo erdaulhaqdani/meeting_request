@@ -106,7 +106,7 @@ class Meeting_requestModel extends Model
      * SELECT * FROM pengaduan_online
      * WHERE idCustomer = '1' AND Status LIKE "%Sedang Diproses%"
      */
-    $builder = $this->db->table('Meeting_request');
+    $builder = $this->db->table('meeting_request');
     $builder->like('Status', $status);
     $builder->where('idPetugas', $petugas);
     $builder->orWhere('idPetugas', 1);
