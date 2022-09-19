@@ -83,9 +83,9 @@
 						<!-- ============== Menu Warpper ================ -->
 						<div class="menu-wrapper float-right">
 							<nav id="mega-menu-holder" class="clearfix ">
-								<ul class="clearfix">
-									<li class="active"><a href="/">Beranda</a></li>
-									<li><a href="#">Halaman</a>
+								<ul class="d-flex clearfix">
+									<li style="margin-right: 30px;" class="active"><a href="/">Beranda</a></li>
+									<li style="width: 200px;"><a href="#">Halaman</a>
 										<ul class="dropdown">
 											<li><a href="/pages/profil">Profil KPKNL Bandung</a></li>
 											<!-- <li><a href="/pages/faq">FAQ</a></li> -->
@@ -107,7 +107,7 @@
 											</li>
 										</ul>
 									</li> -->
-									<li><a href="#">Blog</a>
+									<li style="width: 100px;"><a href="#">Blog</a>
 										<ul class="dropdown">
 											<li><a href="/pages/berita_grid">Berita</a></li>
 											<li><a href="/pages/pengumuman_grid">Pengumuman</a></li>
