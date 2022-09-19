@@ -133,7 +133,7 @@
                                         <a onclick="window.open('<?php echo site_url('/Pengaduan_online/print/' . $pengaduan['idPengaduan']) ?>')" class="btn btn-danger me-2 mt-2"><i class="fas fa-print align-middle me-2 mt-2"></i>Cetak</a>
                                         <?php if ($pengaduan['Status'] == 'Belum diproses') : ?>
                                             <a href="/admin/proses/<?= $pengaduan['idPengaduan']; ?>" class="btn btn-primary waves-effect me-2 mt-2"> Mulai Proses</a>
-                                        <?php elseif ($pengaduan['Status'] != 'Belum diproses') : ?>
+                                        <?php elseif ($pengaduan['Status'] == 'Sedang diproses') : ?>
                                             <a href="/admin/tanggapan/<?= $pengaduan['idPengaduan']; ?>" class="btn btn-info waves-effect me-2 mt-2">Tanggapan</a>
                                         <?php endif ?>
                                     </div>
