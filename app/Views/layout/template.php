@@ -66,6 +66,34 @@
 				<div class="container">
 					<div class="bg-wrapper clearfix">
 						<div class="logo float-left"><a href="/"><img src="/images/logo-kpknl.png" alt="" height="56" width="150px"></a></div>
+
+						<!-- ============== Menu Warpper ================ -->
+						<div class="menu-wrapper float-right">
+							<nav id="mega-menu-holder" class="clearfix ">
+								<ul class="clearfix">
+									<li class="active"><a href="/">Beranda</a></li>
+									<li><a href="#">Halaman</a>
+										<ul class="dropdown">
+											<li><a href="/pages/profil">Profil KPKNL Bandung</a></li>
+											<!-- <li><a href="/pages/faq">FAQ</a></li> -->
+											<li><a href="/pages/permohonan_info">Permohonan Informasi</a></li>
+										</ul>
+									</li>
+									<li><a href="#">Blog</a>
+										<ul class="dropdown">
+											<li><a href="/pages/berita_grid">Berita</a></li>
+											<li><a href="/pages/pengumuman_grid">Pengumuman</a></li>
+											<li><a href="/pages/artikel_grid">Artikel</a></li>
+											<li><a href="/pages/peristiwa_grid">Kilas Peristiwa</a></li>
+											<li><a href="/pages/agenda_grid">Agenda</a></li>
+										</ul>
+									</li>
+									<li>
+									<li><a href="/login_cust">APT Bersama</a></li>
+									</li>
+								</ul>
+							</nav> <!-- /#mega-menu-holder -->
+						</div> <!-- /.menu-wrapper -->
 						<div class="right-widget float-right ">
 							<ul>
 								<li class="search-option">
@@ -80,49 +108,6 @@
 							</ul>
 						</div>
 						<!-- /.right-widget -->
-						<!-- ============== Menu Warpper ================ -->
-						<div class="menu-wrapper float-right">
-							<nav id="mega-menu-holder" class="clearfix ">
-								<ul class="clearfix">
-									<li class="active"><a href="/">Beranda</a></li>
-									<li><a href="#">Halaman</a>
-										<ul class="dropdown">
-											<li><a href="/pages/profil">Profil KPKNL Bandung</a></li>
-											<!-- <li><a href="/pages/faq">FAQ</a></li> -->
-											<li><a href="/pages/permohonan_info">Permohonan Informasi</a></li>
-										</ul>
-									</li>
-									<!-- <li><a href="#">Layanan</a>
-										<ul class="dropdown">
-											<li><a href="#">Barang Milik Negara</a></li>
-											<li><a href="#">Lelang</a></li>
-											<li><a href="#">Piutang Negara</a></li>
-											<li><a href="#">Penilaian</a></li>
-											<li><a href="#">Kesekretariatan</a></li>
-											<li><a href="#">Kekayaan Negara</a>
-												<ul>
-													<li><a href="#">Dipisahkan</a></li>
-													<li><a href="#">Lain-lain</a></li>
-												</ul>
-											</li>
-										</ul>
-									</li> -->
-									<li><a href="#">Blog</a>
-										<ul class="dropdown">
-											<li><a href="/pages/berita_grid">Berita</a></li>
-											<li><a href="/pages/pengumuman_grid">Pengumuman</a></li>
-											<li><a href="/pages/artikel_grid">Artikel</a></li>
-											<li><a href="/pages/peristiwa_grid">Kilas Peristiwa</a></li>
-											<li><a href="/pages/agenda_grid">Agenda</a></li>
-										</ul>
-									</li>
-									<li>
-									<li><a href="/login_cust">APT Bersama</a></li>
-									</li>
-
-								</ul>
-							</nav> <!-- /#mega-menu-holder -->
-						</div> <!-- /.menu-wrapper -->
 					</div> <!-- /.bg-wrapper -->
 				</div> <!-- /.container -->
 			</div> <!-- /.theme-menu-wrapper -->

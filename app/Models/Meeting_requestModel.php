@@ -169,7 +169,7 @@ class Meeting_requestModel extends Model
     $builder = $this->db->table('meeting_request');
     $builder->select('COUNT(updated_at) AS jumlah, updated_at as tanggal');
     $builder->where('idCustomer', $idCustomer);
-    $builder->where('updated_at >=', $period);
+    $builder->where('created_at >=', $period);
     $builder->groupBy('DATE_FORMAT(updated_at, "%e %M %Y")');
     $query = $builder->get();
     return $query;

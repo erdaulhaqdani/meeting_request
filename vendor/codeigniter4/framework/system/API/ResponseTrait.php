@@ -75,7 +75,7 @@ trait ResponseTrait
     /**
      * Current Formatter instance. This is usually set by ResponseTrait::format
      *
-     * @var FormatterInterface
+     * @var FormatterInterface|null
      */
     protected $formatter;
 
@@ -320,8 +320,15 @@ trait ResponseTrait
         $mime   = "application/{$this->format}";
 
         // Determine correct response type through content negotiation if not explicitly declared
-        if (empty($this->format) || ! in_array($this->format, ['json', 'xml'], true)) {
-            $mime = $this->request->negotiate('media', $format->getConfig()->supportedResponseFormats, false);
+        if (
+            (empty($this->format) || ! in_array($this->format, ['json', 'xml'], true))
+            && $this->request instanceof IncomingRequest
+        ) {
+            $mime = $this->request->negotiate(
+                'media',
+                $format->getConfig()->supportedResponseFormats,
+                false
+            );
         }
 
         $this->response->setContentType($mime);

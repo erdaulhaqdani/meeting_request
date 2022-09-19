@@ -100,7 +100,7 @@ class Meeting_request extends BaseController
 
     session()->setFlashdata('pesan', 'Berhasil menambahkan Meeting Request.');
 
-    return redirect()->to('/Meeting_request');
+    return redirect()->to('Meeting_request');
   }
 
   public function detail($id)
