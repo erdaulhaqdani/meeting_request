@@ -66,6 +66,34 @@
 				<div class="container">
 					<div class="bg-wrapper clearfix">
 						<div class="logo float-left"><a href="/"><img src="/images/logo-kpknl.png" alt="" height="56" width="150px"></a></div>
+
+						<!-- ============== Menu Warpper ================ -->
+						<div class="menu-wrapper float-right">
+							<nav id="mega-menu-holder" class="clearfix">
+								<ul class="clearfix">
+									<li class="active"><a href="/">Beranda</a></li>
+									<li><a href=""> Halaman</a>
+										<ul class="dropdown">
+											<li><a href="/pages/profil">Profil KPKNL Bandung</a></li>
+											<li><a href="/pages/permohonan_info">Permohonan Informasi</a></li>
+										</ul>
+									</li>
+									<li><a href=""> Blog</a>
+										<ul class="dropdown">
+											<li><a href="/pages/berita_grid">Berita</a></li>
+											<li><a href="/pages/pengumuman_grid">Pengumuman</a></li>
+											<li><a href="/pages/artikel_grid">Artikel</a></li>
+											<li><a href="/pages/peristiwa_grid">Kilas Peristiwa</a></li>
+											<li><a href="/pages/agenda_grid">Agenda</a></li>
+										</ul>
+									</li>
+									<li>
+									<li><a href="/login_cust">APT Bersama</a></li>
+									</li>
+								</ul>
+							</nav> <!-- /#mega-menu-holder -->
+						</div> <!-- /.menu-wrapper -->
+
 						<div class="right-widget float-right ">
 							<ul>
 								<li class="search-option">
@@ -80,53 +108,50 @@
 							</ul>
 						</div>
 						<!-- /.right-widget -->
-						<!-- ============== Menu Warpper ================ -->
-						<div class="menu-wrapper float-right">
-							<nav id="mega-menu-holder" class="clearfix ">
-								<ul class="d-flex clearfix">
-									<li style="margin-right: 30px;" class="active"><a href="/">Beranda</a></li>
-									<li style="width: 200px;"><a href="#">Halaman</a>
-										<ul class="dropdown">
-											<li><a href="/pages/profil">Profil KPKNL Bandung</a></li>
-											<!-- <li><a href="/pages/faq">FAQ</a></li> -->
-											<li><a href="/pages/permohonan_info">Permohonan Informasi</a></li>
-										</ul>
-									</li>
-									<!-- <li><a href="#">Layanan</a>
-										<ul class="dropdown">
-											<li><a href="#">Barang Milik Negara</a></li>
-											<li><a href="#">Lelang</a></li>
-											<li><a href="#">Piutang Negara</a></li>
-											<li><a href="#">Penilaian</a></li>
-											<li><a href="#">Kesekretariatan</a></li>
-											<li><a href="#">Kekayaan Negara</a>
-												<ul>
-													<li><a href="#">Dipisahkan</a></li>
-													<li><a href="#">Lain-lain</a></li>
-												</ul>
-											</li>
-										</ul>
-									</li> -->
-									<li style="width: 100px;"><a href="#">Blog</a>
-										<ul class="dropdown">
-											<li><a href="/pages/berita_grid">Berita</a></li>
-											<li><a href="/pages/pengumuman_grid">Pengumuman</a></li>
-											<li><a href="/pages/artikel_grid">Artikel</a></li>
-											<li><a href="/pages/peristiwa_grid">Kilas Peristiwa</a></li>
-											<li><a href="/pages/agenda_grid">Agenda</a></li>
-										</ul>
-									</li>
-									<li>
-									<li><a href="/login_cust">APT Bersama</a></li>
-									</li>
-
-								</ul>
-							</nav> <!-- /#mega-menu-holder -->
-						</div> <!-- /.menu-wrapper -->
 					</div> <!-- /.bg-wrapper -->
 				</div> <!-- /.container -->
 			</div> <!-- /.theme-menu-wrapper -->
 		</header> <!-- /.header-two -->
+
+		<!-- Navbar fix di hostinger -->
+		<!-- <nav class="navbar navbar-expand-lg navbar-light">
+			<a class="navbar-brand mb-1" href="#"><img src="/images/logo-kpknl.png" alt="" height="56" width="150px"></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active mr-3">
+						<a class="nav-link" href="/">Beranda</a>
+					</li>
+					<li class="nav-item dropdown mr-3">
+						<a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-expanded="false">
+							Halaman
+						</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="/pages/profil">Profil KPKNL Bandung</a>
+							<a class="dropdown-item" href="/pages/permohonan_info">Permohonan Informasi</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown mr-3">
+						<a class="nav-link dropdown-toggle" href="" role="button" data-toggle="dropdown" aria-expanded="false">
+							Blog
+						</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="/pages/berita_grid">Berita</a>
+							<a class="dropdown-item" href="/pages/pengumuman_grid">Pengumuman</a>
+							<a class="dropdown-item" href="/pages/artikel_grid">Artikel</a>
+							<a class="dropdown-item" href="/pages/peristiwa_grid">Kilas Peristiwa</a>
+							<a class="dropdown-item" href="/pages/agenda_grid">Agenda</a>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/login_cust">APT Bersama</a>
+					</li>
+				</ul>
+			</div>
+		</nav> -->
+		<!-- Navbar fix di hostinger end -->
 
 		<?= $this->renderSection('content') ?>
 
@@ -217,12 +242,17 @@
 		<!-- Optional JavaScript _____________________________  -->
 
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
 		<!-- jQuery -->
 		<script src="<?= base_url("vendor/jquery.2.2.3.min.js"); ?>"></script>
 		<!-- Popper js -->
 		<script src="<?= base_url('vendor/popper.js/popper.min.js'); ?>"></script>
 		<!-- Bootstrap JS -->
 		<script src="<?= base_url('vendor/bootstrap/js/bootstrap.min.js'); ?>"></script>
+		<!-- MetisMenu-->
+		<script src="<?= base_url('assets/libs/metismenu/metisMenu.min.js'); ?>"></script>
+		<!-- Waves -->
+		<script src="<?= base_url('assets/libs/node-waves/waves.min.js'); ?>"></script>
 		<!-- Camera Slider -->
 		<script src="<?= base_url('vendor/Camera-master/scripts/jquery.mobile.customized.min.js'); ?>"></script>
 		<script src="<?= base_url('vendor/Camera-master/scripts/jquery.easing.1.3.js'); ?>"></script>

@@ -57,7 +57,7 @@
 **/
 @import url("https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900|Source+Sans+Pro:300,400,600,700,900");
 /*----bootstrap css ----- */
-@import url("../vendor/bootstrap/css/bootstrap.min.css");
+@import url("/vendor/bootstrap/css/bootstrap.min.css");
 /*----camera-slider---*/
 @import url("../vendor/Camera-master/css/camera.css");
 /*------- menu ------*/

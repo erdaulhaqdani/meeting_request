@@ -66,7 +66,7 @@ class Pages extends BaseController
   public function profil()
   {
     $data = [
-      'title' => 'Profil DJKN Bandung'
+      'title' => 'Profil KPKNL Bandung'
     ];
     return view('pages/profil', $data);
   }
@@ -74,7 +74,7 @@ class Pages extends BaseController
   public function faq()
   {
     $data = [
-      'title' => 'FAQ DJKN Bandung'
+      'title' => 'FAQ KPKNL Bandung'
     ];
     return view('pages/faq', $data);
   }
@@ -82,7 +82,7 @@ class Pages extends BaseController
   public function permohonan_info()
   {
     $data = [
-      'title' => 'Permohonan Informasi DJKN Bandung'
+      'title' => 'Permohonan Informasi'
     ];
     return view('pages/permohonan_info', $data);
   }
