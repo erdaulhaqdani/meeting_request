@@ -34,25 +34,25 @@
 
 							<div class="form-group">
 								<label for="username">Username</label>
-								<input type="text" name="username" id="username" class="form-control " required minlength="5" maxlength="15">
+								<input type="text" name="username" id="username" class="form-control " required minlength="5" maxlength="15" autocomplete="off">
 							</div>
 							<div class="form-group">
 								<label for="nama">Nama Lengkap</label>
-								<input type="text" name="nama" id="nama" class="form-control " required minlength="5">
+								<input type="text" name="nama" id="nama" class="form-control " required minlength="5" autocomplete="off">
 							</div>
 							<div class="form-group">
 								<label for="nik">NIK</label>
-								<input type="number" name="nik" id="nik" class="form-control <?= ($validation->hasError('nik')) ?>" required minlength="16" maxlength="16">
+								<input type="number" name="nik" id="nik" class="form-control <?= ($validation->hasError('nik')) ?>" required minlength="16" maxlength="16" autocomplete="off">
 							</div>
 							<div class="form-group">
 								<label for="email">Email </label>
-								<input type="email" name="email" id="email" class="form-control <?= ($validation->hasError('email')) ?>" required>
+								<input type="email" name="email" id="email" class="form-control <?= ($validation->hasError('email')) ?>" required autocomplete="off">
 							</div>
 							<div class="form-group">
-								<label for="noHP">Nomor HP</label>
-								<input type="number" name="noHP" id="noHP" class="form-control" required minlength="11">
+								<label for="noHP">Nomor Telepon</label>
+								<input type="number" name="noHP" id="noHP" class="form-control" required minlength="11" autocomplete="off">
 							</div>
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label for="jk">Jenis Kelamin</label>
 								<select class="form-control" name="jk" id="jk" required>
 									<option value="Laki-laki">Laki-laki</option>
@@ -62,7 +62,7 @@
 							<div class="form-group">
 								<label for="pekerjaan">Pekerjaan</label>
 								<input type="text" name="pekerjaan" id="pekerjaan" class="form-control" required minlength="5">
-							</div>
+							</div> -->
 							<div class="form-group">
 								<label for="password">Password</label>
 								<input type="password" name="password" id="password" class="form-control" required minlength="8">

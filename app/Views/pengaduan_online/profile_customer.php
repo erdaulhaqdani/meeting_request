@@ -85,12 +85,6 @@
                                                 <input class="form-control" type="text" name="nik" required minlength="16" maxlength="16" data-parsley-type="digits" value="<?= $customer['NIK']; ?>">
                                             </div>
                                         </div>
-                                        <!-- <div class="row my-2">
-                                            <label class="col-sm-2 mt-2" for="tanggal">Tanggal Lahir</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" type="date" name="tanggal" max="<?php echo date("Y-m-d"); ?>" value="<?= $customer['tglLahir']; ?>">
-                                            </div>
-                                        </div> -->
                                         <div class="row my-2">
                                             <label class="col-sm-2 mt-2" for="email">Email</label>
                                             <div class="col-sm-10">
@@ -98,17 +92,10 @@
                                             </div>
                                         </div>
                                         <div class="row my-2">
-                                            <label class="col-sm-2 mt-2" for="noHP">Nomor HP</label>
+                                            <label class="col-sm-2 mt-2" for="noHP">Nomor Telepon</label>
                                             <div class="col-sm-10">
                                                 <input class="form-control" type="text" name="noHP" required minlength="9" maxlength="13" data-parsley-type="digits" value="<?= $customer['noHP']; ?>" placeholder="contoh: 085794214986">
                                             </div>
-                                        </div>
-                                        <div class="row my-2">
-                                            <label class="col-sm-2 mt-2" for="pekerjaan">Pekerjaan</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" type="text" name="pekerjaan" required minlength="5" value="<?= $customer['Pekerjaan']; ?>">
-                                            </div>
-                                            <input type="hidden" name="idCustomer" required value="<?= $customer['idCustomer']; ?>">
                                         </div>
                                         <div class="my-3 text-end">
                                             <button type="reset" class="btn btn-danger me-3">Reset</button>

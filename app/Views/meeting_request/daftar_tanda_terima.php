@@ -83,7 +83,6 @@
                       <th>Pengirim</th>
                       <th>Nomor Surat</th>
                       <th>Tanggal Surat</th>
-                      <th>Tanggal Masuk</th>
                       <th>Perihal</th>
                       <th>Aksi</th>
                     </tr>
@@ -93,14 +92,12 @@
                     <?php $no = 1; ?>
                     <?php foreach ($tanda_terima->getResult() as $a) :
                       $tanggal_surat = date('Y-m-d', strtotime($a->Tanggal));
-                      $tanggal_masuk = date('Y-m-d', strtotime($a->created_at));
                     ?>
                       <tr>
                         <td><?= $no++; ?></td>
                         <td><?= $a->Pengirim ?></td>
                         <td><?= $a->No_surat ?></td>
                         <td><?= tanggal_indo($tanggal_surat) ?></td>
-                        <td><?= tanggal_indo($tanggal_masuk) ?></td>
                         <td><?= $a->Perihal ?></td>
                         <td>
                           <a href="/petugasMR/edit_tandaTerima/<?= $a->id_tt ?>" class="btn btn-primary btn-sm w-xs">Ubah</a>

@@ -10,11 +10,7 @@ class TandaTerimaModel extends Model
     protected $primaryKey = 'id_tt';
     protected $useAutoIncrement = true;
 
-    protected $allowedFields = ['Pengirim', 'No_surat', 'Tanggal', 'Perihal', 'created_at', 'updated_at', 'idPetugas'];
-
-    protected $useTimestamps = true;
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
+    protected $allowedFields = ['Pengirim', 'No_surat', 'Tanggal', 'Perihal', 'idPetugas'];
 
     public function getTandaTerima($id = false)
     {
@@ -30,7 +26,7 @@ class TandaTerimaModel extends Model
 
         $builder = $this->db->table('tanda_terima');
         $builder->where('idPetugas', $id);
-        $builder->orderBy('created_at', 'DESC');
+        $builder->orderBy('Tanggal', 'DESC');
         $query = $builder->get();
         return $query;
     }

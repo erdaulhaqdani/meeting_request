@@ -72,7 +72,7 @@
                   <div class="row mb-3">
                     <label for="no_surat" class="col-sm-3 col-form-label">Nomor Surat</label>
                     <div class="col-sm-9">
-                      <input class="form-control" type="number" placeholder="Masukkan Nomor Surat" id="no_surat" name="no_surat" required>
+                      <input class="form-control" type="text" placeholder="Masukkan Nomor Surat" id="no_surat" name="no_surat" required>
                     </div>
                   </div>
                   <!-- end row -->

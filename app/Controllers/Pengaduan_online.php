@@ -379,7 +379,6 @@ class Pengaduan_online extends BaseController
             'NIK' => $this->request->getVar('nik'),
             'Email' => $this->request->getVar('email'),
             'noHP' => $this->request->getVar('noHP'),
-            'Pekerjaan' => $this->request->getVar('pekerjaan')
         ];
 
         $this->CustModel->save($data);

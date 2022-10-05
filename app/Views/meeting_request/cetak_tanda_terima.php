@@ -94,6 +94,7 @@
           <h3>DIREKTORAT JENDERAL KEKAYAAN NEGARA</h3>
           <h4>KANTOR WILAYAH DJKN JAWA BARAT</h4>
           <h3>KANTOR PELAYANAN KEKAYAAN NEGARA DAN LELANG BANDUNG</h3>
+          <h3>AREA PELAYANAN TERPADU BERSAMA</h3>
           <p>Gedung Keuangan Negara (GKN) Bandung</p>
           <p>Jalan Asia Afrika No.114 Bandung 40261</p>
           <p> Telepon: (022) 4216161 Faksimile: (022)4263131</p>

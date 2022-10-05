@@ -126,12 +126,9 @@ class AuthCust extends BaseController
       'Nama' => $this->request->getVar('nama'),
       'Username' => $this->request->getVar('username'),
       'NIK' => $this->request->getVar('nik'),
-      'tglLahir' => $this->request->getVar('tanggal'),
       'Email' => $this->request->getVar('email'),
       'noHP' => $this->request->getVar('noHP'),
-      'Pekerjaan' => $this->request->getVar('pekerjaan'),
       'Password' => $hashedPassword,
-      'jenisKelamin' => $this->request->getVar('jk'),
       'StatusAkun' => 'NonAktif',
       'idLevel' => '5'
     ]);
@@ -231,7 +228,6 @@ class AuthCust extends BaseController
             'Email' => $row_cust->Email,
             'Username' => $row_cust->Username,
             'noHP' => $row_cust->noHP,
-            'Pekerjaan' => $row_cust->Pekerjaan,
             'idLevel' => $row_cust->idLevel,
             'Kelompok' => $kelompok[0],
             'StatusAkun' => $row_cust->StatusAkun,

@@ -78,17 +78,8 @@
                                             <label class="col-sm-8">: <?= $customer['Email']; ?></label>
                                         </div>
                                         <div class="row">
-                                            <label class="col-sm-4">Nomor HP</label>
+                                            <label class="col-sm-4">Nomor Telepon</label>
                                             <label class="col-sm-8">: <?= $customer['noHP']; ?></label>
-                                        </div>
-                                        <div class="row">
-                                            <label class="col-sm-4">Jenis Kelamin</label>
-                                            <label class="col-sm-8">: <?= $customer['jenisKelamin']; ?></label>
-                                        </div>
-
-                                        <div class="row">
-                                            <label class="col-sm-4">Pekerjaan</label>
-                                            <label class="col-sm-8">: <?= $customer['Pekerjaan']; ?></label>
                                         </div>
 
                                     </div>
@@ -108,12 +99,16 @@
                                             <label class="col-sm-8">: <?= $customer['StatusAkun']; ?></label>
                                         </div>
                                         <div class="row">
-                                            <label class="col-sm-4">Jumlah Pengaduan</label>
-                                            <label class="col-sm-8"> : <?= 0 ?></label>
+                                            <label class="col-sm-4">Jumlah Janji Temu</label>
+                                            <?php foreach ($meeting->getResult() as $a) : ?>
+                                                <label class="col-sm-8"> : <?= $a->idMeeting ?></label>
+                                            <?php endforeach; ?>
                                         </div>
                                         <div class="row">
-                                            <label class="col-sm-4">Jumlah Janji Temu</label>
-                                            <label class="col-sm-8"> : <?= 0 ?></label>
+                                            <label class="col-sm-4">Jumlah Pengaduan</label>
+                                            <?php foreach ($pengaduan->getResult() as $a) : ?>
+                                                <label class="col-sm-8"> : <?= $a->idPengaduan ?></label>
+                                            <?php endforeach; ?>
                                         </div>
 
                                     </div>

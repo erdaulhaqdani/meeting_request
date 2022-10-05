@@ -65,11 +65,11 @@
 							<div id="login_customer">
 								<div class="form-group">
 									<label for="email_address">Email</label>
-									<input type="email" name="email" id="email_address" class="form-control" required>
+									<input type="email" name="email" id="email_address" class="form-control" required autocomplete="off">
 								</div>
 								<div class="form-group">
 									<label for="password">Password</label>
-									<input type="password" name="password" id="password" class="form-control" required>
+									<input type="password" name="password" id="password" class="form-control" required autocomplete="off">
 								</div>
 								<div class="clearfix mb-3">
 									<!-- <div class="float-left">

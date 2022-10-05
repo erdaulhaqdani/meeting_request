@@ -11,6 +11,9 @@ use App\Models\UserModel;
 use App\Models\UploadsModel;
 use App\Models\GaleriModel;
 use App\Models\CustModel;
+use App\Models\Meeting_requestModel;
+use App\Models\Pengaduan_onlineModel;
+
 
 class Landing_page extends BaseController
 {
@@ -23,6 +26,8 @@ class Landing_page extends BaseController
   protected $UploadsModel;
   protected $GaleriModel;
   protected $CustModel;
+  protected $Meeting_requestModel;
+  protected $Pengaduan_onlineModel;
 
   public function __construct()
   {
@@ -35,6 +40,8 @@ class Landing_page extends BaseController
     $this->UploadsModel = new UploadsModel();
     $this->GaleriModel = new GaleriModel();
     $this->CustModel = new CustModel();
+    $this->Meeting_requestModel = new Meeting_requestModel();
+    $this->Pengaduan_onlineModel = new Pengaduan_onlineModel();
   }
 
   public function form_petugas()
@@ -81,7 +88,7 @@ class Landing_page extends BaseController
     $data = [
       'title' => 'Daftar Customer',
       'customer' => $this->CustModel->findAll(),
-      'validation' => \Config\Services::validation()
+      'validation' => \Config\Services::validation(),
     ];
     return view('landing_page/daftar_customer', $data);
   }
@@ -91,6 +98,8 @@ class Landing_page extends BaseController
     $data = [
       'title' => 'Detail Akun Customer',
       'customer' => $this->CustModel->getCustomer($id),
+      'meeting' => $this->Meeting_requestModel->jumlah_meetingCustomer($id),
+      'pengaduan' => $this->Pengaduan_onlineModel->jumlah_pengaduanCustomer($id)
     ];
     return view('landing_page/detail_customer', $data);
   }
