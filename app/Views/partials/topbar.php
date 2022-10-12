@@ -94,20 +94,20 @@
             <div class="dropdown d-inline-block user-dropdown">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user" src="/assets/images/users/user.png" alt="Header Avatar">
-                    <?php if (session('NIK') == TRUE) : ?>
-                        <span class="d-none d-xl-inline-block ms-1"><?= session()->get('Username') ?></span>
-                    <?php elseif (session('NIP') == TRUE) : ?>
+                    <?php if (session('NIP') == TRUE) : ?>
                         <span class="d-none d-xl-inline-block ms-1"><?= session()->get('Nama') ?></span>
+                    <?php else : ?>
+                        <span class="d-none d-xl-inline-block ms-1"><?= session()->get('Username') ?></span>
                     <?php endif ?>
 
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
-                    <?php if (session('NIK') == TRUE) : ?>
-                        <a class="dropdown-item" href="/Pengaduan_online/profile"><i class="ri-user-line align-middle me-1"></i> Profil</a>
-                    <?php elseif (session('NIP') == TRUE) : ?>
+                    <?php if (session('NIP') == TRUE) : ?>
                         <a class="dropdown-item" href="/admin/profile"><i class="ri-user-line align-middle me-1"></i> Profil</a>
+                    <?php else : ?>
+                        <a class="dropdown-item" href="/Pengaduan_online/profile"><i class="ri-user-line align-middle me-1"></i> Profil</a>
                     <?php endif ?>
                     <a class="dropdown-item text-danger" href="/logout_cust"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
                 </div>

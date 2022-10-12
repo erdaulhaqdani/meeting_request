@@ -62,10 +62,6 @@
                                                 <hr>
                                             </div>
                                             <div class="row">
-                                                <label class="col-sm-4">NIK</label>
-                                                <label class="col-sm-8">: <?= $customer['NIK']; ?></label>
-                                            </div>
-                                            <div class="row">
                                                 <label class="col-sm-4">Nama Lengkap</label>
                                                 <label class="col-sm-8"> : <?= $customer['Nama']; ?></label>
 

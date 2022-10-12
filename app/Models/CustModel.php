@@ -11,7 +11,7 @@ class CustModel extends Model
 
   protected $useAutoIncrement = true;
 
-  protected $allowedFields = ['Username', 'Nama', 'NIK', 'tglLahir', 'Email', 'noHP', 'jenisKelamin', 'Pekerjaan', 'Password', 'StatusAkun'];
+  protected $allowedFields = ['Username', 'Nama', 'Email', 'noHP', 'Password', 'StatusAkun'];
 
   protected $useTimestamps = true;
   protected $createdField  = 'created_at';

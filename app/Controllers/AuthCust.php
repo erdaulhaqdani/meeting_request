@@ -92,12 +92,6 @@ class AuthCust extends BaseController
   {
     $val = $this->validate(
       [
-        'nik' => [
-          'rules' => 'is_unique[customer.nik]',
-          'errors' => [
-            'is_unique' => 'NIK sudah terdaftar',
-          ]
-        ],
         'email' => [
           'rules' => 'is_unique[customer.email]',
           'errors' => [
@@ -125,7 +119,6 @@ class AuthCust extends BaseController
     $this->CustModel->save([
       'Nama' => $this->request->getVar('nama'),
       'Username' => $this->request->getVar('username'),
-      'NIK' => $this->request->getVar('nik'),
       'Email' => $this->request->getVar('email'),
       'noHP' => $this->request->getVar('noHP'),
       'Password' => $hashedPassword,
@@ -223,7 +216,6 @@ class AuthCust extends BaseController
           $data = [
             'log' => TRUE,
             'idCustomer' => $row_cust->idCustomer,
-            'NIK' => $row_cust->NIK,
             'Nama' => $row_cust->Nama,
             'Email' => $row_cust->Email,
             'Username' => $row_cust->Username,

@@ -20,21 +20,11 @@ jQuery(function ($) {
         minlength: 5,
         maxlength: 15,
       },
-      NIK: {
-        required: true,
-        number: true,
-      },
       email: {
         required: true,
         email: true,
       },
-      jk: {
-        required: true,
-      },
-      pekerjaan: {
-        required: true,
-      },
-      nomor_hp: {
+      noHP: {
         required: true,
         number: true,
       },

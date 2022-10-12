@@ -41,10 +41,6 @@
 								<input type="text" name="nama" id="nama" class="form-control " required minlength="5" autocomplete="off">
 							</div>
 							<div class="form-group">
-								<label for="nik">NIK</label>
-								<input type="number" name="nik" id="nik" class="form-control <?= ($validation->hasError('nik')) ?>" required minlength="16" maxlength="16" autocomplete="off">
-							</div>
-							<div class="form-group">
 								<label for="email">Email </label>
 								<input type="email" name="email" id="email" class="form-control <?= ($validation->hasError('email')) ?>" required autocomplete="off">
 							</div>
@@ -67,10 +63,6 @@
 								<label for="password">Password</label>
 								<input type="password" name="password" id="password" class="form-control" required minlength="8">
 							</div>
-							<!-- <div class="form-group">
-								<label for="password2">Confirm Password</label>
-								<input type="password" name="password2" id="password2" class="form-control">
-							</div> -->
 							<div id="pass-info" class="clearfix"></div>
 
 							<?php
@@ -80,23 +72,10 @@
 									<?= session()->get('pesan'); ?>
 								</div>
 							<?php
-							} elseif ($validation->hasError('nik') && $validation->hasError('email')) {
-							?>
-								<div class="alert alert-danger" role="alert">
-									<?= $validation->getError('nik'); ?><br>
-									<?= $validation->getError('email'); ?>
-								</div>
-							<?php
 							} elseif ($validation->hasError('email')) {
 							?>
 								<div class="alert alert-danger" role="alert">
 									<?= $validation->getError('email'); ?>
-								</div>
-							<?php
-							} elseif ($validation->hasError('nik')) {
-							?>
-								<div class="alert alert-danger" role="alert">
-									<?= $validation->getError('nik'); ?>
 								</div>
 							<?php
 							}

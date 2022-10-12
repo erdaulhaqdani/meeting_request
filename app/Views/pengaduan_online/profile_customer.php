@@ -80,12 +80,6 @@
                                             </div>
                                         </div>
                                         <div class="row my-2">
-                                            <label class="col-sm-2 mt-2" for="nik">NIK</label>
-                                            <div class="col-sm-10">
-                                                <input class="form-control" type="text" name="nik" required minlength="16" maxlength="16" data-parsley-type="digits" value="<?= $customer['NIK']; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="row my-2">
                                             <label class="col-sm-2 mt-2" for="email">Email</label>
                                             <div class="col-sm-10">
                                                 <input class="form-control" type="email" name="email" required minlength="5" value="<?= $customer['Email']; ?>">

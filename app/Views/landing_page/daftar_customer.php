@@ -74,7 +74,6 @@
                                     <thead>
                                         <tr>
                                             <th>No.</th>
-                                            <th>NIK</th>
                                             <th>Username</th>
                                             <th>Nama Lengkap</th>
                                             <th>Status Akun</th>
@@ -97,7 +96,6 @@
                                         ?>
                                             <tr>
                                                 <td><?= $no++; ?></td>
-                                                <td><?= $a['NIK']; ?></td>
                                                 <td><?= $a['Username']; ?></td>
                                                 <td><?= $cut_nama ?></td>
                                                 <td><?= $a['StatusAkun']; ?></td>

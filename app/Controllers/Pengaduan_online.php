@@ -376,7 +376,6 @@ class Pengaduan_online extends BaseController
             'idCustomer' => $this->request->getVar('idCustomer'),
             'Nama' => $this->request->getVar('nama'),
             'Username' => $this->request->getVar('username'),
-            'NIK' => $this->request->getVar('nik'),
             'Email' => $this->request->getVar('email'),
             'noHP' => $this->request->getVar('noHP'),
         ];
