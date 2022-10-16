@@ -91,6 +91,9 @@
                                                 <input class="form-control" type="text" name="noHP" required minlength="9" maxlength="13" data-parsley-type="digits" value="<?= $customer['noHP']; ?>" placeholder="contoh: 085794214986">
                                             </div>
                                         </div>
+
+                                        <input type="hidden" name="idCustomer" required value="<?= $customer['idCustomer']; ?>">
+                                        
                                         <div class="my-3 text-end">
                                             <button type="reset" class="btn btn-danger me-3">Reset</button>
                                             <button type="submit" class="btn btn-primary" id="save">Simpan</button>
