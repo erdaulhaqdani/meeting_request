@@ -372,6 +372,7 @@ class Pengaduan_online extends BaseController
         $email = $this->request->getVar('email');
         $this->UserModel->update(['idUser' => session('idUser')], ['Email' => $email]);
 
+        // Simpan data ke database
         $data = [
             'idCustomer' => $this->request->getVar('idCustomer'),
             'Nama' => $this->request->getVar('nama'),
